@@ -1,0 +1,226 @@
+/**
+ * Style rules for WordPress theme Enough
+ * 
+ *
+ * License: GNU General Public License v2.0
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ * @package Enough
+ */
+a{
+	color:#555;
+}
+
+a:hover{
+	color:#333;
+}
+html{
+}
+#page{
+	background:rgba(255,255,255,0.8);
+}
+article{
+}
+nav {
+}
+.widgettitle{
+	color:#555;
+
+}
+#commentform,
+.posted-on,
+.posted-in,
+.menu-header,
+header{
+	/*background:rgba(200,200,200,0.6);*/
+
+}
+
+footer{
+	background:rgba(200,200,200,0.6);
+}
+.wp-caption{
+	border: 1px solid rgba(200,200,200,0.5);
+}
+hr{
+	border: 1px solid rgba(200,200,200,0.5);
+}
+.sticky{
+}
+.sticky .posted-in,
+.sticky .posted-on{
+	margin-right:1em;
+	margin-right:1rem;
+	background:none;
+}
+header{
+	padding-top:.1em;
+	padding-top:.1rem;
+}
+
+.fail-search{
+	background:#eef;
+	background:rgba(200,200,200,0.3);
+	
+}
+.not-found{
+	background:#eef;
+	background:rgba(255,200,200,0.5);
+}
+.menu-header .children a,
+.menu-header .children,
+.menu-header a,
+.menu-header{
+	color:#999;
+	background:#fff;
+}
+.menu-header .children,
+.menu-header .children a:hover,
+.menu-header a:hover{
+	color:#555;
+}
+.comment-body blockquote,
+.comment-body td,
+.comment-body th{
+	border:1px solid #999;
+}
+.comment-body blockquote{
+	border-left:6px solid #999;
+}
+
+nav #searchform{
+	background:#eef;
+	background:rgba(200,200,200,0.5);
+
+}
+nav .widget_calendar{
+	border:none!important;
+}
+.nav #wp-calendar{
+
+}
+nav #wp-calendar tbody td{
+	font-size:0.8em;
+}
+nav #wp-calendar thead th{
+	background:#ddf;
+	background:rgba(200,200,200,0.5);
+}
+nav #wp-calendar tbody td a{
+	display:block;
+	width:100%;
+	height:100%;
+	background:#eef;
+	background:rgba(200,200,200,0.2);
+}
+nav #wp-calendar tfoot td{
+	padding-top:.6em;
+}
+
+nav .widget_recent_comments{
+
+}
+nav .recentcomments{
+
+}
+nav ul.recentcomments li{
+	border:none;
+}
+.widget_tag_cloud{
+	background:rgba(200,200,200,0.5);
+
+}
+.tagcloud{
+	padding:1em;
+}
+.tagcloud a{
+	display:inline-block;
+	padding:.3em 0.5em;
+}
+.widget_pages,
+.widget_nav_menu,
+.widget_recent_comments,
+.widget_archive,
+nav .widget_meta{
+	border:1px solid #ccc;
+	margin:.6em 0;
+}
+.widget_tag_cloud .widgettitle,
+.widget_pages .widgettitle,
+.widget_nav_menu .widgettitle,
+.widget_recent_comments .widgettitle,
+.widget_archive .widgettitle,
+.widget_meta .widgettitle{
+	background:#ddf;
+	background:rgba(200,200,200,0.5);
+	margin:0;
+	-webkit-margin-before: 0;
+	-webkit-margin-after: 0;
+	padding:.6em;
+	max-width:100%;
+
+}
+nav .widget_meta ul{
+
+}
+nav .widget_meta li{
+	border:none;
+}
+
+nav .widget_pages{
+
+}
+nav .widget_pages .children{
+	margin:0 1em;
+}
+@media screen and (min-width: 481px){
+
+	 .menu-header .sub-menu:hover > a,
+	 .menu-header .sub-menu:hover > a,
+	 .menu-header .children:hover > a,
+	 .menu-header .children:hover > a {
+		border:1px solid #555;
+		font-color:#000;
+		
+	}
+	.menu-header ul ul:hover{
+	 
+	}
+
+
+}
+@media screen and (max-width: 480px){
+	.widget_pages,
+	.widget_nav_menu,
+	.widget_recent_comments,
+	.widget_archive,
+	nav .widget_meta{
+		border:none;
+	}
+	
+	.widget_tag_cloud,
+	.widget_tag_cloud .widgettitle,
+	.widget_pages .widgettitle,
+	.widget_nav_menu .widgettitle,
+	.widget_recent_comments .widgettitle,
+	.widget_archive .widgettitle,
+	.widget_meta .widgettitle{
+
+		background:none;
+		margin-bottom:1em;
+		margin-bottom:1rem;
+
+	}
+
+}
+@media screen and (max-width: 640px){
+
+	.widget_pages .widgettitle,
+	.widget_nav_menu .widgettitle,
+	.widget_recent_comments .widgettitle,
+	.widget_archive .widgettitle,
+	.widget_meta .widgettitle{
+
+		max-width:100%;
+	
+	}
+}

@@ -1,0 +1,164 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: enough 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-03-21 13:37+0900\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Akio Tenman <akio@tenman.info>\n"
+"Language-Team: enough <a.tenman@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: JAPAN\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: c:\\apache\\htdocs\n"
+"X-Poedit-SearchPath-0: enough\n"
+
+#: enough/functions.php:37
+#, php-format
+msgid "Sidebar %d"
+msgstr ""
+
+#: enough/functions.php:59
+msgid "Google tracking code"
+msgstr ""
+
+#: enough/functions.php:61
+#, php-format
+msgid "Google tracking code <a href=\"%1$s\">Google Analytics</a>"
+msgstr ""
+
+#: enough/functions.php:71
+msgid "iphone format telephone"
+msgstr ""
+
+#: enough/functions.php:72
+msgid "Iphone format detection telephone"
+msgstr ""
+
+#: enough/functions.php:82
+msgid "iphone device width settings"
+msgstr ""
+
+#: enough/functions.php:83
+msgid "iphone meta name \"viewport\" content value"
+msgstr ""
+
+#: enough/functions.php:93
+msgid "iphone_status_bar_style"
+msgstr ""
+
+#: enough/functions.php:94
+msgid "iphone the status bar style"
+msgstr ""
+
+#: enough/functions.php:137
+msgid "Main navigation"
+msgstr ""
+
+#: enough/functions.php:267
+#, php-format
+msgid "<span class=\"%1$s\">Posted on</span> %2$s <span class=\"meta-sep\">by</span> %3$s %4$s"
+msgstr ""
+
+#: enough/functions.php:308
+#: enough/functions.php:311
+msgid "Categories:"
+msgstr ""
+
+#: enough/functions.php:320
+msgid "Tags:"
+msgstr ""
+
+#: enough/functions.php:394
+msgid "Entry : "
+msgstr ""
+
+#: enough/functions.php:420
+msgid "Entries <span>(RSS)</span>"
+msgstr ""
+
+#: enough/functions.php:422
+msgid "Comments <span>(RSS)</span>"
+msgstr ""
+
+#: enough/functions.php:425
+#: enough/functions.php:427
+msgid "enough Theme"
+msgstr ""
+
+#: enough/functions.php:766
+msgid "Nothing was found though it was regrettable. Please change the key word if it is good, and retrieve it."
+msgstr ""
+
+#: enough/functions.php:774
+msgid "File Not found"
+msgstr ""
+
+#: enough/functions.php:794
+msgid "Search Results"
+msgstr ""
+
+#: enough/functions.php:798
+msgid "Tag Archives"
+msgstr ""
+
+#: enough/functions.php:802
+msgid "Category Archives"
+msgstr ""
+
+#: enough/functions.php:808
+msgid "Daily Archives"
+msgstr ""
+
+#: enough/functions.php:812
+msgid "Monthly Archives"
+msgstr ""
+
+#: enough/functions.php:820
+msgid "Yearly Archives"
+msgstr ""
+
+#: enough/functions.php:825
+msgid "Author Archives"
+msgstr ""
+
+#: enough/functions.php:833
+msgid "Blog Archives"
+msgstr ""
+
+#: enough/functions.php:928
+#, php-format
+msgid "If you add  %s when you must create function %s for data validation"
+msgstr ""
+
+#: enough/functions.php:1044
+msgid " Theme Settings"
+msgstr ""
+
+#: enough/functions.php:1069
+#, php-format
+msgid "updated %1$s  successfully."
+msgstr ""
+
+#: enough/functions.php:1325
+#, php-format
+msgid "Sorry Your PHP version is %s Please use PHP version 5 or later."
+msgstr ""
+
+#: enough/functions.php:1327
+#, php-format
+msgid "Thank you for adopting the %s theme. It is necessary to set it to this theme. Please move to a set screen clicking this <a href=\"%s\">enough settings view</a>."
+msgstr ""
+
+#: enough/index.php:40
+#: enough/index.php:41
+msgid "This content shows Simple View"
+msgstr ""
+
+#: enough/index.php:123
+msgid "Continue&nbsp;reading&nbsp;<span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+

@@ -1,0 +1,45 @@
+/**
+ * Style rules for WordPress theme Enough
+ *
+ *
+ * License: GNU General Public License v2.0
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ * @package Enough
+ */
+/* CSS Document */
+html{
+	margin:0;
+	padding:0;
+	background:rgba(200,200,200,0.3);
+}
+body {
+	font-size:100%;	
+}
+
+#page{
+	width:60rem;
+	margin:0 auto;
+	
+}
+article{
+	width:37.5em;
+	width:37.5rem;
+	padding-left:1em;
+	padding-left:1rem;
+}
+body.page article{
+	width:58em;
+	width:58rem;
+	margin:0 auto;
+}
+nav {
+	width:19em;
+	width:19rem;
+	padding-right:1em;
+	padding-right:1rem;
+	margin-left:40em;
+	margin-left:40rem;
+	position:relative;
+	top:-1em;
+	top:-1rem;
+}

@@ -1,0 +1,129 @@
+/**
+ * Style rules for WordPress theme Enough
+ * Comment 
+ *
+ * License: GNU General Public License v2.0
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ * @package Enough
+ */
+/* CSS Document */
+/*
+ * comment 
+ */
+.wp-list-comments{
+	margin:0;
+	padding:0;
+} 
+.wp-list-comments li{
+	list-style:none;
+	margin:1em;
+	margin:.1rem;
+	position:relative;
+}
+.comment-body{
+	border:1px solid #999;
+	padding:.5em;
+	padding:.5rem;
+}
+.thread-odd .comment-body{
+	background:rgba(200,200,200,0.6);
+}
+.thread-even .comment-body{
+	background:rgba(200,200,200,0.4);
+}
+.wp-list-comments .children{
+	margin-top:0;
+	margin-bottom:0;
+}
+span.says{
+	display:none;
+}
+cite.fn{
+	position:relative;
+	top:-20px;
+	font-size:0.8em;
+	font-size:0.8rem;
+	max-width:50%;
+}
+.pingback span.says,
+.pingback cite.fn{
+	position:relative;
+	top:0;
+}
+.comment-meta{
+	position:absolute;
+	top:2em;
+	top:2rem;
+	right:.5em;
+	right:.5rem;
+	font-size:0.75em;
+	font-size:0.75rem;
+	word-break:break-all;
+	word-wrap:break-word;
+	text-decoration:none;
+	max-width:70%;
+
+}
+
+.comment-body img{
+	
+}
+.pagenate-comment-links{
+	text-align:center;
+}
+.pagenate-comment-links .current{
+	font-weight:bold;
+}
+.pagenate-comment-links .page-numbers{
+	border:1px solid #ccc;
+	padding:.5em;
+	padding:.5rem;
+	
+}
+
+.reply a{
+	text-decoration:none;	
+}
+
+#commentform{
+	padding:1em;
+	padding:1rem;
+}
+label[for="author"],
+label[for="email"],
+label[for="url"]{
+	display:inline-block;
+	width:100px;
+}
+label[for="url"]{
+	width:110px;
+}
+.form-allowed-tags{
+	font-size:0.8em;
+	font-size:0.8rem;
+}
+.form-allowed-tags code{
+	color:#009900;
+}
+cite.fn{
+	display:inline-block;
+	word-break:break-all;
+	word-wrap:break-word;
+}
+.comment-body ul,
+.comment-body ol{
+	margin:0 0 0 15px;
+	padding:0;
+}
+.comment-body ul li{
+	list-style-type:disc;
+	display: list-item;
+}
+
+.comment-body ol li{
+	list-style-type:decimal;
+	display: list-item;
+}
+.comment-body address{
+	display:block;
+}

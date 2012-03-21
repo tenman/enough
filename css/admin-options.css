@@ -1,0 +1,25 @@
+/**
+ * Style rules for WordPress theme Enough
+ * Admin theme options
+ *
+ * License: GNU General Public License v2.0
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ * @package Enough
+ */
+.enough-options-panel{
+	max-width:90%;
+	margin:0 auto;
+}
+.setting-title{
+	background-color: #83B4D8;
+	padding:0.3em;
+	padding:0.3rem;
+	color:#fff;
+}
+.widefat{
+	padding-top:0;
+}
+.theme-option-menu{
+	margin-bottom:3em;
+	margin-bottom:3rem;
+}
