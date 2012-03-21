@@ -12,7 +12,7 @@
 //add_action( 'admin_init', 'enough_settings' );
 
 //function enough_settings() {
-	load_textdomain( 'enough', get_template_directory().'/languages/'.get_locale().'.mo' );
+    load_textdomain( 'enough', get_template_directory().'/languages/'.get_locale().'.mo' );
 //}
 
 /**
@@ -56,18 +56,6 @@ if ( !isset( $content_width ) ){
  *
  */
     $enough_admin_options_setting = array(
-         array('option_id' => 1,
-        'blog_id' => 0 ,
-        'option_name' => "enough_google_tracking_code",
-        'option_value' => "",
-        'autoload'=>'yes',
-        'title'=>__('Google tracking code','enough'),
-
-        'excerpt'=>sprintf(__('Google tracking code <a href="%1$s">Google Analytics</a>','enough'),'http://www.google.com/analytics/'),
-        'validate'=>'enough_google_tracking_code_validate','list' => 12,
-        'type' => 'text',
-        'select_values' => ''
-        ),
         array('option_id' => 2,
         'blog_id' => 0 ,
         'option_name' => "enough_format_detection_telephone",
@@ -157,7 +145,7 @@ if ( !isset( $content_width ) ){
     add_custom_background();
     add_action('wp_enqueue_scripts', 'enough_enqueue_scripts_styles');
     add_filter('body_class','enough_add_body_class');
-    
+
 /**
  *
  *
@@ -943,12 +931,7 @@ if(!function_exists("enough_loop_title")){
  *
  */
 
-        function enough_google_tracking_code_validate($input){
 
-        $input = esc_html($input);
-
-            return $input;
-        }
 
         function enough_facebook_id_validate($input){
 
@@ -1354,43 +1337,6 @@ $lines .= '<a href="#wpwrap">Top</a>';
             }
         }
     }
-
-
-
-/**
- *
- *
- *
- *
- *
- */
-
-$enough_google_tracking_code = enough_theme_option('enough_google_tracking_code');
-
-if($enough_google_tracking_code !== false){
-    add_action("wp_head",'enough_embed_tracking_code',99);
-}
-if(!function_exists('enough_embed_tracking_code')){
-    function enough_embed_tracking_code(){
-        global $enough_google_tracking_code;
-    ?>
-
-    <script type="text/javascript">
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', '<?php echo $enough_google_tracking_code;?>']);
-      _gaq.push(['_trackPageview']);
-
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-
-    </script>
-    <?php
-    }
-}
-
 
 /**
  *
