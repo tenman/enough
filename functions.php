@@ -9,12 +9,16 @@
  */
 ?>
 <?php
-//add_action( 'admin_init', 'enough_settings' );
 
-//function enough_settings() {
+/**
+ *
+ *
+ *
+ *
+ *
+ */
+
     load_textdomain( 'enough', get_template_directory().'/languages/'.get_locale().'.mo' );
-//}
-
 /**
  *
  *
