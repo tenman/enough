@@ -4,7 +4,7 @@ Theme URI: http://www.tenman.info/wp3/enough/
 Description: Window width Responsive theme. IE9 IE8 support. Default template is only index.php. You can add a template and template part file whenever if you want. Simple , easy , useful!
 Author: Tenman
 Author URI: http://www.tenman.info/wp3/
-Version: 0.1
+Version: 0.2
 Tags:white,two-columns,custom-colors, custom-header, custom-background, custom-menu, editor-style, threaded-comments, sticky-post
 License: GNU General Public License v2.0
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -19,10 +19,23 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 @import url("css/layout-fluid.css");
 
 body{
+font-size:100%;
 margin:0;
 padding:0;
 max-width:100%;
 }
+.enough-w-sxga,
+.enough-w-xga{
+	
+}
+.enough-w-keitai,
+.enough-w-qvga,
+.enough-w-iphone,
+.enough-w-vga,
+.enough-w-svga{
+	font-size:80%;
+}
+
 div#page{
 width:96%;
 margin:auto;

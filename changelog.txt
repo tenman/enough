@@ -1,0 +1,29 @@
+Changelog -----------------------------------
+version:0.2
+
+modified
+    body class width[0-9]00 remove
+    body class new value below
+        if( width < 1281 ){
+            body_class = 'enough-w-sxga';
+        }
+        if( width < 1025 ){
+            body_class = 'enough-w-xga';
+        }
+        if( width < 801 ){
+            body_class = 'enough-w-svga';
+        }
+        if( width < 641 ){
+            body_class = 'enough-w-vga';
+        }
+        if( width < 481 ){
+            body_class = 'enough-w-iphone';
+        }
+        if( width < 321 ){
+            body_class = 'enough-w-qvga';
+        }
+        if( width < 241 ){
+            body_class = 'enough-w-keitai';
+        }
+    CSS modified
+----------------------------------------------

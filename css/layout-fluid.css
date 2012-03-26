@@ -6,7 +6,6 @@
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * @package Enough
  */
-
 html{
 	margin:0;
 	padding:0;
@@ -38,14 +37,11 @@ article{
     -moz-box-sizing: border-box; 
     -ms-box-sizing: border-box; 
     box-sizing: border-box;
-		
-
 }
 body.page article{
 	width:96.6%;
 	margin:0 auto;
 }
-
 nav {
 	width:28%;
 	padding-right:1em;
@@ -57,7 +53,6 @@ nav {
     -moz-box-sizing: border-box; 
     -ms-box-sizing: border-box; 
     box-sizing: border-box;
-	
 }
 .unknown nav{
 	width:96.6%;
@@ -69,7 +64,6 @@ nav {
     -ms-box-sizing: border-box; 
     box-sizing: border-box;
 }
-
 	.wp-caption-text,
 	.toggle-tag,
 	.posted-on,
@@ -77,7 +71,6 @@ nav {
 		font-size:.75em;
 		font-size:.75rem;
 	}
-	
 	nav #wp-calendar caption{
 		margin:.6em;
 		font-family:Georgia, "Times New Roman", Times, serif;
@@ -89,7 +82,6 @@ nav {
 	.form-allowed-tags code{
 		font-family:"Courier New", Courier, mono;
 	}
-
 @media screen and (max-width : 640px){
 	body{
 		font-size:80%;
@@ -126,6 +118,7 @@ nav {
 	}
 
 }
+
 @media screen and (max-width : 480px){
 	body{
 		font-size:75%;
@@ -137,7 +130,6 @@ nav {
 		-moz-box-sizing: border-box; 
 		-ms-box-sizing: border-box; 
 		box-sizing: border-box;
-
 	}
 	 .menu-header ul{
 		margin: 0;
@@ -146,9 +138,7 @@ nav {
 	}
 	 .menu-header > ul > li{
 		border-bottom:1px solid #aaa;
-		
 	}
-	
 	 .menu-header li{
 		margin:0;
 		list-style:none;		
@@ -213,7 +203,6 @@ nav {
 		margin:.5em 1.5em;
 		margin:.5rem 1.5rem;
 	}
-	
 }
 @media screen and (min-width: 481px){
 
@@ -227,7 +216,6 @@ nav {
 		-ms-box-sizing: border-box; 
 		box-sizing: border-box;
 		margin:0 1em;
-		
 	}
 	 .menu-header ul{
 		margin: 0;
@@ -249,7 +237,6 @@ nav {
 		
 		min-width:5em;
 		min-width:5rem;
-
 	}
 	 .menu-header > ul > li{
 		float:left;
@@ -290,12 +277,10 @@ nav {
 		padding:0.8em 0;/* IE8 not support rem */
 		line-height: 1rem;
 		padding:0.8rem 0;
-	
 		height: auto;
 	}
 	 .menu-header ul ul:hover{
 	 border-left:1px solid #ccc;
-	 
 	}
 	 .menu-header .sub-menu:hover > a,
 	 .menu-header .sub-menu:hover > a,
@@ -303,14 +288,12 @@ nav {
 	/* .menu-header li:hover > a,*/
 	 .menu-header .children:hover > a {
 		border:1px solid #999;
-		
 	}
 	 .menu-header ul li:hover > .sub-menu,
 	 .menu-header ul li:hover > .children {
 		display:block;
 		position:absolute;
 	}
-	
 	 .menu-header li.current_page_item > a,
 	 .menu-header li.current-menu-ancestor > a,
 	 .menu-header li.current-menu-item > a,

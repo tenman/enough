@@ -6,14 +6,10 @@
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * @package Enough
  */
-/* CSS Document */
-/*
- * comment 
- */
 .wp-list-comments{
 	margin:0;
 	padding:0;
-} 
+}
 .wp-list-comments li{
 	list-style:none;
 	margin:1em;
@@ -62,11 +58,8 @@ cite.fn{
 	word-wrap:break-word;
 	text-decoration:none;
 	max-width:70%;
-
 }
-
 .comment-body img{
-	
 }
 .pagenate-comment-links{
 	text-align:center;
@@ -78,13 +71,10 @@ cite.fn{
 	border:1px solid #ccc;
 	padding:.5em;
 	padding:.5rem;
-	
 }
-
 .reply a{
 	text-decoration:none;	
 }
-
 #commentform{
 	padding:1em;
 	padding:1rem;
@@ -119,7 +109,6 @@ cite.fn{
 	list-style-type:disc;
 	display: list-item;
 }
-
 .comment-body ol li{
 	list-style-type:decimal;
 	display: list-item;
