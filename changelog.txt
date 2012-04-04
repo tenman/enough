@@ -26,4 +26,9 @@ modified
             body_class = 'enough-w-keitai';
         }
     CSS modified
+
+    Change theme description.
+
+    Add action filter add_action( 'after_setup_theme', 'enough_theme_setup' );
+    Add function enough_theme_setup
 ----------------------------------------------
