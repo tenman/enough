@@ -2,6 +2,7 @@ Changelog -----------------------------------
 version:0.2
 
 modified
+CSS modified
     body class width[0-9]00 remove
     body class new value below
         if( width < 1281 ){
@@ -25,10 +26,12 @@ modified
         if( width < 241 ){
             body_class = 'enough-w-keitai';
         }
-    CSS modified
+Change theme description.
 
-    Change theme description.
-
+Add action
     Add action filter add_action( 'after_setup_theme', 'enough_theme_setup' );
-    Add function enough_theme_setup
+Add function
+    enough_theme_setup
+
+Add class enough_menu_create member function enough_settings_page_contextual_help
 ----------------------------------------------
