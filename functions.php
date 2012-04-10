@@ -123,6 +123,7 @@
  */
 if( !function_exists( 'enough_theme_setup' ) ){
     function enough_theme_setup(){
+        global $enough_sidebar_args, $enough_register_nav_menus_args;
         register_nav_menus( $enough_register_nav_menus_args );
         register_sidebar( $enough_sidebar_args );
         add_theme_support( 'automatic-feed-links' );
@@ -175,6 +176,7 @@ if( !function_exists( 'enough_theme_setup' ) ){
             return;
             }
         }
+
 
     }
 }
@@ -267,7 +269,7 @@ if( ! function_exists( 'enough_posted_on' ) ){
         ?>
 <div class="posted-on">
 <?php
-		$enough_date_format = get_option('date_format'). ' '. get_option( 'time_format' );
+        $enough_date_format = get_option('date_format'). ' '. get_option( 'time_format' );
         $author = get_the_author();
         //$author = enough_blank_fallback(get_the_author(),'Somebody');
         if (comments_open()){
