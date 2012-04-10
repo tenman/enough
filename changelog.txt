@@ -1,7 +1,20 @@
 Changelog -----------------------------------
 version:0.21
-
+Fixed
+    Fixed Posted on Publish date format display improperly
+    Fixed confusing in English
+    Fixed get_header action not support
+    Fixed Remove function_exists()
+        functions.php
+            add_menus()
+Checked
+    echo apply_filters( 'enough_post_thumbnail', get_the_post_thumbnail(  ) );
+        index.php
+        It seems appropriate.
 modified
+    readme.txt
+        Add About this theme section
+
 
 ----------------------------------------------
 Changelog -----------------------------------
