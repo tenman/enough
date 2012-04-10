@@ -8,7 +8,9 @@
  * @package Enough
  */
 ?>
-<?php if ( locate_template( array( 'header.php' ) , true , true ) == '') {//template existance check ?>
+<?php if ( locate_template( array( 'header.php' ) , true , true ) == '') {//template existance check
+do_action( 'get_header' );
+?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>

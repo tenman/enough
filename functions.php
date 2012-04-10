@@ -267,7 +267,7 @@ if( ! function_exists( 'enough_posted_on' ) ){
         ?>
 <div class="posted-on">
 <?php
-        $enough_date_format = get_option('date_format');
+		$enough_date_format = get_option('date_format'). ' '. get_option( 'time_format' );
         $author = get_the_author();
         //$author = enough_blank_fallback(get_the_author(),'Somebody');
         if (comments_open()){
@@ -290,7 +290,7 @@ if( ! function_exists( 'enough_posted_on' ) ){
             sprintf( '<a href="%1$s" title="%2$s" rel="bookmark"><span class="entry-date">%3$s</span></a>',
                 get_permalink(),
                 esc_attr( get_the_time($enough_date_format) ),
-                get_the_date()
+                get_the_date( $enough_date_format )
             ),
             sprintf( '<span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" rel="vcard:url">%3$s</a></span>',
                 get_author_posts_url( get_the_author_meta( 'ID' ) ),
@@ -1012,7 +1012,6 @@ if( ! function_exists( 'enough_iphone_status_bar_style_validate' ) ){
  *
  */
         function add_menus() {
-            if(function_exists('add_theme_page')) {
                 $option_name   = ucwords(get_current_theme()).' Options';
                 $hook_suffix = add_theme_page(
                         ENOUGH_TABLE_TITLE,
@@ -1025,7 +1024,6 @@ if( ! function_exists( 'enough_iphone_status_bar_style_validate' ) ){
                     add_action( 'admin_print_styles-' . $hook_suffix, array($this,'enough_admin_print_styles') );
                     add_action( 'load-' . $hook_suffix, array($this,'enough_settings_page_contextual_help') );
                 }
-            }
         }
 /**
  *
@@ -1076,7 +1074,7 @@ if( ! function_exists( 'enough_iphone_status_bar_style_validate' ) ){
         /*readme.txt*/
         $content .= sprintf($html
                 , __('Readme text','enough')
-                , sprintf( $link, get_template_directory_uri().'/changelog.txt', __('Readme , display new window', 'enough'), 'target="_blank"' )
+                , sprintf( $link, get_template_directory_uri().'/readme.txt', __('Readme , display new window', 'enough'), 'target="_blank"' )
                 );
 
 
@@ -1267,7 +1265,7 @@ if( ! function_exists( "enough_first_only_msg" ) ){
             if (version_compare(PHP_VERSION, '5.0.0', '<')) {
             $msg    = sprintf(__('Sorry Your PHP version is %s Please use PHP version 5 or later.','enough'),PHP_VERSION);
             }else{
-            $msg    = sprintf(__('Thank you for adopting the %s theme. It is necessary to set it to this theme. Please move to a set screen clicking this <a href="%s">enough settings view</a>.','enough'),get_current_theme() ,$link);
+            $msg    = sprintf(__('Thank you for adopting the %s theme. It is necessary to set it to this theme. Please move to a set screen clicking this <a href="%s">settings page</a>.','enough'),get_current_theme() ,$link);
             }
         }
         return '<div id="testmsg" class="error"><p>' . $msg . '</p></div>' . "\n";
