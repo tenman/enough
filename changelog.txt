@@ -7,6 +7,10 @@ Fixed
     Fixed Remove function_exists()
         functions.php
             add_menus()
+    Fixed PHP error
+        functions.php
+            enough_theme_setup()
+            Add globals $enough_sidebar_args, $enough_register_nav_menus_args
 Checked
     echo apply_filters( 'enough_post_thumbnail', get_the_post_thumbnail(  ) );
         index.php
