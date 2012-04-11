@@ -59,6 +59,8 @@
     $enough_register_nav_menus_args = array(
         'primary' => __( 'Main navigation', 'enough' )
         );
+    register_nav_menus( $enough_register_nav_menus_args );
+
 /**
  *
  *
@@ -123,8 +125,10 @@
  */
 if( !function_exists( 'enough_theme_setup' ) ){
     function enough_theme_setup(){
-        global $enough_sidebar_args, $enough_register_nav_menus_args;
-        register_nav_menus( $enough_register_nav_menus_args );
+        global $enough_sidebar_args;
+		global $enough_register_nav_menus_args;
+		global $enough_admin_options_setting;
+
         register_sidebar( $enough_sidebar_args );
         add_theme_support( 'automatic-feed-links' );
         add_theme_support( 'post-thumbnails' );
@@ -168,14 +172,18 @@ if( !function_exists( 'enough_theme_setup' ) ){
      *
      *
      */
-        foreach($enough_admin_options_setting as $setting){
-            $function_name = $setting['option_name'].'_validate';
-            if(!function_exists($function_name)){
-                $message = sprintf(__('If you add  %s when you must create function %s for data validation','enough'),$setting['option_name'],$function_name);
-                printf('<script type="text/javascript">alert(\'%s\');</script>',$message);
-            return;
-            }
-        }
+	if( version_compare(PHP_VERSION, '5.3.0', '<' ) ) {
+		if(isset( $enough_admin_options_setting ) and is_array( $enough_admin_options_setting ) ){
+			foreach($enough_admin_options_setting as $setting){
+				$function_name = $setting['option_name'].'_validate';
+				if(!function_exists($function_name)){
+					$message = sprintf(__('If you add  %s when you must create function %s for data validation','enough'),$setting['option_name'],$function_name);
+					printf('<script type="text/javascript">alert(\'%s\');</script>',$message);
+				return;
+				}
+			}
+		}
+	}
 
 
     }
@@ -529,9 +537,10 @@ if ( ! function_exists( 'enough_add_body_class' ) ) {
  */
 if ( ! function_exists( 'enough_small_device_helper' ) ) {
     function enough_small_device_helper(){
-         $enough_title_length       = round(strlen(get_bloginfo('name')) );
-         $enough_description_length = round(strlen(get_bloginfo('description')),0);
-         $enough_header_image_uri   = get_header_image();
+		global $is_IE;
+		$enough_title_length       = round(strlen(get_bloginfo('name')) );
+		$enough_description_length = round(strlen(get_bloginfo('description')),0);
+		$enough_header_image_uri   = get_header_image();
     ?>
         <script type="text/javascript">
         (function(){
@@ -704,7 +713,7 @@ if ( ! function_exists( 'enough_small_device_helper' ) ) {
                     if (jQuery('ul').is('.tagcloud-wrapper')) {
                         jQuery('div.tagcloud').unwrap();
                     }
-                    <?php  if($is_IE){?>
+                    <?php  if( $is_IE ){?>
                     if ( ! jQuery('body').is('[class^="enough-w"]')) {
                         location.reload();
                     }
@@ -1174,7 +1183,7 @@ $lines .= '<a href="#wpwrap">Top</a>';
                     $lines .= '<p><input  accesskey="'.esc_attr($this->accesskey[$i]).'" type="checkbox" name="enough_option_values['.$key.'][]" value="'.esc_attr__(enough_theme_option($key,'option_value'),'enough').'"';
                     $i++;
                     $check = enough_theme_option($key);
-                   if(enough_theme_option($key,'option_value') == $val or array_search(enough_theme_option($key,'option_value'),$check) !== false ){
+                   if( is_array( $check ) and (enough_theme_option($key,'option_value') == $val or array_search(enough_theme_option($key,'option_value'),$check) !== false  ) ){
                         $lines .= 'checked = "checked" />'.enough_theme_option($key,'option_value');
                    }elseif(array_search(enough_theme_option($key,'option_value'),$check) == false){
                         $lines .= ' />'.enough_theme_option($key,'option_value');
@@ -1185,7 +1194,7 @@ $lines .= '<a href="#wpwrap">Top</a>';
                                     '" type="checkbox" name="enough_option_values['.$key.'][]" value="'.
                                     esc_attr__($val_check_box,'enough').'"';
                         $i++;
-                        if(enough_theme_option($key) == $val_check_box or array_search($val_check_box,$check) !== false){
+                        if(is_array( $check ) and (enough_theme_option($key) == $val_check_box or array_search($val_check_box,$check) !== false ) ){
                             $lines .= 'checked = "checked" />'.$val_check_box;
                         }elseif(array_search($val_check_box,$check) == false){
                             $lines .= ' />'.$val_check_box;
@@ -1205,24 +1214,30 @@ $lines .= '<a href="#wpwrap">Top</a>';
 $lines .= '<a href="#wpwrap">Top</a>';
                     $lines .= '<h3 class="setting-title">'. enough_theme_option($key,'title').'</h3>';
                     $lines .=  '<strong class="setting-excerpt">'.enough_theme_option($key,'excerpt').'</strong>';
-                    $lines .= '<p><input  accesskey="'.esc_attr($this->accesskey[$i]).'" type="radio" name="enough_option_values['.$key.']" value="'.esc_attr__(enough_theme_option($key,'option_value'),'enough').'"';
+                    $lines .= '<p><label><input  accesskey="'.esc_attr($this->accesskey[$i]).'" type="radio" name="enough_option_values['.$key.']" value="'.esc_attr__(enough_theme_option($key,'option_value'),'enough').'"';
                     $i++;
                     $check = enough_theme_option($key);
-                   if(enough_theme_option($key,'option_value') == $val or array_search(enough_theme_option($key,'option_value'),$check) !== false ){
-                        $lines .= 'checked = "checked" />'.enough_theme_option($key,'option_value');
-                   }elseif(array_search(enough_theme_option($key,'option_value'),$check) == false){
-                        $lines .= ' />'.enough_theme_option($key,'option_value');
+					
+                   if( enough_theme_option($key,'option_value') == $val or (is_array( enough_theme_option($key,'option_value') ) and array_search(enough_theme_option($key,'option_value'),$check) !== false ) ){
+                        $lines .= 'checked = "checked" />'.enough_theme_option($key,'option_value'). '</label>';
+                   }elseif( ! is_array( $check ) or array_search(enough_theme_option($key,'option_value'),$check) == false ){
+                        $lines .= ' />'.enough_theme_option($key,'option_value'). '</label>';
                    }
                     $select_values = enough_theme_option($key,'select_values');
-                    foreach($select_values as $label => $val_check_box){
-                        $lines .= '<input  accesskey="'.esc_attr($this->accesskey[$i]).
-                                    '" type="radio" name="enough_option_values['.$key.']" value="'.
-                                    esc_attr__($val_check_box,'enough').'"';
-                        $i++;
-                        if(enough_theme_option($key) == $val_check_box or array_search($val_check_box,$check) !== false){
-                            $lines .= 'checked = "checked" />'.$val_check_box;
-                        }elseif(array_search($val_check_box,$check) == false){
-                            $lines .= ' />'.$val_check_box;
+
+                    if(is_array( $select_values ) and !empty( $select_values ) ){
+					
+                        foreach($select_values as $label => $val_check_box){
+                            $lines .= '<label><input  accesskey="'.esc_attr($this->accesskey[$i]).
+                                        '" type="radio" name="enough_option_values['.$key.']" value="'.
+                                        esc_attr__($val_check_box,'enough').'"';
+                            $i++;
+							
+                            if( enough_theme_option($key) == $val_check_box or (is_array( $check ) and array_search($val_check_box,$check) !== false ) ){
+                                $lines .= 'checked = "checked" />'.$val_check_box.'</label>';
+                            }elseif( ! is_array( $check ) or array_search($val_check_box,$check) == false ){
+                                $lines .= ' />'. $val_check_box.'</label>';
+                            }
                         }
                     }
                     $lines .= '</p>';
@@ -1236,7 +1251,7 @@ $lines .= '<a href="#wpwrap">Top</a>';
  *
  *
  */
-            $lines .= "<div style=\"margin:20px 50px;\"><input type=\"submit\" class=\"button-primary\" value=\"".esc_attr('Save Changes').'" />&nbsp;&nbsp;&nbsp;';
+            $lines .= "<div class=\"submit-box\"><input type=\"submit\" class=\"button-primary\" value=\"".esc_attr('Save Changes').'" />&nbsp;&nbsp;&nbsp;';
             $lines .= "<input type=\"submit\" name=\"reset\" class=\"button-primary\" value=\"".esc_attr('Reset All Settings').'" /></form><br style="clear:both;</div>"';
             $lines .= "lines";
             $add_infomation = '';

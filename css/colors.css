@@ -13,6 +13,7 @@ a:hover{
 	color:#333;
 }
 html{
+	background:rgba(200,200,200,0.3);
 }
 #page{
 	background:rgba(255,255,255,0.8);

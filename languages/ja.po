@@ -19,7 +19,7 @@ msgstr ""
 #: enough/functions.php:37
 #, php-format
 msgid "Sidebar %d"
-msgstr ""
+msgstr "サイドバー %d"
 
 #: enough/functions.php:59
 msgid "Google tracking code"
@@ -32,11 +32,11 @@ msgstr "グーグルトラッキングコード <a href=\"%1$s\">Google Analytic
 
 #: enough/functions.php:71
 msgid "iphone format telephone"
-msgstr ""
+msgstr "iphoneで　電話番号の自動変換"
 
 #: enough/functions.php:72
 msgid "Iphone format detection telephone"
-msgstr ""
+msgstr "電話番号フォーマットの自動検知"
 
 #: enough/functions.php:82
 msgid "iphone device width settings"
@@ -127,12 +127,12 @@ msgstr "著者　アーカイブ"
 
 #: enough/functions.php:833
 msgid "Blog Archives"
-msgstr ""
+msgstr "ブログ　アーカイブ"
 
 #: enough/functions.php:928
 #, php-format
 msgid "If you add  %s when you must create function %s for data validation"
-msgstr ""
+msgstr "  %s 関数を追加した場合はデータバリデーション用の関数 %sも追加しなければなりません"
 
 #: enough/functions.php:1044
 msgid " Theme Settings"
@@ -160,5 +160,5 @@ msgstr "この画面は、簡易表示です"
 
 #: enough/index.php:123
 msgid "Continue&nbsp;reading&nbsp;<span class=\"meta-nav\">&rarr;</span>"
-msgstr ""
+msgstr "もっと読む&nbsp;<span class=\"meta-nav\">&rarr;</span>"
 
