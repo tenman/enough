@@ -126,8 +126,8 @@
 if( !function_exists( 'enough_theme_setup' ) ){
     function enough_theme_setup(){
         global $enough_sidebar_args;
-		global $enough_register_nav_menus_args;
-		global $enough_admin_options_setting;
+        global $enough_register_nav_menus_args;
+        global $enough_admin_options_setting;
 
         register_sidebar( $enough_sidebar_args );
         add_theme_support( 'automatic-feed-links' );
@@ -172,18 +172,18 @@ if( !function_exists( 'enough_theme_setup' ) ){
      *
      *
      */
-	if( version_compare(PHP_VERSION, '5.3.0', '<' ) ) {
-		if(isset( $enough_admin_options_setting ) and is_array( $enough_admin_options_setting ) ){
-			foreach($enough_admin_options_setting as $setting){
-				$function_name = $setting['option_name'].'_validate';
-				if(!function_exists($function_name)){
-					$message = sprintf(__('If you add  %s when you must create function %s for data validation','enough'),$setting['option_name'],$function_name);
-					printf('<script type="text/javascript">alert(\'%s\');</script>',$message);
-				return;
-				}
-			}
-		}
-	}
+    if( version_compare(PHP_VERSION, '5.3.0', '<' ) ) {
+        if(isset( $enough_admin_options_setting ) and is_array( $enough_admin_options_setting ) ){
+            foreach($enough_admin_options_setting as $setting){
+                $function_name = $setting['option_name'].'_validate';
+                if(!function_exists($function_name)){
+                    $message = sprintf(__('If you add  %s when you must create function %s for data validation','enough'),$setting['option_name'],$function_name);
+                    printf('<script type="text/javascript">alert(\'%s\');</script>',$message);
+                return;
+                }
+            }
+        }
+    }
 
 
     }
@@ -537,10 +537,10 @@ if ( ! function_exists( 'enough_add_body_class' ) ) {
  */
 if ( ! function_exists( 'enough_small_device_helper' ) ) {
     function enough_small_device_helper(){
-		global $is_IE;
-		$enough_title_length       = round(strlen(get_bloginfo('name')) );
-		$enough_description_length = round(strlen(get_bloginfo('description')),0);
-		$enough_header_image_uri   = get_header_image();
+        global $is_IE;
+        $enough_title_length       = round(strlen(get_bloginfo('name')) );
+        $enough_description_length = round(strlen(get_bloginfo('description')),0);
+        $enough_header_image_uri   = get_header_image();
     ?>
         <script type="text/javascript">
         (function(){
@@ -925,15 +925,7 @@ if( ! function_exists( 'enough_iphone_device_width_validate' ) ){
 }
 if( ! function_exists( 'enough_iphone_status_bar_style_validate' ) ){
     function enough_iphone_status_bar_style_validate($input){
-    return $input;
-        $input = str_replace("#","",$input);
-        if(ctype_xdigit($input)){
-            return '#'.$input;
-        }else{
-            $enough_options = get_option("enough_theme_settings");
-            return $enough_options["enough_color_scheme"];
-        }
-        return $input;
+        return esc_html( $input );
     }
 }
 /**
@@ -969,11 +961,14 @@ if( ! function_exists( 'enough_iphone_status_bar_style_validate' ) ){
              *
              */
             if(isset($_POST['enough_option_values']) and !empty($_POST['enough_option_values'])){
-                $enough_updates          = "";
+                    $enough_updates         = "";
+
                 foreach($_POST["enough_option_values"] as $key=>$val){
+
                     $valid_function         = $key.'_validate';
                     $new_settings           = get_option('enough_theme_settings');
-                    $new_settings[$key]     = $val;
+                    $new_settings[$key]     = $valid_function( $val );
+
                     if(update_option('enough_theme_settings',$new_settings)){
                         $ok                 = true;
                         $enough_updates .= ','.$key;
@@ -1217,7 +1212,7 @@ $lines .= '<a href="#wpwrap">Top</a>';
                     $lines .= '<p><label><input  accesskey="'.esc_attr($this->accesskey[$i]).'" type="radio" name="enough_option_values['.$key.']" value="'.esc_attr__(enough_theme_option($key,'option_value'),'enough').'"';
                     $i++;
                     $check = enough_theme_option($key);
-					
+
                    if( enough_theme_option($key,'option_value') == $val or (is_array( enough_theme_option($key,'option_value') ) and array_search(enough_theme_option($key,'option_value'),$check) !== false ) ){
                         $lines .= 'checked = "checked" />'.enough_theme_option($key,'option_value'). '</label>';
                    }elseif( ! is_array( $check ) or array_search(enough_theme_option($key,'option_value'),$check) == false ){
@@ -1226,13 +1221,13 @@ $lines .= '<a href="#wpwrap">Top</a>';
                     $select_values = enough_theme_option($key,'select_values');
 
                     if(is_array( $select_values ) and !empty( $select_values ) ){
-					
+
                         foreach($select_values as $label => $val_check_box){
                             $lines .= '<label><input  accesskey="'.esc_attr($this->accesskey[$i]).
                                         '" type="radio" name="enough_option_values['.$key.']" value="'.
                                         esc_attr__($val_check_box,'enough').'"';
                             $i++;
-							
+
                             if( enough_theme_option($key) == $val_check_box or (is_array( $check ) and array_search($val_check_box,$check) !== false ) ){
                                 $lines .= 'checked = "checked" />'.$val_check_box.'</label>';
                             }elseif( ! is_array( $check ) or array_search($val_check_box,$check) == false ){
@@ -1317,6 +1312,10 @@ if( ! function_exists( "enough_install_navigation" ) ){
 if( ! function_exists( 'enough_embed_format_detection_telephone' ) ){
     function enough_embed_format_detection_telephone(){
         global $enough_embed_format_detection_telephone;
+        if( empty( $enough_embed_format_detection_telephone ) or ! isset( $enough_embed_format_detection_telephone ) ){
+            $enough_embed_format_detection_telephone = enough_theme_option("enough_embed_format_detection_telephone");
+        }
+
     ?>
     <meta name="format-detection" content="telephone=<?php echo $enough_embed_format_detection_telephone; ?>" />
     <?php
@@ -1332,6 +1331,9 @@ if( ! function_exists( 'enough_embed_format_detection_telephone' ) ){
 if( ! function_exists( 'enough_embed_iphone_device_width' ) ){
     function enough_embed_iphone_device_width(){
         global $enough_embed_iphone_device_width;
+        if( empty( $enough_embed_iphone_device_width ) or ! isset( $enough_embed_iphone_device_width ) ){
+            $enough_embed_iphone_device_width = enough_theme_option("enough_iphone_device_width");
+        }
     ?>
     <meta name="viewport" content="<?php echo $enough_embed_iphone_device_width; ?>" />
     <?php
@@ -1347,6 +1349,10 @@ if( ! function_exists( 'enough_embed_iphone_device_width' ) ){
 if( ! function_exists( 'enough_embed_iphone_status_bar' ) ){
     function enough_embed_iphone_status_bar(){
         global $enough_embed_iphone_status_bar_style;
+        if( empty( $enough_embed_iphone_status_bar_style ) or ! isset( $enough_embed_iphone_status_bar_style ) ){
+            $enough_embed_iphone_status_bar_style = enough_theme_option("enough_iphone_status_bar_style");
+        }
+
     ?>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style"      content="<?php echo $enough_embed_iphone_status_bar_style; ?>">
