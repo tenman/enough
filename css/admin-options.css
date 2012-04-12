@@ -28,7 +28,7 @@ input[type="radio"]{
 	margin-left:1em;
 	margin-right:1em;
 }
-input[type="text"]{
+form input[type="text"]{
 	width:20em;
 }
 .submit-box{
