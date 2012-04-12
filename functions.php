@@ -1389,10 +1389,11 @@ if( ! function_exists( 'enough_header_style' ) ){
             }
             header h2,
             header h1 a{
-                color:#<?php echo HEADER_TEXTCOLOR;?>;
+                color:#<?php echo get_header_textcolor(); ?>;
             }-->
         </style><?php
         }
+
     }
 }
 /**
