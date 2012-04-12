@@ -715,7 +715,7 @@ if ( ! function_exists( 'enough_small_device_helper' ) ) {
                     }
                     <?php  if( $is_IE ){?>
                     if ( ! jQuery('body').is('[class^="enough-w"]')) {
-                        location.reload();
+                       // location.reload();
                     }
                     <?php } //end $is_IE ?>
                 }else{
@@ -1387,10 +1387,15 @@ if( ! function_exists( 'enough_header_style' ) ){
                 background: url(<?php echo $header_image ?>);
                 height:<?php echo HEADER_IMAGE_HEIGHT;?>px;
             }
-            header h2,
-            header h1 a{
-                color:#<?php echo get_header_textcolor(); ?>;
-            }-->
+			<?php if ( 'blank' == get_header_textcolor() ) {?>
+			header a span{visibility:hidden;}
+			header .site-description span{ display: none; }	
+			<?php }else{ ?>
+			header h2,
+			header h1 a{
+				color:#<?php echo get_header_textcolor(); ?>;
+			}
+			<?php } ?> 	-->
         </style><?php
         }
 

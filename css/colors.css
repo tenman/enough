@@ -67,12 +67,17 @@ header{
 .menu-header a,
 .menu-header{
 	color:#999;
+	/*setting exists layout-fluid.css*/
+}
+
+.menu-header .children a{
+	color:#555;
 	background:#fff;
 }
-.menu-header .children,
 .menu-header .children a:hover,
 .menu-header a:hover{
 	color:#555;
+	background:#eee;
 }
 .comment-body blockquote,
 .comment-body td,
@@ -125,6 +130,8 @@ nav ul.recentcomments li{
 	display:inline-block;
 	padding:.3em 0.5em;
 }
+.widget_categories,
+.widget_recent_entries,
 .widget_pages,
 .widget_nav_menu,
 .widget_recent_comments,
@@ -133,6 +140,8 @@ nav .widget_meta{
 	border:1px solid #ccc;
 	margin:.6em 0;
 }
+.widget_categories .widgettitle,
+.widget_recent_entries .widgettitle,
 .widget_tag_cloud .widgettitle,
 .widget_pages .widgettitle,
 .widget_nav_menu .widgettitle,

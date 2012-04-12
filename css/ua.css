@@ -623,3 +623,7 @@ margin:0 2%;
 .ie8.enough-w-vga nav .widget{
 	border:none!important;
 }
+.ie8 header h2,
+.ie8 header h1{
+	margin:0 15px;
+}

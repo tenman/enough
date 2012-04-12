@@ -44,8 +44,8 @@ body.page article{
 }
 nav {
 	width:28%;
-	padding-right:1em;
-	padding-right:1rem;
+	/*padding-right:1em;
+	padding-right:1rem;*/
 	margin-left:70%;
 	padding-top:1em;
 	padding-top:1rem;
@@ -206,6 +206,15 @@ nav {
 }
 @media screen and (min-width: 481px){
 
+.menu-header{
+	background:#efefef;
+}
+.menu-header:after {content:"";display:block;clear:both;} /* clearfix */
+.page-item a{
+
+	background:#fff;
+}
+
 	 .menu-header {
 		display: block;
 		min-height:3em;
@@ -216,9 +225,10 @@ nav {
 		-ms-box-sizing: border-box; 
 		box-sizing: border-box;
 		margin:0 1em;
+		padding:1px;
 	}
 	 .menu-header ul{
-		margin: 0;
+		margin: 0 auto;
 		padding: 0;
 		vertical-align: baseline;
 	}
@@ -278,9 +288,11 @@ nav {
 		line-height: 1rem;
 		padding:0.8rem 0;
 		height: auto;
+		max-width:100%;
 	}
-	 .menu-header ul ul:hover{
-	 border-left:1px solid #ccc;
+	.menu-header ul:hover ul a,
+	 .menu-header ul ul:hover a{
+		border:1px solid #ccc;
 	}
 	 .menu-header .sub-menu:hover > a,
 	 .menu-header .sub-menu:hover > a,

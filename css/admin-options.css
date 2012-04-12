@@ -24,11 +24,11 @@
 	margin-bottom:3rem;
 }
 
-input[type="radio"]{
+form input[type="radio"]{
 	margin-left:1em;
 	margin-right:1em;
 }
-form input[type="text"]{
+input[type="text"]{
 	width:20em;
 }
 .submit-box{
