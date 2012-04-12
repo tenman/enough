@@ -745,6 +745,24 @@ if ( ! function_exists( 'enough_small_device_helper' ) ) {
             }
             fontResize();
             jQuery(window).resize( function () {fontResize()});
+
+    <?php
+    /**
+     * .meenu-header has not .page_item when remove element div.menu-header
+     *
+     *
+     *
+     *
+     */
+     ?>
+
+        if ( ! jQuery('.menu-header ul li').is('li.page_item') ) {
+            jQuery('div.menu-header').css("display","none");
+        }
+
+
+
+
         });
         })(jQuery);
         </script>
@@ -1387,15 +1405,15 @@ if( ! function_exists( 'enough_header_style' ) ){
                 background: url(<?php echo $header_image ?>);
                 height:<?php echo HEADER_IMAGE_HEIGHT;?>px;
             }
-			<?php if ( 'blank' == get_header_textcolor() ) {?>
-			header a span{visibility:hidden;}
-			header .site-description span{ display: none; }	
-			<?php }else{ ?>
-			header h2,
-			header h1 a{
-				color:#<?php echo get_header_textcolor(); ?>;
-			}
-			<?php } ?> 	-->
+            <?php if ( 'blank' == get_header_textcolor() ) {?>
+            header a span{visibility:hidden;}
+            header .site-description span{ display: none; }
+            <?php }else{ ?>
+            header h2,
+            header h1 a{
+                color:#<?php echo get_header_textcolor(); ?>;
+            }
+            <?php } ?>  -->
         </style><?php
         }
 

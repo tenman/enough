@@ -17,6 +17,8 @@ modified
         layout-fluid.css
     Modified ja.po, ja.mo
         Add japanese transration.
+
+Special thanks @komame
 ----------------------------------------------
 Changelog -----------------------------------
 version:0.21
