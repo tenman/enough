@@ -12,8 +12,8 @@
 }
 .wp-list-comments li{
 	list-style:none;
-	margin:1em;
-	margin:.1rem;
+/*	margin:1em;
+	margin:.1rem;*/
 	position:relative;
 }
 .comment-body{
@@ -36,7 +36,7 @@ span.says{
 }
 cite.fn{
 	position:relative;
-	top:-20px;
+	top:-7px;
 	font-size:0.8em;
 	font-size:0.8rem;
 	max-width:50%;

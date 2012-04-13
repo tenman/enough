@@ -22,7 +22,7 @@
         define("ENOUGH_TABLE_TITLE",'options');
     }
     if(!defined('HEADER_TEXTCOLOR')){
-        define('HEADER_TEXTCOLOR', '999999');
+        define('HEADER_TEXTCOLOR', 'ffffff');
     }
     if(!defined('HEADER_IMAGE')){
         define('HEADER_IMAGE', '%s/images/headers/wp3.jpg'); // %s is the template dir uri
@@ -362,7 +362,13 @@ if( ! function_exists( 'enough_posted_in' ) ){
 if( ! function_exists( 'enough_dinamic_sidebar' ) ){
     function enough_dinamic_sidebar($id,$display = true){
         if($display == true){ ?>
-<nav><ul id="<?php echo $id;?>"><?php dynamic_sidebar( $id ); ?></ul></nav>
+<nav><ul id="<?php echo $id;?>">
+<?php 
+if( ! dynamic_sidebar( $id ) ){
+	the_widget('WP_Widget_Archives');
+	the_widget('WP_Widget_Recent_Posts');
+}
+?></ul></nav>
 <?php
         }
     }

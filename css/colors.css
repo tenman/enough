@@ -179,6 +179,8 @@ nav .widget_pages .children{
 	}
 }
 @media screen and (max-width: 480px){
+	.widget_categories,
+	.widget_recent_entries,
 	.widget_pages,
 	.widget_nav_menu,
 	.widget_recent_comments,
@@ -186,7 +188,9 @@ nav .widget_pages .children{
 	nav .widget_meta{
 		border:none;
 	}
-.widget_tag_cloud,
+	.widget_categories .widgettitle,
+	.widget_recent_entries .widgettitle,
+	.widget_tag_cloud,
 	.widget_tag_cloud .widgettitle,
 	.widget_pages .widgettitle,
 	.widget_nav_menu .widgettitle,
@@ -199,6 +203,8 @@ nav .widget_pages .children{
 	}
 }
 @media screen and (max-width: 640px){
+	.widget_categories .widgettitle,
+	.widget_recent_entries .widgettitle,
 	.widget_pages .widgettitle,
 	.widget_nav_menu .widgettitle,
 	.widget_recent_comments .widgettitle,

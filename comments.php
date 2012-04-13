@@ -8,9 +8,11 @@
  * @package Enough
  */
 ?>
+<div id="comments">
 <ul class="wp-list-comments"><?php wp_list_comments(); ?></ul>
 <br class="clear vspacer-3" />
 <div class="pagenate-comment-links">
 <?php paginate_comments_links();?>
 </div>
 <?php comment_form();?>
+</div>

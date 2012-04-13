@@ -17,6 +17,7 @@ a{
 	word-break:break-all;
 	word-wrap:break-word;
 	text-decoration:none;
+	max-width:100%;
 }
 img{
 	margin:.5em
@@ -36,6 +37,7 @@ blockquote{
 	padding:1em .5em 1em 2em;
 	padding:1rem .5rem 1rem 2rem;
 }
+
 dt{
 	font-weight:bold;
 }
