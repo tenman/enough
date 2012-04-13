@@ -618,7 +618,7 @@ if ( ! function_exists( 'enough_small_device_helper' ) ) {
             jQuery('.widget ul').hide().css("width","95%");
             jQuery('.menu-header-container > ul,menu-wplook-main-menu-container > ul').show();
             if(jQuery('.widgettitle').text() !== ''){
-            jQuery('.widgettitle').show().css({"width":"95%","list-style":"none","font-weight":"bold","margin":"0",'max-width':'100%'}).prepend('<span class="marker">+ </span>');
+            jQuery('.widgettitle').show().css({"width":"95%","list-style":"none","font-weight":"bold","margin":"0",'max-width':'90%'}).prepend('<span class="marker">+ </span>');
             }
             jQuery('.widgettitle').css("cursor","pointer").click(function(){
                 jQuery(this).siblings().toggle("slow");

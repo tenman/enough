@@ -5,7 +5,7 @@ Fixed
         Add div element and attribute id value set 'comments'.
             comments.php
 
-modified
+Modified
     Modified style rules
         Change page max width value  from 1280px to 960px
         Change HEADER_TEXTCOLOR from 999999 to ffffff
@@ -18,6 +18,9 @@ modified
         Change screenshot.png
 Add
     Add style sheet. skin-example.css
+
+Note
+    If you need ver 0.22 layout and color when remove skin-example.css.
 ----------------------------------------------
 Changelog -----------------------------------
 version:0.22
