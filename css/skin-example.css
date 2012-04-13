@@ -1,0 +1,149 @@
+/**
+ * Style rules for WordPress theme Enough
+ *
+ *
+ * License: GNU General Public License v2.0
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ * @package Enough
+ */	
+.menu-header{
+		margin:0;
+		background:#000;
+}
+.enough-w-iphone .menu-header{
+		background:none;
+}
+.menu-header a{
+		background:none;
+		max-width:none;/* ie8 width issue*/
+}
+.menu-header a:hover{
+		background:none;
+		max-width:none;/* ie8 width issue*/
+		color:#fff;
+}
+
+.menu-header .children{
+		background:#fff;
+}
+
+.site-title a span:hover{
+		color:#fff;
+}
+
+@media screen and (min-width: 481px){
+	.site-title a:hover span{
+		color:#fff;
+	}
+	.menu-header {
+		margin:0;
+		background:#000;
+	}
+	footer{
+		background:#000;
+		color:#eee;
+	}
+	footer a{
+		color:#aaa;
+		background:none;
+	}
+	footer a:hover{
+		color:#eee;
+		background:none;
+	}
+	
+	.widget_categories,
+	.widget_recent_entries,
+	.widget_pages,
+	.widget_nav_menu,
+	.widget_recent_comments,
+	.widget_archive,
+	nav .widget_meta{
+		border:1px solid #ccc;
+		margin:.6em 0;
+	}
+	#commentform,
+	body,
+	.posted-in,	
+	.posted-on,
+	.posted-on a.enough-comment-link,
+	.widget_categories .widgettitle,
+	.widget_recent_entries .widgettitle,
+	.widget_tag_cloud .widgettitle,
+	.widget_pages .widgettitle,
+	.widget_nav_menu .widgettitle,
+	.widget_recent_comments .widgettitle,
+	.widget_archive .widgettitle,
+	.widget_meta .widgettitle{
+color:#191919;background: -webkit-gradient(linear, left top, left bottom, from(#cbcbcb), to(#ebebeb));
+background: -moz-linear-gradient(top,  #cbcbcb,  #ebebeb);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cbcbcb', endColorstr='#ebebeb');
+	}
+	.entry-title{
+		margin-left:1em;
+		max-width:73%;
+	}
+	.posted-in,
+	.posted-on {
+		margin-left:1em;
+	}
+	.posted-on{
+		padding-left:25px;;
+	}
+	.posted-on a{
+		background:none;
+		color:#000;
+		margin-left:1em;
+	}
+	.posted-on .meta-sep{
+		margin-left:1em;
+	}
+
+	.posted-on a.enough-comment-link{
+		display:inline-block;
+		height: 30px;
+		width: 100px;
+		-moz-border-radius: 50px;
+		border-radius: 50px;
+		top:-40px;
+	}
+
+	.posted-on a.enough-comment-link em{
+		position:absolute;
+		top:8px;
+		left:16px;
+		display:block;
+	}
+	.posted-on a.enough-comment-link span.enough-comment-string{
+		position:absolute;
+		top:10px;
+		display:block;
+	}
+
+	a[href$="png"] > img,
+	a[href$="jpg"] > img,
+	a[href$="gif"] > img{
+			padding:1em;
+	}
+	.wp-caption a[href$="png"] > img,
+	.wp-caption a[href$="jpg"] > img,
+	.wp-caption a[href$="gif"] > img{
+			padding:0;
+	}
+	
+	
+
+}
+@media screen and (min-width : 640px){
+	
+	.posted-in li{
+		display:inline-block;
+		padding:3px;
+		margin:3px;
+		font-size:110%;
+	}
+	.posted-in ul li:nth-child(1){
+		font-weight:bold;
+	}	
+	
+	}
