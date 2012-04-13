@@ -1,4 +1,25 @@
 Changelog -----------------------------------
+version:0.23
+Fixed
+    Fixed comments link not work.
+        Add div element and attribute id value set 'comments'.
+            comments.php
+
+modified
+    Modified style rules
+        Change page max width value  from 1280px to 960px
+        Change HEADER_TEXTCOLOR from 999999 to ffffff
+        Change theme description
+
+        Change
+            from Window width Responsive theme. IE9 IE8 support. Default template is only index.php and comments.php. You can add a template and template part file whenever if you want.
+            to Default template is only index.php and comments.php. Responsive theme. Enough is simple but if you can add a template and template part file whenever if you want. IE browser ? , Yes Responsive.
+        Change default header image and thumbnail
+        Change screenshot.png
+Add
+    Add style sheet. skin-example.css
+----------------------------------------------
+Changelog -----------------------------------
 version:0.22
 Fixed
     Fixed Menus not work.
