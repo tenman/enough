@@ -217,4 +217,28 @@ nav a:active,
 		margin:0 auto;
 	}
 	}
+	.ie8.enough-w-svga .entry-content img,
+	.ie8.enough-w-svga .entry-content img,
+	.ie8.enough-w-svga .entry-content img{
+			padding:1em;
+			display:inline-block;
+	}
+	.enough-w-svga .alignleft,
+	.enough-w-svga .alignright{
+			max-width:50%;
+	}
 
+	.ie8.enough-w-svga .wp-caption a > img,
+	.ie8.enough-w-svga .wp-caption a > img,
+	.ie8.enough-w-svga .wp-caption a > img{
+			padding:0;
+	}
+
+	.ie8.enough-w-vga  .entry-content .alignleft,
+	.ie8.enough-w-vga  .entry-content .alignright,
+	.ie8.enough-w-vga  .entry-content img{
+		float:none;
+		clear:both;
+		display:block;
+		margin:0 auto;
+	}
