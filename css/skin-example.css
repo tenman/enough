@@ -38,7 +38,53 @@ nav a:active,
 .site-title a span:hover{
 		color:#fff;
 }
+.sticky{
+	background:#eee;
+	padding-left:0;
+	background:
+	-webkit-linear-gradient(45deg, #92baac 45px, transparent 45px),
+	-webkit-linear-gradient(45deg, #92baac 45px, transparent 45px)64px 64px,
+	-webkit-linear-gradient(225deg, transparent 46px, #e1ebbd 46px, #e1ebbd 91px, transparent 91px),
+	-webkit-linear-gradient(-45deg, #92baac 23px, transparent 23px, transparent 68px,#92baac 68px,#92baac 113px,transparent 113px,transparent 158px,#92baac 158px);
+	background:
+	-moz-linear-gradient(45deg, #92baac 45px, transparent 45px),
+	-moz-linear-gradient(45deg, #92baac 45px, transparent 45px)64px 64px,
+	-moz-linear-gradient(225deg, transparent 46px, #e1ebbd 46px, #e1ebbd 91px, transparent 91px),
+	-moz-linear-gradient(-45deg, #92baac 23px, transparent 23px, transparent 68px,#92baac 68px,#92baac 113px,transparent 113px,transparent 158px,#92baac 158px);
+	background-color:#e1ebbd;
+	background-size: 128px 128px;
+	-moz-box-shadow: 1px 1px 3px #555;
+	-webkit-box-shadow: 1px 1px 3px #555;
 
+}
+.ie8 .sticky{
+	background:none;
+	width:100%;
+}
+.sticky .entry-content,
+.sticky .entry-title{
+	background:#fff;
+	background:rgba(255,255,255,0.9);
+	margin-left:10px;
+	padding:1em;
+	
+}
+.sticky .entry-title{
+	max-width:88%;
+}
+
+.ie8 article.sticky{
+	background:#eee;
+	max-width:66%;
+} 
+.ie8 article.sticky .entry-title{
+	margin-right:10px;
+} 
+
+.sticky .posted-on,
+.sticky .posted-in{
+	display:none;
+}
 @media screen and (min-width: 481px){
 	.site-title a:hover span{
 		color:#fff;
@@ -77,7 +123,6 @@ nav a:active,
 		border:1px solid #ccc;
 		margin:.6em 0;
 	}
-	
 	#commentform,
 	body,
 	.posted-in,	
