@@ -211,7 +211,7 @@
 	 .menu-header .sub-menu .sub-menu.left,
 	 .menu-header .children .children.left {
 		left: -100%;
-		top: 0;
+		top: -1px;
 		text-align:center;
 	}
 	 .sub-menu a,	
@@ -224,7 +224,7 @@
 		max-width:100%;
 	}
 	.menu-header ul:hover ul a,
-	 .menu-header ul ul:hover a{
+	.menu-header ul ul:hover a{
 		border:1px solid #ccc;
 	}
 	 .menu-header .sub-menu:hover > a,
@@ -233,11 +233,18 @@
 	 .menu-header .children:hover > a {
 		border:1px solid #999;
 	}
+	 .menu-header > ul > li:hover > .sub-menu,
+	 .menu-header > ul > li:hover > .children {
+		display:block;
+		position:absolute;
+		top:20px;
+	}
 	 .menu-header ul li:hover > .sub-menu,
 	 .menu-header ul li:hover > .children {
 		display:block;
 		position:absolute;
 	}
+
 	 .menu-header li.current_page_item > a,
 	 .menu-header li.current-menu-ancestor > a,
 	 .menu-header li.current-menu-item > a,

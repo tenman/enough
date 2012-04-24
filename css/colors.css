@@ -195,6 +195,9 @@ nav .widget_pages .children{
 		margin-bottom:1em;
 		margin-bottom:1rem;
 	}
+	div.menu-header a:hover{
+		color:#000;
+	}
 }
 @media screen and (max-width: 640px){
 	.widget_categories .widgettitle,
