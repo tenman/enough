@@ -577,8 +577,8 @@ if ( ! function_exists( 'enough_small_device_helper' ) ) {
         * Toggle for .menu-header
         */
         ?>
-            jQuery('.enough-toggle').hide().css("width","95%");
-            jQuery('.enough-toggle.enough-toggle-title').show().css({"width":"95%","list-style":"none","font-weight":"bold","margin":"0 0 0 -1em"}).prepend("+ ");
+            jQuery('.enough-toggle').hide();
+            jQuery('.enough-toggle.enough-toggle-title').show().css({"list-style":"none","font-weight":"bold","margin":"0 0 0 -1em"}).prepend("+ ");
             jQuery('.enough-toggle.enough-toggle-title').css("cursor","pointer").click(function(){
                 jQuery(this).siblings().toggle("slow");
                 var v = jQuery(this).html().substring( 0, 1 );
@@ -594,8 +594,8 @@ if ( ! function_exists( 'enough_small_device_helper' ) ) {
         */
         ?>
             if( width < 481){
-            jQuery('.toggle-category,.toggle-tag').hide().css("width","95%");
-            jQuery('.toggle-category.toggle-title,.toggle-tag.toggle-title').show().css({"width":"95%","list-style":"none",}).prepend('<span class="marker">+ </span>');
+            jQuery('.toggle-category,.toggle-tag').hide();
+            jQuery('.toggle-category.toggle-title,.toggle-tag.toggle-title').show().css({"list-style":"none",}).prepend('<span class="marker">+ </span>');
             jQuery('.toggle-category.toggle-title,.toggle-tag.toggle-title').css("cursor","pointer").click(function(){
 
                 jQuery(this).siblings().toggle( "slow" );
@@ -615,10 +615,10 @@ if ( ! function_exists( 'enough_small_device_helper' ) ) {
             if( width < 481){
             jQuery('.menu-header-container,.menu-wplook-main-menu-container').wrap('<ul class="widget-container-wrapper"><li></li></ul>');
             jQuery('div.tagcloud').removeAttr('style').wrap('<ul class="tagcloud-wrapper"><li></li></ul>');
-            jQuery('.widget ul').hide().css("width","95%");
+            jQuery('.widget ul').hide();
             jQuery('.menu-header-container > ul,menu-wplook-main-menu-container > ul').show();
             if(jQuery('.widgettitle').text() !== ''){
-            jQuery('.widgettitle').show().css({"width":"95%","list-style":"none","font-weight":"bold","margin":"0",'max-width':'90%'}).prepend('<span class="marker">+ </span>');
+            jQuery('.widgettitle').show().css({"list-style":"none","font-weight":"bold","margin":"0",'max-width':'90%'}).prepend('<span class="marker">+ </span>');
             }
             jQuery('.widgettitle').css("cursor","pointer").click(function(){
                 jQuery(this).siblings().toggle("slow");
@@ -1437,5 +1437,14 @@ if( ! function_exists( 'enough_admin_header_style' ) ){
 
 
     }
+}
+
+add_filter( 'post_class', 'wds_pig_counter' );
+function wds_pig_counter( $classes ){
+global $loop_counter;
+  if ($loop_counter % 3 == 0) { $newclass = 'third'; }
+  array_push( $classes, $newclass );
+
+  return $classes;
 }
 ?>

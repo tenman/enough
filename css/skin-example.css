@@ -40,7 +40,6 @@ nav a:active,
 }
 .sticky{
 	background:#eee;
-	padding-left:0;
 	background:
 	-webkit-linear-gradient(45deg, #92baac 45px, transparent 45px),
 	-webkit-linear-gradient(45deg, #92baac 45px, transparent 45px)64px 64px,
@@ -59,27 +58,17 @@ nav a:active,
 }
 .ie8 .sticky{
 	background:none;
-	width:100%;
 }
 .sticky .entry-content,
 .sticky .entry-title{
 	background:#fff;
 	background:rgba(255,255,255,0.9);
-	margin-left:10px;
 	padding:1em;
 	
 }
 .sticky .entry-title{
-	max-width:88%;
 }
 
-.ie8 article.sticky{
-	background:#eee;
-	max-width:66%;
-} 
-.ie8 article.sticky .entry-title{
-	margin-right:10px;
-} 
 
 .sticky .posted-on,
 .sticky .posted-in{
@@ -124,7 +113,7 @@ nav a:active,
 		margin:.6em 0;
 	}
 	#commentform,
-	body,
+	html,
 	.posted-in,	
 	.posted-on,
 	.posted-on a.enough-comment-link:active,
@@ -165,7 +154,7 @@ nav a:active,
 	}
 	.posted-in,
 	.posted-on {
-		margin-left:1em;
+		margin-right:3px;
 	}
 	.posted-on{
 		padding-left:25px;;

@@ -6,6 +6,19 @@
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * @package Enough
  */
+html{
+	margin:0;
+	padding:0;
+}
+#enough-page{
+	width:90%;
+	margin:0 auto;
+	max-width:960px;
+	min-width:240px;
+
+}
+
+
 .unknown-ua{
 	display:none;
 }
@@ -38,9 +51,6 @@ blockquote{
 	padding:1rem .5rem 1rem 2rem;
 }
 
-dt{
-	font-weight:bold;
-}
 p{
 	line-height:1.5;
 }
@@ -63,9 +73,7 @@ input[type="file"],
 input[type="reset"],
 input[type="submit"]{
 	padding:0.3em 0.5em;
-	font-size:0.8em;
 	padding:0.3rem 0.5rem;
-	font-size:0.8rem;
 }
 textarea{
 	width:90%;
@@ -159,9 +167,6 @@ nav .menu  > li  ul{
 	margin:0 0 0 1rem;
 	padding:0;
 }
-nav a{
-	font-size:0.8rem;
-}
 #wp-calendar {
 	width:90%;
 	margin:auto;
@@ -176,10 +181,6 @@ nav a{
 	margin:1em;
 	margin:1rem;
 }
-.widgettitle{
-	font-size:1.1em;
-	font-size:1.1rem;
-}
 nav #searchform{
 	margin:10px auto;
 	padding:10px;
@@ -192,10 +193,6 @@ nav #searchform .screen-reader-text{
 }
 nav #searchform input[type="text"]{
 	width:60%;
-}
-#searchsubmit{
-	font-size:.8em;
-	font-size:.8rem;
 }
 /*
  * <!--nextpage-->　navigation link
@@ -228,7 +225,6 @@ nav #searchform input[type="text"]{
 .wp-link-pages > span{
 	padding:.5em;
 	border:1px solid #999;
-	font-weight:bold;
 }
 .nav-previous{
 	display: inline;

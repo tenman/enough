@@ -4,14 +4,15 @@ Theme URI: http://www.tenman.info/wp3/enough/
 Description: Default template is only index.php and comments.php. Responsive theme. Enough is simple but if you can add a template and template part file whenever if you want. IE browser ? , Yes Responsive.
 Author: Tenman
 Author URI: http://www.tenman.info/wp3/
-Version: 0.23
+Version: 0.24
 Tags:white,two-columns,custom-colors, custom-header, custom-background, custom-menu, editor-style, threaded-comments, sticky-post
 License: GNU General Public License v2.0
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
 @import url("css/normalize.css");
-@import url("css/articles.css");
+@import url("css/fonts.css");
+@import url("css/box-modules.css");
 @import url("css/comment.css");
 @import url("css/ua.css");
 @import url("css/colors.css");
@@ -20,26 +21,4 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 @import url("css/skin-example.css");
 
 
-body{
-font-size:100%;
-margin:0;
-padding:0;
-max-width:100%;
-}
-.enough-w-sxga,
-.enough-w-xga{
-	
-}
-.enough-w-keitai,
-.enough-w-qvga,
-.enough-w-iphone,
-.enough-w-vga,
-.enough-w-svga{
-	font-size:80%;
-}
 
-div#page{
-width:96%;
-margin:auto;
-background:#fff;
-}

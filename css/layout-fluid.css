@@ -6,88 +6,15 @@
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * @package Enough
  */
-html{
-	margin:0;
-	padding:0;
+.widget{
+	margin-right:10px;
 }
-body {
-	font-size:100%;	
-	font-family:Geneva, Arial, Helvetica, sans-serif;
-}
-.archives-title-text,
-h1,h2,h3,
-h1 a,
-h2 a,
-h3 a{
-	font-family:Georgia, "Times New Roman", Times, serif;
-}
-
-#page{
-	width:90%;
-	margin:0 auto;
-	max-width:960px;
-	min-width:240px;
-
-}
-article{
-	width:66.6%;
-	padding-left:1em;
-	padding-left:1rem;
-	-webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box; 
-    -ms-box-sizing: border-box; 
-    box-sizing: border-box;
-}
-body.page article{
-	width:96.6%;
-	margin:0 auto;
-}
-nav {
-	width:28%;
-	/*padding-right:1em;
-	padding-right:1rem;*/
-	margin-left:70%;
-	padding-top:1em;
-	padding-top:1rem;
-	-webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box; 
-    -ms-box-sizing: border-box; 
-    box-sizing: border-box;
-}
-.unknown nav{
-	width:96.6%;
-	margin:0 auto;
-	padding-right:1em;
-	padding-top:1em;
-	-webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box; 
-    -ms-box-sizing: border-box; 
-    box-sizing: border-box;
-}
-	.wp-caption-text,
-	.toggle-tag,
-	.posted-on,
-	.posted-in{
-		font-size:.75em;
-		font-size:.75rem;
-	}
-	nav #wp-calendar caption{
-		margin:.6em;
-		font-family:Georgia, "Times New Roman", Times, serif;
-	}
-	nav #wp-calendar thead th{
-		font-weight:normal;
-		font-size:0.9em;
-	}
-	.form-allowed-tags code{
-		font-family:"Courier New", Courier, mono;
-	}
 @media screen and (max-width : 640px){
 	body{
 		font-size:80%;
 	}
 
-	#page{
+	#enough-page{
 		width:96%;
 		margin:0 auto;		
 	}
@@ -95,38 +22,30 @@ nav {
 		margin:0 0 2% 2%;
 	}
 	#comments{
-		margin-left:2%;
 	}
+	nav,
 	article{
-		width:94%;
-			margin:0 auto;
-	
+			width:96%;
 	}
 	body.page article{
-		width:94%;
-			margin:0 auto;
 	}
 	nav {
-		width:94%;
 			margin:0 auto;
 			clear:both;
-	
-	}
-	.sticky{
-		margin-left:.4em;
-		margin-top:.5em;
-		margin-left:.4rem;
-		margin-top:.5rem;
 	}
 	.menu-header{
 		clear:both;
 	}
+	.widget{
+		margin-right:10px;
+	}
+
 
 }
 
 @media screen and (max-width : 480px){
 	body{
-		font-size:75%;
+		/*font-size:75%;*/
 	}
 	 .menu-header {
 		display: block;
@@ -163,27 +82,24 @@ nav {
 		
 	}
 	.enough-comment-link{
-		font-size:0.8em;
-		font-size:0.8rem;
+		/*font-size:0.8em;
+		font-size:0.8rem;*/
 	}
 	
 	noscript .no-script-and-small-view{
 		display:block;
 	}
 	.posted-in, .posted-on {
-	left:-3%;
 	}
 	.entry-content{
-	margin:0;
-	padding:0;
-	width:100%;
-	position:relative;
-	left:0;	
-	left:0;	
+		padding:0;
+		position:relative;
+		left:0;	
+		left:0;	
 	}
 	article img{
-	max-width:100%;
-	margin:0;
+		max-width:100%;
+		margin:0;
 	}
 	.toggle-category.toggle-title,
 	.toggle-tag.toggle-title,	
@@ -218,24 +134,27 @@ nav {
 		word-break:break-all;
 		word-wrap: break-word;
 	}
+	.widget{margin-right:10px;}
 
 }
 @media screen and (min-width: 481px){
 
-.menu-header{
-	background:#efefef;
-}
-.menu-header:after {content:"";display:block;clear:both;} /* clearfix */
-.page-item a{
-
-	background:#fff;
-}
+	.menu-header{
+		background:#efefef;
+	}
+	.menu-header:after {
+		content:"";
+		display:block;
+		clear:both;} /* clearfix */
+	.page-item a{
+		background:#fff;
+	}
 
 	 .menu-header {
 		display: block;
 		min-height:3em;
-		font-size:0.9em;
-		font-size:0.9rem;
+		/*font-size:0.9em;
+		font-size:0.9rem;*/
 		-webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box; 
 		-ms-box-sizing: border-box; 
@@ -258,9 +177,7 @@ nav {
 		display: block;
 		text-decoration: none;
 		text-align:center;
-		/*padding:.5em; /* IE8 not support rem */
-		padding:.5rem;*/
-		
+		padding:.5em;
 		min-width:5em;
 		min-width:5rem;
 	}
@@ -313,7 +230,6 @@ nav {
 	 .menu-header .sub-menu:hover > a,
 	 .menu-header .sub-menu:hover > a,
 	 .menu-header .children:hover > a,
-	/* .menu-header li:hover > a,*/
 	 .menu-header .children:hover > a {
 		border:1px solid #999;
 	}
@@ -328,4 +244,8 @@ nav {
 	 .menu-header li.current-menu-parent > a {
 		text-align:center;
 	}
+	.widget{
+		margin-right:10px;
+	}
+
 }

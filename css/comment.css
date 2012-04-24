@@ -37,8 +37,6 @@ span.says{
 cite.fn{
 	position:relative;
 	top:-7px;
-	font-size:0.8em;
-	font-size:0.8rem;
 	max-width:50%;
 }
 .pingback span.says,
@@ -52,8 +50,6 @@ cite.fn{
 	top:2rem;
 	right:.5em;
 	right:.5rem;
-	font-size:0.75em;
-	font-size:0.75rem;
 	word-break:break-all;
 	word-wrap:break-word;
 	text-decoration:none;
@@ -63,9 +59,6 @@ cite.fn{
 }
 .pagenate-comment-links{
 	text-align:center;
-}
-.pagenate-comment-links .current{
-	font-weight:bold;
 }
 .pagenate-comment-links .page-numbers{
 	border:1px solid #ccc;
@@ -87,10 +80,6 @@ label[for="url"]{
 }
 label[for="url"]{
 	width:110px;
-}
-.form-allowed-tags{
-	font-size:0.8em;
-	font-size:0.8rem;
 }
 .form-allowed-tags code{
 	color:#009900;

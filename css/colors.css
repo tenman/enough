@@ -12,11 +12,13 @@ a{
 a:hover{
 	color:#333;
 }
-html{
+body{
+	background:#efefef;
 	background:rgba(200,200,200,0.3);
 }
-#page{
-	background:rgba(255,255,255,0.8);
+#enough-page{
+	background:#fff;
+	background:rgba(255,255,255,1);
 }
 article{
 }
@@ -45,8 +47,6 @@ hr{
 }
 .sticky .posted-in,
 .sticky .posted-on{
-	margin-right:1em;
-	margin-right:1rem;
 	background:none;
 }
 header{
@@ -95,9 +95,6 @@ nav .widget_calendar{
 	border:none!important;
 }
 .nav #wp-calendar{
-}
-nav #wp-calendar tbody td{
-	font-size:0.8em;
 }
 nav #wp-calendar thead th{
 	background:#ddf;
@@ -173,9 +170,6 @@ nav .widget_pages .children{
 	 .menu-header .children:hover > a {
 		border:1px solid #555;
 		font-color:#000;
-	}
-	.menu-header ul ul:hover{
-	 
 	}
 }
 @media screen and (max-width: 480px){

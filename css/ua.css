@@ -7,18 +7,10 @@
  * @package Enough
  */
 .ie8 article {
-width:66.6%;
-padding-left:1em;
--webkit-box-sizing:border-box;
--moz-box-sizing:border-box;
--ms-box-sizing:border-box;
-box-sizing:border-box;
+margin:auto;
+padding:10px;
 }
 
-body.page article {
-width:96.6%;
-margin:0 auto;
-}
 
 .ie8 nav {
 width:28%;
@@ -212,10 +204,10 @@ padding:0.8em 0;
 font-size:80%;
 }
 
-.ie8.enough-w-keitai #page,
-.ie8.enough-w-qvga #page,
-.ie8.enough-w-iphone #page,
-.ie8.enough-w-vga #page {
+.ie8.enough-w-keitai #enough-page,
+.ie8.enough-w-qvga #enough-page,
+.ie8.enough-w-iphone #enough-page,
+.ie8.enough-w-vga #enough-page {
 width:94%;
 margin:0 auto;
 }
@@ -357,7 +349,7 @@ word-break:break-all;
 .ie8.enough-w-vga article img,
 .ie8.enough-w-qvga article img,
 .ie8.enough-w-iphone article img {
-max-width:100%;
+max-width:90%;
 margin:0;
 }
 
@@ -510,7 +502,7 @@ border:1px solid #999;
 padding:.5rem;
 }
 
-.ie9 #page dl.gallery-item dd.wp-caption-text {
+.ie9 #enough-page dl.gallery-item dd.wp-caption-text {
 text-align:left;
 width:90%;
 max-width:150px;
@@ -626,4 +618,49 @@ margin:0 2%;
 .ie8 header h2,
 .ie8 header h1{
 	margin:0 15px;
+}
+.ie9 a > img,
+.ie9 a > img,
+.ie9 a > img,
+.ie8 a > img,
+.ie8 a > img,
+.ie8 a > img{
+padding:1em;
+ }
+.ie9 .wp-caption a > img,
+.ie9 .wp-caption a > img,
+.ie9 .wp-caption a > img,
+.ie8 .wp-caption a > img,
+.ie8 .wp-caption a > img,
+.ie8 .wp-caption a > img{
+padding:0;
+}
+.ie8 .sticky{
+	margin-top:5px;
+}
+.ie8 article.sticky{
+	background:#eee;
+	margin-left:10px;
+} 
+
+.ie8.enough-w-keitai article .entry-title,
+.ie8.enough-w-iphone article .entry-title,
+.ie8.enough-w-vga article .entry-title,
+.ie8.enough-w-qvga article .entry-title,
+.ie8.enough-w-iphone article .entry-title,
+.ie8.enough-w-keitai article .entry-content,
+.ie8.enough-w-iphone article .entry-content,
+.ie8.enough-w-vga article .entry-content,
+.ie8.enough-w-qvga article .entry-content,
+.ie8.enough-w-iphone article .entry-content{
+	max-width:100%;
+	margin:0;
+}
+.ie8.enough-iphone .entry-content .alignright,
+.ie8.enough-iphone .entry-content .alignleft{
+		float:none;
+		clear:both;
+		display:block;
+		margin:0 auto;
+
 }

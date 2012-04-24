@@ -19,7 +19,7 @@ do_action( 'get_header' );
 <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-<div id="page">
+<div id="enough-page">
 <?php
 /**
  * Site title and description

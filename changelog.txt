@@ -1,4 +1,16 @@
 Changelog -----------------------------------
+version:0.24
+Fixed
+
+Modified
+    CSS rules
+    Remove CSS file
+        articles.css
+    Add CSS file
+        box-modules.css
+        fonts.css
+----------------------------------------------
+Changelog -----------------------------------
 version:0.23
 Fixed
     Fixed comments link not work.
