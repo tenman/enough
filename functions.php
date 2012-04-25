@@ -363,10 +363,10 @@ if( ! function_exists( 'enough_dinamic_sidebar' ) ){
     function enough_dinamic_sidebar($id,$display = true){
         if($display == true){ ?>
 <nav><ul id="<?php echo $id;?>">
-<?php 
+<?php
 if( ! dynamic_sidebar( $id ) ){
-	the_widget('WP_Widget_Archives');
-	the_widget('WP_Widget_Recent_Posts');
+    the_widget('WP_Widget_Archives');
+    the_widget('WP_Widget_Recent_Posts');
 }
 ?></ul></nav>
 <?php
@@ -1439,12 +1439,4 @@ if( ! function_exists( 'enough_admin_header_style' ) ){
     }
 }
 
-add_filter( 'post_class', 'wds_pig_counter' );
-function wds_pig_counter( $classes ){
-global $loop_counter;
-  if ($loop_counter % 3 == 0) { $newclass = 'third'; }
-  array_push( $classes, $newclass );
-
-  return $classes;
-}
 ?>

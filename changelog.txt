@@ -1,10 +1,18 @@
 Changelog -----------------------------------
+version:0.26
+Modified
+    Delate function wds_pig_counter
+    Delate add_filter( 'post_class', 'wds_pig_counter' );
+        functions.php
+----------------------------------------------
+Changelog -----------------------------------
 version:0.25
 Fixed
     Fix menu-header display improperly.
         a:hover .children can't display.
     Fix menu-header display improperly.
-        hover text color issue when smaller than 481px (window size)----------------------------------------------
+        hover text color issue when smaller than 481px (window size)
+----------------------------------------------
 Changelog -----------------------------------
 version:0.24
 Fixed
