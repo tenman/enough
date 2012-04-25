@@ -150,7 +150,12 @@ nav a:active,
 	}
 	.entry-title{
 		margin-left:1em;
+	}
+	.comments-open .entry-title{
 		max-width:73%;
+	}
+	.comments-closed .entry-title{
+		max-width:100%;
 	}
 	.posted-in,
 	.posted-on {
@@ -243,14 +248,14 @@ nav a:active,
 	
 	}
 @media screen and (max-width : 480px){
-.alignleft,
-.alignright{
+	.alignleft,
+	.alignright{
 		float:none;
 		clear:both;
 		display:block;
 		margin:0 auto;
 	}
-	}
+}
 	.ie8.enough-w-svga .entry-content img,
 	.ie8.enough-w-svga .entry-content img,
 	.ie8.enough-w-svga .entry-content img{

@@ -163,6 +163,7 @@ if( !function_exists( 'enough_theme_setup' ) ){
         //if($is_IE){
             //add_filter("enough_post_thumbnail","ecnough_ie_height_issue");
         //}
+        add_filter( 'post_class', 'enough_add_post_class' );
 
     /**
      * Add option helper
@@ -1439,4 +1440,18 @@ if( ! function_exists( 'enough_admin_header_style' ) ){
     }
 }
 
+
+if( ! function_exists( 'enough_add_post_class' ) ){
+    function enough_add_post_class( $classes ){
+
+        if ( comments_open() ) {
+            $newclass = 'comments-open';
+        }else{
+            $newclass = 'comments-closed';
+        }
+        array_push( $classes, $newclass );
+
+        return $classes;
+    }
+}
 ?>

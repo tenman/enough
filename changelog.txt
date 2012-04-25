@@ -3,7 +3,18 @@ version:0.26
 Modified
     Delate function wds_pig_counter
     Delate add_filter( 'post_class', 'wds_pig_counter' );
+    Add function enough_add_post_class
+    Add add_filter( 'post_class', 'enough_add_post_class' );
         functions.php
+    Add CSS rules
+        .comments-open .entry-title{
+            max-width:73%;
+        }
+        .comments-closed .entry-title{
+            max-width:100%;
+        }
+        skin-example.css
+
 ----------------------------------------------
 Changelog -----------------------------------
 version:0.25
