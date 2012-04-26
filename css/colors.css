@@ -10,14 +10,14 @@
 	background:rgba(255,255,255,1);
 }
 
-.comment-body blockquote{
-	border-left:6px solid #999;
-}
-
 .comment-body blockquote,
 .comment-body td,
 .comment-body th{
 	border:1px solid #999;
+}
+
+.comment-body blockquote{
+	border-left:6px solid #999;
 }
 
 

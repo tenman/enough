@@ -29,13 +29,15 @@
 }
 
 .alignleft,.nav-previous{
-	display:inline;
+	margin:5px 10px 5px 0;
+	display:inline-block;
 	float:left;
 }
 
 .alignright,.nav-next{
-	display:inline;
+	display:inline-block;
 	float:right;
+	margin:5px 0 5px 10px;
 }
 
 .archives-title-text{
@@ -139,7 +141,7 @@
 	margin-right:5px;
 }
 .wp-caption{
-	margin:.3rem;
+	/*margin:.3rem;*/
 }
 .widget_calendar .widgettitle{
 	text-align:center;
@@ -161,7 +163,7 @@
 }
 .enough-w-svga .wp-caption,article img{
 	height:auto;
-	max-width:97%;
+	max-width:96%;
 }
 
 .wp-caption-text{
