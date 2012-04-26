@@ -442,6 +442,8 @@ text-align:left!important;
 .ie8.enough-w-iphone .widget_recent_comments,
 .ie8.enough-w-keitai .widget_archive,
 .ie8.enough-w-qvga .widget_archive,
+.ie8.enough-w-keitai .widget_rss,
+.ie8.enough-w-qvga .widget_rss,
 .ie8.enough-w-keitai nav .widget_meta,
 .ie8.enough-w-qvga nav .widget_meta,
 .ie8.enough-w-iphone nav .widget_meta {
@@ -476,6 +478,9 @@ clear:both!important;
 .ie8.enough-w-vga .widget_archive .widgettitle,
 .ie8.enough-w-keitai .widget_meta .widgettitle,
 .ie8.enough-w-qvga .widget_meta .widgettitle,
+.ie8.enough-w-iphone .widget_rss .widgettitle,
+.ie8.enough-w-keitai .widget_rss .widgettitle,
+.ie8.enough-w-qvga .widget_rss .widgettitle,
 .ie8.enough-w-iphone .widget_meta .widgettitle,
 .ie8.enough-w-vga .widget_meta .widgettitle {
 background:none;

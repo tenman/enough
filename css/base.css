@@ -6,255 +6,114 @@
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * @package Enough
  */
-html{
-	margin:0;
-	padding:0;
-}
-#enough-page{
-	width:90%;
-	margin:0 auto;
-	max-width:960px;
-	min-width:240px;
-
+#enough-page {
+margin:0 auto;
+max-width:960px;
+min-width:240px;
+width:90%;
 }
 
-
-.unknown-ua{
-	display:none;
-}
-.unknown .unknown-ua{
-	display:block;
-	text-align:center;
-}
-a{
-	word-break:break-all;
-	word-wrap:break-word;
-	text-decoration:none;
-	max-width:100%;
-}
-img{
-	margin:.5em
-	margin:.5rem;
-}
-.attachment-post-thumbnail, 
-.wp-post-image{
-    height:auto;
-}
-th,
-td,
-blockquote{
-	border:1px solid #ccc;
-}
-blockquote{
-	border-left:6px solid #ccc;
-	padding:1em .5em 1em 2em;
-	padding:1rem .5rem 1rem 2rem;
+.attachment-post-thumbnail,.wp-post-image {
+height:auto;
 }
 
-p{
-	line-height:1.5;
-}
-table{
-	width:100%;
-}
-td{
-	text-align:right;
-}
 .clear {
-	clear: both;
+clear:both;
 }
-input[type="text"],
-input[type="radio"],
-input[type="checkbox"]{
-	margin:0.1em 0.3em;
-	margin:0.1rem 0.3rem;
+
+.posts-nav-link a:first-child {
+float:left;
 }
-input[type="file"],
-input[type="reset"],
-input[type="submit"]{
-	padding:0.3em 0.5em;
-	padding:0.3rem 0.5rem;
+
+.posts-nav-link a:last-child {
+float:right;
 }
-textarea{
-	width:90%;
-	margin:0 5%;
+
+.unknown .unknown-ua {
+display:block;
+text-align:center;
 }
-address{
-	text-align:center;
+
+.unknown-ua,noscript .no-script-and-small-view {
+display:none;
 }
-.posts-nav-link a:first-child{
-	float:left;
+
+.vspacer-1 {
+line-height:1;
 }
-.posts-nav-link a:last-child{
-	float:right;
+
+.vspacer-2 {
+line-height:2;
 }
-noscript .no-script-and-small-view{
-	display:none;
+
+.vspacer-3 {
+line-height:3;
 }
-h1 a span{
-	display:block;
-	width:100%;
-	height:100%;
+
+a {
+max-width:100%;
+text-decoration:none;
+word-break:break-all;
+word-wrap:break-word;
 }
-textarea,
-th,
-td,
-tr,
-table{
+
+address {
+text-align:center;
 }
-/*iphone*/
-html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 {
-    -webkit-text-size-adjust:none;
+
+blockquote {
+padding:1rem .5rem 1rem 2rem;
 }
-nav div,
-nav img,
-object,
-embed,
-iframe{
-	max-width:100%;
-	height:auto;
+
+h1 a span {
+display:block;
+height:100%;
+width:100%;
 }
-.vspacer-1{
-	line-height:1;
+
+h1 a,h2 a,h3 a {
+text-decoration:none;
 }
-.vspacer-2{
-	line-height:2;
+
+html {
+margin:0;
+padding:0;
 }
-.vspacer-3{
-	line-height:3;
+
+html,body,form,fieldset,p,div,h1,h2,h3,h4,h5,h6 {
+-webkit-text-size-adjust:none;
 }
-/* 
- *horizontal menu 
- */
-header{
-  background-size:cover;
+
+img {
+margin:.5rem;
 }
-header,
-footer{
-	min-height:100px;
-	position:relative;
-	padding-top:30px;
+
+input[type=file],input[type=reset],input[type=submit] {
+padding:0.3rem 0.5rem;
 }
-address{
-	
+
+input[type=text],input[type=radio],input[type=checkbox] {
+margin:0.1rem 0.3rem;
 }
-header h2,
-header h1{
-	margin:0 35px;
+
+nav div,nav img,object,embed,iframe {
+height:auto;
+max-width:100%;
 }
-nav > ul{
-	margin:0;
-	padding:0;
+
+p {
+line-height:1.5;
 }
-nav  ul.children{
-	margin:0;
-	padding:0;
+
+table {
+width:100%;
 }
-/*
- * nav list
- */
-nav .menu  > li,
-.widget > ul > li{
-	line-height:2;
-	border-bottom:1px solid rgba(200,200,200,0.4);
+
+td {
+text-align:right;
 }
-ul, menu, dir {
-	-webkit-margin-start: 0;
-	-webkit-margin-end: 0;
-	-webkit-padding-start:1rem;
-}
-nav .menu  > li  ul{
-	margin:0 0 0 1rem;
-	padding:0;
-}
-#wp-calendar {
-	width:90%;
-	margin:auto;
-}
-#wp-calendar tfoot td{
-	border:none;
-}
-#wp-calendar tfoot #prev{
-	text-align:left;
-}
-.posts-nav-link{
-	margin:1em;
-	margin:1rem;
-}
-nav #searchform{
-	margin:10px auto;
-	padding:10px;
-}
-/*
- * Search form
- */
-nav #searchform .screen-reader-text{
-	display:none;
-}
-nav #searchform input[type="text"]{
-	width:60%;
-}
-/*
- * <!--nextpage-->　navigation link
- */
-.wp-link-pages{
-	margin:1em;
-	margin:1rem;
-	text-align:center;
-}
-.enough-comment-link{
-	position:absolute;
-	right:1em;
-	right:1rem;
-}
-.toggle-navigation{
-	margin:auto;
-}
-.toggle-navigation li{
-	list-style:none;
-}
-.toggle-navigation li.enough-toggle-title{
-	padding-left:1em;
-	padding-left:1rem;
-}
-.wp-link-pages a{
-	border:1px solid #999;
-	padding:.5em;
-	padding:.5rem;
-}
-.wp-link-pages > span{
-	padding:.5em;
-	border:1px solid #999;
-}
-.nav-previous{
-	display: inline;
-	float: left;
-}
-.nav-next{
-	display: inline;
-	float: right;
-}
-/* Zoom.it */
-.width500 nav #__seadragon1,
-.width400 nav #__seadragon1,
-.width300 nav #__seadragon1,
-.width200 nav #__seadragon1,
-.width500 nav #__seadragon2,
-.width400 nav #__seadragon2,
-.width300 nav #__seadragon2,
-.width200 nav #__seadragon2,
-.width500 nav #__seadragon3,
-.width400 nav #__seadragon3,
-.width300 nav #__seadragon3,
-.width200 nav #__seadragon3{
-	display:none;
-}
-script{
-	display:none;
-}
-.archives-title-text{
-	clear:both;
-	text-align:left;
-	margin:1em;
-	margin:1rem;
+
+textarea {
+margin:0 5%;
+width:90%;
 }

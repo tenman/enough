@@ -960,6 +960,7 @@ if( ! function_exists( 'enough_iphone_status_bar_style_validate' ) ){
  * @package WordPress
  * @subpackage enough
  */
+if( ! class_exists( 'enough_menu_create' ) ){
     class enough_menu_create {
         var $accesskey  = array("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z");
  /*       var $table_template = '<table class="%s widefat post fixed enough-value-set-tables">';
@@ -1286,6 +1287,7 @@ $lines .= '<a href="#wpwrap">Top</a>';
         return $lines;
         }
     }
+}
 /**
  * enough once message when install.
  *

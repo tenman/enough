@@ -10,8 +10,8 @@ nav a:active,
 .entry-title a:active,
 .entry-content a:active,	
 .posted-in a:active{
-	position:relative;
-	top:1px;
+		position:relative;
+		top:1px;
 }
 
 .menu-header{
@@ -101,22 +101,23 @@ nav a:active,
 		color:#eee;
 		background:none;
 	}
-	
-	.widget_categories,
-	.widget_recent_entries,
-	.widget_pages,
-	.widget_nav_menu,
-	.widget_recent_comments,
-	.widget_archive,
-	nav .widget_meta{
-		border:1px solid #ccc;
-		margin:.6em 0;
-	}
+.widget_rss,
+.widget_categories,
+.widget_recent_entries,
+.widget_pages,
+.widget_nav_menu,
+.widget_recent_comments,
+.widget_archive,
+.widget_meta{
+border:1px solid #ccc;
+margin-top:-1px;
+}
 	#commentform,
 	html,
 	.posted-in,	
 	.posted-on,
 	.posted-on a.enough-comment-link:active,
+	.widget_rss .widgettitle,
 	.widget_categories .widgettitle,
 	.widget_recent_entries .widgettitle,
 	.widget_tag_cloud .widgettitle,
@@ -131,8 +132,6 @@ nav a:active,
 		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cbcbcb', endColorstr='#ebebeb');
 		-moz-box-shadow: 1px 1px 3px #555;
 		-webkit-box-shadow: 1px 1px 3px #555;
-		
-		
 	}
 	
 	.posted-on a.enough-comment-link{
@@ -141,11 +140,7 @@ nav a:active,
 		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ebebeb', endColorstr='#cbcbcb');
 		-moz-box-shadow: 1px 1px 3px #555;
 		-webkit-box-shadow: 1px 1px 3px #555;
-			
-	
 	}
-	
-	
 	#commentform{
 	}
 	.entry-title{

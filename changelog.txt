@@ -1,4 +1,11 @@
 Changelog -----------------------------------
+version:0.27
+Fixed
+    Widget right margin display improperly.
+Modified
+    CSS rules
+----------------------------------------------
+Changelog -----------------------------------
 version:0.26
 Modified
     Delate function wds_pig_counter
