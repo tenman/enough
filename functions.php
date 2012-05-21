@@ -762,11 +762,11 @@ if ( ! function_exists( 'enough_small_device_helper' ) ) {
      *
      */
      ?>
-
+/*
         if ( ! jQuery('.menu-header ul li').is('li.page_item') ) {
             jQuery('div.menu-header').css("display","none");
         }
-
+*/
 
 
 

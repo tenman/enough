@@ -1,4 +1,12 @@
 Changelog -----------------------------------
+version:0.28
+fixed
+    Cutom menu
+        Customized menu is not shown
+        comment out javascript code.
+            functions.php line from 765 to 769
+----------------------------------------------
+Changelog -----------------------------------
 version:0.27
 Fixed
     Widget right margin display improperly.
