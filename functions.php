@@ -1,7 +1,4 @@
 <?php
-
-
-
 /**
  * Functions and class for WordPress theme Enough
  *
@@ -11,14 +8,14 @@
  * @package Enough
  */
 $enough_check_wp_version = explode('-',$wp_version);
-$enough_wp_version 		= $enough_check_wp_version[0];
+$enough_wp_version      = $enough_check_wp_version[0];
 
 if( !isset( $enough_current_theme_name ) ){
-	if( $enough_wp_version >= '3.4' ){
-		$enough_current_theme_name = wp_get_theme();
-	}else{
-		$enough_current_theme_name = get_current_theme();
-	}
+    if( $enough_wp_version >= '3.4' ){
+        $enough_current_theme_name = wp_get_theme();
+    }else{
+        $enough_current_theme_name = get_current_theme();
+    }
 }
 
     load_textdomain( 'enough', get_template_directory().'/languages/'.get_locale().'.mo' );
@@ -129,7 +126,7 @@ if( !isset( $enough_current_theme_name ) ){
         'type' => 'radio',
         'select_values' => array('no' => 'no')
         ),
-		
+
         array('option_id' => 6,
         'blog_id' => 0 ,
         'option_name' => "enough_slider_sleep",
@@ -139,7 +136,7 @@ if( !isset( $enough_current_theme_name ) ){
         'excerpt'=>__('Show image duration','enough'),
         'validate'=>'enough_slider_sleep_validate','list' => 5,
         'type' => 'text',
-		 'select_values' => '',
+         'select_values' => '',
         ),
         array('option_id' => 7,
         'blog_id' => 0 ,
@@ -150,9 +147,9 @@ if( !isset( $enough_current_theme_name ) ){
         'excerpt'=>__('Image change duration','enough'),
         'validate'=>'enough_slider_fade_validate','list' => 6,
         'type' => 'text',
-		 'select_values' => '',
+         'select_values' => '',
         ),
-		
+
     );
 /**
  *
@@ -179,7 +176,7 @@ if( !function_exists( 'enough_theme_setup' ) ){
         global $enough_sidebar_args;
         global $enough_register_nav_menus_args;
         global $enough_admin_options_setting;
-		global $enough_wp_version;
+        global $enough_wp_version;
 
         register_sidebar( $enough_sidebar_args );
         add_theme_support( 'automatic-feed-links' );
@@ -214,29 +211,29 @@ if( !function_exists( 'enough_theme_setup' ) ){
             //add_filter("enough_post_thumbnail","ecnough_ie_height_issue");
         //}
         add_filter( 'post_class', 'enough_add_post_class' );
-	$enough_site_image = get_template_directory_uri().'/images/headers/wp3.jpg';
-	if( $enough_wp_version >= '3.4' ){
-	
-	add_action( 'wp_head', 'enough_embed_meta' );	
+    $enough_site_image = get_template_directory_uri().'/images/headers/wp3.jpg';
+    if( $enough_wp_version >= '3.4' ){
 
-			
-	}
-	if( $enough_wp_version < '3.4' ){
+    add_action( 'wp_head', 'enough_embed_meta' );
+
+
+    }
+    if( $enough_wp_version < '3.4' ){
         add_custom_image_header('enough_header_style', 'enough_admin_header_style');
         add_custom_background();
-	
-	
-	}
+
+
+    }
     $enough_options  = get_option("enough_theme_settings");
 // isset( $enough_options['enough_use_slider'] ) and
-	if( $enough_options['enough_use_slider'] == 'yes' ){
-		add_action( 'wp_head', 'enough_slider' );
-	}	
-	
-	
-	
+    if( $enough_options['enough_use_slider'] == 'yes' ){
+        add_action( 'wp_head', 'enough_slider' );
+    }
 
-	
+
+
+
+
     /**
      * Add option helper
      *
@@ -261,32 +258,32 @@ if( !function_exists( 'enough_theme_setup' ) ){
 
     }
 }
-	if(file_exists(get_stylesheet_directory().'/images/headers/wp3.jpg')){
-		$enough_site_image = get_stylesheet_directory_uri().'/images/headers/wp3.jpg';
-		$enough_site_thumbnail_image = get_stylesheet_directory_uri().'/images/headers/wp3-thumbnail.jpg';
-	}else{
-		$enough_site_image = get_template_directory_uri().'/images/headers/wp3.jpg';
-		$enough_site_thumbnail_image = get_template_directory_uri().'/images/headers/wp3-thumbnail.jpg';
-	}
-	
-	$args = array(
-					'default-text-color' => 'ddd'
-					, 'width' => apply_filters( 'enough_header_image_width', '950' )
-					, 'flex-width' => true
-					, 'height' => apply_filters( 'enough_header_image_height', '198' )
-					, 'flex-height' => true
-					, 'header-text' => true
-					, 'default-image' => $enough_site_image
-					, 'wp-head-callback' => 'enough_small_device_helper'
-					, 'admin-head-callback' => 'enough_admin_header_style'
-				);
-		add_theme_support( 'custom-header', $args );
+    if(file_exists(get_stylesheet_directory().'/images/headers/wp3.jpg')){
+        $enough_site_image = get_stylesheet_directory_uri().'/images/headers/wp3.jpg';
+        $enough_site_thumbnail_image = get_stylesheet_directory_uri().'/images/headers/wp3-thumbnail.jpg';
+    }else{
+        $enough_site_image = get_template_directory_uri().'/images/headers/wp3.jpg';
+        $enough_site_thumbnail_image = get_template_directory_uri().'/images/headers/wp3-thumbnail.jpg';
+    }
+
+    $args = array(
+                    'default-text-color' => 'ddd'
+                    , 'width' => apply_filters( 'enough_header_image_width', '950' )
+                    , 'flex-width' => true
+                    , 'height' => apply_filters( 'enough_header_image_height', '198' )
+                    , 'flex-height' => true
+                    , 'header-text' => true
+                    , 'default-image' => $enough_site_image
+                    , 'wp-head-callback' => 'enough_small_device_helper'
+                    , 'admin-head-callback' => 'enough_admin_header_style'
+                );
+        add_theme_support( 'custom-header', $args );
 
     $args = array('default-color' => ''
                 , 'default-image' => ''
-				, 'wp-head-callback' => 'enough_embed_meta'
-				, 'admin-head-callback' => 'enough_admin_header_style'
-				, 'admin-preview-callback' => 'enough_embed_meta'
+                , 'wp-head-callback' => 'enough_embed_meta'
+                , 'admin-head-callback' => 'enough_admin_header_style'
+                , 'admin-preview-callback' => 'enough_embed_meta'
             );
     add_theme_support( 'custom-background', $args );
 
@@ -298,56 +295,56 @@ if( !function_exists( 'enough_theme_setup' ) ){
  *
  */
 
-	function enough_embed_meta(){
-		$header_image_css				= '';
-		$image_uri 						= get_theme_mod('header_image');
-		$image_size 					= get_theme_mod('header_image_data');
-		$width 							= $image_size->width;
-		$height 						= $image_size->height;
-		$body_background_color 			= get_theme_mod( "background_color" );
-		$body_background_image 			= get_theme_mod( "background_image" );
-		$body_background_repeat 		= get_theme_mod( "background_repeat" );
-		$body_background_position_x 	= get_theme_mod( "background_position_x" );
-		$body_background_attachment 	= get_theme_mod( "background_attachment" );
-		$header_textcolor 				= get_theme_mod( "header_textcolor" );
-		if($image_uri !== "remove-header"){
-			$header_image_css = 'header{ background: url('.$image_uri.'); }';
-			
-		}
-		
-		$header_style ='%1$s 
-		.site-title a,
-		.site-title a span,
-		.site-description{
-			%2$s
-		}';
-		
-		if( get_theme_mod( 'header_textcolor' ) !== 'blank' ){
-			$header_style = sprintf(
-					 $header_style
-					 , $header_image_css
-					 , 'color:#'. $header_textcolor. '!important;'
-					  );
-			$header_style .= 'header .site-title{margin-top:20px;}';
-			//$header_style .= 'header .site-description{margin-bottom:20px;}';
-		}else{
-			$header_style = sprintf(
-					 $header_style
-					 , $header_image_css
-					 , 'display:none!important;'
-					  );
-		}
+    function enough_embed_meta(){
+        $header_image_css               = '';
+        $image_uri                      = get_theme_mod('header_image');
+        $image_size                     = get_theme_mod('header_image_data');
+        $width                          = $image_size->width;
+        $height                         = $image_size->height;
+        $body_background_color          = get_theme_mod( "background_color" );
+        $body_background_image          = get_theme_mod( "background_image" );
+        $body_background_repeat         = get_theme_mod( "background_repeat" );
+        $body_background_position_x     = get_theme_mod( "background_position_x" );
+        $body_background_attachment     = get_theme_mod( "background_attachment" );
+        $header_textcolor               = get_theme_mod( "header_textcolor" );
+        if($image_uri !== "remove-header"){
+            $header_image_css = 'header{ background: url('.$image_uri.'); }';
 
-		$style=	"<style type=\"text/css\">
-		body{ 
-			background-color:#{$body_background_color};
-			background-image:url( {$body_background_image} );
-			background-position:top {$body_background_position_x};
-			background-attachment:{$body_background_attachment};
-			background-size:100% auto;
-		}
-		$header_style
-		</style>";		
+        }
+
+        $header_style ='%1$s
+        .site-title a,
+        .site-title a span,
+        .site-description{
+            %2$s
+        }';
+
+        if( get_theme_mod( 'header_textcolor' ) !== 'blank' ){
+            $header_style = sprintf(
+                     $header_style
+                     , $header_image_css
+                     , 'color:#'. $header_textcolor. '!important;'
+                      );
+            $header_style .= 'header .site-title{margin-top:20px;}';
+            //$header_style .= 'header .site-description{margin-bottom:20px;}';
+        }else{
+            $header_style = sprintf(
+                     $header_style
+                     , $header_image_css
+                     , 'display:none!important;'
+                      );
+        }
+
+        $style= "<style type=\"text/css\">
+        body{
+            background-color:#{$body_background_color};
+            background-image:url( {$body_background_image} );
+            background-position:top {$body_background_position_x};
+            background-attachment:{$body_background_attachment};
+            background-size:100% auto;
+        }
+        $header_style
+        </style>";
 /**
  *
  *
@@ -355,15 +352,15 @@ if( !function_exists( 'enough_theme_setup' ) ){
  *
  *
  */
-	if ( 'blank' == get_theme_mod('header_textcolor') ){
-		add_filter( 'wp_page_menu_args', 'enough_page_menu_args' );
-	}
+    if ( 'blank' == get_theme_mod('header_textcolor') ){
+        add_filter( 'wp_page_menu_args', 'enough_page_menu_args' );
+    }
 
-		echo $style;
-	}
-	if( $enough_wp_version >= '3.4' ){
-		add_action( 'customize_register', 'enough_customize_register' );
-	}
+        echo $style;
+    }
+    if( $enough_wp_version >= '3.4' ){
+        add_action( 'customize_register', 'enough_customize_register' );
+    }
 
 /**
  *
@@ -811,7 +808,7 @@ if ( ! function_exists( 'enough_small_device_helper' ) ) {
         */
         ?>
             function fontResize(){
-				<?php global $enough_site_image;?>
+                <?php global $enough_site_image;?>
                 var image_exists = '<?php echo $enough_header_image_uri;?>';
                 var width = jQuery(window).width();
                 <?php if($enough_title_length !== 0){?>
@@ -825,34 +822,34 @@ if ( ! function_exists( 'enough_small_device_helper' ) ) {
                 if( px < 10){ var px = 13;}
                 if( px > 26){ var px = 26;}
                    jQuery('.site-description').css('font-size', px  + 'px');
-                <?php }?>				
+                <?php }?>
                 if( image_exists !== ''){
-				<?php							
-					$url = parse_url( $enough_header_image_uri );
-					$path = $_SERVER['DOCUMENT_ROOT']. $url['path'];
-					list($img_width, $img_height, $img_type, $img_attr) = getimagesize( $path );
-					$ratio = $img_height / $img_width;
-				?>
+                <?php
+                    $url = parse_url( $enough_header_image_uri );
+                    $path = $_SERVER['DOCUMENT_ROOT']. $url['path'];
+                    list($img_width, $img_height, $img_type, $img_attr) = getimagesize( $path );
+                    $ratio = $img_height / $img_width;
+                ?>
 
-				var header_width = jQuery( 'header' ).width();
-				
-				var ratio = <?php echo $ratio;?>;		
-				var height =  ( header_width * ratio ).toFixed(0);
+                var header_width = jQuery( 'header' ).width();
+
+                var ratio = <?php echo $ratio;?>;
+                var height =  ( header_width * ratio ).toFixed(0);
 jQuery('header').removeAttr('style').css({'background-image':'url('+ image_exists + ')', 'height': height + 'px', 'background-size': 'cover'});
                     //jQuery('header').css({'height': height});
-					
-				<?php if( get_header_textcolor() == 'blank' ){?>
-				
-				
-				jQuery('header').css('cursor','pointer').click(function(){
-				
-				location.href = "<?php echo home_url();?>";
-				
-				});
-				<?php }?>
+
+                <?php if( get_header_textcolor() == 'blank' ){?>
+
+
+                jQuery('header').css('cursor','pointer').click(function(){
+
+                location.href = "<?php echo home_url();?>";
+
+                });
+                <?php }?>
                 }
-				
-				
+
+
                 if( width < 1281 ){
                     body_class = 'enough-w-sxga';
                 }
@@ -887,7 +884,7 @@ jQuery('header').removeAttr('style').css({'background-image':'url('+ image_exist
                     element.removeClass(className);
                   }
                 }
-				
+
                 jQuery('body').addClass( body_class );
 
 
@@ -920,14 +917,14 @@ jQuery('header').removeAttr('style').css({'background-image':'url('+ image_exist
                     }
                     <?php } //end $is_IE ?>
                 }else{
-				<?php if( basename( wp_get_referer() ) !== 'customize.php' ){?>
+                <?php if( basename( wp_get_referer() ) !== 'customize.php' ){?>
                     if (!jQuery('ul').is('.toggle-navigation')) {
                         location.reload();
                     }
-				<?php }?>
+                <?php }?>
                 }
-				
-	<?php $enough_options  = get_option("enough_theme_settings");
+
+    <?php $enough_options  = get_option("enough_theme_settings");
 
 if( $enough_options['enough_use_slider'] !== 'yes' ){?>
 
@@ -1190,17 +1187,18 @@ if( ! class_exists( 'enough_menu_create' ) ){
  *
  */
         function enough_theme_option_panel() {
-            global $wpdb,$count, $enough_admin_options_setting;
+            global $wpdb,$count, $enough_admin_options_setting, $enough_wp_version;
             $ok     = false;
             $result = "";
-   			$count = '';
-			
-			$enough_navigation_list  = '<ul class="enough-wp-native-style"><li><h3>'.__( 'WordPress settings links for human user interface', 'enough' ).'</h3></li>';
-						
-			$enough_navigation_list  .= '<li class="enough-customizer enough-wp-native-style-settings-link"><a href="'.admin_url( 'customize.php' ).'">'.__( 'Customizor','enough').'</a><div class="enough_customizor_description">'.__('Preview with settings','enough').'<br />'.__('The enough Setting change of a theme can also be performed. ','enough').'</div></li>';
-			$enough_navigation_list  .= '<li class="enough-wp-native-style-settings-link"><a href="'.admin_url( 'widgets.php' ).'">'.__( 'Widget','enough').'</a><div class="enough_customizor_description">'.__('Add Widgets Sidebar and Footer','enough').'<br />'.__('The enough theme supports 6 positions of widgets area','enough').'</div></li>';
-			$enough_navigation_list  .= '<li class="enough-wp-native-style-settings-link"><a href="'.admin_url( 'theme-editor.php' ).'">'.__( 'Theme Editor','enough').'</a><div class="enough_customizor_description">'.__('Edit All Theme Files Manualy','enough').'</div></li></ul>';
-		
+            $count = '';
+
+            $enough_navigation_list  = '<ul class="enough-wp-native-style"><li><h3>'.__( 'WordPress settings links for human user interface', 'enough' ).'</h3></li>';
+    if( $enough_wp_version >= '3.4' ){
+            $enough_navigation_list  .= '<li class="enough-customizer enough-wp-native-style-settings-link"><a href="'.admin_url( 'customize.php' ).'">'.__( 'Customizer','enough').'</a><div class="enough_customizer_description">'.__('Preview with settings','enough').'<br />'.__('The enough Setting change of a theme can also be performed. ','enough').'</div></li>';
+    }
+            $enough_navigation_list  .= '<li class="enough-wp-native-style-settings-link"><a href="'.admin_url( 'widgets.php' ).'">'.__( 'Widget','enough').'</a><div class="enough_customizer_description">'.__('Add Widgets Sidebar and Footer','enough').'<br />'.__('The enough theme supports 6 positions of widgets area','enough').'</div></li>';
+            $enough_navigation_list  .= '<li class="enough-wp-native-style-settings-link"><a href="'.admin_url( 'theme-editor.php' ).'">'.__( 'Theme Editor','enough').'</a><div class="enough_customizer_description">'.__('Edit All Theme Files Manualy','enough').'</div></li></ul>';
+
             /**
              * POSTGET
              *
@@ -1225,9 +1223,9 @@ if( ! class_exists( 'enough_menu_create' ) ){
 
             $result .= screen_icon();
             $result .= "<h2>" .  ucfirst(get_current_theme()) . __(' Theme Settings', 'enough') . "</h2>";
-			
-			$result .= $enough_navigation_list;
-			$result .= '<br style="clear:both;" />';			
+
+            $result .= $enough_navigation_list;
+            $result .= '<br style="clear:both;" />';
 /**
  * Reset
  *
@@ -1241,9 +1239,9 @@ if( ! class_exists( 'enough_menu_create' ) ){
                         $enough_theme_settings[$option_name] = $add['option_value'];
                 }
                 update_option('enough_theme_settings',$enough_theme_settings,"",$add['autoload']);
-				remove_theme_mods();
-				
-				$enough_updates = __( 'Reset Theme options and Theme Customizer options', 'enough' );
+                remove_theme_mods();
+
+                $enough_updates = __( 'Reset Theme options and Theme Customizer options', 'enough' );
             }
 /**
  *
@@ -1381,7 +1379,7 @@ if( ! class_exists( 'enough_menu_create' ) ){
             }
             $results        = $enough_sort;
             $lines .= "<form action=\"$deliv\" method=\"post\">".wp_nonce_field('update-options');
-        	$i = 0;
+            $i = 0;
             foreach( $results as $key => $val ){
                 if(enough_theme_option($key,'type') == 'text' ){
 /**
@@ -1662,9 +1660,9 @@ if( ! function_exists( 'enough_header_style' ) /*and $enough_wp_version < '3.4'*
 if( ! function_exists( 'enough_admin_header_style' ) ){
     function enough_admin_header_style(){
 
-		$url 	= parse_url( get_theme_mod( 'header_image' ) );
-		$path 	= $_SERVER['DOCUMENT_ROOT']. $url['path'];
-		list($img_width, $img_height, $img_type, $img_attr) = getimagesize($path);	
+        $url    = parse_url( get_theme_mod( 'header_image' ) );
+        $path   = $_SERVER['DOCUMENT_ROOT']. $url['path'];
+        list($img_width, $img_height, $img_type, $img_attr) = getimagesize($path);
 ?>
 <style type="text/css"><!--
 #headimg{
@@ -1710,8 +1708,8 @@ if( ! function_exists( 'enough_add_post_class' ) ){
  */
 
 function enough_page_menu_args( $args ) {
-	$args['show_home'] = true;
-	return $args;
+    $args['show_home'] = true;
+    return $args;
 }
 /**
  *
@@ -1724,38 +1722,38 @@ function enough_page_menu_args( $args ) {
 function enough_slider(){
 
 
-	wp_register_script('jquery.cross-slide.min.js', get_stylesheet_directory_uri(). '/jquery.cross-slide.min.js',array('jquery'));
-	wp_enqueue_script('jquery.cross-slide.min.js');
-	
-	$enough_options  = get_option("enough_theme_settings");
-	
-	if(!empty( $enough_options['enough_slider_sleep']) ){
-		$sleep = $enough_options['enough_slider_sleep'];
-	}else{
-		$sleep = $enough_admin_options_setting[4]['option_value'];
-	}
-	if(!empty( $enough_options['enough_slider_fade']) ){
-		$fade = $enough_options['enough_slider_fade'];
-	}else{
-		$fade = $enough_admin_options_setting[5]['option_value'];
-	}
+    wp_register_script('jquery.cross-slide.min.js', get_stylesheet_directory_uri(). '/jquery.cross-slide.min.js',array('jquery'));
+    wp_enqueue_script('jquery.cross-slide.min.js');
+
+    $enough_options  = get_option("enough_theme_settings");
+
+    if(!empty( $enough_options['enough_slider_sleep']) ){
+        $sleep = $enough_options['enough_slider_sleep'];
+    }else{
+        $sleep = $enough_admin_options_setting[4]['option_value'];
+    }
+    if(!empty( $enough_options['enough_slider_fade']) ){
+        $fade = $enough_options['enough_slider_fade'];
+    }else{
+        $fade = $enough_admin_options_setting[5]['option_value'];
+    }
 
 if( $enough_options['enough_use_slider'] == 'yes' ){
- if(!is_single()){ 
-	if(get_header_image()){ 
-	 $headers = get_uploaded_header_images(); 
+ if(!is_single()){
+    if(get_header_image()){
+     $headers = get_uploaded_header_images();
 ?>
 
 <style type="text/css" id="enough-slider-css">
 header .site-title, header .site-description{display:none;}
 header{box-shadow:1px 0 0 #000;background:#000!important;overflow:hidden;}
 header img{
-	margin:0 0 0!important;
-	padding:0!important;
-	width:100%;
-	max-width:100%!important;
-	left:2px!important;
-	z-index:1;
+    margin:0 0 0!important;
+    padding:0!important;
+    width:100%;
+    max-width:100%!important;
+    left:2px!important;
+    z-index:1;
 }
 .site-title{display:inline;position:absolute;z-index:999;color:#fff;left:10%;}
 </style>
@@ -1763,20 +1761,20 @@ header img{
 jQuery(function() {
 jQuery('header').before('<h1 class="site-title"><a href="<?php home_url();?>" style="color:#<?php echo get_theme_mod("header_textcolor");?>"><?php bloginfo('site-title');?></a></h1>');
 <?php $last = end($headers);?>
-	jQuery('header').crossSlide({
-	sleep: <?php echo $sleep; ?>,
-	fade: <?php echo $fade; ?>
-	},[<?php foreach ($headers as $key => $value){
-	if($value == $last){$separator = '';}else{$separator = ',';}?>
+    jQuery('header').crossSlide({
+    sleep: <?php echo $sleep; ?>,
+    fade: <?php echo $fade; ?>
+    },[<?php foreach ($headers as $key => $value){
+    if($value == $last){$separator = '';}else{$separator = ',';}?>
 {src: '<?php echo $value['url']; ?>' }<?php echo $separator;?>
-	<?php } ?>	])
+    <?php } ?>  ])
 });
 </script>
 <?php
-}		
+}
 
-	 } 
-	}
+     }
+    }
 }
 
 /**
@@ -1787,62 +1785,62 @@ jQuery('header').before('<h1 class="site-title"><a href="<?php home_url();?>" st
  *
  */
 
-	if( ! function_exists( 'enough_customize_register' ) and $enough_wp_version >= '3.4'){
-	
-		function enough_customize_register( $wp_customize ) {
-	
-			$wp_customize->add_section( 'enough_theme_setting'
-				, array( 'title' => __( 'enough theme setting', 'enough' )
-						, 'priority' => 33,
-					) 
-			);
-			
-			$wp_customize->add_setting( 'enough_theme_settings[enough_use_slider]', array(
-				'default'        => 'no',
-				'type'           => 'option',
-				'capability' 	=> 'edit_theme_options'
-			) );
-			
-			$wp_customize->add_setting( 'enough_theme_settings[enough_slider_sleep]', array(
-				'default'        => 3,
-				'type'           => 'option',
-				'capability' 		=> 'edit_theme_options'
-			) );
-			$wp_customize->add_setting( 'enough_theme_settings[enough_slider_fade]', array(
-				'default'        => 1,
-				'type'           => 'option',
-				'capability' 		=> 'edit_theme_options'
-			) );
-			
-			$wp_customize->add_control( 'enough_use_slider', array(
-					'label'      => __( 'Slider Header Image', 'enough' ),
-					'section'    => 'enough_theme_setting',
-					'settings'   => 'enough_theme_settings[enough_use_slider]',
-					'type'       => 'radio',
-					'choices'    => array( 'yes'=> __( 'Yes' , 'enough' )
-											, 'no' => __( 'No', 'enough' )
-										)
-					) 
-			);
-			$wp_customize->add_control( 'enough_slider_sleep'
-				, array(
-					'label'      => __( 'Sleep (sec)', 'enough' ),
-					'section'    => 'enough_theme_setting',
-					'settings'   => 'enough_theme_settings[enough_slider_sleep]',
-					'type'       => 'text',
-					) 
-			);
-			$wp_customize->add_control( 'enough_slider_fade'
-				, array(
-					'label'      => __( 'Fade (sec)', 'enough' ),
-					'section'    => 'enough_theme_setting',
-					'settings'   => 'enough_theme_settings[enough_slider_fade]',
-					'type'       => 'text',
-					) 
-			);
+    if( ! function_exists( 'enough_customize_register' ) and $enough_wp_version >= '3.4'){
 
-		}
-	}
-	
+        function enough_customize_register( $wp_customize ) {
+
+            $wp_customize->add_section( 'enough_theme_setting'
+                , array( 'title' => __( 'enough theme setting', 'enough' )
+                        , 'priority' => 33,
+                    )
+            );
+
+            $wp_customize->add_setting( 'enough_theme_settings[enough_use_slider]', array(
+                'default'        => 'no',
+                'type'           => 'option',
+                'capability'    => 'edit_theme_options'
+            ) );
+
+            $wp_customize->add_setting( 'enough_theme_settings[enough_slider_sleep]', array(
+                'default'        => 3,
+                'type'           => 'option',
+                'capability'        => 'edit_theme_options'
+            ) );
+            $wp_customize->add_setting( 'enough_theme_settings[enough_slider_fade]', array(
+                'default'        => 1,
+                'type'           => 'option',
+                'capability'        => 'edit_theme_options'
+            ) );
+
+            $wp_customize->add_control( 'enough_use_slider', array(
+                    'label'      => __( 'Slider Header Image', 'enough' ),
+                    'section'    => 'enough_theme_setting',
+                    'settings'   => 'enough_theme_settings[enough_use_slider]',
+                    'type'       => 'radio',
+                    'choices'    => array( 'yes'=> __( 'Yes' , 'enough' )
+                                            , 'no' => __( 'No', 'enough' )
+                                        )
+                    )
+            );
+            $wp_customize->add_control( 'enough_slider_sleep'
+                , array(
+                    'label'      => __( 'Sleep (sec)', 'enough' ),
+                    'section'    => 'enough_theme_setting',
+                    'settings'   => 'enough_theme_settings[enough_slider_sleep]',
+                    'type'       => 'text',
+                    )
+            );
+            $wp_customize->add_control( 'enough_slider_fade'
+                , array(
+                    'label'      => __( 'Fade (sec)', 'enough' ),
+                    'section'    => 'enough_theme_setting',
+                    'settings'   => 'enough_theme_settings[enough_slider_fade]',
+                    'type'       => 'text',
+                    )
+            );
+
+        }
+    }
+
 
 ?>

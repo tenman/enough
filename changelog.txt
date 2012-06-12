@@ -1,5 +1,5 @@
 Changelog -----------------------------------
-version:0.30
+version:0.31
     This version changes for WordPress 3.4
 Add
     header image slide show
