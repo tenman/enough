@@ -2,6 +2,20 @@ Changelog -----------------------------------
 version:0.30
     This version changes for WordPress 3.4
 Add
+    header image slide show
+        Add new file jquery.cross-slide.min.js
+    function add_theme_support( 'custom-header', $args )
+    function add_theme_support( 'custom-background', $args )
+    function enough_embed_meta()
+    function enough_use_slider_validate($input)
+    function enough_slider_sleep_validate($input)
+    function enough_slider_fade_validate($input)
+    function enough_admin_header_style()
+    function enough_page_menu_args( $args )
+    function enough_slider()
+    function enough_customize_register( $wp_customize )
+Modified
+    CSS rules
 ----------------------------------------------
 Changelog -----------------------------------
 version:0.28
