@@ -50,11 +50,11 @@ hr{
 
 a,
 .widgettitle{
-	color:#555;
+	/*color:#555;*/
 }
 
 a:hover{
-	color:#333;
+	/*color:#333;*/
 }
 
 
@@ -71,6 +71,7 @@ nav #searchform,
 nav #wp-calendar thead th,
 .widget_rss .widgettitle,
 .widget_tag_cloud,
+.widget_links .widgettitle,
 .widget_categories .widgettitle,
 .widget_recent_entries .widgettitle,
 .widget_tag_cloud .widgettitle,

@@ -131,7 +131,13 @@
 			font-size:0.9em;
 		}
 			
-	
+*ver 0.29 Add
+
+	CrossSlide jQuery plugin for WordPress theme Enough
+		License: GNU General Public License v2.0
+		License URI: http://www.gnu.org/licenses/gpl-2.0.html
+		
+		filename jquery.cross-slide.min.js	
 	
 	
 	

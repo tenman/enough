@@ -120,7 +120,7 @@
 	padding-top:1em;
 	width:96.6%;
 }
-
+.widget_links .widgettitle,
 .widget_rss .widgettitle,.widget_categories .widgettitle,.widget_recent_entries .widgettitle,.widget_tag_cloud .widgettitle,.widget_pages .widgettitle,.widget_nav_menu .widgettitle,.widget_recent_comments .widgettitle,.widget_archive .widgettitle,.widget_meta .widgettitle{
 	-webkit-margin-after:0;
 	-webkit-margin-before:0;
@@ -228,8 +228,7 @@ header h2,header h1{
 }
 
 header,footer{
-	min-height:100px;
-	padding-top:30px;
+
 	position:relative;
 }
 
@@ -314,4 +313,8 @@ ul,menu,dir{
 	-webkit-margin-end:0;
 	-webkit-margin-start:0;
 	-webkit-padding-start:1rem;
+}
+ul#sidebar-1 h2.widgettitle{
+	margin-top:0!important;
+	margin-bottom:0!important;
 }

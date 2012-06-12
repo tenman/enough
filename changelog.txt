@@ -1,4 +1,9 @@
 Changelog -----------------------------------
+version:0.30
+    This version changes for WordPress 3.4
+Add
+----------------------------------------------
+Changelog -----------------------------------
 version:0.28
 fixed
     Cutom menu

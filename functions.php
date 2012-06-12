@@ -1,4 +1,7 @@
 <?php
+
+
+
 /**
  * Functions and class for WordPress theme Enough
  *
@@ -7,7 +10,20 @@
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * @package Enough
  */
+$enough_check_wp_version = explode('-',$wp_version);
+$enough_wp_version 		= $enough_check_wp_version[0];
+
+if( !isset( $enough_current_theme_name ) ){
+	if( $enough_wp_version >= '3.4' ){
+		$enough_current_theme_name = wp_get_theme();
+	}else{
+		$enough_current_theme_name = get_current_theme();
+	}
+}
+
     load_textdomain( 'enough', get_template_directory().'/languages/'.get_locale().'.mo' );
+
+
 /**
  *
  *
@@ -76,7 +92,7 @@
         'autoload'=>'yes',
         'title'=>__('iphone format telephone','enough'),
         'excerpt'=>__('Iphone format detection telephone','enough'),
-        'validate'=>'enough_format_detection_telephone_validate','list' => 12,
+        'validate'=>'enough_format_detection_telephone_validate','list' => 1,
         'type' => 'radio',
         'select_values' => array("yes" => 'yes')
         ),
@@ -87,7 +103,7 @@
         'autoload'=>'yes',
         'title'=>__('iphone device width settings','enough'),
         'excerpt'=> __('iphone meta name "viewport" content value','enough'),
-        'validate'=>'enough_iphone_device_width_validate','list' => 12,
+        'validate'=>'enough_iphone_device_width_validate','list' => 2,
         'type' => 'text',
         'select_values' => '',
         ),
@@ -98,10 +114,45 @@
         'autoload'=>'yes',
         'title'=>__('iphone_status_bar_style','enough'),
         'excerpt'=>__('iphone the status bar style','enough'),
-        'validate'=>'enough_iphone_status_bar_style_validate','list' => 12,
+        'validate'=>'enough_iphone_status_bar_style_validate','list' => 3,
         'type' => 'radio',
         'select_values' => array('black' => 'black','black-translucent' => 'black-translucent')
         ),
+        array('option_id' => 5,
+        'blog_id' => 0 ,
+        'option_name' => "enough_use_slider",
+        'option_value' => "yes",
+        'autoload'=>'yes',
+        'title'=>__('Use Slider for Header Images','enough'),
+        'excerpt'=>__('Dinamic Slide header','enough'),
+        'validate'=>'enough_use_slider_validate','list' => 4,
+        'type' => 'radio',
+        'select_values' => array('no' => 'no')
+        ),
+		
+        array('option_id' => 6,
+        'blog_id' => 0 ,
+        'option_name' => "enough_slider_sleep",
+        'option_value' => 3,
+        'autoload'=>'yes',
+        'title'=>__('Slider sleep time','enough'),
+        'excerpt'=>__('Show image duration','enough'),
+        'validate'=>'enough_slider_sleep_validate','list' => 5,
+        'type' => 'text',
+		 'select_values' => '',
+        ),
+        array('option_id' => 7,
+        'blog_id' => 0 ,
+        'option_name' => "enough_slider_fade",
+        'option_value' => 1,
+        'autoload'=>'yes',
+        'title'=>__('Slider fade time','enough'),
+        'excerpt'=>__('Image change duration','enough'),
+        'validate'=>'enough_slider_fade_validate','list' => 6,
+        'type' => 'text',
+		 'select_values' => '',
+        ),
+		
     );
 /**
  *
@@ -128,13 +179,12 @@ if( !function_exists( 'enough_theme_setup' ) ){
         global $enough_sidebar_args;
         global $enough_register_nav_menus_args;
         global $enough_admin_options_setting;
+		global $enough_wp_version;
 
         register_sidebar( $enough_sidebar_args );
         add_theme_support( 'automatic-feed-links' );
         add_theme_support( 'post-thumbnails' );
         add_editor_style(  );
-        add_custom_image_header('enough_header_style', 'enough_admin_header_style');
-        add_custom_background();
         add_action('wp_enqueue_scripts', 'enough_enqueue_scripts_styles');
         add_filter('body_class','enough_add_body_class');
         add_action( 'wp_enqueue_scripts', 'enough_enqueue_comment_reply' );
@@ -164,7 +214,29 @@ if( !function_exists( 'enough_theme_setup' ) ){
             //add_filter("enough_post_thumbnail","ecnough_ie_height_issue");
         //}
         add_filter( 'post_class', 'enough_add_post_class' );
+	$enough_site_image = get_template_directory_uri().'/images/headers/wp3.jpg';
+	if( $enough_wp_version >= '3.4' ){
+	
+	add_action( 'wp_head', 'enough_embed_meta' );	
 
+			
+	}
+	if( $enough_wp_version < '3.4' ){
+        add_custom_image_header('enough_header_style', 'enough_admin_header_style');
+        add_custom_background();
+	
+	
+	}
+    $enough_options  = get_option("enough_theme_settings");
+// isset( $enough_options['enough_use_slider'] ) and
+	if( $enough_options['enough_use_slider'] == 'yes' ){
+		add_action( 'wp_head', 'enough_slider' );
+	}	
+	
+	
+	
+
+	
     /**
      * Add option helper
      *
@@ -189,6 +261,110 @@ if( !function_exists( 'enough_theme_setup' ) ){
 
     }
 }
+	if(file_exists(get_stylesheet_directory().'/images/headers/wp3.jpg')){
+		$enough_site_image = get_stylesheet_directory_uri().'/images/headers/wp3.jpg';
+		$enough_site_thumbnail_image = get_stylesheet_directory_uri().'/images/headers/wp3-thumbnail.jpg';
+	}else{
+		$enough_site_image = get_template_directory_uri().'/images/headers/wp3.jpg';
+		$enough_site_thumbnail_image = get_template_directory_uri().'/images/headers/wp3-thumbnail.jpg';
+	}
+	
+	$args = array(
+					'default-text-color' => 'ddd'
+					, 'width' => apply_filters( 'enough_header_image_width', '950' )
+					, 'flex-width' => true
+					, 'height' => apply_filters( 'enough_header_image_height', '198' )
+					, 'flex-height' => true
+					, 'header-text' => true
+					, 'default-image' => $enough_site_image
+					, 'wp-head-callback' => 'enough_small_device_helper'
+					, 'admin-head-callback' => 'enough_admin_header_style'
+				);
+		add_theme_support( 'custom-header', $args );
+
+    $args = array('default-color' => ''
+                , 'default-image' => ''
+				, 'wp-head-callback' => 'enough_embed_meta'
+				, 'admin-head-callback' => 'enough_admin_header_style'
+				, 'admin-preview-callback' => 'enough_embed_meta'
+            );
+    add_theme_support( 'custom-background', $args );
+
+/**
+ *
+ *
+ *
+ *
+ *
+ */
+
+	function enough_embed_meta(){
+		$header_image_css				= '';
+		$image_uri 						= get_theme_mod('header_image');
+		$image_size 					= get_theme_mod('header_image_data');
+		$width 							= $image_size->width;
+		$height 						= $image_size->height;
+		$body_background_color 			= get_theme_mod( "background_color" );
+		$body_background_image 			= get_theme_mod( "background_image" );
+		$body_background_repeat 		= get_theme_mod( "background_repeat" );
+		$body_background_position_x 	= get_theme_mod( "background_position_x" );
+		$body_background_attachment 	= get_theme_mod( "background_attachment" );
+		$header_textcolor 				= get_theme_mod( "header_textcolor" );
+		if($image_uri !== "remove-header"){
+			$header_image_css = 'header{ background: url('.$image_uri.'); }';
+			
+		}
+		
+		$header_style ='%1$s 
+		.site-title a,
+		.site-title a span,
+		.site-description{
+			%2$s
+		}';
+		
+		if( get_theme_mod( 'header_textcolor' ) !== 'blank' ){
+			$header_style = sprintf(
+					 $header_style
+					 , $header_image_css
+					 , 'color:#'. $header_textcolor. '!important;'
+					  );
+			$header_style .= 'header .site-title{margin-top:20px;}';
+			//$header_style .= 'header .site-description{margin-bottom:20px;}';
+		}else{
+			$header_style = sprintf(
+					 $header_style
+					 , $header_image_css
+					 , 'display:none!important;'
+					  );
+		}
+
+		$style=	"<style type=\"text/css\">
+		body{ 
+			background-color:#{$body_background_color};
+			background-image:url( {$body_background_image} );
+			background-position:top {$body_background_position_x};
+			background-attachment:{$body_background_attachment};
+			background-size:100% auto;
+		}
+		$header_style
+		</style>";		
+/**
+ *
+ *
+ *
+ *
+ *
+ */
+	if ( 'blank' == get_theme_mod('header_textcolor') ){
+		add_filter( 'wp_page_menu_args', 'enough_page_menu_args' );
+	}
+
+		echo $style;
+	}
+	if( $enough_wp_version >= '3.4' ){
+		add_action( 'customize_register', 'enough_customize_register' );
+	}
+
 /**
  *
  *
@@ -205,8 +381,6 @@ if( !function_exists("enough_enqueue_scripts_styles" ) ){
         if($is_IE){
             wp_register_script('html5shiv', 'http://html5shiv.googlecode.com/svn/trunk/html5.js', array(), '3', false);
             wp_enqueue_script('html5shiv');
-            /*wp_register_script('mediaqueries', 'http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js', array(), '3', false);
-            wp_enqueue_script('mediaqueries');*/
         }
     }
 }
@@ -280,7 +454,6 @@ if( ! function_exists( 'enough_posted_on' ) ){
 <?php
         $enough_date_format = get_option('date_format'). ' '. get_option( 'time_format' );
         $author = get_the_author();
-        //$author = enough_blank_fallback(get_the_author(),'Somebody');
         if (comments_open()){
             $enough_comment_html = '<a href="%1$s" class="enough-comment-link"><span class="enough-comment-string point"></span><em>%2$s %3$s</em></a>';
             if(get_comments_number() > 0 ){
@@ -638,6 +811,7 @@ if ( ! function_exists( 'enough_small_device_helper' ) ) {
         */
         ?>
             function fontResize(){
+				<?php global $enough_site_image;?>
                 var image_exists = '<?php echo $enough_header_image_uri;?>';
                 var width = jQuery(window).width();
                 <?php if($enough_title_length !== 0){?>
@@ -651,15 +825,34 @@ if ( ! function_exists( 'enough_small_device_helper' ) ) {
                 if( px < 10){ var px = 13;}
                 if( px > 26){ var px = 26;}
                    jQuery('.site-description').css('font-size', px  + 'px');
-                <?php }?>
-                var racio = <?php echo round(HEADER_IMAGE_WIDTH / HEADER_IMAGE_HEIGHT, 2);?>;
+                <?php }?>				
                 if( image_exists !== ''){
-                    var height = width / racio;
-                    if(<?php echo HEADER_IMAGE_HEIGHT;?> < height){
-                        height = <?php echo HEADER_IMAGE_HEIGHT;?>;
-                    }
-                    jQuery('header').css({'height': height});
+				<?php							
+					$url = parse_url( $enough_header_image_uri );
+					$path = $_SERVER['DOCUMENT_ROOT']. $url['path'];
+					list($img_width, $img_height, $img_type, $img_attr) = getimagesize( $path );
+					$ratio = $img_height / $img_width;
+				?>
+
+				var header_width = jQuery( 'header' ).width();
+				
+				var ratio = <?php echo $ratio;?>;		
+				var height =  ( header_width * ratio ).toFixed(0);
+jQuery('header').removeAttr('style').css({'background-image':'url('+ image_exists + ')', 'height': height + 'px', 'background-size': 'cover'});
+                    //jQuery('header').css({'height': height});
+					
+				<?php if( get_header_textcolor() == 'blank' ){?>
+				
+				
+				jQuery('header').css('cursor','pointer').click(function(){
+				
+				location.href = "<?php echo home_url();?>";
+				
+				});
+				<?php }?>
                 }
+				
+				
                 if( width < 1281 ){
                     body_class = 'enough-w-sxga';
                 }
@@ -694,6 +887,7 @@ if ( ! function_exists( 'enough_small_device_helper' ) ) {
                     element.removeClass(className);
                   }
                 }
+				
                 jQuery('body').addClass( body_class );
 
 
@@ -726,10 +920,21 @@ if ( ! function_exists( 'enough_small_device_helper' ) ) {
                     }
                     <?php } //end $is_IE ?>
                 }else{
+				<?php if( basename( wp_get_referer() ) !== 'customize.php' ){?>
                     if (!jQuery('ul').is('.toggle-navigation')) {
                         location.reload();
                     }
+				<?php }?>
                 }
+				
+	<?php $enough_options  = get_option("enough_theme_settings");
+
+if( $enough_options['enough_use_slider'] !== 'yes' ){?>
+
+
+jQuery('script #enough-slider-js, style #enough-slider-css').remove();
+
+<?php }?>
     <?php
     /**
      * Check window size and mouse position
@@ -753,29 +958,14 @@ if ( ! function_exists( 'enough_small_device_helper' ) ) {
             fontResize();
             jQuery(window).resize( function () {fontResize()});
 
-    <?php
-    /**
-     * .meenu-header has not .page_item when remove element div.menu-header
-     *
-     *
-     *
-     *
-     */
-     ?>
-/*
-        if ( ! jQuery('.menu-header ul li').is('li.page_item') ) {
-            jQuery('div.menu-header').css("display","none");
-        }
-*/
-
-
-
         });
         })(jQuery);
         </script>
         <?php
     }
 }
+
+
 /**
  *
  *
@@ -953,6 +1143,34 @@ if( ! function_exists( 'enough_iphone_status_bar_style_validate' ) ){
         return esc_html( $input );
     }
 }
+if( ! function_exists( 'enough_use_slider_validate' ) ){
+    function enough_use_slider_validate($input){
+        if($input == 'yes' or $input == 'no'){
+            return $input;
+        }else{
+            return 'no';
+        }
+    }
+}
+if( ! function_exists( 'enough_slider_sleep_validate' ) ){
+    function enough_slider_sleep_validate($input){
+        if(is_numeric( $input ) ){
+            return $input;
+        }else{
+            return 3;
+        }
+    }
+}
+if( ! function_exists( 'enough_slider_fade_validate' ) ){
+    function enough_slider_fade_validate($input){
+        if(is_numeric( $input ) ){
+            return $input;
+        }else{
+            return 1;
+        }
+    }
+}
+
 /**
  * enough option panel
  *
@@ -963,11 +1181,7 @@ if( ! function_exists( 'enough_iphone_status_bar_style_validate' ) ){
 if( ! class_exists( 'enough_menu_create' ) ){
     class enough_menu_create {
         var $accesskey  = array("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z");
- /*       var $table_template = '<table class="%s widefat post fixed enough-value-set-tables">';
-        var $title_template = '<a id="%s" href="#wpwrap" class="go-top"><span>page top</span></a><h3 title="%s" class="enough-options-title">%s</h3>';
-        var $excerpt_template = '<div class="enough-excerpt">%s</div>';
 
-        var $line_select_element='<select  accesskey="%s" name="%s" size="%d" style="height:%spx;">';*/
 /**
  *
  *
@@ -979,8 +1193,14 @@ if( ! class_exists( 'enough_menu_create' ) ){
             global $wpdb,$count, $enough_admin_options_setting;
             $ok     = false;
             $result = "";
-   //         $count = $wpdb->query("SELECT * FROM `".enough_PLUGIN_TABLE."`;");
-   $count = '';
+   			$count = '';
+			
+			$enough_navigation_list  = '<ul class="enough-wp-native-style"><li><h3>'.__( 'WordPress settings links for human user interface', 'enough' ).'</h3></li>';
+						
+			$enough_navigation_list  .= '<li class="enough-customizer enough-wp-native-style-settings-link"><a href="'.admin_url( 'customize.php' ).'">'.__( 'Customizor','enough').'</a><div class="enough_customizor_description">'.__('Preview with settings','enough').'<br />'.__('The enough Setting change of a theme can also be performed. ','enough').'</div></li>';
+			$enough_navigation_list  .= '<li class="enough-wp-native-style-settings-link"><a href="'.admin_url( 'widgets.php' ).'">'.__( 'Widget','enough').'</a><div class="enough_customizor_description">'.__('Add Widgets Sidebar and Footer','enough').'<br />'.__('The enough theme supports 6 positions of widgets area','enough').'</div></li>';
+			$enough_navigation_list  .= '<li class="enough-wp-native-style-settings-link"><a href="'.admin_url( 'theme-editor.php' ).'">'.__( 'Theme Editor','enough').'</a><div class="enough_customizor_description">'.__('Edit All Theme Files Manualy','enough').'</div></li></ul>';
+		
             /**
              * POSTGET
              *
@@ -1002,9 +1222,12 @@ if( ! class_exists( 'enough_menu_create' ) ){
                 }
             }
             $result .= '<div class="wrap"><div id="title-enough-header" >';
+
             $result .= screen_icon();
             $result .= "<h2>" .  ucfirst(get_current_theme()) . __(' Theme Settings', 'enough') . "</h2>";
-           // $result .= "<p>".__('Saved Database table name:','enough')."<strong>".enough_PLUGIN_TABLE."</strong></p></div>";
+			
+			$result .= $enough_navigation_list;
+			$result .= '<br style="clear:both;" />';			
 /**
  * Reset
  *
@@ -1018,6 +1241,9 @@ if( ! class_exists( 'enough_menu_create' ) ){
                         $enough_theme_settings[$option_name] = $add['option_value'];
                 }
                 update_option('enough_theme_settings',$enough_theme_settings,"",$add['autoload']);
+				remove_theme_mods();
+				
+				$enough_updates = __( 'Reset Theme options and Theme Customizer options', 'enough' );
             }
 /**
  *
@@ -1154,10 +1380,8 @@ if( ! class_exists( 'enough_menu_create' ) ){
                 $enough_sort[$enough_option_name] = $results[$enough_option_name];
             }
             $results        = $enough_sort;
-//var_dump($results);
-//var_dump($_POST);
             $lines .= "<form action=\"$deliv\" method=\"post\">".wp_nonce_field('update-options');
-        $i = 0;
+        	$i = 0;
             foreach( $results as $key => $val ){
                 if(enough_theme_option($key,'type') == 'text' ){
 /**
@@ -1405,7 +1629,7 @@ if( ! function_exists( 'ecnough_ie_height_issue' ) ){
  *
  *
  */
-if( ! function_exists( 'enough_header_style' ) ){
+if( ! function_exists( 'enough_header_style' ) /*and $enough_wp_version < '3.4'*/ ){
     function enough_header_style() {
         $header_image = get_header_image();
         if(!empty($header_image)){
@@ -1438,6 +1662,26 @@ if( ! function_exists( 'enough_header_style' ) ){
 if( ! function_exists( 'enough_admin_header_style' ) ){
     function enough_admin_header_style(){
 
+		$url 	= parse_url( get_theme_mod( 'header_image' ) );
+		$path 	= $_SERVER['DOCUMENT_ROOT']. $url['path'];
+		list($img_width, $img_height, $img_type, $img_attr) = getimagesize($path);	
+?>
+<style type="text/css"><!--
+#headimg{
+width:<?php echo $img_width; ?>px!important;
+height:<?php echo $img_height; ?>px!important;
+}
+            <?php if ( 'blank' == get_header_textcolor() ) {?>
+            #headimg a span{visibility:hidden;}
+            #headimg .site-description span{ display: none; }
+            <?php }else{ ?>
+            #headimg h2,
+            #headimg h1 a{
+                color:#<?php echo get_header_textcolor(); ?>;
+            }
+            <?php } ?>  -->
+        </style>
+<?php
 
     }
 }
@@ -1456,4 +1700,149 @@ if( ! function_exists( 'enough_add_post_class' ) ){
         return $classes;
     }
 }
+
+/**
+ *
+ *
+ *
+ *
+ *
+ */
+
+function enough_page_menu_args( $args ) {
+	$args['show_home'] = true;
+	return $args;
+}
+/**
+ *
+ *
+ *
+ *
+ *
+ */
+
+function enough_slider(){
+
+
+	wp_register_script('jquery.cross-slide.min.js', get_stylesheet_directory_uri(). '/jquery.cross-slide.min.js',array('jquery'));
+	wp_enqueue_script('jquery.cross-slide.min.js');
+	
+	$enough_options  = get_option("enough_theme_settings");
+	
+	if(!empty( $enough_options['enough_slider_sleep']) ){
+		$sleep = $enough_options['enough_slider_sleep'];
+	}else{
+		$sleep = $enough_admin_options_setting[4]['option_value'];
+	}
+	if(!empty( $enough_options['enough_slider_fade']) ){
+		$fade = $enough_options['enough_slider_fade'];
+	}else{
+		$fade = $enough_admin_options_setting[5]['option_value'];
+	}
+
+if( $enough_options['enough_use_slider'] == 'yes' ){
+ if(!is_single()){ 
+	if(get_header_image()){ 
+	 $headers = get_uploaded_header_images(); 
+?>
+
+<style type="text/css" id="enough-slider-css">
+header .site-title, header .site-description{display:none;}
+header{box-shadow:1px 0 0 #000;background:#000!important;overflow:hidden;}
+header img{
+	margin:0 0 0!important;
+	padding:0!important;
+	width:100%;
+	max-width:100%!important;
+	left:2px!important;
+	z-index:1;
+}
+.site-title{display:inline;position:absolute;z-index:999;color:#fff;left:10%;}
+</style>
+<script type="text/javascript" id="enough-slider-js">
+jQuery(function() {
+jQuery('header').before('<h1 class="site-title"><a href="<?php home_url();?>" style="color:#<?php echo get_theme_mod("header_textcolor");?>"><?php bloginfo('site-title');?></a></h1>');
+<?php $last = end($headers);?>
+	jQuery('header').crossSlide({
+	sleep: <?php echo $sleep; ?>,
+	fade: <?php echo $fade; ?>
+	},[<?php foreach ($headers as $key => $value){
+	if($value == $last){$separator = '';}else{$separator = ',';}?>
+{src: '<?php echo $value['url']; ?>' }<?php echo $separator;?>
+	<?php } ?>	])
+});
+</script>
+<?php
+}		
+
+	 } 
+	}
+}
+
+/**
+ *
+ *
+ *
+ *
+ *
+ */
+
+	if( ! function_exists( 'enough_customize_register' ) and $enough_wp_version >= '3.4'){
+	
+		function enough_customize_register( $wp_customize ) {
+	
+			$wp_customize->add_section( 'enough_theme_setting'
+				, array( 'title' => __( 'enough theme setting', 'enough' )
+						, 'priority' => 33,
+					) 
+			);
+			
+			$wp_customize->add_setting( 'enough_theme_settings[enough_use_slider]', array(
+				'default'        => 'no',
+				'type'           => 'option',
+				'capability' 	=> 'edit_theme_options'
+			) );
+			
+			$wp_customize->add_setting( 'enough_theme_settings[enough_slider_sleep]', array(
+				'default'        => 3,
+				'type'           => 'option',
+				'capability' 		=> 'edit_theme_options'
+			) );
+			$wp_customize->add_setting( 'enough_theme_settings[enough_slider_fade]', array(
+				'default'        => 1,
+				'type'           => 'option',
+				'capability' 		=> 'edit_theme_options'
+			) );
+			
+			$wp_customize->add_control( 'enough_use_slider', array(
+					'label'      => __( 'Slider Header Image', 'enough' ),
+					'section'    => 'enough_theme_setting',
+					'settings'   => 'enough_theme_settings[enough_use_slider]',
+					'type'       => 'radio',
+					'choices'    => array( 'yes'=> __( 'Yes' , 'enough' )
+											, 'no' => __( 'No', 'enough' )
+										)
+					) 
+			);
+			$wp_customize->add_control( 'enough_slider_sleep'
+				, array(
+					'label'      => __( 'Sleep (sec)', 'enough' ),
+					'section'    => 'enough_theme_setting',
+					'settings'   => 'enough_theme_settings[enough_slider_sleep]',
+					'type'       => 'text',
+					) 
+			);
+			$wp_customize->add_control( 'enough_slider_fade'
+				, array(
+					'label'      => __( 'Fade (sec)', 'enough' ),
+					'section'    => 'enough_theme_setting',
+					'settings'   => 'enough_theme_settings[enough_slider_fade]',
+					'type'       => 'text',
+					) 
+			);
+
+		}
+	}
+	
+
 ?>

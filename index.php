@@ -216,6 +216,11 @@ do_action( 'get_header' );
 	<?php posts_nav_link(' '); ?>
 	</div>
 <br class="clear vspacer-3" />
+<?php
+wp_reset_query();
+ if(!is_page_template('page-blog.php')): ?>
+<?php get_template_part('login'); ?>
+<?php endif; ?>
 <?php 
 	if ( locate_template( array( 'footer.php' ) , true , true ) == '') {//template existance check 
 		enough_the_footer();
