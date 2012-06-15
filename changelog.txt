@@ -1,5 +1,5 @@
 Changelog -----------------------------------
-version:0.32
+version:0.33
     This version changes for Bugfix
         MultiSite header image display improperly.
         Browser width when width < 481px works improperly.
