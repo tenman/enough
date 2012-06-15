@@ -3,6 +3,15 @@ version:0.31
     This version changes for WordPress 3.4
 Add
     header image slide show
+        Add new file jquery.cross-slide.js
+Modified
+    CSS rules
+----------------------------------------------
+Changelog -----------------------------------
+version:0.31
+    This version changes for WordPress 3.4
+Add
+    header image slide show
         Add new file jquery.cross-slide.min.js
     function add_theme_support( 'custom-header', $args )
     function add_theme_support( 'custom-background', $args )
