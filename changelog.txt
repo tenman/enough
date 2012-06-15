@@ -1,11 +1,14 @@
 Changelog -----------------------------------
-version:0.31
-    This version changes for WordPress 3.4
+version:0.32
+    This version changes for Bugfix
+        MultiSite header image display improperly.
+        Browser width when width < 481px works improperly.
 Add
     header image slide show
         Add new file jquery.cross-slide.js
 Modified
-    CSS rules
+    javascript
+        functions.php
 ----------------------------------------------
 Changelog -----------------------------------
 version:0.31
