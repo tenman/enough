@@ -29,7 +29,7 @@ do_action( 'get_header' );
  *
  */
 ?>
-<header style="height:198px">
+<header>
     <h1 class="site-title"><a href="<?php echo home_url(); ?>">
       <span><?php bloginfo(); ?></span>
       </a></h1>

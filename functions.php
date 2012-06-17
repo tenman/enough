@@ -301,12 +301,15 @@ if( !function_exists( 'enough_theme_setup' ) ){
         $body_background_position_x     = get_theme_mod( "background_position_x" );
         $body_background_attachment     = get_theme_mod( "background_attachment" );
         $header_textcolor               = get_theme_mod( "header_textcolor" );
-
-        if($image_uri !== "remove-header" and !empty( $image_uri ) ){
+        if($image_uri !== "remove-header" or !empty( $image_uri ) ){
             $header_image_css = 'header{ background: url('.$image_uri.'); }';
+            if( $image_uri == "remove-header" ){ //need multisite child theme style rule
+                $header_image_css .= 'header{ height:auto; }';
+            }
 
         }else{
             $header_image_css = 'header{ background: url('.$enough_site_image.'); }';
+            $header_image_css .= 'header{ height: 198px; }';
         }
 
         $header_style ='%1$s
@@ -323,7 +326,7 @@ if( !function_exists( 'enough_theme_setup' ) ){
                      , 'color:#'. $header_textcolor. '!important;'
                       );
             $header_style .= 'header .site-title{margin-top:20px;}';
-            //$header_style .= 'header .site-description{margin-bottom:20px;}';
+            $header_style .= 'header .site-description{margin-bottom:20px;}';
         }else{
             $header_style = sprintf(
                      $header_style
