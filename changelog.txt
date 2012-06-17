@@ -1,10 +1,12 @@
 Changelog -----------------------------------
-version:0.34
+version:0.35
     This version changes for Bugfix
         Child theme header image display improperly.
 Modified
     Line 1753 wp_register_script_uri()
         functions.php
+    Template header element add inline style
+        index.php
 ----------------------------------------------
 Changelog -----------------------------------
 version:0.33
