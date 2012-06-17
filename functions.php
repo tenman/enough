@@ -225,14 +225,7 @@ if( !function_exists( 'enough_theme_setup' ) ){
 
     }
     $enough_options  = get_option("enough_theme_settings");
-// isset( $enough_options['enough_use_slider'] ) and
-  //  if( $enough_options['enough_use_slider'] == 'yes' ){
-        add_action( 'wp_head', 'enough_slider' );
-  //  }
-
-
-
-
+   	add_action( 'wp_head', 'enough_slider' );
 
     /**
      * Add option helper
@@ -837,7 +830,12 @@ if ( ! function_exists( 'enough_small_device_helper' ) ) {
 				<?php	
 				
 				if ( ! is_multisite() ) {						
-					$url 		= get_theme_mod( 'header_image' );
+						$url 		= get_theme_mod( 'header_image' );
+					
+					if( empty( $url ) ){ //When child theme $url empty
+						$url 		= get_header_image();
+					}		
+
 					$uploads 	= wp_upload_dir();
 					$path 		= $uploads['path'].'/'. basename( $url );		
 					list($img_width, $img_height, $img_type, $img_attr) = getimagesize($path);
@@ -862,8 +860,9 @@ if ( ! function_exists( 'enough_small_device_helper' ) ) {
 
                 var ratio = <?php echo $ratio;?>;
                 var height =  ( header_width * ratio ).toFixed(0);
-jQuery('header').removeAttr('style').css({'background-image':'url('+ image_exists + ')', 'height': height + 'px', 'background-size': 'cover'});
-                    //jQuery('header').css({'height': height});
+				
+				jQuery('header').removeAttr('style').css({'background-image':'url('+ image_exists + ')', 'height': height + 'px', 'background-size': 'cover'});
+				jQuery('header').removeAttr('style').css({'background-image':'url('+ image_exists + ')', 'height': height + 'px', 'background-size': 'cover'});
 
                 <?php if( get_header_textcolor() == 'blank' ){?>
 
@@ -1735,10 +1734,11 @@ if( ! function_exists( 'enough_add_post_class' ) ){
  *
  *
  */
-
-function enough_page_menu_args( $args ) {
-    $args['show_home'] = true;
-    return $args;
+if( ! function_exists( "enough_page_menu_args" ) ){
+	function enough_page_menu_args( $args ) {
+		$args['show_home'] = true;
+		return $args;
+	}
 }
 /**
  *
@@ -1747,66 +1747,62 @@ function enough_page_menu_args( $args ) {
  *
  *
  */
-
-function enough_slider(){
-
-
-    wp_register_script('jquery.cross-slide.js', get_stylesheet_directory_uri(). '/jquery.cross-slide.js',array('jquery'));
-    wp_enqueue_script('jquery.cross-slide.js');
-
-    $enough_options  = get_option("enough_theme_settings");
-
-    if(!empty( $enough_options['enough_slider_sleep']) ){
-        $sleep = $enough_options['enough_slider_sleep'];
-    }else{
-        $sleep = $enough_admin_options_setting[4]['option_value'];
-    }
-    if(!empty( $enough_options['enough_slider_fade']) ){
-        $fade = $enough_options['enough_slider_fade'];
-    }else{
-        $fade = $enough_admin_options_setting[5]['option_value'];
-    }
-
-if( $enough_options['enough_use_slider'] == 'yes' ){
- if(!is_single()){
-    if(get_header_image()){
-     $headers = get_uploaded_header_images();
-	 
-?>
-
+if( ! function_exists( "enough_slider" ) ){
+	function enough_slider(){
+	
+		wp_register_script('jquery.cross-slide.js', get_template_directory_uri(). '/jquery.cross-slide.js',array('jquery'));
+		wp_enqueue_script('jquery.cross-slide.js');
+	
+		$enough_options  = get_option("enough_theme_settings");
+	
+		if(!empty( $enough_options['enough_slider_sleep']) ){
+			$sleep = $enough_options['enough_slider_sleep'];
+		}else{
+			$sleep = $enough_admin_options_setting[4]['option_value'];
+		}
+		if(!empty( $enough_options['enough_slider_fade']) ){
+			$fade = $enough_options['enough_slider_fade'];
+		}else{
+			$fade = $enough_admin_options_setting[5]['option_value'];
+		}
+	
+	if( $enough_options['enough_use_slider'] == 'yes' ){
+	 if(!is_single()){
+		if(get_header_image()){
+		 $headers = get_uploaded_header_images();
+	?>
 <style type="text/css" id="enough-slider-css">
-header .site-title, header .site-description{display:none;}
-header{box-shadow:1px 0 0 #000;background:#000!important;overflow:hidden;}
-header img{
-    margin:0 0 0!important;
-    padding:0!important;
-    width:100%;
-    max-width:100%!important;
-    left:2px!important;
-    z-index:1;
-}
-.site-title{display:inline;position:absolute;z-index:999;color:#fff;left:10%;}
+	header .site-title, header .site-description{display:none;}
+	header{box-shadow:1px 0 0 #000;overflow:hidden;}
+	header img{
+		margin:0 0 0!important;
+		padding:0!important;
+		width:100%;
+		max-width:100%!important;
+		left:2px!important;
+		z-index:1;
+	}
+	.site-title{display:inline;position:absolute;z-index:999;color:#fff;left:10%;}
 </style>
 <script type="text/javascript" id="enough-slider-js">
-jQuery(function() {
-jQuery('header').before('<h1 class="site-title"><a href="<?php home_url();?>" style="color:#<?php echo get_theme_mod("header_textcolor");?>"><?php bloginfo('site-title');?></a></h1>');
-<?php $last = end($headers);?>
-    jQuery('header').crossSlide({
-    sleep: <?php echo $sleep; ?>,
-    fade: <?php echo $fade; ?>
-    },[<?php foreach ($headers as $key => $value){
-    if($value == $last){$separator = '';}else{$separator = ',';}?>
-{src: '<?php echo $value['url']; ?>' }<?php echo $separator;?>
-    <?php } ?>  ])
-});
+	jQuery(function() {
+	jQuery('header').before('<h1 class="site-title"><a href="<?php home_url();?>" style="color:#<?php echo get_theme_mod("header_textcolor");?>"><?php bloginfo('site-title');?></a></h1>');
+	<?php $last = end($headers);?>
+		jQuery('header').crossSlide({
+		sleep: <?php echo $sleep; ?>,
+		fade: <?php echo $fade; ?>
+		},[<?php foreach ($headers as $key => $value){
+		if($value == $last){$separator = '';}else{$separator = ',';}?>
+	{src: '<?php echo $value['url']; ?>' }<?php echo $separator;?><?php } ?>])
+	});
 </script>
-<?php
+	<?php
+	}
+	
+		 }
+		}
+	}
 }
-
-     }
-    }
-}
-
 /**
  *
  *
@@ -1815,62 +1811,61 @@ jQuery('header').before('<h1 class="site-title"><a href="<?php home_url();?>" st
  *
  */
 
-    if( ! function_exists( 'enough_customize_register' ) and $enough_wp_version >= '3.4'){
+if( ! function_exists( 'enough_customize_register' ) and $enough_wp_version >= '3.4'){
+	function enough_customize_register( $wp_customize ) {
 
-        function enough_customize_register( $wp_customize ) {
+		$wp_customize->add_section( 'enough_theme_setting'
+			, array( 'title' => __( 'enough theme setting', 'enough' )
+					, 'priority' => 33,
+				)
+		);
 
-            $wp_customize->add_section( 'enough_theme_setting'
-                , array( 'title' => __( 'enough theme setting', 'enough' )
-                        , 'priority' => 33,
-                    )
-            );
+		$wp_customize->add_setting( 'enough_theme_settings[enough_use_slider]', array(
+			'default'        => 'no',
+			'type'           => 'option',
+			'capability'    => 'edit_theme_options'
+		) );
 
-            $wp_customize->add_setting( 'enough_theme_settings[enough_use_slider]', array(
-                'default'        => 'no',
-                'type'           => 'option',
-                'capability'    => 'edit_theme_options'
-            ) );
+		$wp_customize->add_setting( 'enough_theme_settings[enough_slider_sleep]', array(
+			'default'        => 3,
+			'type'           => 'option',
+			'capability'        => 'edit_theme_options'
+		) );
+		$wp_customize->add_setting( 'enough_theme_settings[enough_slider_fade]', array(
+			'default'        => 1,
+			'type'           => 'option',
+			'capability'        => 'edit_theme_options'
+		) );
 
-            $wp_customize->add_setting( 'enough_theme_settings[enough_slider_sleep]', array(
-                'default'        => 3,
-                'type'           => 'option',
-                'capability'        => 'edit_theme_options'
-            ) );
-            $wp_customize->add_setting( 'enough_theme_settings[enough_slider_fade]', array(
-                'default'        => 1,
-                'type'           => 'option',
-                'capability'        => 'edit_theme_options'
-            ) );
+		$wp_customize->add_control( 'enough_use_slider', array(
+				'label'      => __( 'Slider Header Image', 'enough' ),
+				'section'    => 'enough_theme_setting',
+				'settings'   => 'enough_theme_settings[enough_use_slider]',
+				'type'       => 'radio',
+				'choices'    => array( 'yes'=> __( 'Yes' , 'enough' )
+										, 'no' => __( 'No', 'enough' )
+									)
+				)
+		);
+		$wp_customize->add_control( 'enough_slider_sleep'
+			, array(
+				'label'      => __( 'Sleep (sec)', 'enough' ),
+				'section'    => 'enough_theme_setting',
+				'settings'   => 'enough_theme_settings[enough_slider_sleep]',
+				'type'       => 'text',
+				)
+		);
+		$wp_customize->add_control( 'enough_slider_fade'
+			, array(
+				'label'      => __( 'Fade (sec)', 'enough' ),
+				'section'    => 'enough_theme_setting',
+				'settings'   => 'enough_theme_settings[enough_slider_fade]',
+				'type'       => 'text',
+				)
+		);
 
-            $wp_customize->add_control( 'enough_use_slider', array(
-                    'label'      => __( 'Slider Header Image', 'enough' ),
-                    'section'    => 'enough_theme_setting',
-                    'settings'   => 'enough_theme_settings[enough_use_slider]',
-                    'type'       => 'radio',
-                    'choices'    => array( 'yes'=> __( 'Yes' , 'enough' )
-                                            , 'no' => __( 'No', 'enough' )
-                                        )
-                    )
-            );
-            $wp_customize->add_control( 'enough_slider_sleep'
-                , array(
-                    'label'      => __( 'Sleep (sec)', 'enough' ),
-                    'section'    => 'enough_theme_setting',
-                    'settings'   => 'enough_theme_settings[enough_slider_sleep]',
-                    'type'       => 'text',
-                    )
-            );
-            $wp_customize->add_control( 'enough_slider_fade'
-                , array(
-                    'label'      => __( 'Fade (sec)', 'enough' ),
-                    'section'    => 'enough_theme_setting',
-                    'settings'   => 'enough_theme_settings[enough_slider_fade]',
-                    'type'       => 'text',
-                    )
-            );
-
-        }
-    }
+	}
+}
 
 
 ?>
