@@ -1,4 +1,12 @@
 Changelog -----------------------------------
+version:0.34
+    This version changes for Bugfix
+        Child theme header image display improperly.
+Modified
+    Line 1753 wp_register_script_uri()
+        functions.php
+----------------------------------------------
+Changelog -----------------------------------
 version:0.33
     This version changes for Bugfix
         MultiSite header image display improperly.
