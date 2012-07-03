@@ -34,7 +34,7 @@ nav a:active,
 }
 
 .menu-header .children{
-		background:#fff;
+		/*background:#fff;*/
 }
 
 .site-title a span:hover{
@@ -304,3 +304,20 @@ margin-top:-1px;
 		display:block;
 		margin:0 auto;
 	}
+.gecko.enough-w-iphone .site-title,
+.gecko.enough-w-iphone .site-description{
+
+}
+.enough-w-iphone .toggle-navigation{
+margin:50px 0 0;
+padding:0;
+}
+.enough-w-iphone .enough-toggle-title{
+position:relative;
+height:50px;
+}
+.enough-w-iphone .enough-toggle-title span{
+border:1px solid #ccc;
+padding:10px;
+
+}

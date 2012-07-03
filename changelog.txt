@@ -1,4 +1,9 @@
 Changelog -----------------------------------
+version:0.37
+    This version changes for Bugfix
+
+----------------------------------------------
+Changelog -----------------------------------
 version:0.36
     This version changes for Bugfix
         Child theme header image display improperly.
