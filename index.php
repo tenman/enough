@@ -51,7 +51,7 @@ do_action( 'get_header' );
  */
 ?>
 <?php
-if( wp_nav_menu_title('primary') == '' ){
+if( enough_nav_menu_title('primary') == '' ){
     $args = array( 'menu_class' => 'menu-header'
                 , 'theme_location' => 'primary'
                 , 'container_class'=>'menu-header'
@@ -62,9 +62,9 @@ if( wp_nav_menu_title('primary') == '' ){
                 , 'container_class'=>'menu-header'
                 , 'echo'=> true );
     wp_nav_menu($args);
-}	
-	
-	?>
+}
+
+    ?>
 <?php }//End locate_template( array( 'header.php' ) ?><br class="clear" />
 <?php
 /**

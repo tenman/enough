@@ -1,7 +1,13 @@
 Changelog -----------------------------------
 version:0.37
     This version changes for Bugfix
-
+Fixed
+    Fixed wp_nav_menu CSS broken when change original menu.
+    Fixed Custom header display improperly, image height can not detect.
+Modified
+    CSS settings
+Add
+    Support WordPress random-uploaded-image
 ----------------------------------------------
 Changelog -----------------------------------
 version:0.36

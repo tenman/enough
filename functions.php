@@ -1,15 +1,4 @@
 <?php
-function wp_nav_menu_title( $theme_location ) {
-	$title = '';
-	if ( $theme_location && ( $locations = get_nav_menu_locations() ) && isset( $locations[ $theme_location ] ) ) {
-		$menu = wp_get_nav_menu_object( $locations[ $theme_location ] );
-
-		if( $menu && $menu->name ) {
-			$title = $menu->name;
-		}
-	}
-	return apply_filters( 'wp_nav_menu_title', $title, $theme_location );
-}
 /**
  * Functions and class for WordPress theme Enough
  *
@@ -762,7 +751,7 @@ if ( ! function_exists( 'enough_small_device_helper' ) ) {
         ?>
           jQuery('.enough-toggle').hide();
             jQuery('.enough-toggle.enough-toggle-title').show().css({"list-style":"none","font-weight":"bold","margin":"0" });
-			
+
             jQuery('.enough-toggle.enough-toggle-title').css("cursor","pointer").toggle(
             function(){
                 jQuery(this).siblings().show();
@@ -836,14 +825,14 @@ if ( ! function_exists( 'enough_small_device_helper' ) ) {
                 var px = width /<?php echo $enough_title_length;?>;
                 if( px < 10){ var px = 13;}
                 if( px > 30){ var px = 30;}
-				if( width < 480){ var px = 20;}
+                if( width < 480){ var px = 20;}
                    jQuery('.site-title').css('font-size', px + 'px');
                 <?php }?>
                 <?php if($enough_description_length !== 0){?>
                 var px = width /<?php echo $enough_description_length;?>;
                 if( px < 10){ var px = 13;}
                 if( px > 26){ var px = 26;}
-				if( width < 480){ var px = 14;}
+                if( width < 480){ var px = 14;}
 
                    jQuery('.site-description').css('font-size', px  + 'px');
                 <?php }?>
@@ -851,35 +840,35 @@ if ( ! function_exists( 'enough_small_device_helper' ) ) {
                 <?php
 
                 if ( ! is_multisite() ) {
-					$url        = get_theme_mod( 'header_image' );
-					
-					if( empty( $url ) ){ //When child theme $url empty
-						$url        = get_header_image();
-					}
-					
-					if( $url == 'random-uploaded-image'){
-						$url = get_random_header_image();
-					}
+                    $url        = get_theme_mod( 'header_image' );
+
+                    if( empty( $url ) ){ //When child theme $url empty
+                        $url        = get_header_image();
+                    }
+
+                    if( $url == 'random-uploaded-image'){
+                        $url = get_random_header_image();
+                    }
 
                     $uploads    = wp_upload_dir();
                     $path       = $uploads['path'].'/'. basename( $url );
-					
-					if( ! file_exists( $path ) ){
-						$path = get_template_directory().'/images/headers/'. basename( $url );
-					}
-					
-				if( $url !== 'remove-header' ){
-					
+
+                    if( ! file_exists( $path ) ){
+                        $path = get_template_directory().'/images/headers/'. basename( $url );
+                    }
+
+                if( $url !== 'remove-header' ){
+
                     list($img_width, $img_height, $img_type, $img_attr) = getimagesize($path);
-					
-                    	$ratio = $img_height / $img_width;
-				}
-					if( ! empty( $ratio )){
-					
-					}else{
-                    	$ratio = 0.2084210;
-                	}//empty $ratio
-				
+
+                        $ratio = $img_height / $img_width;
+                }
+                    if( ! empty( $ratio )){
+
+                    }else{
+                        $ratio = 0.2084210;
+                    }//empty $ratio
+
 
                 }else{
 
@@ -896,19 +885,19 @@ if ( ! function_exists( 'enough_small_device_helper' ) ) {
                     $path       = get_template_directory().'/images/headers/wp3.jpg';
                     }
 
-					if( $url !== 'remove-header' ){
-						
-						list($img_width, $img_height, $img_type, $img_attr) = getimagesize($path);
-						
-						$ratio = $img_height / $img_width;
-					}
-					
-					if( ! empty( $ratio )){
-					
-					}else{
-						$ratio = 0.2084210;
-					}//empty $ratio
-					
+                    if( $url !== 'remove-header' ){
+
+                        list($img_width, $img_height, $img_type, $img_attr) = getimagesize($path);
+
+                        $ratio = $img_height / $img_width;
+                    }
+
+                    if( ! empty( $ratio )){
+
+                    }else{
+                        $ratio = 0.2084210;
+                    }//empty $ratio
+
                 }
 ?>
 
@@ -1922,5 +1911,23 @@ if( ! function_exists( 'enough_customize_register' ) and $enough_wp_version >= '
     }
 }
 
+/**
+ *
+ *
+ *
+ *
+ * since 0.37
+ */
 
+function enough_nav_menu_title( $theme_location ) {
+    $title = '';
+    if ( $theme_location && ( $locations = get_nav_menu_locations() ) && isset( $locations[ $theme_location ] ) ) {
+        $menu = wp_get_nav_menu_object( $locations[ $theme_location ] );
+
+        if( $menu && $menu->name ) {
+            $title = $menu->name;
+        }
+    }
+    return apply_filters( 'enough_nav_menu_title', $title, $theme_location );
+}
 ?>
