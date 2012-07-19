@@ -185,7 +185,7 @@ if( !function_exists( 'enough_theme_setup' ) ){
         add_action('wp_enqueue_scripts', 'enough_enqueue_scripts_styles');
         add_filter('body_class','enough_add_body_class');
         add_action( 'wp_enqueue_scripts', 'enough_enqueue_comment_reply' );
-        add_action('wp_footer','enough_small_device_helper');
+       // add_action('wp_footer','enough_small_device_helper');
         $enough_is_submenu = new enough_menu_create;
         add_action('admin_menu', array($enough_is_submenu, 'add_menus'));
 
@@ -225,7 +225,7 @@ if( !function_exists( 'enough_theme_setup' ) ){
 
     }
     $enough_options  = get_option("enough_theme_settings");
-    add_action( 'wp_head', 'enough_slider' );
+	add_action( 'wp_head', 'enough_slider' );
 
     /**
      * Add option helper
@@ -534,12 +534,13 @@ if( ! function_exists( 'enough_dinamic_sidebar' ) ){
     function enough_dinamic_sidebar($id,$display = true){
         if($display == true){ ?>
 <nav><ul id="<?php echo $id;?>">
+<li>
 <?php
 if( ! dynamic_sidebar( $id ) ){
     the_widget('WP_Widget_Archives');
     the_widget('WP_Widget_Recent_Posts');
 }
-?></ul></nav>
+?></li></ul></nav>
 <?php
         }
     }
@@ -718,11 +719,18 @@ if ( ! function_exists( 'enough_small_device_helper' ) ) {
         $enough_title_length       = round(strlen(get_bloginfo('name')) );
         $enough_description_length = round(strlen(get_bloginfo('description')),0);
         $enough_header_image_uri   = get_header_image();
+		$enough_options  		   = get_option("enough_theme_settings");
+		$uploads    				= wp_upload_dir();
     ?>
         <script type="text/javascript">
         (function(){
         jQuery(function(){
             var width = jQuery(window).width();
+	<?php 		
+if($enough_options['enough_use_slider'] !== 'no'){?>
+    jQuery('header').before('<h1 class="site-title"><a href="<?php home_url();?>" style="color:#<?php echo get_theme_mod("header_textcolor");?>"><?php bloginfo('site-title');?></a></h1>');
+	<?php }?>
+
     <?php
     /**
      * Menu header toggle controll
@@ -740,8 +748,8 @@ if ( ! function_exists( 'enough_small_device_helper' ) ) {
                 if (jQuery('ul').is(".menu-header")) {
                     jQuery('ul.menu-header').removeClass();
                 }
-                jQuery(".menu-header").wrap('<ul class="toggle-navigation"><li class="enough-toggle"></li></ul>');
-                jQuery(".enough-toggle").before('<li class="enough-toggle enough-toggle-title"><span>Menu</span></li>');
+                jQuery(".menu-header").wrap('<ul class="toggle-navigation"><li class="enough-toggle"><\/li><\/ul>');
+                jQuery(".enough-toggle").before('<li class="enough-toggle enough-toggle-title"><span>Menu<\/span><\/li>');
                 flag = true;
             }
         <?php
@@ -791,8 +799,8 @@ if ( ! function_exists( 'enough_small_device_helper' ) ) {
         */
         ?>
             if( width < 481){
-           jQuery('.menu-header-container,.menu-wplook-main-menu-container').wrap('<ul class="widget-container-wrapper"><li></li></ul>');
-            jQuery('div.tagcloud').removeAttr('style').wrap('<ul class="tagcloud-wrapper"><li></li></ul>');
+           jQuery('.menu-header-container,.menu-wplook-main-menu-container').wrap('<ul class="widget-container-wrapper"><li><\/li><\/ul>');
+            jQuery('div.tagcloud').removeAttr('style').wrap('<ul class="tagcloud-wrapper"><li><\/li><\/ul>');
             jQuery('.widget ul').hide();
             jQuery('.menu-header-container > ul,menu-wplook-main-menu-container > ul').show();
             if(jQuery('.widgettitle').text() !== ''){
@@ -821,7 +829,21 @@ if ( ! function_exists( 'enough_small_device_helper' ) ) {
                 <?php global $enough_site_image;?>
                 var image_exists = '<?php echo $enough_header_image_uri;?>';
                 var width = jQuery(window).width();
-                <?php if($enough_title_length !== 0){?>
+				<?php 
+					$upload_image = get_uploaded_header_images();
+					if( empty( $upload_image ) ){
+				?>var upload_image = false;<?php	
+					}else{
+				?>var upload_image = true;<?php	
+					}
+				
+				if( $enough_options['enough_use_slider'] == 'yes' ){
+				?>var use_slider = true;<?php	
+				}else{
+				?>var use_slider = false;<?php	
+				}
+
+                if($enough_title_length !== 0){?>
                 var px = width /<?php echo $enough_title_length;?>;
                 if( px < 10){ var px = 13;}
                 if( px > 30){ var px = 30;}
@@ -836,10 +858,10 @@ if ( ! function_exists( 'enough_small_device_helper' ) ) {
 
                    jQuery('.site-description').css('font-size', px  + 'px');
                 <?php }?>
-                if( image_exists !== ''){
+                if( upload_image && use_slider ){
                 <?php
 
-                if ( ! is_multisite() ) {
+            if ( ! is_multisite() ) {
                     $url        = get_theme_mod( 'header_image' );
 
                     if( empty( $url ) ){ //When child theme $url empty
@@ -850,25 +872,30 @@ if ( ! function_exists( 'enough_small_device_helper' ) ) {
                         $url = get_random_header_image();
                     }
 
-                    $uploads    = wp_upload_dir();
+                   // $uploads    = wp_upload_dir();
                     $path       = $uploads['path'].'/'. basename( $url );
 
                     if( ! file_exists( $path ) ){
                         $path = get_template_directory().'/images/headers/'. basename( $url );
                     }
+					
 
-                if( $url !== 'remove-header' ){
-
-                    list($img_width, $img_height, $img_type, $img_attr) = getimagesize($path);
-
-                        $ratio = $img_height / $img_width;
-                }
+					if( $url !== 'remove-header' ){
+					
+						list($img_width, $img_height, $img_type, $img_attr) = getimagesize($path);
+					
+							$ratio = $img_height / $img_width;
+					}
+					
                     if( ! empty( $ratio )){
 
                     }else{
                         $ratio = 0.2084210;
-                    }//empty $ratio
+					?>
+					
+					<?php
 
+                    }//empty $ratio
 
                 }else{
 
@@ -878,11 +905,22 @@ if ( ! function_exists( 'enough_small_device_helper' ) ) {
                         $url        = get_header_image();
                     }
 
-                    $uploads    = wp_upload_dir();
+                   // $uploads    = wp_upload_dir();
                     $path       = $uploads['path'].'/'. basename( $url );
 
+					
+					if(	$enough_options['enough_use_slider'] == 'yes' ){
+							$path 	= get_template_directory().'/images/please_upload.png';
+							$url 	= get_template_directory_uri().'/images/please_upload.png';
+						?>
+						image_exists = '<?php echo $url;?>';
+						<?php
+						
+						
+					}
+
                     if( ! file_exists( $path ) ){
-                    $path       = get_template_directory().'/images/headers/wp3.jpg';
+                    	$path       = get_template_directory().'/images/headers/wp3.jpg';
                     }
 
                     if( $url !== 'remove-header' ){
@@ -895,7 +933,10 @@ if ( ! function_exists( 'enough_small_device_helper' ) ) {
                     if( ! empty( $ratio )){
 
                     }else{
-                        $ratio = 0.2084210;
+                        $ratio = 0.2084210;?>
+						
+					
+						<?php
                     }//empty $ratio
 
                 }
@@ -904,20 +945,38 @@ if ( ! function_exists( 'enough_small_device_helper' ) ) {
                 var header_width = jQuery( 'header' ).width();
                 var ratio = <?php echo $ratio;?>;
                 var height =  ( header_width * ratio ).toFixed(0);
-
-                jQuery('header').removeAttr('style').css({'background-image':'url('+ image_exists + ')', 'height': height + 'px', 'background-size': 'cover'});
-
-
-                <?php if( get_header_textcolor() == 'blank' ){?>
-
-
+			
+  				jQuery('header').removeAttr('style').css({'background-image':'url('+ image_exists + ')', 'height': height + 'px', });
+  			
+     <?php if( get_header_textcolor() == 'blank' ){?>
                 jQuery('header').css('cursor','pointer').click(function(){
 
-                location.href = "<?php echo home_url();?>";
+                	location.href = "<?php echo home_url();?>";
 
                 });
-                <?php }?>
-                }
+     <?php }?>
+                }else{
+				
+                var header_width = jQuery( 'header' ).width();
+                var ratio = <?php echo $ratio;?>;
+                var height =  ( header_width * ratio ).toFixed(0);
+				<?php if( ! get_header_image() ){?>
+				image_exists = '<?php echo get_template_directory_uri();?>/images/headers/wp3.jpg';
+				<?php }else{
+				$url 		= get_header_image();
+				$path       = $uploads['path'].'/'. basename( $url );
+				if( ! file_exists( $path ) ){
+				?>
+				image_exists = '<?php echo get_template_directory_uri();?>/images/headers/wp3.jpg';
+				<?php
+				}				
+
+				}?>
+				
+                jQuery('header').removeAttr('style').css({'background-image':'url('+ image_exists + ')', 'height': height + 'px', });				
+						
+				
+				}
 
 
                 if( width < 1281 ){
@@ -955,7 +1014,7 @@ if ( ! function_exists( 'enough_small_device_helper' ) ) {
                   }
                 }
 
-                jQuery('body').addClass( body_class );
+               jQuery('body').addClass( body_class );
 
 
                 <?php
@@ -994,7 +1053,7 @@ if ( ! function_exists( 'enough_small_device_helper' ) ) {
                 <?php }?>
                 }
 
-    <?php $enough_options  = get_option("enough_theme_settings");
+    <?php ;
 
 if( $enough_options['enough_use_slider'] !== 'yes' ){?>
 
@@ -1011,7 +1070,7 @@ jQuery('script #enough-slider-js, style #enough-slider-css').remove();
      *
      */
      ?>
-                jQuery(".menu-header").mousemove(function(e){
+               jQuery(".menu-header").mousemove(function(e){
                     var menu_item_position = e.pageX ;
         <?php        // jQuery(".result:first").text(menu_item_position);
                   //jQuery(".result-w").text(width);?>
@@ -1022,6 +1081,11 @@ jQuery('script #enough-slider-js, style #enough-slider-css').remove();
                     }
                 });
             }
+			
+			     /*   if ( ! jQuery('div').is('#enough-page')) {
+                        jQuery('body *').wrapAll('<div></div>');
+                    }*/
+
             fontResize();
             jQuery(window).resize( function () {fontResize()});
 
@@ -1613,13 +1677,19 @@ if( ! function_exists( "enough_install_navigation" ) ){
     function enough_install_navigation() {
         $install = get_option('enough_theme_settings');
         if ($install == false or !array_key_exists('install', $install)) {
-            add_action('admin_notices', create_function(null, 'echo enough_first_only_msg(1);'));
+            add_action('admin_notices', 'enough_first_message');
             $install['install'] = true;
             update_option('enough_theme_settings',$install);
         } else {
-            add_action('switch_theme', create_function(null, 'delete_option("enough_theme_settings");'));
+            add_action('switch_theme', 'enough_uninstall' );
         }
     }
+}
+function enough_first_message(){
+	echo enough_first_only_msg(1);
+}
+function enough_uninstall(){
+	delete_option("enough_theme_settings");
 }
 /**
  *
@@ -1809,44 +1879,77 @@ if( ! function_exists( "enough_slider" ) ){
         }else{
             $fade = $enough_admin_options_setting[5]['option_value'];
         }
+		
+		$upload_image = get_uploaded_header_images();
+		
+			if( $enough_options['enough_use_slider'] == 'yes' ){
+			
+				?>
+				<style type="text/css" id="enough-slider-css">
+					body{padding:0 5%;}
+					header .site-title, header .site-description{display:none;}
+					
+					header img{
+						margin:0 0 -2px!important;
+						padding:0!important;
+						width:100%;
+						max-width:100%!important;
+						left:0;
+						z-index:1;
+					}
+					.site-title{display:inline;position:absolute;z-index:999;color:#fff;left:10%;}
+				</style>
+				<?php 
+			}else{?>
+					<style type="text/css" id="enough-slider-css">
+					body{padding:0 5%;}
+				</style>
+			<?php
+			}
 
-    if( $enough_options['enough_use_slider'] == 'yes' ){
-     if(!is_single()){
-        if(get_header_image()){
-         $headers = get_uploaded_header_images();
-    ?>
-<style type="text/css" id="enough-slider-css">
-    header .site-title, header .site-description{display:none;}
-    header{box-shadow:1px 0 0 #000;overflow:hidden;}
-    header img{
-        margin:0 0 0!important;
-        padding:0!important;
-        width:100%;
-        max-width:100%!important;
-        left:2px!important;
-        z-index:1;
-    }
-    .site-title{display:inline;position:absolute;z-index:999;color:#fff;left:10%;}
-</style>
-<script type="text/javascript" id="enough-slider-js">
-    jQuery(function() {
-    jQuery('header').before('<h1 class="site-title"><a href="<?php home_url();?>" style="color:#<?php echo get_theme_mod("header_textcolor");?>"><?php bloginfo('site-title');?></a></h1>');
-    <?php $last = end($headers);?>
-        jQuery('header').crossSlide({
-        sleep: <?php echo $sleep; ?>,
-        fade: <?php echo $fade; ?>
-        },[<?php foreach ($headers as $key => $value){
-        if($value == $last){$separator = '';}else{$separator = ',';}?>
-    {src: '<?php echo $value['url']; ?>' }<?php echo $separator;?><?php } ?>])
-    });
-</script>
-    <?php
-    }
-
-         }
-        }
-    }
+		if( ! is_single( ) ){		
+			if(	$enough_options['enough_use_slider'] == 'yes' and ! empty( $upload_image ) ){?>
+			<script type="text/javascript" id="enough-slider-js">
+			jQuery(function() {	
+			<?php $last = end($headers);?>
+				jQuery('header').crossSlide({
+				sleep: <?php echo $sleep; ?>,
+				fade: <?php echo $fade; ?>
+				},[<?php foreach ($upload_image as $key => $value){
+				if($value == $last){$separator = '';}else{$separator = ',';}?>
+			{src: '<?php echo $value['url']; ?>' }<?php echo $separator;?><?php } ?>])
+			});
+			</script>
+			<?php
+			}
+	
+			if( $enough_options['enough_use_slider'] == 'yes' and empty( $upload_image ) ){?>
+			<script type="text/javascript" id="enough-slider-js">
+			jQuery(function() {	
+			jQuery( 'header' ).crossSlide({
+				sleep: <?php echo $sleep; ?>,
+				fade: <?php echo $fade; ?>
+			},[ {src: '<?php echo get_template_directory_uri();?>/images/please-upload.jpg' } , {src: '<?php echo get_template_directory_uri();?>/images/headers/wp3.jpg' } ])	
+		});
+			</script>	
+			<?php
+			}
+	
+		}
+	} 
 }
+
+/*
+					if(	$enough_options['enough_use_slider'] == 'yes' and empty( $upload_image ) ){
+							$path 	= get_template_directory().'/images/please_upload.png';
+							$url 	= get_template_directory_uri().'/images/please_upload.png';
+						?>
+						image_exists = '<?php echo $url;?>';
+						<?php
+						
+						
+					}
+*/
 /**
  *
  *
@@ -1909,25 +2012,5 @@ if( ! function_exists( 'enough_customize_register' ) and $enough_wp_version >= '
         );
 
     }
-}
-
-/**
- *
- *
- *
- *
- * since 0.37
- */
-
-function enough_nav_menu_title( $theme_location ) {
-    $title = '';
-    if ( $theme_location && ( $locations = get_nav_menu_locations() ) && isset( $locations[ $theme_location ] ) ) {
-        $menu = wp_get_nav_menu_object( $locations[ $theme_location ] );
-
-        if( $menu && $menu->name ) {
-            $title = $menu->name;
-        }
-    }
-    return apply_filters( 'enough_nav_menu_title', $title, $theme_location );
 }
 ?>

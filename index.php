@@ -51,7 +51,7 @@ do_action( 'get_header' );
  */
 ?>
 <?php
-if( enough_nav_menu_title('primary') == '' ){
+if( ! has_nav_menu( 'primary' ) ){
     $args = array( 'menu_class' => 'menu-header'
                 , 'theme_location' => 'primary'
                 , 'container_class'=>'menu-header'
@@ -63,8 +63,7 @@ if( enough_nav_menu_title('primary') == '' ){
                 , 'echo'=> true );
     wp_nav_menu($args);
 }
-
-    ?>
+?>
 <?php }//End locate_template( array( 'header.php' ) ?><br class="clear" />
 <?php
 /**
@@ -138,7 +137,6 @@ if( enough_nav_menu_title('primary') == '' ){
  *
  */
     enough_attachment_navigation();?>
-<br class="clear" />
 <?php
 /**
  * article metadata category, tag shows
@@ -173,7 +171,6 @@ if( enough_nav_menu_title('primary') == '' ){
  *
  */
     enough_prev_next_post('nav-below');?>
-<br class="clear"  />
 <?php
 /**
  * comment
