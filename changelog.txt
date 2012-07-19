@@ -1,8 +1,17 @@
 Changelog -----------------------------------
 version:0.38
+    This version changes for Bugfix
 Fixed
+    Fixed script load twice.
+        comment out add_action('wp_footer','enough_small_device_helper');
+    Fixed sidebar html improperly.
+    Fixed Custom header image display improperly.
 Modified
+    Remove create_function()
+    Remove enough_nav_menu_title()
+        Change  from  enough_nav_menu_title() to has_nav_menu().
 Add
+    New file images/please-upload.jpg
 ----------------------------------------------
 Changelog -----------------------------------
 version:0.37
