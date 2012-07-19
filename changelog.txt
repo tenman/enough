@@ -1,5 +1,5 @@
 Changelog -----------------------------------
-version:0.38
+version:0.39
     This version changes for Bugfix
 Fixed
     Fixed script load twice.

@@ -225,7 +225,7 @@ if( !function_exists( 'enough_theme_setup' ) ){
 
     }
     $enough_options  = get_option("enough_theme_settings");
-	add_action( 'wp_head', 'enough_slider' );
+    add_action( 'wp_head', 'enough_slider' );
 
     /**
      * Add option helper
@@ -719,17 +719,17 @@ if ( ! function_exists( 'enough_small_device_helper' ) ) {
         $enough_title_length       = round(strlen(get_bloginfo('name')) );
         $enough_description_length = round(strlen(get_bloginfo('description')),0);
         $enough_header_image_uri   = get_header_image();
-		$enough_options  		   = get_option("enough_theme_settings");
-		$uploads    				= wp_upload_dir();
+        $enough_options            = get_option("enough_theme_settings");
+        $uploads                    = wp_upload_dir();
     ?>
         <script type="text/javascript">
         (function(){
         jQuery(function(){
             var width = jQuery(window).width();
-	<?php 		
+    <?php
 if($enough_options['enough_use_slider'] !== 'no'){?>
     jQuery('header').before('<h1 class="site-title"><a href="<?php home_url();?>" style="color:#<?php echo get_theme_mod("header_textcolor");?>"><?php bloginfo('site-title');?></a></h1>');
-	<?php }?>
+    <?php }?>
 
     <?php
     /**
@@ -829,19 +829,19 @@ if($enough_options['enough_use_slider'] !== 'no'){?>
                 <?php global $enough_site_image;?>
                 var image_exists = '<?php echo $enough_header_image_uri;?>';
                 var width = jQuery(window).width();
-				<?php 
-					$upload_image = get_uploaded_header_images();
-					if( empty( $upload_image ) ){
-				?>var upload_image = false;<?php	
-					}else{
-				?>var upload_image = true;<?php	
-					}
-				
-				if( $enough_options['enough_use_slider'] == 'yes' ){
-				?>var use_slider = true;<?php	
-				}else{
-				?>var use_slider = false;<?php	
-				}
+                <?php
+                    $upload_image = get_uploaded_header_images();
+                    if( empty( $upload_image ) ){
+                ?>var upload_image = false;<?php
+                    }else{
+                ?>var upload_image = true;<?php
+                    }
+
+                if( $enough_options['enough_use_slider'] == 'yes' ){
+                ?>var use_slider = true;<?php
+                }else{
+                ?>var use_slider = false;<?php
+                }
 
                 if($enough_title_length !== 0){?>
                 var px = width /<?php echo $enough_title_length;?>;
@@ -878,22 +878,22 @@ if($enough_options['enough_use_slider'] !== 'no'){?>
                     if( ! file_exists( $path ) ){
                         $path = get_template_directory().'/images/headers/'. basename( $url );
                     }
-					
 
-					if( $url !== 'remove-header' ){
-					
-						list($img_width, $img_height, $img_type, $img_attr) = getimagesize($path);
-					
-							$ratio = $img_height / $img_width;
-					}
-					
+
+                    if( $url !== 'remove-header' ){
+
+                        list($img_width, $img_height, $img_type, $img_attr) = getimagesize($path);
+
+                            $ratio = $img_height / $img_width;
+                    }
+
                     if( ! empty( $ratio )){
 
                     }else{
                         $ratio = 0.2084210;
-					?>
-					
-					<?php
+                    ?>
+
+                    <?php
 
                     }//empty $ratio
 
@@ -908,19 +908,19 @@ if($enough_options['enough_use_slider'] !== 'no'){?>
                    // $uploads    = wp_upload_dir();
                     $path       = $uploads['path'].'/'. basename( $url );
 
-					
-					if(	$enough_options['enough_use_slider'] == 'yes' ){
-							$path 	= get_template_directory().'/images/please_upload.png';
-							$url 	= get_template_directory_uri().'/images/please_upload.png';
-						?>
-						image_exists = '<?php echo $url;?>';
-						<?php
-						
-						
-					}
+
+                    if( $enough_options['enough_use_slider'] == 'yes' ){
+                            $path   = get_template_directory().'/images/please_upload.png';
+                            $url    = get_template_directory_uri().'/images/please_upload.png';
+                        ?>
+                        image_exists = '<?php echo $url;?>';
+                        <?php
+
+
+                    }
 
                     if( ! file_exists( $path ) ){
-                    	$path       = get_template_directory().'/images/headers/wp3.jpg';
+                        $path       = get_template_directory().'/images/headers/wp3.jpg';
                     }
 
                     if( $url !== 'remove-header' ){
@@ -934,9 +934,9 @@ if($enough_options['enough_use_slider'] !== 'no'){?>
 
                     }else{
                         $ratio = 0.2084210;?>
-						
-					
-						<?php
+
+
+                        <?php
                     }//empty $ratio
 
                 }
@@ -945,38 +945,38 @@ if($enough_options['enough_use_slider'] !== 'no'){?>
                 var header_width = jQuery( 'header' ).width();
                 var ratio = <?php echo $ratio;?>;
                 var height =  ( header_width * ratio ).toFixed(0);
-			
-  				jQuery('header').removeAttr('style').css({'background-image':'url('+ image_exists + ')', 'height': height + 'px', });
-  			
+
+                jQuery('header').removeAttr('style').css({'background-image':'url('+ image_exists + ')', 'height': height + 'px', });
+
      <?php if( get_header_textcolor() == 'blank' ){?>
                 jQuery('header').css('cursor','pointer').click(function(){
 
-                	location.href = "<?php echo home_url();?>";
+                    location.href = "<?php echo home_url();?>";
 
                 });
      <?php }?>
                 }else{
-				
+
                 var header_width = jQuery( 'header' ).width();
                 var ratio = <?php echo $ratio;?>;
                 var height =  ( header_width * ratio ).toFixed(0);
-				<?php if( ! get_header_image() ){?>
-				image_exists = '<?php echo get_template_directory_uri();?>/images/headers/wp3.jpg';
-				<?php }else{
-				$url 		= get_header_image();
-				$path       = $uploads['path'].'/'. basename( $url );
-				if( ! file_exists( $path ) ){
-				?>
-				image_exists = '<?php echo get_template_directory_uri();?>/images/headers/wp3.jpg';
-				<?php
-				}				
+                <?php if( ! get_header_image() ){?>
+                image_exists = '<?php echo get_template_directory_uri();?>/images/headers/wp3.jpg';
+                <?php }else{
+                $url        = get_header_image();
+                $path       = $uploads['path'].'/'. basename( $url );
+                if( ! file_exists( $path ) ){
+                ?>
+                image_exists = '<?php echo get_template_directory_uri();?>/images/headers/wp3.jpg';
+                <?php
+                }
 
-				}?>
-				
-                jQuery('header').removeAttr('style').css({'background-image':'url('+ image_exists + ')', 'height': height + 'px', });				
-						
-				
-				}
+                }?>
+
+                jQuery('header').removeAttr('style').css({'background-image':'url('+ image_exists + ')', 'height': height + 'px', });
+
+
+                }
 
 
                 if( width < 1281 ){
@@ -1081,8 +1081,8 @@ jQuery('script #enough-slider-js, style #enough-slider-css').remove();
                     }
                 });
             }
-			
-			     /*   if ( ! jQuery('div').is('#enough-page')) {
+
+                 /*   if ( ! jQuery('div').is('#enough-page')) {
                         jQuery('body *').wrapAll('<div></div>');
                     }*/
 
@@ -1686,10 +1686,10 @@ if( ! function_exists( "enough_install_navigation" ) ){
     }
 }
 function enough_first_message(){
-	echo enough_first_only_msg(1);
+    echo enough_first_only_msg(1);
 }
 function enough_uninstall(){
-	delete_option("enough_theme_settings");
+    delete_option("enough_theme_settings");
 }
 /**
  *
@@ -1879,76 +1879,75 @@ if( ! function_exists( "enough_slider" ) ){
         }else{
             $fade = $enough_admin_options_setting[5]['option_value'];
         }
-		
-		$upload_image = get_uploaded_header_images();
-		
-			if( $enough_options['enough_use_slider'] == 'yes' ){
-			
-				?>
-				<style type="text/css" id="enough-slider-css">
-					body{padding:0 5%;}
-					header .site-title, header .site-description{display:none;}
-					
-					header img{
-						margin:0 0 -2px!important;
-						padding:0!important;
-						width:100%;
-						max-width:100%!important;
-						left:0;
-						z-index:1;
-					}
-					.site-title{display:inline;position:absolute;z-index:999;color:#fff;left:10%;}
-				</style>
-				<?php 
-			}else{?>
-					<style type="text/css" id="enough-slider-css">
-					body{padding:0 5%;}
-				</style>
-			<?php
-			}
 
-		if( ! is_single( ) ){		
-			if(	$enough_options['enough_use_slider'] == 'yes' and ! empty( $upload_image ) ){?>
-			<script type="text/javascript" id="enough-slider-js">
-			jQuery(function() {	
-			<?php $last = end($headers);?>
-				jQuery('header').crossSlide({
-				sleep: <?php echo $sleep; ?>,
-				fade: <?php echo $fade; ?>
-				},[<?php foreach ($upload_image as $key => $value){
-				if($value == $last){$separator = '';}else{$separator = ',';}?>
-			{src: '<?php echo $value['url']; ?>' }<?php echo $separator;?><?php } ?>])
-			});
-			</script>
-			<?php
-			}
-	
-			if( $enough_options['enough_use_slider'] == 'yes' and empty( $upload_image ) ){?>
-			<script type="text/javascript" id="enough-slider-js">
-			jQuery(function() {	
-			jQuery( 'header' ).crossSlide({
-				sleep: <?php echo $sleep; ?>,
-				fade: <?php echo $fade; ?>
-			},[ {src: '<?php echo get_template_directory_uri();?>/images/please-upload.jpg' } , {src: '<?php echo get_template_directory_uri();?>/images/headers/wp3.jpg' } ])	
-		});
-			</script>	
-			<?php
-			}
-	
-		}
-	} 
+        $upload_image = get_uploaded_header_images();
+
+            if( $enough_options['enough_use_slider'] == 'yes' ){
+
+                ?>
+                <style type="text/css" id="enough-slider-css">
+                    body{padding:0 5%;}
+                    header .site-title, header .site-description{display:none;}
+
+                    header img{
+                        margin:0 0 -2px!important;
+                        padding:0!important;
+                        width:100%;
+                        max-width:100%!important;
+                        left:0;
+                        z-index:1;
+                    }
+                    .site-title{display:inline;position:absolute;z-index:999;color:#fff;left:10%;}
+                </style>
+                <?php
+            }else{?>
+                    <style type="text/css" id="enough-slider-css">
+                    body{padding:0 5%;}
+                </style>
+            <?php
+            }
+
+
+            if( $enough_options['enough_use_slider'] == 'yes' and ! empty( $upload_image ) ){?>
+            <script type="text/javascript" id="enough-slider-js">
+            jQuery(function() {
+            <?php $last = end($headers);?>
+                jQuery('header').crossSlide({
+                sleep: <?php echo $sleep; ?>,
+                fade: <?php echo $fade; ?>
+                },[<?php foreach ($upload_image as $key => $value){
+                if($value == $last){$separator = '';}else{$separator = ',';}?>
+            {src: '<?php echo $value['url']; ?>' }<?php echo $separator;?><?php } ?>])
+            });
+            </script>
+            <?php
+            }
+
+            if( $enough_options['enough_use_slider'] == 'yes' and empty( $upload_image ) ){?>
+            <script type="text/javascript" id="enough-slider-js">
+            jQuery(function() {
+            jQuery( 'header' ).crossSlide({
+                sleep: <?php echo $sleep; ?>,
+                fade: <?php echo $fade; ?>
+            },[ {src: '<?php echo get_template_directory_uri();?>/images/please-upload.jpg' } , {src: '<?php echo get_template_directory_uri();?>/images/headers/wp3.jpg' } ])
+        });
+            </script>
+            <?php
+
+        }
+    }
 }
 
 /*
-					if(	$enough_options['enough_use_slider'] == 'yes' and empty( $upload_image ) ){
-							$path 	= get_template_directory().'/images/please_upload.png';
-							$url 	= get_template_directory_uri().'/images/please_upload.png';
-						?>
-						image_exists = '<?php echo $url;?>';
-						<?php
-						
-						
-					}
+                    if( $enough_options['enough_use_slider'] == 'yes' and empty( $upload_image ) ){
+                            $path   = get_template_directory().'/images/please_upload.png';
+                            $url    = get_template_directory_uri().'/images/please_upload.png';
+                        ?>
+                        image_exists = '<?php echo $url;?>';
+                        <?php
+
+
+                    }
 */
 /**
  *
