@@ -29,7 +29,7 @@ do_action( 'get_header' );
  *
  */
 ?>
-<header>
+<header role="banner">
     <h1 class="site-title"><a href="<?php echo home_url(); ?>">
       <span><?php bloginfo(); ?></span>
       </a></h1>
@@ -64,7 +64,8 @@ if( ! has_nav_menu( 'primary' ) ){
     wp_nav_menu($args);
 }
 ?>
-<?php }//End locate_template( array( 'header.php' ) ?><br class="clear" />
+<?php }//End locate_template( array( 'header.php' ) ?>
+<br class="clear" />
 <?php
 /**
  * index , archive and another list of contents page title.
@@ -87,7 +88,7 @@ if( ! has_nav_menu( 'primary' ) ){
             the_post(); ?>
 
 
-    <article <?php post_class(); ?>>
+    <article <?php post_class(); ?> <?php if( is_single() ){ printf( 'role="%1$s"', 'main' ); } ?> >
 <?php
 /**
  * article title
@@ -127,7 +128,7 @@ if( ! has_nav_menu( 'primary' ) ){
     <div class="entry-content">
 <?php enough_the_content(__( 'Continue&nbsp;reading&nbsp;<span class="meta-nav">&rarr;</span>', 'enough')); ?>
     </div>
-<br class="clear .vspacer-1" />
+<p><br class="clear .vspacer-1" /></p>
 <?php
 /**
  * navigation for attachment when display attachment
@@ -195,7 +196,7 @@ if( ! has_nav_menu( 'primary' ) ){
  *
  */
 ?>
-      <article <?php post_class(); ?>>
+      <article <?php post_class(); ?> role="main">
       <?php enough_not_found();?>
       </article>
     <?php }//locate_template( array( 'loop.php' )

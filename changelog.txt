@@ -1,4 +1,11 @@
 Changelog -----------------------------------
+version:0.40
+    This version changes for HTML validate
+Modified
+    Add attribute role
+    remove attribute rel='category'
+----------------------------------------------
+Changelog -----------------------------------
 version:0.39
     This version changes for Bugfix
 Fixed

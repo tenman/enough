@@ -287,7 +287,7 @@ if( !function_exists( 'enough_theme_setup' ) ){
  *
  *
  */
-
+if( ! function_exists( 'enough_embed_meta' ) ){
     function enough_embed_meta(){
         global $enough_site_image;
         $header_image_css               = '';
@@ -345,19 +345,15 @@ if( !function_exists( 'enough_theme_setup' ) ){
         }
         $header_style
         </style>";
-/**
- *
- *
- *
- *
- *
- */
-    if ( 'blank' == get_theme_mod('header_textcolor') ){
-        add_filter( 'wp_page_menu_args', 'enough_page_menu_args' );
-    }
+
+		if ( 'blank' == get_theme_mod('header_textcolor') ){
+			add_filter( 'wp_page_menu_args', 'enough_page_menu_args' );
+		}
 
         echo $style;
     }
+}
+
     if( $enough_wp_version >= '3.4' ){
         add_action( 'customize_register', 'enough_customize_register' );
     }
@@ -468,12 +464,12 @@ if( ! function_exists( 'enough_posted_on' ) ){
         $result = sprintf( __( '<span class="%1$s">Posted on</span> %2$s <span class="meta-sep">by</span> %3$s %4$s'
 , 'enough' ),
             'meta-prep meta-prep-author',
-            sprintf( '<a href="%1$s" title="%2$s" rel="bookmark"><span class="entry-date">%3$s</span></a>',
+            sprintf( '<a href="%1$s" title="%2$s"><span class="entry-date">%3$s</span></a>',
                 get_permalink(),
                 esc_attr( get_the_time($enough_date_format) ),
                 get_the_date( $enough_date_format )
             ),
-            sprintf( '<span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" rel="vcard:url">%3$s</a></span>',
+            sprintf( '<span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" >%3$s</a></span>',
                 get_author_posts_url( get_the_author_meta( 'ID' ) ),
                 sprintf( esc_attr__( 'View all posts by %s', 'enough' ), $author ),
                 $author
@@ -523,6 +519,15 @@ if( ! function_exists( 'enough_posted_in' ) ){
          }
     }
 }
+add_filter( 'the_category' , 'enough_remove_ref' );
+
+
+function enough_remove_ref($content){
+
+preg_match( '!(.+)rel="[^"]+"(.+)!', $content, $regs );
+return $regs[1].$regs[2];
+
+}
 /**
  *
  *
@@ -534,13 +539,13 @@ if( ! function_exists( 'enough_dinamic_sidebar' ) ){
     function enough_dinamic_sidebar($id,$display = true){
         if($display == true){ ?>
 <nav><ul id="<?php echo $id;?>">
-<li>
+
 <?php
 if( ! dynamic_sidebar( $id ) ){
     the_widget('WP_Widget_Archives');
     the_widget('WP_Widget_Recent_Posts');
 }
-?></li></ul></nav>
+?></ul></nav>
 <?php
         }
     }
@@ -596,7 +601,7 @@ if( ! function_exists( 'enough_the_content') ){
 if( ! function_exists( 'enough_the_footer' ) ){
     function enough_the_footer( $diaplay = true ){
     ?>
-<footer>
+<footer role="contentinfo">
     <address>
     <?php
     printf(
@@ -728,7 +733,7 @@ if ( ! function_exists( 'enough_small_device_helper' ) ) {
             var width = jQuery(window).width();
     <?php
 if($enough_options['enough_use_slider'] !== 'no'){?>
-    jQuery('header').before('<h1 class="site-title"><a href="<?php home_url();?>" style="color:#<?php echo get_theme_mod("header_textcolor");?>"><?php bloginfo('site-title');?></a></h1>');
+    jQuery('header').before('<h1 class="site-title"><a href="<?php home_url();?>" style="color:#<?php echo get_theme_mod("header_textcolor");?>"><?php bloginfo('site-title');?><\/a><\/h1>');
     <?php }?>
 
     <?php
@@ -1082,9 +1087,6 @@ jQuery('script #enough-slider-js, style #enough-slider-css').remove();
                 });
             }
 
-                 /*   if ( ! jQuery('div').is('#enough-page')) {
-                        jQuery('body *').wrapAll('<div></div>');
-                    }*/
 
             fontResize();
             jQuery(window).resize( function () {fontResize()});
@@ -1685,11 +1687,15 @@ if( ! function_exists( "enough_install_navigation" ) ){
         }
     }
 }
-function enough_first_message(){
-    echo enough_first_only_msg(1);
+if( ! function_exists( "enough_first_message" ) ){
+	function enough_first_message(){
+		echo enough_first_only_msg(1);
+	}
 }
-function enough_uninstall(){
-    delete_option("enough_theme_settings");
+if( ! function_exists( "enough_uninstall" ) ){
+	function enough_uninstall(){
+		delete_option("enough_theme_settings");
+	}
 }
 /**
  *
@@ -1825,7 +1831,13 @@ height:<?php echo $img_height; ?>px!important;
 
     }
 }
-
+/**
+ *
+ *
+ *
+ *
+ *
+ */
 
 if( ! function_exists( 'enough_add_post_class' ) ){
     function enough_add_post_class( $classes ){
@@ -1938,17 +1950,6 @@ if( ! function_exists( "enough_slider" ) ){
     }
 }
 
-/*
-                    if( $enough_options['enough_use_slider'] == 'yes' and empty( $upload_image ) ){
-                            $path   = get_template_directory().'/images/please_upload.png';
-                            $url    = get_template_directory_uri().'/images/please_upload.png';
-                        ?>
-                        image_exists = '<?php echo $url;?>';
-                        <?php
-
-
-                    }
-*/
 /**
  *
  *
