@@ -337,18 +337,18 @@ if( ! function_exists( 'enough_embed_meta' ) ){
 
         $style= "<style type=\"text/css\">
         body{
-            background-color:#{$body_background_color};
-            background-image:url( {$body_background_image} );
-            background-position:top {$body_background_position_x};
-            background-attachment:{$body_background_attachment};
-            background-size:100% auto;
+        background-color:#{$body_background_color};
+        background-image:url( {$body_background_image} );
+        background-repeat:{$body_background_repeat};
+        background-position:top {$body_background_position_x};
+        background-attachment:{$body_background_attachment};
         }
         $header_style
         </style>";
 
-		if ( 'blank' == get_theme_mod('header_textcolor') ){
-			add_filter( 'wp_page_menu_args', 'enough_page_menu_args' );
-		}
+        if ( 'blank' == get_theme_mod('header_textcolor') ){
+            add_filter( 'wp_page_menu_args', 'enough_page_menu_args' );
+        }
 
         echo $style;
     }
@@ -1688,14 +1688,14 @@ if( ! function_exists( "enough_install_navigation" ) ){
     }
 }
 if( ! function_exists( "enough_first_message" ) ){
-	function enough_first_message(){
-		echo enough_first_only_msg(1);
-	}
+    function enough_first_message(){
+        echo enough_first_only_msg(1);
+    }
 }
 if( ! function_exists( "enough_uninstall" ) ){
-	function enough_uninstall(){
-		delete_option("enough_theme_settings");
-	}
+    function enough_uninstall(){
+        delete_option("enough_theme_settings");
+    }
 }
 /**
  *

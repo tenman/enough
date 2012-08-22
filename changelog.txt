@@ -1,4 +1,15 @@
 Changelog -----------------------------------
+version:0.41
+    This version changes Bugfix
+Fixed
+    Theme Customizer works improperly.
+
+    Fixed Not Work.
+            Background Repeat,
+            Background Position,
+            Background Attachment
+----------------------------------------------
+Changelog -----------------------------------
 version:0.40
     This version changes for HTML validate
 Modified
