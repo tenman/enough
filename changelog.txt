@@ -8,7 +8,9 @@ Fixed
     Fixed Admin panel Categories text disappear.
 
     Fixed background color and image display improperly.
-
+Modified
+    Style rules
+        Remove sticky post background.
 ----------------------------------------------
 Changelog -----------------------------------
 version:0.41
