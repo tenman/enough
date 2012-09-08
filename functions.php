@@ -1,4 +1,12 @@
 <?php
+//add_filter('upload_dir','my_up');
+
+function my_up($array){
+
+var_dump( $array );
+return $array;
+
+}
 /**
  * Functions and class for WordPress theme Enough
  *
@@ -519,12 +527,14 @@ if( ! function_exists( 'enough_posted_in' ) ){
          }
     }
 }
-add_filter( 'the_category' , 'enough_remove_ref' );
+
+
+//add_filter( 'the_category' , 'enough_remove_ref' );
 
 
 function enough_remove_ref($content){
 
-preg_match( '!(.+)rel="[^"]+"(.+)!', $content, $regs );
+preg_match( '!(.+)(rel="[^"]+")(.+)!', $content, $regs );
 return $regs[1].$regs[2];
 
 }
@@ -733,7 +743,7 @@ if ( ! function_exists( 'enough_small_device_helper' ) ) {
             var width = jQuery(window).width();
     <?php
 if($enough_options['enough_use_slider'] !== 'no'){?>
-    jQuery('header').before('<h1 class="site-title"><a href="<?php home_url();?>" style="color:#<?php echo get_theme_mod("header_textcolor");?>"><?php bloginfo('site-title');?><\/a><\/h1>');
+    jQuery('header').before('<h1 class="site-title"><a href="<?php echo home_url();?>" style="color:#<?php echo get_theme_mod("header_textcolor");?>"><?php bloginfo('site-title');?><\/a><\/h1>');
     <?php }?>
 
     <?php
@@ -745,7 +755,6 @@ if($enough_options['enough_use_slider'] !== 'no'){?>
      *
      */
      ?>
-
             jQuery('.enough-toggle-title').remove();
             jQuery(".menu-header").unwrap();
 
@@ -1898,25 +1907,11 @@ if( ! function_exists( "enough_slider" ) ){
 
                 ?>
                 <style type="text/css" id="enough-slider-css">
-                    body{padding:0 5%;}
                     header .site-title, header .site-description{display:none;}
 
-                    header img{
-                        margin:0 0 -2px!important;
-                        padding:0!important;
-                        width:100%;
-                        max-width:100%!important;
-                        left:0;
-                        z-index:1;
-                    }
                     .site-title{display:inline;position:absolute;z-index:999;color:#fff;left:10%;}
                 </style>
                 <?php
-            }else{?>
-                    <style type="text/css" id="enough-slider-css">
-                    body{padding:0 5%;}
-                </style>
-            <?php
             }
 
 

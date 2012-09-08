@@ -1,4 +1,16 @@
 Changelog -----------------------------------
+version:0.42
+
+    This version changes Bugfix
+Fixed
+    Fixed The site-title link ‘href’ attribute value is not setted when using slideshow
+
+    Fixed Admin panel Categories text disappear.
+
+    Fixed background color and image display improperly.
+
+----------------------------------------------
+Changelog -----------------------------------
 version:0.41
     This version changes Bugfix
 Fixed

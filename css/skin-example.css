@@ -17,7 +17,6 @@ nav a:active,
 }
 
 .menu-header{
-		margin:0;
 		background:#000;
 }
 .enough-w-iphone .menu-header{
@@ -41,21 +40,7 @@ nav a:active,
 	/*	color:#fff;*/
 }
 .sticky{
-	background:#eee;
-	background:
-	-webkit-linear-gradient(45deg, #92baac 45px, transparent 45px),
-	-webkit-linear-gradient(45deg, #92baac 45px, transparent 45px)64px 64px,
-	-webkit-linear-gradient(225deg, transparent 46px, #e1ebbd 46px, #e1ebbd 91px, transparent 91px),
-	-webkit-linear-gradient(-45deg, #92baac 23px, transparent 23px, transparent 68px,#92baac 68px,#92baac 113px,transparent 113px,transparent 158px,#92baac 158px);
-	background:
-	-moz-linear-gradient(45deg, #92baac 45px, transparent 45px),
-	-moz-linear-gradient(45deg, #92baac 45px, transparent 45px)64px 64px,
-	-moz-linear-gradient(225deg, transparent 46px, #e1ebbd 46px, #e1ebbd 91px, transparent 91px),
-	-moz-linear-gradient(-45deg, #92baac 23px, transparent 23px, transparent 68px,#92baac 68px,#92baac 113px,transparent 113px,transparent 158px,#92baac 158px);
-	background-color:#e1ebbd;
-	background-size: 128px 128px;
-	-moz-box-shadow: 1px 1px 3px #555;
-	-webkit-box-shadow: 1px 1px 3px #555;
+	border:3px dashed #ccc;
 
 }
 .ie8 .sticky{
@@ -81,7 +66,6 @@ nav a:active,
 		/*color:#fff;*/
 	}
 	.menu-header {
-		margin:0;
 		color:#191919;
 		background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#333));
 		background: -moz-linear-gradient(top,  #000,  #333);
@@ -89,7 +73,9 @@ nav a:active,
 		-moz-box-shadow: 0 1px 3px #555;
 		-webkit-box-shadow: 0 1px 3px #555;	
 		border-bottom:1px solid rgba(255,255,255,0.6);
-		border-top:1px solid rgba(255,255,255,0.2);
+		/*border-top:1px solid rgba(255,255,255,0.2);*/
+		
+		
 		}
 	footer{
 		background:#000;

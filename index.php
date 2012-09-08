@@ -29,6 +29,7 @@ do_action( 'get_header' );
  *
  */
 ?>
+<div>
 <header role="banner">
     <h1 class="site-title"><a href="<?php echo home_url(); ?>">
       <span><?php bloginfo(); ?></span>
@@ -41,6 +42,7 @@ do_action( 'get_header' );
     </noscript>
     <p class="unknown-ua"><?php _e('This content shows Simple View','enough');?></p>
 </header>
+
 <?php
 /**
  * Horizontal menu bar
@@ -64,6 +66,10 @@ if( ! has_nav_menu( 'primary' ) ){
     wp_nav_menu($args);
 }
 ?>
+
+
+
+
 <?php }//End locate_template( array( 'header.php' ) ?>
 <br class="clear" />
 <?php
@@ -74,6 +80,7 @@ if( ! has_nav_menu( 'primary' ) ){
  *
  *
  */
+ 
     enough_loop_title();
     if ( locate_template( array( 'loop.php' ) , true , true ) == '') {//template existance check
 /**
@@ -232,7 +239,7 @@ wp_reset_query();
     if ( locate_template( array( 'footer.php' ) , true , true ) == '') {//template existance check
         enough_the_footer();
     }//locate_template( array( 'footer.php' )?>
-</div>
+</div></div>
 <?php wp_footer(); ?>
 </body>
 </html>
