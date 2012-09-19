@@ -87,6 +87,9 @@
 
 .posts-nav-link{
 	margin:1rem;
+	width:90%;
+	max-width:90%;
+	margin:auto;
 }
 
 .sticky{

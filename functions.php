@@ -472,7 +472,7 @@ if( ! function_exists( 'enough_posted_on' ) ){
         $result = sprintf( __( '<span class="%1$s">Posted on</span> %2$s <span class="meta-sep">by</span> %3$s %4$s'
 , 'enough' ),
             'meta-prep meta-prep-author',
-            sprintf( '<a href="%1$s" title="%2$s"><span class="entry-date">%3$s</span></a>',
+            sprintf( '<a href="%1$s" title="%2$s"><span class="entry-date updated">%3$s</span></a>',
                 get_permalink(),
                 esc_attr( get_the_time($enough_date_format) ),
                 get_the_date( $enough_date_format )
@@ -550,10 +550,10 @@ if( ! function_exists( 'enough_dinamic_sidebar' ) ){
         if($display == true){ ?>
 <nav><ul id="<?php echo $id;?>">
 
-<?php
+<?php 
 if( ! dynamic_sidebar( $id ) ){
-    the_widget('WP_Widget_Archives');
-    the_widget('WP_Widget_Recent_Posts');
+    the_widget('WP_Widget_Archives', '', array( 'before_widget'=> '<li class="widget widget_archive">','after_widget'=> '</li>') );
+    the_widget('WP_Widget_Recent_Posts', '', array( 'before_widget'=> '<li class="widget widget_recent_entries">','after_widget'=> '</li>') );
 }
 ?></ul></nav>
 <?php
@@ -743,7 +743,7 @@ if ( ! function_exists( 'enough_small_device_helper' ) ) {
             var width = jQuery(window).width();
     <?php
 if($enough_options['enough_use_slider'] !== 'no'){?>
-    jQuery('header').before('<h1 class="site-title"><a href="<?php echo home_url();?>" style="color:#<?php echo get_theme_mod("header_textcolor");?>"><?php bloginfo('site-title');?><\/a><\/h1>');
+    jQuery('header').before('<h1 class="site-title" style="width:80%;"><a href="<?php echo home_url();?>" style="color:#<?php echo get_theme_mod("header_textcolor");?>"><?php bloginfo('site-title');?><\/a><\/h1>');
     <?php }?>
 
     <?php
@@ -1961,6 +1961,11 @@ if( ! function_exists( 'enough_customize_register' ) and $enough_wp_version >= '
                     , 'priority' => 33,
                 )
         );
+        $wp_customize->add_section( 'enough_navigation_setting'
+            , array( 'title' => __( 'Another Settings link', 'enough' )
+                    , 'priority' => 120,
+                )
+        );
 
         $wp_customize->add_setting( 'enough_theme_settings[enough_use_slider]', array(
             'default'        => 'no',
@@ -2005,7 +2010,63 @@ if( ! function_exists( 'enough_customize_register' ) and $enough_wp_version >= '
                 'type'       => 'text',
                 )
         );
-
+		$wp_customize->add_setting( 'navigation_setting', array(
+			'default' => array( 
+					array( 'label' => __( 'Custom Header', 'enough' ), 'path' => 'themes.php?page=custom-header', 'target' => 'b'), 
+					array( 'label' => __( 'Widget', 'enough' ), 'path' => 'widgets.php', 'target' => 'b' ), 
+					array( 'label' => __( 'Nav Menus', 'enough' ), 'path' => 'nav-menus.php', 'target' => 'b' ), 
+					array( 'label' => __( 'Enough Settings', 'enough' ), 'path' => 'themes.php?page=enough_settings' , 'target' => 'b'), 
+					array( 'label' => __( 'Theme', 'enough' ), 'path' => 'themes.php' , 'target' => 's'), 
+					array( 'label' => __( 'Dashbord', 'enough' ), 'path' => 'index.php', 'target' => 's' ),
+					
+				),
+		) );
+		
+	$wp_customize->add_control( 
+		new Enough_Customize_Navigation_Control(  $wp_customize, 
+												'navigation_setting', 
+														array(
+    													'label' => 'Navigation_Setting',
+    													'section'=> 'enough_navigation_setting',
+           												'settings' => 'navigation_setting' ) 
+											) 
+							);
     }
 }
+/**
+ *
+ *
+ *
+ *
+ * @since 0.43
+ */
+
+if( class_exists( 'WP_Customize_Control' ) ){
+    class Enough_Customize_Navigation_Control extends WP_Customize_Control {
+        public $type= 'navigation';
+     
+        public function render_content() {
+		
+		
+		
+		$url 					= admin_url();
+		$result 				= '<ul class="enough-customize-section-content">';
+		$result_after 			= '</ul>';
+		$html_place_holder_s 	= '<li><h4><a href="%1$s">%2$s</a></h4></li>';
+		$html_place_holder_b 	= '<li><h4><a href="%1$s">%2$s</a>&nbsp;<a href="%1$s" target="_blank">('. __('New window', 'enough' ).')</a></h4></li>';
+
+			foreach( $this->value() as $link ){
+				if( $link['target'] == 'b' ){
+					$result 	.= sprintf( $html_place_holder_b, $url.$link['path'], $link['label'] );
+				}else{
+					$result 	.= sprintf( $html_place_holder_s, $url.$link['path'], $link['label'] );
+				}
+			}
+		$result 				= $result.$result_after;
+		echo $result;
+        }
+         
+    }
+}
+
 ?>

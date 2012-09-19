@@ -38,3 +38,9 @@ body{
 	
 }
 
+#enough-page > h1.site-title a span{
+max-width:90%!important;
+word-break:break-all;
+word-wrap:wrap-all;
+border:1px solid red;
+}

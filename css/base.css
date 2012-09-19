@@ -84,10 +84,12 @@ html,body,form,fieldset,p,div,h1,h2,h3,h4,h5,h6 {
 -webkit-text-size-adjust:none;
 }
 
-img {
+img{
 margin:.5rem;
 }
-
+header img{
+margin:0;
+}
 input[type=file],input[type=reset],input[type=submit] {
 padding:0.3rem 0.5rem;
 }
