@@ -1,4 +1,15 @@
 Changelog -----------------------------------
+version:0.43
+    This version for Localization Bug fix and modify
+modified
+    function change from load_textdomain() to load_theme_textdomain()
+    Add navigation links where Theme customizer.
+
+    Changes   ja.po, ja.mo
+Fixed
+    Fixed sidebar html display improperly.
+----------------------------------------------
+Changelog -----------------------------------
 version:0.42
 
     This version changes Bugfix
