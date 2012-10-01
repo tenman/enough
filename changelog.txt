@@ -3,7 +3,11 @@ version:0.44
     This version for modify Style
 
 modified
-Fixed
+    Theme option enough_use_slider default value change.
+    from yes to no.
+
+    Add next,prev month link in Monthly Archives page.
+
 ----------------------------------------------
 Changelog -----------------------------------
 version:0.43
