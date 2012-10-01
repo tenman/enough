@@ -1,4 +1,11 @@
 Changelog -----------------------------------
+version:0.44
+    This version for modify Style
+
+modified
+Fixed
+----------------------------------------------
+Changelog -----------------------------------
 version:0.43
     This version for Localization Bug fix and modify
 modified

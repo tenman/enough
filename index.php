@@ -42,7 +42,6 @@ do_action( 'get_header' );
     </noscript>
     <p class="unknown-ua"><?php _e('This content shows Simple View','enough');?></p>
 </header>
-
 <?php
 /**
  * Horizontal menu bar
@@ -82,6 +81,15 @@ if( ! has_nav_menu( 'primary' ) ){
  */
  
     enough_loop_title();
+/**
+ * Monthly archive prev next links
+ *
+ *
+ *
+ *
+ */
+	enough_monthly_archive_prev_next_navigation();
+
     if ( locate_template( array( 'loop.php' ) , true , true ) == '') {//template existance check
 /**
  * post and page content start

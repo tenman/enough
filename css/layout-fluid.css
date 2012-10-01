@@ -264,7 +264,11 @@
 		border:1px solid #555;
 		font-color:#000;
 	}
+.enough-monthly-archive-prev-next-avigation,
+article{
 	
+	margin:0 0 5px 10px;
+}	
 	
 }
 @media screen and (max-width: 480px){
@@ -295,6 +299,9 @@
 	}
 	div.menu-header a:hover{
 		color:#000;
+	}
+	.enough-comment-link{
+		top:20px;
 	}
 }
 @media screen and (max-width: 640px){

@@ -45,6 +45,13 @@
 	margin:1rem;
 	text-align:left;
 }
+.archives-title-text .avatar{
+position:relative;
+top:15px;
+}
+.archives-title-text .span{
+
+}
 
 .enough-comment-link{
 	position:absolute;
@@ -52,7 +59,7 @@
 }
 
 .entry-content,.entry-title{
-	margin:10px 14px 10px 24px;
+	/*margin:10px 14px 10px 24px;*/
 	max-width:100%;
 	word-break:break-all;
 	word-wrap:break-word;
@@ -190,14 +197,14 @@
 	border:1px solid #999;
 	padding:.5rem;
 }
-
+.enough-monthly-archive-prev-next-avigation,
 article{
 	-moz-box-sizing:border-box;
 	-ms-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
 	float:left;
-	margin:0 0 5px 10px;
+	/*margin:0 0 5px 10px;*/
 	padding-left:10px;
 	width:69.4%;
 }
@@ -220,10 +227,19 @@ article.sticky .entry-title,article.sticky .entry-content{
 div.widget{
 	margin-right:10px;
 }
+.widget ul{
+	margin-left:5px;
+	padding-left:5px;
+}
+.widget li{
+	margin:0;
+	padding:0;
+}
 
 header{
 	background-size:cover;
 	padding-top:.1rem;
+	overflow:hidden;
 }
 
 header h2,header h1{

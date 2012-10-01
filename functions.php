@@ -1,12 +1,4 @@
 <?php
-//add_filter('upload_dir','my_up');
-
-function my_up($array){
-
-var_dump( $array );
-return $array;
-
-}
 /**
  * Functions and class for WordPress theme Enough
  *
@@ -126,13 +118,13 @@ if( !isset( $enough_current_theme_name ) ){
         array('option_id' => 5,
         'blog_id' => 0 ,
         'option_name' => "enough_use_slider",
-        'option_value' => "yes",
+        'option_value' => "no",
         'autoload'=>'yes',
         'title'=>__('Use Slider for Header Images','enough'),
         'excerpt'=>__('Dinamic Slide header','enough'),
         'validate'=>'enough_use_slider_validate','list' => 4,
         'type' => 'radio',
-        'select_values' => array('no' => 'no')
+        'select_values' => array('yes' => 'yes')
         ),
 
         array('option_id' => 6,
@@ -2069,4 +2061,68 @@ if( class_exists( 'WP_Customize_Control' ) ){
     }
 }
 
+/**
+ *
+ *
+ *
+ *
+ * @since 0.44
+ */
+
+if( ! function_exists( 'enough_monthly_archive_prev_next_navigation' ) ){
+function enough_monthly_archive_prev_next_navigation(){
+	global $wpdb, $wp_query;
+
+	if( is_month() ){
+	
+		$thisyear 	= mysql2date('Y', $wp_query->posts[0]->post_date);
+		$thismonth 	= mysql2date('m', $wp_query->posts[0]->post_date);
+		
+		$unixmonth 	= mktime(0, 0 , 0, $thismonth, 1, $thisyear);
+		$last_day 	= date('t', $unixmonth);
+		
+		$previous 	= $wpdb->get_row("SELECT MONTH(post_date) AS month, YEAR(post_date) AS year	FROM $wpdb->posts
+			WHERE post_date < '$thisyear-$thismonth-01'
+			AND post_type = 'post' AND post_status = 'publish'
+				ORDER BY post_date DESC
+				LIMIT 1");
+		$next 		= $wpdb->get_row("SELECT MONTH(post_date) AS month, YEAR(post_date) AS year FROM $wpdb->posts
+			WHERE post_date > '$thisyear-$thismonth-{$last_day} 23:59:59'
+			AND post_type = 'post' AND post_status = 'publish'
+				ORDER BY post_date ASC
+				LIMIT 1");
+				
+		$html 		= '<a href="%1$s" class="%3$s">%2$s</a>';
+				
+		if ( $previous ) {
+			$calendar_output = sprintf( $html,
+										get_month_link($previous->year,
+										$previous->month) ,
+										sprintf(__('Prev Month( %sth )','enough'),
+										$previous->month),
+										'alignleft' 
+									  );
+		}
+		$calendar_output .= "\t" ;
+		if ( $next ) {
+			$calendar_output .= sprintf( $html, 
+										get_month_link($next->year, 
+										$next->month),
+										sprintf(__('Next Month( %sth )','enough'),
+										$next->month),
+										'alignright'
+										);
+		}
+		
+		$html = '<div class="%1$s">%2$s</div>';
+		
+			$calendar_output = sprintf( $html,
+										'enough-monthly-archive-prev-next-avigation',
+										$calendar_output
+									);
+		
+		echo apply_filters( 'enough_monthly_archive_prev_next_navigation', $calendar_output );
+	}
+}
+}
 ?>
