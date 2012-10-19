@@ -1,4 +1,11 @@
 Changelog -----------------------------------
+version:0.45
+    This version for Bugfix
+
+Fixed
+
+----------------------------------------------
+Changelog -----------------------------------
 version:0.44
     This version for modify Style
 

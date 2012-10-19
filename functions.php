@@ -260,7 +260,7 @@ if( !function_exists( 'enough_theme_setup' ) ){
     }
 
     $args = array(
-                    'default-text-color' => 'ddd'
+                    'default-text-color' => 'ffffff'
                     , 'width' => apply_filters( 'enough_header_image_width', '950' )
                     , 'flex-width' => true
                     , 'height' => apply_filters( 'enough_header_image_height', '198' )
@@ -311,6 +311,11 @@ if( ! function_exists( 'enough_embed_meta' ) ){
             $header_image_css = 'header{ background: url('.$enough_site_image.'); }';
             $header_image_css .= 'header{ height: 198px; }';
         }
+		
+		/*
+		 * fallback . when $header text color return false
+		 */
+		if( ! $header_textcolor ){ $header_textcolor = 'fff';}
 
         $header_style ='%1$s
         .site-title a,
@@ -520,16 +525,6 @@ if( ! function_exists( 'enough_posted_in' ) ){
     }
 }
 
-
-//add_filter( 'the_category' , 'enough_remove_ref' );
-
-
-function enough_remove_ref($content){
-
-preg_match( '!(.+)(rel="[^"]+")(.+)!', $content, $regs );
-return $regs[1].$regs[2];
-
-}
 /**
  *
  *
@@ -910,14 +905,23 @@ if($enough_options['enough_use_slider'] !== 'no'){?>
                     if( empty( $url ) ){ //When child theme $url empty
                         $url        = get_header_image();
                     }
+					
+					if( $url == 'random-uploaded-image'){
+                        $url = get_random_header_image();
+                    }
+
 
                    // $uploads    = wp_upload_dir();
                     $path       = $uploads['path'].'/'. basename( $url );
-
-
-                    if( $enough_options['enough_use_slider'] == 'yes' ){
+					
+					if( ! file_exists( $path ) ){
                             $path   = get_template_directory().'/images/please_upload.png';
                             $url    = get_template_directory_uri().'/images/please_upload.png';
+					}
+
+                    if( $enough_options['enough_use_slider'] == 'yes' ){
+					
+	
                         ?>
                         image_exists = '<?php echo $url;?>';
                         <?php
@@ -1659,11 +1663,12 @@ if( ! function_exists( "enough_first_only_msg" ) ){
     function enough_first_only_msg($type=0) {
         if ( $type == 1 ) {
             $query  = 'enough_settings';
-            $link   = get_site_url('', 'wp-admin/themes.php', 'admin') . '?page='.$query;
+            $link   = get_site_url(null, 'wp-admin/themes.php?page='.$query, 'admin') ;
+			
             if (version_compare(PHP_VERSION, '5.0.0', '<')) {
-            $msg    = sprintf(__('Sorry Your PHP version is %s Please use PHP version 5 or later.','enough'),PHP_VERSION);
+            $msg    = sprintf(__('Sorry Your PHP version is %1$s Please use PHP version 5 or later.','enough'),PHP_VERSION);
             }else{
-            $msg    = sprintf(__('Thank you for adopting the %s theme. It is necessary to set it to this theme. Please move to a set screen clicking this <a href="%s">settings page</a>.','enough'),get_current_theme() ,$link);
+            $msg    = sprintf(__('Thank you for adopting the %1$s theme. It is necessary to set it to this theme. Please move to a set screen clicking this <a href="%2$s">settings page</a>.','enough'),get_current_theme() ,$link);
             }
         }
         return '<div id="testmsg" class="error"><p>' . $msg . '</p></div>' . "\n";
@@ -1901,7 +1906,7 @@ if( ! function_exists( "enough_slider" ) ){
                 <style type="text/css" id="enough-slider-css">
                     header .site-title, header .site-description{display:none;}
 
-                    .site-title{display:inline;position:absolute;z-index:999;color:#fff;left:10%;}
+                    .site-title{display:inline-block;position:absolute;z-index:999;color:#fff;max-width:960px;margin:auto;padding:0.6em;}
                 </style>
                 <?php
             }
@@ -2032,35 +2037,36 @@ if( ! function_exists( 'enough_customize_register' ) and $enough_wp_version >= '
  *
  * @since 0.43
  */
-
 if( class_exists( 'WP_Customize_Control' ) ){
-    class Enough_Customize_Navigation_Control extends WP_Customize_Control {
-        public $type= 'navigation';
-     
-        public function render_content() {
-		
-		
-		
-		$url 					= admin_url();
-		$result 				= '<ul class="enough-customize-section-content">';
-		$result_after 			= '</ul>';
-		$html_place_holder_s 	= '<li><h4><a href="%1$s">%2$s</a></h4></li>';
-		$html_place_holder_b 	= '<li><h4><a href="%1$s">%2$s</a>&nbsp;<a href="%1$s" target="_blank">('. __('New window', 'enough' ).')</a></h4></li>';
-
-			foreach( $this->value() as $link ){
-				if( $link['target'] == 'b' ){
-					$result 	.= sprintf( $html_place_holder_b, $url.$link['path'], $link['label'] );
-				}else{
-					$result 	.= sprintf( $html_place_holder_s, $url.$link['path'], $link['label'] );
+	if( ! class_exists( 'Enough_Customize_Navigation_Control' )){
+	
+		class Enough_Customize_Navigation_Control extends WP_Customize_Control {
+			public $type= 'navigation';
+		 
+			public function render_content() {
+			
+			
+			
+			$url 					= admin_url();
+			$result 				= '<ul class="enough-customize-section-content">';
+			$result_after 			= '</ul>';
+			$html_place_holder_s 	= '<li><h4><a href="%1$s">%2$s</a></h4></li>';
+			$html_place_holder_b 	= '<li><h4><a href="%1$s">%2$s</a>&nbsp;<a href="%1$s" target="_blank">('. __('New window', 'enough' ).')</a></h4></li>';
+	
+				foreach( $this->value() as $link ){
+					if( $link['target'] == 'b' ){
+						$result 	.= sprintf( $html_place_holder_b, $url.$link['path'], $link['label'] );
+					}else{
+						$result 	.= sprintf( $html_place_holder_s, $url.$link['path'], $link['label'] );
+					}
 				}
+			$result 				= $result.$result_after;
+			echo $result;
 			}
-		$result 				= $result.$result_after;
-		echo $result;
-        }
-         
-    }
+			 
+		}
+	}
 }
-
 /**
  *
  *
