@@ -1,5 +1,13 @@
 Changelog -----------------------------------
 version:0.46
+    Fixed iframe element height display improperly.
+    Fixed Custom Header Image display improperly.
+    Fixed File not found can not show.
+modified
+    Custom Menu CSS add Class sub-menu where stylesheets
+    Use wp_get_theme()
+    Remove get_current_theme()
+    Change Screenshot 600x450
 ----------------------------------------------
 Changelog -----------------------------------
 version:0.45
