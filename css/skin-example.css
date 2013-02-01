@@ -6,62 +6,56 @@
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * @package Enough
  */
-.posted-on a:active,
-.posted-in a:active,
-nav a:active,
-.entry-title a:active,
-.entry-content a:active,	
-.posted-in a:active{
-		position:relative;
-		top:1px;
-}
-
-.menu-header{
-		background:#000;
-}
-.enough-w-iphone .menu-header{
-		background:none;
-}
-.menu-header a{
-		background:none;
-		max-width:none;/* ie8 width issue*/
-}
-.menu-header a:hover{
-		background:none;
-		max-width:none;/* ie8 width issue*/
-		color:#fff;
-}
-
-.menu-header .children{
-		/*background:#fff;*/
-}
-
-.site-title a span:hover{
-	/*	color:#fff;*/
-}
-.sticky{
-	/*border:3px dashed #ccc;*/
-
-}
-.ie8 .sticky{
-	background:none;
-}
-.sticky .entry-content,
-.sticky .entry-title{
-	background:#fff;
-	background:rgba(255,255,255,0.9);
-	padding:3px;
-	margin-left:3px;
+	.posted-on a:active,
+	.posted-in a:active,
+	nav a:active,
+	.entry-title a:active,
+	.entry-content a:active,	
+	.posted-in a:active{
+			position:relative;
+			top:1px;
+	}
 	
-}
-.sticky .entry-title{
-}
-
-
-.sticky .posted-on,
-.sticky .posted-in{
-	display:none;
-}
+	.menu-header{
+			background:#000;
+	}
+	.enough-w-iphone .menu-header{
+			background:none;
+	}
+	.menu-header a{
+			background:none;
+			max-width:none;/* ie8 width issue*/
+	}
+	.menu-header a:hover{
+			background:none;
+			max-width:none;/* ie8 width issue*/
+			color:#fff;
+	}
+	
+	.menu-header .sub-menu,
+	.menu-header .children{
+	}
+	
+	.site-title a span:hover{
+	}
+	.sticky{
+	}
+	.ie8 .sticky{
+		background:none;
+	}
+	.sticky .entry-content,
+	.sticky .entry-title{
+		background:#fff;
+		background:rgba(255,255,255,0.9);
+		padding:3px;
+		margin-left:3px;
+	}
+	.sticky .entry-title{
+	}
+	.sticky .posted-on,
+	.sticky .posted-in{
+		display:none;
+	}
 @media screen and (min-width: 481px){
 	.site-title a:hover span{
 		/*color:#fff;*/
@@ -74,10 +68,7 @@ nav a:active,
 		-moz-box-shadow: 0 1px 3px #555;
 		-webkit-box-shadow: 0 1px 3px #555;	
 		border-bottom:1px solid rgba(255,255,255,0.6);
-		/*border-top:1px solid rgba(255,255,255,0.2);*/
-		
-		
-		}
+	}
 	footer{
 		background:#000;
 		color:#eee;
@@ -90,21 +81,19 @@ nav a:active,
 		color:#eee;
 		background:none;
 	}
-.widget_links,
-.widget_rss,
-.widget_categories,
-.widget_recent_entries,
-.widget_pages,
-.widget_nav_menu,
-.widget_recent_comments,
-.widget_archive,
-.widget_meta{
-/*border:1px solid #ccc;*/
-margin-top:-1px;
-}
+	.widget_links,
+	.widget_rss,
+	.widget_categories,
+	.widget_recent_entries,
+	.widget_pages,
+	.widget_nav_menu,
+	.widget_recent_comments,
+	.widget_archive,
+	.widget_meta{
+		margin-top:-1px;
+	}
 	#commentform,
 	html,
-/*	.posted-in,*/	
 	.posted-on,
 	.posted-on a.enough-comment-link:active,
 	.widget_rss .widgettitle,
@@ -120,10 +109,6 @@ margin-top:-1px;
 		color:#191919;
 		background: -webkit-gradient(linear, left top, left bottom, from(#eeeeee), to(#efefef));
 		background: -moz-linear-gradient(top,  #eeeeee,  #efefef);
-		/*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cfcfcf', endColorstr='#dfdfdf');*/
-	/*	-moz-box-shadow: 1px 1px 3px rgba(52,52,52,.5);
-		-webkit-box-shadow: 1px 1px 3px rgba(52,52,52,.5);
-		border-bottom:1px solid rgba(255,255,255,.7);*/
 		border-bottom:1px solid rgba(100,100,100,.3);
 
 	}
@@ -132,28 +117,19 @@ margin-top:-1px;
 		color:#191919;
 		background: -webkit-gradient(linear, left top, left bottom, from(#eeeeee), to(#efefef));
 		background: -moz-linear-gradient(top,  #eeeeee,  #efefef);
-		/*-moz-box-shadow: 0 1px 3px rgba(52,52,52,.3);
-		-webkit-box-shadow: 0 1px 3px rgba(52,52,52,.3);*/
 		border-bottom:1px solid rgba(100,100,100,.3);
 	
 }	
 	.posted-on a.enough-comment-link{
 		background: -webkit-gradient(linear, left top, left bottom, from(#efefef), to(#eeeeee));
 		background: -moz-linear-gradient(top, #efefef,  #eeeeee );
-/*		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#cfcfcf');
-		-moz-box-shadow: 1px 1px 3px rgba(52,52,52,.5);
-		-webkit-box-shadow: 1px 1px 3px rgba(52,52,52,.5);*/
-				border-bottom:1px solid rgba(100,100,100,.3);
+		border-bottom:1px solid rgba(100,100,100,.3);
 
 	}
 	.posted-on a.enough-comment-link:hover{
 		background: -webkit-gradient(linear, left top, left bottom, from(#eeeeee), to(#efefef));
 		background: -moz-linear-gradient(top, #eeeeee,  #efefef );
-/*		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#cfcfcf');
-		-moz-box-shadow: 1px 1px 3px rgba(52,52,52,.5);
-		-webkit-box-shadow: 1px 1px 3px rgba(52,52,52,.5);*/
-				border-bottom:1px solid rgba(100,100,100,.3);
-
+		border-bottom:1px solid rgba(100,100,100,.3);
 	}
 
 	#commentform{
@@ -196,7 +172,7 @@ margin-top:-1px;
 	.posted-on a.enough-comment-link em{
 		position:absolute;
 		top:8px;
-		left:19px;
+		left:16px;
 		display:block;
 	}
 	.posted-on a.enough-comment-link span.enough-comment-string{
@@ -205,37 +181,30 @@ margin-top:-1px;
 		display:block;
 	}
 
-	a[href$="png"] > img,
-	a[href$="jpg"] > img,
-	a[href$="gif"] > img{
-			padding:1em;
-	}
-	.wp-caption a[href$="png"] > img,
-	.wp-caption a[href$="jpg"] > img,
-	.wp-caption a[href$="gif"] > img{
-			padding:0;
-	}
 	
 	.page-item a{
 		color:#fff;
 		background:#000;
 	}
+	.menu-header .sub-menu a
 	.menu-header .children a {
 		background:#000;
 		color:#eee;
-		border:none;
 	}	
+	.menu-header ul ul a{
+		background:#000;
+		color:#fff;
+	}
 	
 	.menu-header ul ul:hover a {
 		background:#000;
 		color:#fff;
-		border:none;
 	}
 	.menu-header ul:hover ul a,
 	.menu-header ul ul:hover a{
-		border:none;
 	}
 	
+	.menu-header .sub-menu a:hover,
 	.menu-header .children a:hover,
 	 .menu-header a:hover{
 		background:#333;
@@ -291,20 +260,20 @@ margin-top:-1px;
 		display:block;
 		margin:0 auto;
 	}
-.gecko.enough-w-iphone .site-title,
-.gecko.enough-w-iphone .site-description{
-
-}
-.enough-w-iphone .toggle-navigation{
-margin:50px 0 0;
-padding:0;
-}
-.enough-w-iphone .enough-toggle-title{
-position:relative;
-height:50px;
-}
-.enough-w-iphone .enough-toggle-title span{
-border:1px solid #ccc;
-padding:10px;
-
+	.gecko.enough-w-iphone .site-title,
+	.gecko.enough-w-iphone .site-description{
+	
+	}
+	.enough-w-iphone .toggle-navigation{
+		margin:50px 0 0;
+		padding:0;
+	}
+	.enough-w-iphone .enough-toggle-title{
+		position:relative;
+		height:50px;
+	}
+	.enough-w-iphone .enough-toggle-title span{
+		border:1px solid #ccc;
+		padding:10px;
+	}
 }

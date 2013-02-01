@@ -108,7 +108,7 @@ margin:0;
 float:left;
 position:relative;
 }
-
+.ie8 .menu-header .sub-menu,
 .ie8 .menu-header .children {
 display:none;
 position:absolute;
@@ -119,18 +119,18 @@ width:10em;
 z-index:99;
 text-align:center;
 }
-
+.ie8 .menu-header .sub-menu li,
 .ie8 .menu-header .children li {
 min-width:10em;
 margin:0;
 }
-
+.ie8 .menu-header .sub-menu .submenu,
 .ie8 .menu-header .children .children {
 left:100%;
 top:-1px;
 text-align:center;
 }
-
+.ie8 .sub-menu a,
 .ie8 .children a {
 line-height:1em;
 height:auto;
@@ -159,6 +159,9 @@ margin:0;
 float:none;
 display:block;
 }
+.ie8.enough-w-keitai .menu-header .sub-menu,
+.ie8.enough-w-qvga .menu-header .sub-menu,
+.ie8.enough-w-iphone .menu-header .sub-menu,
 .ie8.enough-w-keitai .menu-header .children,
 .ie8.enough-w-qvga .menu-header .children,
 .ie8.enough-w-iphone .menu-header .children{
@@ -168,7 +171,9 @@ text-align:center;
 display:block;
 background:none;
 }
-
+.ie8.enough-w-keitai .menu-header .sub-menu li,
+.ie8.enough-w-qvga .menu-header .sub-menu li,
+.ie8.enough-w-iphone .menu-header .sub-menu li,
 .ie8.enough-w-keitai .menu-header .children li,
 .ie8.enough-w-qvga .menu-header .children li,
 .ie8.enough-w-iphone .menu-header .children li{
@@ -178,7 +183,9 @@ display:block;
 background:none;
 margin:0;
 }
-
+.ie8.enough-w-keitai .menu-header .sub-menu .sub-menu,
+.ie8.enough-w-qvga .menu-header .sub-menu .sub-menu,
+.ie8.enough-w-iphone .menu-header .sub-menu .sub-menu,
 .ie8.enough-w-keitai .menu-header .children .children,
 .ie8.enough-w-qvga .menu-header .children .children,
 .ie8.enough-w-iphone .menu-header .children .children{
@@ -187,7 +194,9 @@ float:none;
 display:block;
 background:none;
 }
-
+.ie8.enough-w-keitai .sub-menu a,
+.ie8.enough-w-qvga .sub-menu a,
+.ie8.enough-w-iphone .submenu a,
 .ie8.enough-w-keitai .children a,
 .ie8.enough-w-qvga .children a,
 .ie8.enough-w-iphone .children a{
@@ -249,7 +258,9 @@ display:block!important;
 list-style:none;
 margin:0;
 }
-
+.ie8.enough-w-keitai .menu-header .sub-menu,
+.ie8.enough-w-qvga .menu-header .sub-menu,
+.ie8.enough-w-iphone .menu-header .sub-menu,
 .ie8.enough-w-keitai .menu-header .children,
 .ie8.enough-w-qvga .menu-header .children,
 .ie8.enough-w-iphone .menu-header .children{
@@ -257,7 +268,10 @@ margin-left:1em;
 max-width:100%;
 list-style:none;
 }
-
+.ie8.enough-w-keitai .menu-header .sub-menu a,
+.ie8.enough-w-qvga .menu-header .sub-menu a,
+.ie8.enough-w-vga .menu-header .sub-menu a,
+.ie8.enough-w-iphone .menu-header .sub-menu a,
 .ie8.enough-w-keitai .menu-header a,
 .ie8.enough-w-qvga .menu-header a,
 .ie8.enough-w-iphone .menu-header a,
@@ -517,31 +531,52 @@ margin:0 auto;
 .ie8 nav ul ul li,
 .ie8 embed,
 .ie8 .menu-header .children:hover > a,
+.ie8 .menu-header .sub-menu:hover > a,
 .ie8 .menu-header li:hover > a,
 .ie8 .menu-header .children:hover > a,
+.ie8 .menu-header .sub-menu:hover > a,
 .ie8 .menu-header ul li:hover > .children,
+.ie8 .menu-header ul li:hover > .sub-menu,
 .ie8.enough-w-keitai .menu-header .children:hover > a,
+.ie8.enough-w-keitai .menu-header .sub-menu:hover > a,
 .ie8.enough-w-qvga .menu-header .children:hover > a,
+.ie8.enough-w-qvga .menu-header .sub-menu:hover > a,
 .ie8.enough-w-iphone .menu-header .children:hover > a,
+.ie8.enough-w-iphone .menu-header .sub-menu:hover > a,
 .ie8.enough-w-vga .menu-header .children:hover > a,
+.ie8.enough-w-vga .menu-header .submenu:hover > a,
 .ie8.enough-w-keitai .menu-header li:hover > a,
 .ie8.enough-w-qvga .menu-header li:hover > a,
 .ie8.enough-w-iphone .menu-header li:hover > a,
 .ie8.enough-w-vga .menu-header li:hover > a,
 .ie8.enough-w-keitai .menu-header .children:hover > a,
+.ie8.enough-w-keitai .menu-header .sub-menu:hover > a,
 .ie8.enough-w-qvga .menu-header .children:hover > a,
+.ie8.enough-w-qvga .menu-header .sub-menu:hover > a,
 .ie8.enough-w-iphone .menu-header .children:hover > a,
+.ie8.enough-w-iphone .menu-header .sub-menu:hover > a,
 .ie8.enough-w-vga .menu-header .children:hover > a,
+.ie8.enough-w-vga .menu-header .sub-menu:hover > a,
 .ie8.enough-w-qvga .menu-header .children:hover > a,
+.ie8.enough-w-qvga .menu-header .sub-menu:hover > a,
 .ie8.enough-w-iphone .menu-header .children:hover > a,
+.ie8.enough-w-iphone .menu-header .sub-menu:hover > a,
 .ie8.enough-w-vga .menu-header .children:hover > a,
+.ie8.enough-w-vga .menu-header .sub-menu:hover > a,
 .ie8.enough-w-keitai .menu-header ul li:hover > .children,
+.ie8.enough-w-keitai .menu-header ul li:hover > .sub-menu,
 .ie8.enough-w-qvga .menu-header ul li:hover > .children,
+.ie8.enough-w-qvga .menu-header ul li:hover > .sub-menu,
 .ie8.enough-w-iphone .menu-header ul li:hover > .children,
+.ie8.enough-w-iphone .menu-header ul li:hover > .sub-menu,
 .ie8.enough-w-vga .menu-header ul li:hover > .children,
+.ie8.enough-w-vga .menu-header ul li:hover > .sub-menu,
 .ie8.enough-w-qvga .menu-header ul li:hover > .children,
+.ie8.enough-w-qvga .menu-header ul li:hover > .sub-menu,
 .ie8.enough-w-iphone .menu-header ul li:hover > .children,
+.ie8.enough-w-iphone .menu-header ul li:hover > .sub-menu,
 .ie8.enough-w-vga .menu-header ul li:hover > .children,
+.ie8.enough-w-vga .menu-header ul li:hover > .sub-menu,
 .ie8.enough-w-keitai noscript .no-script-and-small-view,
 .ie8.enough-w-qvga noscript .no-script-and-small-view,
 .ie8.enough-w-iphone noscript .no-script-and-small-view,

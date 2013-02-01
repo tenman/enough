@@ -187,6 +187,7 @@ if( ! has_nav_menu( 'primary' ) ){
  *
  */
     enough_prev_next_post('nav-below');?>
+<br class="clear"  />
 <?php
 /**
  * comment
@@ -198,8 +199,6 @@ if( ! has_nav_menu( 'primary' ) ){
     comments_template(); ?>
     </article>
           <?php }//endwhile
-    } // locate_template( array( 'loop.php' )
-
     }else{
         if ( locate_template( array( '404.php' ) , true , true ) == '') {//template existance check ?>
 <?php
@@ -216,6 +215,9 @@ if( ! has_nav_menu( 'primary' ) ){
       </article>
     <?php }//locate_template( array( 'loop.php' )
      } //end else
+	 
+} // locate_template( array( 'loop.php' )
+
 /**
  * Sidebar
  *

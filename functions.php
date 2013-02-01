@@ -10,13 +10,30 @@
 $enough_check_wp_version = explode('-',$wp_version);
 $enough_wp_version      = $enough_check_wp_version[0];
 
-if( !isset( $enough_current_theme_name ) ){
     if( $enough_wp_version >= '3.4' ){
-        $enough_current_theme_name = wp_get_theme();
+		
+		$theme_data = wp_get_theme();
+     
+		$enough_theme_uri			= $theme_data->ThemeURI;
+		$enough_author_uri			= $theme_data->Author_URI;
+		$enough_version				= $theme_data->Version;
+		$enough_current_theme_name	= $theme_data->Name;
+		$enough_description			= $theme_data->Description;
+		$enough_author				= $theme_data->Author;
+		$enough_template			= $theme_data->Template;
+		$enough_tags				= $theme_data->Tags;
+		$enough_tags				= implode(',',$enough_tags);
+		
     }else{
-        $enough_current_theme_name = get_current_theme();
+		$enough_theme_uri			= "";
+		$enough_author_uri			= "";
+		$enough_version				= "";
+		$enough_current_theme_name	= "";
+		$enough_description			= "";
+		$enough_author				= "";
+		$enough_template			= "";
+		$enough_tags				= "";
     }
-}
 
     load_textdomain( 'enough', get_template_directory().'/languages/'.get_locale().'.mo' );
 
@@ -218,12 +235,7 @@ if( !function_exists( 'enough_theme_setup' ) ){
 
 
     }
-    if( $enough_wp_version < '3.4' ){
-        add_custom_image_header('enough_header_style', 'enough_admin_header_style');
-        add_custom_background();
 
-
-    }
     $enough_options  = get_option("enough_theme_settings");
     add_action( 'wp_head', 'enough_slider' );
 
@@ -597,6 +609,7 @@ if( ! function_exists( 'enough_the_content') ){
  */
 if( ! function_exists( 'enough_the_footer' ) ){
     function enough_the_footer( $diaplay = true ){
+	global $enough_current_theme_name;
     ?>
 <footer role="contentinfo">
     <address>
@@ -611,7 +624,7 @@ if( ! function_exists( 'enough_the_footer' ) ){
     __( 'Comments <span>(RSS)</span>',"enough" )
     );
     if( is_child_theme() ){
-        $enough_theme_name = 'Child theme '.ucwords(get_current_theme()).' of '.__("enough Theme","enough");
+        $enough_theme_name = 'Child theme '.ucwords( $enough_current_theme_name ).' of '.__("enough Theme","enough");
     }else{
         $enough_theme_name = __("enough Theme","enough");
     }
@@ -846,23 +859,21 @@ if($enough_options['enough_use_slider'] !== 'no'){?>
 
                 if($enough_title_length !== 0){?>
                 var px = width /<?php echo $enough_title_length;?>;
-                if( px < 10){ var px = 13;}
-                if( px > 30){ var px = 30;}
-                if( width < 480){ var px = 20;}
-                   jQuery('.site-title').css('font-size', px + 'px');
+                if( px < 10){ var tpx = 13;}
+                if( px > 30){ var tpx = 30;}
+                if( width < 480){ var tpx = 20;}
+                   jQuery('.site-title').css('font-size', tpx + 'px');
                 <?php }?>
                 <?php if($enough_description_length !== 0){?>
                 var px = width /<?php echo $enough_description_length;?>;
-                if( px < 10){ var px = 13;}
-                if( px > 26){ var px = 26;}
-                if( width < 480){ var px = 14;}
+                if( px < 10){ var dpx = 13;}
+                if( px > 26){ var dpx = 20;}
+                if( width < 480){ var dpx = 14;}
 
-                   jQuery('.site-description').css('font-size', px  + 'px');
+                   jQuery('.site-description').css('font-size', dpx  + 'px');
                 <?php }?>
                 if( upload_image && use_slider ){
                 <?php
-
-            if ( ! is_multisite() ) {
                     $url        = get_theme_mod( 'header_image' );
 
                     if( empty( $url ) ){ //When child theme $url empty
@@ -873,12 +884,18 @@ if($enough_options['enough_use_slider'] !== 'no'){?>
                         $url = get_random_header_image();
                     }
 
-                   // $uploads    = wp_upload_dir();
-                    $path       = $uploads['path'].'/'. basename( $url );
+				    $uploads    = wp_upload_dir();
+            		$file_name  =  basename( $url );
+					
+					//get_option( 'uploads_use_yearmonth_folders' )
+					if( preg_match( '|/[0-9]{4}/[0-9]{2}/'.$file_name.'$|', $url, $regs ) ){
+						$child_path = $regs[0];
+					}else{
+						$child_path = '/'. $file_name;
+					}
 
-                    if( ! file_exists( $path ) ){
-                        $path = get_template_directory().'/images/headers/'. basename( $url );
-                    }
+            		$path = $uploads['path']. $child_path;
+
 
 
                     if( $url !== 'remove-header' ){
@@ -898,58 +915,7 @@ if($enough_options['enough_use_slider'] !== 'no'){?>
 
                     }//empty $ratio
 
-                }else{
 
-                    $url        = get_theme_mod( 'header_image' );
-
-                    if( empty( $url ) ){ //When child theme $url empty
-                        $url        = get_header_image();
-                    }
-					
-					if( $url == 'random-uploaded-image'){
-                        $url = get_random_header_image();
-                    }
-
-
-                   // $uploads    = wp_upload_dir();
-                    $path       = $uploads['path'].'/'. basename( $url );
-					
-					if( ! file_exists( $path ) ){
-                            $path   = get_template_directory().'/images/please_upload.png';
-                            $url    = get_template_directory_uri().'/images/please_upload.png';
-					}
-
-                    if( $enough_options['enough_use_slider'] == 'yes' ){
-					
-	
-                        ?>
-                        image_exists = '<?php echo $url;?>';
-                        <?php
-
-
-                    }
-
-                    if( ! file_exists( $path ) ){
-                        $path       = get_template_directory().'/images/headers/wp3.jpg';
-                    }
-
-                    if( $url !== 'remove-header' ){
-
-                        list($img_width, $img_height, $img_type, $img_attr) = getimagesize($path);
-
-                        $ratio = $img_height / $img_width;
-                    }
-
-                    if( ! empty( $ratio )){
-
-                    }else{
-                        $ratio = 0.2084210;?>
-
-
-                        <?php
-                    }//empty $ratio
-
-                }
 ?>
 
                 var header_width = jQuery( 'header' ).width();
@@ -957,35 +923,45 @@ if($enough_options['enough_use_slider'] !== 'no'){?>
                 var height =  ( header_width * ratio ).toFixed(0);
 
                 jQuery('header').removeAttr('style').css({'background-image':'url('+ image_exists + ')', 'height': height + 'px', });
-
-     <?php if( get_header_textcolor() == 'blank' ){?>
-                jQuery('header').css('cursor','pointer').click(function(){
-
-                    location.href = "<?php echo home_url();?>";
-
-                });
-     <?php }?>
+			 <?php if( get_header_textcolor() == 'blank' ){?>
+						jQuery('header').css('cursor','pointer').click(function(){
+		
+							location.href = "<?php echo home_url();?>";
+		
+						});
+			 <?php }?>
                 }else{
 
                 var header_width = jQuery( 'header' ).width();
                 var ratio = <?php echo $ratio;?>;
                 var height =  ( header_width * ratio ).toFixed(0);
-                <?php if( ! get_header_image() ){?>
-                image_exists = '<?php echo get_template_directory_uri();?>/images/headers/wp3.jpg';
-                <?php }else{
-                $url        = get_header_image();
-                $path       = $uploads['path'].'/'. basename( $url );
-                if( ! file_exists( $path ) ){
+				<?php
+				     $url        = get_header_image();
+					if( empty( $url ) ){ //When child theme $url empty
+						$url        = get_header_image();
+					}
+					if( $url == 'random-uploaded-image'){
+						$url = get_random_header_image();
+					}
+				?>
+				image_exists = '<?php echo $url;?>';
+				<?php
+				    $uploads    = wp_upload_dir();
+            		$file_name  =  basename( $url );
+					
+					//get_option( 'uploads_use_yearmonth_folders' )
+					if( preg_match( '|/[0-9]{4}/[0-9]{2}/'.$file_name.'$|', $url, $regs ) ){
+						$child_path = $regs[0];
+					}else{
+						$child_path = '/'. $file_name;
+					}
+
+            		$path = $uploads['path']. $child_path;
                 ?>
-                image_exists = '<?php echo get_template_directory_uri();?>/images/headers/wp3.jpg';
-                <?php
-                }
-
-                }?>
-
-                jQuery('header').removeAttr('style').css({'background-image':'url('+ image_exists + ')', 'height': height + 'px', });
-
-
+				
+					if( image_exists ){
+						jQuery('header').removeAttr('style').css({'background-image':'url('+ image_exists + ')', 'min-height': height + 'px', 'background-color':'#efefef','background-repeat':'no-repeat'});
+					}
                 }
 
 
@@ -1050,13 +1026,9 @@ if($enough_options['enough_use_slider'] !== 'no'){?>
                     if (jQuery('ul').is('.tagcloud-wrapper')) {
                         jQuery('div.tagcloud').unwrap();
                     }
-                    <?php  if( $is_IE ){?>
-                    if ( ! jQuery('body').is('[class^="enough-w"]')) {
-                       // location.reload();
-                    }
-                    <?php } //end $is_IE ?>
+
                 }else{
-                <?php if( basename( wp_get_referer() ) !== 'customize.php' ){?>
+                <?php if( basename( wp_get_referer() ) !== 'customize.php' and WP_DEBUG == true ){?>
                     if (!jQuery('ul').is('.toggle-navigation')) {
                         location.reload();
                     }
@@ -1091,8 +1063,15 @@ jQuery('script #enough-slider-js, style #enough-slider-css').remove();
                     }
                 });
             }
-
-
+<?php if($is_IE){ 
+		/**
+		 * Fixed IE height issue
+		 *
+		 *
+		 *
+		 */
+?>    		jQuery('article img').removeAttr("height").removeAttr("width");
+<?php } ?>
             fontResize();
             jQuery(window).resize( function () {fontResize()});
 
@@ -1102,8 +1081,6 @@ jQuery('script #enough-slider-js, style #enough-slider-css').remove();
         <?php
     }
 }
-
-
 /**
  *
  *
@@ -1328,7 +1305,7 @@ if( ! class_exists( 'enough_menu_create' ) ){
  *
  */
         function enough_theme_option_panel() {
-            global $wpdb,$count, $enough_admin_options_setting, $enough_wp_version;
+            global $wpdb,$count, $enough_admin_options_setting, $enough_wp_version, $enough_current_theme_name;
             $ok     = false;
             $result = "";
             $count = '';
@@ -1363,7 +1340,7 @@ if( ! class_exists( 'enough_menu_create' ) ){
             $result .= '<div class="wrap"><div id="title-enough-header" >';
 
             $result .= screen_icon();
-            $result .= "<h2>" .  ucfirst(get_current_theme()) . __(' Theme Settings', 'enough') . "</h2>";
+            $result .= "<h2>" .  ucfirst( $enough_current_theme_name ) . __(' Theme Settings', 'enough') . "</h2>";
 
             $result .= $enough_navigation_list;
             $result .= '<br style="clear:both;" />';
@@ -1409,7 +1386,8 @@ if( ! class_exists( 'enough_menu_create' ) ){
  *
  */
         function add_menus() {
-                $option_name   = ucwords(get_current_theme()).' Options';
+			global $enough_current_theme_name;
+                $option_name   = ucwords( $enough_current_theme_name ).' Options';
                 $hook_suffix = add_theme_page(
                         ENOUGH_TABLE_TITLE,
                         $option_name,
@@ -1429,59 +1407,60 @@ if( ! class_exists( 'enough_menu_create' ) ){
  *
  *
  */
+		function enough_settings_page_contextual_help() {
+        	$screen = get_current_screen();
 
-        function enough_settings_page_contextual_help() {
-        $screen = get_current_screen();
+			global $enough_theme_uri, $enough_author_uri, $enough_version, $enough_current_theme_name, $enough_description, $enough_author, $enough_template, $enough_tags;
+		
+		
 
-        $theme_data = get_theme_data( get_theme_root() . '/enough/style.css' );
-
-        $html = '<dt>%1$s</dt><dd>%2$s</dd>';
-        $link = '<a href="%1$s" %3$s>%2$s</a>';
-
-
-        $content = '';
-
-        /* theme description*/
-        $content .= sprintf($html
-                , __('Description','enough')
-                , __( $theme_data['Description'] ,'enough')
-                );
-        /* theme URI*/
-        $content .= sprintf($html
-                , __('Theme URI','enough')
-                , sprintf($link,$theme_data['URI'], $theme_data['URI'], 'target="_self"' )
-                );
-        /*AuthorURI*/
-        $content .= sprintf($html
-                , __('Author','enough')
-                , sprintf( $link,$theme_data['AuthorURI'], $theme_data['Author'], 'target="_self"' )
-                );
-        /*Version*/
-        $content .= sprintf($html
-                , __('Version','enough')
-                , $theme_data['Version']
-                );
-        /*Changelog.txt*/
-
-        $content .= sprintf($html
-                , __('Change log text','enough')
-                , sprintf( $link, get_template_directory_uri().'/changelog.txt', __('Changelog , display new window', 'enough'), 'target="_blank"' )
-                ,'target="_blank"'
-                );
-        /*readme.txt*/
-        $content .= sprintf($html
-                , __('Readme text','enough')
-                , sprintf( $link, get_template_directory_uri().'/readme.txt', __('Readme , display new window', 'enough'), 'target="_blank"' )
-                );
-
-
-        $content = '<dl id="enough-help">'.$content.'</dl>';
-
-            $screen->add_help_tab( array(
-                'id'      => 'enough-settings-help',
-                'title'   => __( 'Enough infomation', 'enough' ),
-                'content' => $content
-            ) );
+			$html = '<dt>%1$s</dt><dd>%2$s</dd>';
+			$link = '<a href="%1$s" %3$s>%2$s</a>';
+	
+	
+			$content = '';
+	
+			/* theme description*/
+			$content .= sprintf($html
+					, __('Description','enough')
+					, __( $enough_description ,'enough')
+					);
+			/* theme URI*/
+			$content .= sprintf($html
+					, __('Theme URI','enough')
+					, sprintf($link,$enough_theme_uri, $enough_theme_uri, 'target="_self"' )
+					);
+			/*AuthorURI*/
+			$content .= sprintf($html
+					, __('Author','enough')
+					, sprintf( $link,$enough_author_uri, $enough_author_uri, 'target="_self"' )
+					);
+			/*Version*/
+			$content .= sprintf($html
+					, __('Version','enough')
+					, $enough_version
+					);
+			/*Changelog.txt*/
+	
+			$content .= sprintf($html
+					, __('Change log text','enough')
+					, sprintf( $link, get_template_directory_uri().'/changelog.txt', __('Changelog , display new window', 'enough'), 'target="_blank"' )
+					,'target="_blank"'
+					);
+			/*readme.txt*/
+			$content .= sprintf($html
+					, __('Readme text','enough')
+					, sprintf( $link, get_template_directory_uri().'/readme.txt', __('Readme , display new window', 'enough'), 'target="_blank"' )
+					);
+	
+	
+			$content = '<dl id="enough-help">'.$content.'</dl>';
+	
+				$screen->add_help_tab( array(
+					'id'      => 'enough-settings-help',
+					'title'   => __( 'Enough infomation', 'enough' ),
+					'content' => $content
+				) );
         }
 /**
  *
@@ -1534,7 +1513,7 @@ if( ! class_exists( 'enough_menu_create' ) ){
 $lines .= '<a href="#wpwrap">Top</a>';
                     $lines .= '<h3 class="setting-title">'. enough_theme_option($key,'title').'</h3>';
                     $lines .=  '<strong class="setting-excerpt">'.enough_theme_option($key,'excerpt').'</strong>';
-                    $lines .= '<p><input  accesskey="'.esc_attr($this->accesskey[$i]).'" type="text" name="enough_option_values['.$key.']" value="'.esc_attr__($val,'enough').'"';
+                    $lines .= '<p><input  accesskey="'.esc_attr($this->accesskey[$i]).'" type="text" name="enough_option_values['.$key.']" value="'.esc_attr($val).'"';
                    $lines .= ' /></p>';
             $lines .= '</div>';
                 }elseif(enough_theme_option($key,'type') == 'textarea' ){
@@ -1549,7 +1528,7 @@ $lines .= '<a href="#wpwrap">Top</a>';
 $lines .= '<a href="#wpwrap">Top</a>';
                     $lines .= '<h3 class="setting-title">'. enough_theme_option($key,'title').'</h3>';
                     $lines .=  '<strong class="setting-excerpt">'.enough_theme_option($key,'excerpt').'</strong>';
-                    $lines .= '<p><textarea accesskey="'.esc_attr($this->accesskey[$i]).'" name="enough_option_values['.$key.']" >'.esc_attr__($val,'enough').'</textarea></p>';
+                    $lines .= '<p><textarea accesskey="'.esc_attr($this->accesskey[$i]).'" name="enough_option_values['.$key.']" >'.esc_attr($val).'</textarea></p>';
             $lines .= '</div>';
                     $i++;
                 }elseif(enough_theme_option($key,'type') == 'checkbox' ){
@@ -1564,7 +1543,7 @@ $lines .= '<a href="#wpwrap">Top</a>';
 $lines .= '<a href="#wpwrap">Top</a>';
                     $lines .= '<h3 class="setting-title">'. enough_theme_option($key,'title').'</h3>';
                     $lines .=  '<strong class="setting-excerpt">'.enough_theme_option($key,'excerpt').'</strong>';
-                    $lines .= '<p><input  accesskey="'.esc_attr($this->accesskey[$i]).'" type="checkbox" name="enough_option_values['.$key.'][]" value="'.esc_attr__(enough_theme_option($key,'option_value'),'enough').'"';
+                    $lines .= '<p><input  accesskey="'.esc_attr($this->accesskey[$i]).'" type="checkbox" name="enough_option_values['.$key.'][]" value="'.esc_attr(enough_theme_option($key,'option_value')).'"';
                     $i++;
                     $check = enough_theme_option($key);
                    if( is_array( $check ) and (enough_theme_option($key,'option_value') == $val or array_search(enough_theme_option($key,'option_value'),$check) !== false  ) ){
@@ -1576,7 +1555,7 @@ $lines .= '<a href="#wpwrap">Top</a>';
                     foreach($select_values as $label => $val_check_box){
                         $lines .= '<input  accesskey="'.esc_attr($this->accesskey[$i]).
                                     '" type="checkbox" name="enough_option_values['.$key.'][]" value="'.
-                                    esc_attr__($val_check_box,'enough').'"';
+                                    esc_attr($val_check_box).'"';
                         $i++;
                         if(is_array( $check ) and (enough_theme_option($key) == $val_check_box or array_search($val_check_box,$check) !== false ) ){
                             $lines .= 'checked = "checked" />'.$val_check_box;
@@ -1598,7 +1577,7 @@ $lines .= '<a href="#wpwrap">Top</a>';
 $lines .= '<a href="#wpwrap">Top</a>';
                     $lines .= '<h3 class="setting-title">'. enough_theme_option($key,'title').'</h3>';
                     $lines .=  '<strong class="setting-excerpt">'.enough_theme_option($key,'excerpt').'</strong>';
-                    $lines .= '<p><label><input  accesskey="'.esc_attr($this->accesskey[$i]).'" type="radio" name="enough_option_values['.$key.']" value="'.esc_attr__(enough_theme_option($key,'option_value'),'enough').'"';
+                    $lines .= '<p><label><input  accesskey="'.esc_attr($this->accesskey[$i]).'" type="radio" name="enough_option_values['.$key.']" value="'.esc_attr(enough_theme_option($key,'option_value')).'"';
                     $i++;
                     $check = enough_theme_option($key);
 
@@ -1614,7 +1593,7 @@ $lines .= '<a href="#wpwrap">Top</a>';
                         foreach($select_values as $label => $val_check_box){
                             $lines .= '<label><input  accesskey="'.esc_attr($this->accesskey[$i]).
                                         '" type="radio" name="enough_option_values['.$key.']" value="'.
-                                        esc_attr__($val_check_box,'enough').'"';
+                                        esc_attr($val_check_box).'"';
                             $i++;
 
                             if( enough_theme_option($key) == $val_check_box or (is_array( $check ) and array_search($val_check_box,$check) !== false ) ){
@@ -1661,6 +1640,7 @@ $lines .= '<a href="#wpwrap">Top</a>';
  */
 if( ! function_exists( "enough_first_only_msg" ) ){
     function enough_first_only_msg($type=0) {
+		global $enough_current_theme_name;
         if ( $type == 1 ) {
             $query  = 'enough_settings';
             $link   = get_site_url(null, 'wp-admin/themes.php?page='.$query, 'admin') ;
@@ -1668,7 +1648,7 @@ if( ! function_exists( "enough_first_only_msg" ) ){
             if (version_compare(PHP_VERSION, '5.0.0', '<')) {
             $msg    = sprintf(__('Sorry Your PHP version is %1$s Please use PHP version 5 or later.','enough'),PHP_VERSION);
             }else{
-            $msg    = sprintf(__('Thank you for adopting the %1$s theme. It is necessary to set it to this theme. Please move to a set screen clicking this <a href="%2$s">settings page</a>.','enough'),get_current_theme() ,$link);
+            $msg    = sprintf(__('Thank you for adopting the %1$s theme. It is necessary to set it to this theme. Please move to a set screen clicking this <a href="%2$s">settings page</a>.','enough'), $enough_current_theme_name ,$link);
             }
         }
         return '<div id="testmsg" class="error"><p>' . $msg . '</p></div>' . "\n";

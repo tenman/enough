@@ -87,9 +87,9 @@ html,body,form,fieldset,p,div,h1,h2,h3,h4,h5,h6 {
 img{
 margin:.5rem;
 }
-header img{
-margin:0;
-}
+
+
+
 input[type=file],input[type=reset],input[type=submit] {
 padding:0.3rem 0.5rem;
 }
@@ -98,7 +98,7 @@ input[type=text],input[type=radio],input[type=checkbox] {
 margin:0.1rem 0.3rem;
 }
 
-nav div,nav img,object,embed,iframe {
+nav div,nav img{
 height:auto;
 max-width:100%;
 }
@@ -106,13 +106,21 @@ max-width:100%;
 p {
 line-height:1.5;
 }
-
-table {
-width:100%;
+table,
+object,
+iframe{
+max-width:100%!important;
 }
-
+table {
+box-sizing:border-box;
+}
+th,
 td {
-text-align:right;
+padding:5px;
+max-width:100%;
+}
+tr{
+max-width:100%;
 }
 
 textarea {

@@ -20,17 +20,26 @@
 	border-left:6px solid #999;
 }
 
-
+.menu-header .sub-menu a,
 .menu-header .children a,
+.menu-header .sub-menu,
 .menu-header .children,
 .menu-header a,
 .menu-header{
 	color:#999;	
 }
 
+.menu-header .sub-menu a:hover,
 .menu-header .children a:hover,
 .menu-header a:hover{
 	background:#eee;
+	color:#555;
+}
+.ie9 .menu-header .sub-menu li,
+.ie9 .menu-header .children li,
+.ie8 .menu-header .sub-menu li,
+.ie8 .menu-header .children li{
+	background:#fff;
 	color:#555;
 }
 

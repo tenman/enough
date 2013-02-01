@@ -17,16 +17,17 @@
 	position:relative;
 }
 .comment-body{
-	border:1px solid #999;
 	padding:.5em;
 	padding:.5rem;
+	border-bottom:1px solid #eee;
 }
 .thread-odd .comment-body{
-	background:rgba(200,200,200,0.6);
+	
 }
 .thread-even .comment-body{
-	background:rgba(200,200,200,0.4);
+	
 }
+.wp-list-comments .sub-menu,
 .wp-list-comments .children{
 	margin-top:0;
 	margin-bottom:0;

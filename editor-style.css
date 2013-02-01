@@ -20,11 +20,14 @@ dt{
 p{
 	line-height:1.5;
 }
-table{
-	width:100%;
+.wp-content table{
+
+	width:90%;
+	margin:5%;
 }
-td{
-	text-align:right;
+.wp-content th,
+.wp-content td {
+	padding:5px;
 }
 .wp-caption{
 	margin:.3rem;	
