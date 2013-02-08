@@ -304,9 +304,9 @@ if( ! function_exists( 'enough_embed_meta' ) ){
         global $enough_site_image;
         $header_image_css               = '';
         $image_uri                      = get_theme_mod('header_image');
-		if( $image_uri == 'random-uploaded-image'){
-			$image_uri = get_random_header_image();
-		}
+        if( $image_uri == 'random-uploaded-image'){
+            $image_uri = get_random_header_image();
+        }
         $image_size                     = get_theme_mod('header_image_data');
 //       $width                          = $image_size->width;
 //       $height                         = $image_size->height;
@@ -880,7 +880,7 @@ if($enough_options['enough_use_slider'] !== 'no'){?>
                     $url        = get_theme_mod( 'header_image' );
 
                     if( empty( $url ) ){ //When child theme $url empty
-                        $url	= get_header_image();
+                        $url    = get_header_image();
                     }
 
                     if( $url == 'random-uploaded-image'){
@@ -889,18 +889,18 @@ if($enough_options['enough_use_slider'] !== 'no'){?>
 
                     $uploads    = wp_upload_dir();
                     $file_name  =  basename( $url );
-					$child_path	= '/'. $file_name;
-            		$path		= $uploads['path']. $child_path;
+                    $child_path = '/'. $file_name;
+                    $path       = $uploads['path']. $child_path;
 
                     if( $url !== 'remove-header' ){
-					
-						if( file_exists( $path ) ){
-							list($img_width, $img_height, $img_type, $img_attr) = getimagesize($path);
-							$ratio = $img_height / $img_width;
-						}else{
-							$raindrops_hd_images_path = get_template_directory().'/images/headers/'. basename( $url );
-							$ratio = 0.2084210;
-						}
+
+                        if( file_exists( $path ) ){
+                            list($img_width, $img_height, $img_type, $img_attr) = getimagesize($path);
+                            $ratio = $img_height / $img_width;
+                        }else{
+                            $raindrops_hd_images_path = get_template_directory().'/images/headers/'. basename( $url );
+                            $ratio = 0.2084210;
+                        }
                     }
 ?>
 
@@ -946,14 +946,14 @@ if($enough_options['enough_use_slider'] !== 'no'){?>
                     if( image_exists ){
                         jQuery('header').removeAttr('style').css({'background-image':'url('+ image_exists + ')', 'min-height': height + 'px', 'background-color':'#efefef','background-repeat':'no-repeat','background-size':'cover'});
                     }
-					
-				<?php if( get_header_textcolor() == 'blank' ){?>
+
+                <?php if( get_header_textcolor() == 'blank' ){?>
                         jQuery('header').css('cursor','pointer').click(function(){
 
                             location.href = "<?php echo home_url();?>";
 
                         });
-				<?php }?>
+                <?php }?>
                 }
 
 
@@ -1050,8 +1050,10 @@ jQuery('script #enough-slider-js, style #enough-slider-css').remove();
                   //jQuery(".result-w").text(width);?>
                     if( width - 200 < menu_item_position){
                         jQuery('.menu-header .children .children').addClass('left');
+                        jQuery('.menu-header .sub-menu .sub-menu').addClass('left');
                     }else if( width / 2 >  menu_item_position){
                         jQuery('.menu-header .children .children').removeClass('left');
+                        jQuery('.menu-header .sub-menu .sub-menu').removeClass('left');
                     }
                 });
             }

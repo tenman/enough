@@ -4,8 +4,10 @@ Fixed
     Fixed Custom Header display randam not work.
     Fixed header image display improperly
         when uploading files ‘Organize my uploads into month- and year-based folders'
+    Fixed wp_nav_menu() .sub-menu display position improperly.
 modified
     Add link to home when header text color value blank.
+
 ----------------------------------------------
 Changelog -----------------------------------
 version:0.46
