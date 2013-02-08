@@ -1,4 +1,13 @@
 Changelog -----------------------------------
+version:0.47
+Fixed
+    Fixed Custom Header display randam not work.
+    Fixed header image display improperly
+        when uploading files ‘Organize my uploads into month- and year-based folders'
+modified
+    Add link to home when header text color value blank.
+----------------------------------------------
+Changelog -----------------------------------
 version:0.46
     Fixed iframe element height display improperly.
     Fixed Custom Header Image display improperly.

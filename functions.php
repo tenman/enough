@@ -304,6 +304,9 @@ if( ! function_exists( 'enough_embed_meta' ) ){
         global $enough_site_image;
         $header_image_css               = '';
         $image_uri                      = get_theme_mod('header_image');
+		if( $image_uri == 'random-uploaded-image'){
+			$image_uri = get_random_header_image();
+		}
         $image_size                     = get_theme_mod('header_image_data');
 //       $width                          = $image_size->width;
 //       $height                         = $image_size->height;
@@ -877,7 +880,7 @@ if($enough_options['enough_use_slider'] !== 'no'){?>
                     $url        = get_theme_mod( 'header_image' );
 
                     if( empty( $url ) ){ //When child theme $url empty
-                        $url        = get_header_image();
+                        $url	= get_header_image();
                     }
 
                     if( $url == 'random-uploaded-image'){
@@ -886,36 +889,19 @@ if($enough_options['enough_use_slider'] !== 'no'){?>
 
                     $uploads    = wp_upload_dir();
                     $file_name  =  basename( $url );
-
-                    //get_option( 'uploads_use_yearmonth_folders' )
-                    if( preg_match( '|/[0-9]{4}/[0-9]{2}/'.$file_name.'$|', $url, $regs ) ){
-                        $child_path = $regs[0];
-                    }else{
-                        $child_path = '/'. $file_name;
-                    }
-
-                    $path = $uploads['path']. $child_path;
-
-
+					$child_path	= '/'. $file_name;
+            		$path		= $uploads['path']. $child_path;
 
                     if( $url !== 'remove-header' ){
-
-                        list($img_width, $img_height, $img_type, $img_attr) = getimagesize($path);
-
-                            $ratio = $img_height / $img_width;
+					
+						if( file_exists( $path ) ){
+							list($img_width, $img_height, $img_type, $img_attr) = getimagesize($path);
+							$ratio = $img_height / $img_width;
+						}else{
+							$raindrops_hd_images_path = get_template_directory().'/images/headers/'. basename( $url );
+							$ratio = 0.2084210;
+						}
                     }
-
-                    if( ! empty( $ratio )){
-
-                    }else{
-                        $ratio = 0.2084210;
-                    ?>
-
-                    <?php
-
-                    }//empty $ratio
-
-
 ?>
 
                 var header_width = jQuery( 'header' ).width();
@@ -958,8 +944,16 @@ if($enough_options['enough_use_slider'] !== 'no'){?>
                 ?>
 
                     if( image_exists ){
-                        jQuery('header').removeAttr('style').css({'background-image':'url('+ image_exists + ')', 'min-height': height + 'px', 'background-color':'#efefef','background-repeat':'no-repeat'});
+                        jQuery('header').removeAttr('style').css({'background-image':'url('+ image_exists + ')', 'min-height': height + 'px', 'background-color':'#efefef','background-repeat':'no-repeat','background-size':'cover'});
                     }
+					
+				<?php if( get_header_textcolor() == 'blank' ){?>
+                        jQuery('header').css('cursor','pointer').click(function(){
+
+                            location.href = "<?php echo home_url();?>";
+
+                        });
+				<?php }?>
                 }
 
 
