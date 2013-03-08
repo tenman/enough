@@ -109,3 +109,47 @@ blockquote{
 blockquote{
 	border-left:6px solid #ccc;
 }
+
+.entry-content blockquote{
+	border:none;
+	border-left:1px solid #ccc;
+}
+.entry-content blockquote:before{
+	content:'“';
+	font-family:serif;
+	font-weight:bold;
+	font-size:30px;
+	display:block;
+}
+.entry-content blockquote:after{
+	content:'”';
+	font-family:serif;
+	font-weight:bold;
+	font-size:30px;
+	display:block;
+	text-align:right;
+	margin-top:.5em;
+	margin-bottom:-.5em;
+}
+
+.entry-content .whisper{
+	margin-left:4.4em;
+	background:#eee;
+	padding:1em;
+}
+/* post format */
+.format-chat,
+.format-aside,
+.format-audio,
+.format-link,
+.format-video,
+.format-gallery,
+.format-link,
+.format-status,
+.format-image,
+.format-quote{
+	background:#efefef;
+	background:rgba(222,222,222,0.2);
+	border-top:1px solid #ccc;	
+	border-bottom:1px solid #ccc;	
+}

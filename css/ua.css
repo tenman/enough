@@ -75,8 +75,8 @@ height:auto!important;
 }
 
 .ie8 .comment-body {
-word-wrap:break-word;
-word-break:break-all;
+/*word-wrap:break-word;*/
+/*word-break:break-all;*/
 }
 
 .ie8 .nav-next {
@@ -322,8 +322,8 @@ padding:0;
 .ie8.enough-w-iphone .entry-content {
 width:96%;
 font-size:24px;
-word-wrap:break-word;
-word-break:break-all;
+/*word-wrap:break-word;*/
+/*word-break:break-all;*/
 }
 
 .ie8.enough-w-keitai .entry-content h2,
@@ -333,8 +333,8 @@ word-break:break-all;
 .ie8.enough-w-iphone .entry-content {
 width:96%;
 font-size:18px;
-word-wrap:break-word;
-word-break:break-all;
+/*word-wrap:break-word;*/
+/*word-break:break-all;*/
 }
 
 .ie8.enough-w-keitai .entry-content h3,
@@ -344,8 +344,8 @@ word-break:break-all;
 .ie8.enough-w-iphone .entry-content {
 width:96%;
 font-size:14px;
-word-wrap:break-word;
-word-break:break-all;
+/*word-wrap:break-word;*/
+/*word-break:break-all;*/
 }
 
 .ie8.enough-w-keitai .entry-content h4,
@@ -354,8 +354,8 @@ word-break:break-all;
 .ie8.enough-w-qvga .entry-content h4,
 .ie8.enough-w-iphone .entry-content {
 font-size:13px;
-word-wrap:break-word;
-word-break:break-all;
+/*word-wrap:break-word;*/
+/*word-break:break-all;*/
 }
 
 .ie8.enough-w-keitai article img,

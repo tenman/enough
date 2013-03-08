@@ -64,8 +64,8 @@ top:15px;
 .entry-content,.entry-title{
 	/*margin:10px 14px 10px 24px;*/
 	max-width:100%;
-	word-break:break-all;
-	word-wrap:break-word;
+	/*word-break:break-all;*/
+	/*word-wrap:break-word;*/
 }
 
 .gallery-item img{
@@ -87,8 +87,8 @@ top:15px;
 	margin-right:3px;
 	padding:6px;
 	position:relative;
-	word-break:break-all;
-	word-wrap:break-word;
+	/*word-break:break-all;*/
+	/*word-wrap:break-word;*/
 }
 
 .posted-on{
@@ -133,6 +133,12 @@ top:15px;
 	padding-top:1em;
 	width:96.6%;
 }
+.textwidget{
+overflow:hidden;
+}
+.widget_search .widgettitle,
+.widget_calendar .widgettitle,
+.widget_text .widgettitle,
 .widget_links .widgettitle,
 .widget_rss .widgettitle,.widget_categories .widgettitle,.widget_recent_entries .widgettitle,.widget_tag_cloud .widgettitle,.widget_pages .widgettitle,.widget_nav_menu .widgettitle,.widget_recent_comments .widgettitle,.widget_archive .widgettitle,.widget_meta .widgettitle{
 	-webkit-margin-after:0;
@@ -157,7 +163,7 @@ top:15px;
 	/*margin:.3rem;*/
 }
 .widget_calendar .widgettitle{
-	text-align:center;
+	/*text-align:center;*/
 	margin-bottom:4px;
 }
 #calendar_wrap{
@@ -165,9 +171,6 @@ top:15px;
 }
 .wp-caption img{
 	margin:5px;
-}
-.widget_text{
-	padding:10px;
 }
 
 .wp-caption,article img{
@@ -207,11 +210,10 @@ article{
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
 	float:left;
-	/*margin:0 0 5px 10px;*/
-	padding-left:10px;
+	padding-left:0;
 	width:69.4%;
+	padding:10px;
 }
-
 article.page{
 	display:block;
 	margin:0 5%;
@@ -219,6 +221,10 @@ article.page{
 	width:auto;
 	max-width: 90%;
 	box-sizing: border-box;
+}
+.page-template-default article.type-page {
+	display:block;
+	float:none;
 }
 
 article.page .entry-content,article.page .entry-title{
@@ -373,6 +379,52 @@ ul#sidebar-1 h2.widgettitle{
 	z-index:3;
 	width:100%;
 }
+/* post format */
+.post-format-content{
+	margin:48px 0;
+	text-align:center;
+}
+.post-format-content blockquote{
+	text-align:left;
+}
 
+.format-link .entry-content a{
+	display:block;
+	text-align:center;
+	margin:64px 0 0;
+}
+.entry-content{
+	margin:0 10px 0 0;
+	height:100%;
+}
+.format-aside,
+.format-audio,
+.format-link,
+.format-video,
+.format-gallery,
+.format-link,
+.format-status,
+.format-image,
+.format-quote{
+}
+.format-standard{
+}
+.post-format-link{
+	font-weight:bold;
+	color:gray;
+}
+.post-format-entry-meta{
+	text-align:center;
+}
+.post-format-entry-meta a{
+	display:inline-block;
+	padding:6px;
+	font-size:small;
+	
+}
+.ecnough-chat-text-after,
+.enough-chat-text{
+	margin-left:4em;
+}
 
 

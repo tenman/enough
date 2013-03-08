@@ -7,8 +7,25 @@
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * @package Enough
  */
-$enough_check_wp_version = explode('-',$wp_version);
-$enough_wp_version      = $enough_check_wp_version[0];
+/**
+ *
+ *
+ *
+ *
+ * @since 0.48
+ */
+	if(!defined('ABSPATH')){
+		exit;
+	}
+/**
+ *
+ *
+ *
+ *
+ * 
+ */
+	$enough_check_wp_version = explode('-',$wp_version);
+	$enough_wp_version      = $enough_check_wp_version[0];
 
     if( $enough_wp_version >= '3.4' ){
 
@@ -36,8 +53,6 @@ $enough_wp_version      = $enough_check_wp_version[0];
     }
 
     load_textdomain( 'enough', get_template_directory().'/languages/'.get_locale().'.mo' );
-
-
 /**
  *
  *
@@ -53,15 +68,6 @@ $enough_wp_version      = $enough_check_wp_version[0];
     }
     if(!defined('HEADER_TEXTCOLOR')){
         define('HEADER_TEXTCOLOR', 'ffffff');
-    }
-    if(!defined('HEADER_IMAGE')){
-        define('HEADER_IMAGE', '%s/images/headers/wp3.jpg'); // %s is the template dir uri
-    }
-    if(!defined('HEADER_IMAGE_WIDTH')){
-        define('HEADER_IMAGE_WIDTH', 950);
-    }
-    if(!defined('HEADER_IMAGE_HEIGHT')){
-        define('HEADER_IMAGE_HEIGHT', 198);
     }
 /**
  *
@@ -90,7 +96,6 @@ $enough_wp_version      = $enough_check_wp_version[0];
         'primary' => __( 'Main navigation', 'enough' )
         );
     register_nav_menus( $enough_register_nav_menus_args );
-
 /**
  *
  *
@@ -166,7 +171,6 @@ $enough_wp_version      = $enough_check_wp_version[0];
         'type' => 'text',
          'select_values' => '',
         ),
-
     );
 /**
  *
@@ -202,9 +206,8 @@ if( !function_exists( 'enough_theme_setup' ) ){
         add_action('wp_enqueue_scripts', 'enough_enqueue_scripts_styles');
         add_filter('body_class','enough_add_body_class');
         add_action( 'wp_enqueue_scripts', 'enough_enqueue_comment_reply' );
-       // add_action('wp_footer','enough_small_device_helper');
         $enough_is_submenu = new enough_menu_create;
-        add_action('admin_menu', array($enough_is_submenu, 'add_menus'));
+        add_action('admin_menu', array($enough_is_submenu, 'enough_add_menus'));
 
         add_action('load-themes.php', 'enough_install_navigation');
 
@@ -224,9 +227,6 @@ if( !function_exists( 'enough_theme_setup' ) ){
         if($enough_embed_iphone_status_bar_style !== false){
             add_action("wp_head",'enough_embed_iphone_status_bar');
         }
-        //if($is_IE){
-            //add_filter("enough_post_thumbnail","ecnough_ie_height_issue");
-        //}
         add_filter( 'post_class', 'enough_add_post_class' );
     $enough_site_image = get_template_directory_uri().'/images/headers/wp3.jpg';
     if( $enough_wp_version >= '3.4' ){
@@ -308,8 +308,6 @@ if( ! function_exists( 'enough_embed_meta' ) ){
             $image_uri = get_random_header_image();
         }
         $image_size                     = get_theme_mod('header_image_data');
-//       $width                          = $image_size->width;
-//       $height                         = $image_size->height;
         $body_background_color          = get_theme_mod( "background_color" );
         $body_background_image          = get_theme_mod( "background_image" );
         $body_background_repeat         = get_theme_mod( "background_repeat" );
@@ -452,6 +450,41 @@ if( ! function_exists( 'enough_attachment_navigation' ) ){
     }
 }
 /**
+ *
+ *
+ *
+ *
+ *
+ */
+if( ! function_exists( 'enough_post_format_posted_on' ) ){
+	function enough_post_format_posted_on(){
+					
+		if (comments_open()){
+            $enough_comment_html = '<a href="%1$s" class="enough-comment-link"><span class="enough-comment-string point"></span><em>%2$s %3$s</em></a>';
+            if(get_comments_number() > 0 ){
+                $enough_comment_string = _n('Comment','Comments',get_comments_number(),'enough');
+                $enough_comment_number = get_comments_number();
+            }else{
+                $enough_comment_string = 'Comment';
+                $enough_comment_number = '';
+            }
+        }else{
+            $enough_comment_html   = '';
+            $enough_comment_string = '';
+            $enough_comment_number = '';
+        }
+		    $comments = sprintf($enough_comment_html,get_comments_link(),$enough_comment_number,$enough_comment_string);
+
+			
+			 $format = get_post_format( );
+			 $format = '<a class="post-format-link" href="' . esc_url( get_post_format_link( $format ) ) . '"><span>' . get_post_format_string( $format ) . '</span></a>'; 
+			?>
+			<div class="post-format-name"><?php echo $format;?><?php echo $comments;?></div>
+			<?php
+			return;
+	}
+}
+/**
  * Template function posted_on
  *
  *
@@ -461,6 +494,7 @@ if( ! function_exists( 'enough_attachment_navigation' ) ){
  */
 if( ! function_exists( 'enough_posted_on' ) ){
     function enough_posted_on( $diaplay = true ){
+			
         if( ! is_page( ) and $diaplay == true ){
         ?>
 <div class="posted-on">
@@ -508,10 +542,42 @@ if( ! function_exists( 'enough_posted_on' ) ){
  *
  *
  *
+ * @since 0.48
+ */
+if( ! function_exists( 'enough_post_format_posted_in' ) ){
+	function enough_post_format_posted_in( ){
+	
+				$author = get_the_author();
+				$author = sprintf( '<span class="meta-sep">by</span><span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" >%3$s</a></span>',
+					get_author_posts_url( get_the_author_meta( 'ID' ) ),
+					sprintf( esc_attr__( 'View all posts by %s', 'enough' ), $author ),
+					$author
+				);
+				$permalink	= get_permalink();
+				$format 	= get_post_format();
+				$html		= '<a href="%1$s" class="permalink-post-format-%2$s" rel="bookmark"><span>%4$s %3$s</span></a>';
+				
+				$permalink		= sprintf( $html, 
+									esc_url( $permalink ),
+									esc_attr( $format ),
+									get_post_format_string( $format ), 
+									__('link to','enough')
+								);
+				?>
+				<div class="post-format-entry-meta" style="position:relative;"><?php echo $author;?><?php echo $permalink;?> </div>
+				<?php
+	}
+}
+/**
+ *
+ *
+ *
+ *
  *
  */
 if( ! function_exists( 'enough_posted_in' ) ){
     function enough_posted_in( $diaplay = true ){
+	
         if( ! is_page( ) and $diaplay == true ){
         ?>
 <div class="posted-in">
@@ -562,6 +628,7 @@ if( ! dynamic_sidebar( $id ) ){
         }
     }
 }
+
 /**
  *
  *
@@ -603,6 +670,67 @@ if( ! function_exists( 'enough_the_content') ){
         }
     }
 }
+/**
+ *
+ *
+ *
+ *
+ * @since 0.48
+ */
+
+	add_filter( 'the_content', 'enough_chat_filter' );
+	
+if( ! function_exists( 'enough_chat_filter' ) ){
+	function enough_chat_filter($contents){
+	 		if ( ! has_post_format( 'chat' ) ){
+				return $contents;
+			}
+			
+			$new_contents 	= explode( '<p>', $contents);
+			$result 		= '';
+			$prev_author_id = '';
+			$html 			= '<h4 class="enough-chat enough-chat-author-%1$s">%2$s</h4>
+				<div class="enough-chat-text enough-chat-author-text-%1$s"><p>%3$s</div>';
+					
+			foreach( $new_contents as $key=>$new ){
+
+				preg_match( '|([^\:]+)(\:)(.+)|si', $new, $regs );
+				
+				if( isset( $regs[1] ) and !empty( $regs[1] ) ){
+					$regs[1] = strip_tags( $regs[1] );
+				}
+				if(isset( $regs[1] ) and ! preg_match('!(http|https|ftp)!',$regs[1]) and !empty($regs[1])){
+				
+					$result .= sprintf( $html,
+								esc_attr( enough_chat_author_id( $regs[1] ) ),
+								esc_html($regs[1]),
+								$regs[3]
+							  );
+				}else{
+					$result .= '<p>'.$new;
+				}
+			}
+		return $result;
+	}
+}
+/**
+ *
+ *
+ *
+ *
+ * @since 0.48
+ */
+
+if( ! function_exists( 'enough_chat_author_id' ) ){
+	function enough_chat_author_id( $author ){
+		static $enough_chat_author_id 	= array();
+		$enough_chat_author_id[] 		= $author;
+		$enough_chat_author_id 			= array_unique( $enough_chat_author_id );
+			
+		return array_search( $author, $enough_chat_author_id);
+	}
+}
+	
 /**
  *
  *
@@ -818,20 +946,20 @@ if($enough_options['enough_use_slider'] !== 'no'){?>
             if( width < 481){
            jQuery('.menu-header-container,.menu-wplook-main-menu-container').wrap('<ul class="widget-container-wrapper"><li><\/li><\/ul>');
             jQuery('div.tagcloud').removeAttr('style').wrap('<ul class="tagcloud-wrapper"><li><\/li><\/ul>');
-            jQuery('.widget ul').hide();
-            jQuery('.menu-header-container > ul,menu-wplook-main-menu-container > ul').show();
+            jQuery('.widget ul, .widget form, .widget select, .widget .textwidget').hide();
+            jQuery('.menu-header-container > ul,menu-wplook-main-menu-container > ul,.widget .menu-all-pages-container ul').show();
             if(jQuery('.widgettitle').text() !== ''){
-            jQuery('.widgettitle').show().css({"list-style":"none","font-weight":"bold","margin":"0",'max-width':'90%'});
+            	jQuery('.widgettitle').show().css({"list-style":"none","font-weight":"bold",'max-width':'100%'});
             }
             jQuery('.widgettitle').css("cursor","pointer").toggle(
                 function(){
                 jQuery(this).siblings().show();
-                var v = jQuery(this).html().substring(0, 30 );
+                var v = jQuery(this).html();
                     jQuery(this).html(v);
                 },
                 function(){
                 jQuery(this).siblings().hide();
-                var v = jQuery(this).html().substring(0, 30 );
+                var v = jQuery(this).html();
 
                     jQuery(this).html( v );
             });
@@ -944,7 +1072,7 @@ if($enough_options['enough_use_slider'] !== 'no'){?>
                 ?>
 
                     if( image_exists ){
-                        jQuery('header').removeAttr('style').css({'background-image':'url('+ image_exists + ')', 'min-height': height + 'px', 'background-color':'#efefef','background-repeat':'no-repeat','background-size':'cover'});
+                        jQuery('header').removeAttr('style').css({'background-image':'url('+ image_exists + ')', 'min-height': height + 'px', 'background-color':'#777777','background-repeat':'no-repeat','background-size':'cover'});
                     }
 
                 <?php if( get_header_textcolor() == 'blank' ){?>
@@ -1114,7 +1242,19 @@ if( ! function_exists( 'enough_loop_title' ) ){
     function enough_loop_title(){
         $enough_class_name = "";
         $page_title = "";
-        if(is_search()){
+		if ( has_post_format( 'aside' ) or
+			 has_post_format( 'image' ) or
+			 has_post_format( 'quote' ) or
+			 has_post_format( 'video' ) or
+			 has_post_format( 'audio' ) or
+			 has_post_format( 'gallery' ) or
+			 has_post_format( 'status' ) or
+			 has_post_format( 'link' )
+		){
+            $enough_class_name = 'post-format-archives';
+            $page_title = __("Post Format",'enough');
+            $page_title_c = get_post_format_string( get_post_format() );		
+		}elseif(is_search()){
             $enough_class_name = 'serch-result';
             $page_title = __("Search Results",'enough');
             $page_title_c = get_search_query();
@@ -1368,7 +1508,7 @@ if( ! class_exists( 'enough_menu_create' ) ){
                 $result .= '</p></div>';
                 }
             }
-                $result .= $this->create_form();
+                $result .= $this->enough_create_form();
                 $result .= '</div>';
             echo $result;
         }
@@ -1379,7 +1519,7 @@ if( ! class_exists( 'enough_menu_create' ) ){
  *
  *
  */
-        function add_menus() {
+        function enough_add_menus() {
             global $enough_current_theme_name;
                 $option_name   = ucwords( $enough_current_theme_name ).' Options';
                 $hook_suffix = add_theme_page(
@@ -1477,7 +1617,7 @@ if( ! class_exists( 'enough_menu_create' ) ){
  *
  *
  */
-        function create_form(){
+        function enough_create_form(){
             global $enough_admin_options_setting;
             global $wpdb;
             $option_value   = "-";
@@ -1744,36 +1884,6 @@ if( ! function_exists( 'enough_embed_iphone_status_bar' ) ){
 if( ! function_exists( 'ecnough_ie_height_issue' ) ){
     function ecnough_ie_height_issue($content){
         return str_replace('<img ', '<img style="width:150px;height:auto;" ',$content);
-    }
-}
-/**
- *
- *
- *
- *
- *
- */
-if( ! function_exists( 'enough_header_style' ) /*and $enough_wp_version < '3.4'*/ ){
-    function enough_header_style() {
-        $header_image = get_header_image();
-        if(!empty($header_image)){
-        ?><style type="text/css"><!--
-            header {
-                background: url(<?php echo $header_image ?>);
-                height:<?php echo HEADER_IMAGE_HEIGHT;?>px;
-            }
-            <?php if ( 'blank' == get_header_textcolor() ) {?>
-            header a span{visibility:hidden;}
-            header .site-description span{ display: none; }
-            <?php }else{ ?>
-            header h2,
-            header h1 a{
-                color:#<?php echo get_header_textcolor(); ?>;
-            }
-            <?php } ?>  -->
-        </style><?php
-        }
-
     }
 }
 /**
@@ -2050,59 +2160,78 @@ if( class_exists( 'WP_Customize_Control' ) ){
  */
 
 if( ! function_exists( 'enough_monthly_archive_prev_next_navigation' ) ){
-function enough_monthly_archive_prev_next_navigation(){
-    global $wpdb, $wp_query;
-
-    if( is_month() ){
-
-        $thisyear   = mysql2date('Y', $wp_query->posts[0]->post_date);
-        $thismonth  = mysql2date('m', $wp_query->posts[0]->post_date);
-
-        $unixmonth  = mktime(0, 0 , 0, $thismonth, 1, $thisyear);
-        $last_day   = date('t', $unixmonth);
-
-        $previous   = $wpdb->get_row("SELECT MONTH(post_date) AS month, YEAR(post_date) AS year FROM $wpdb->posts
-            WHERE post_date < '$thisyear-$thismonth-01'
-            AND post_type = 'post' AND post_status = 'publish'
-                ORDER BY post_date DESC
-                LIMIT 1");
-        $next       = $wpdb->get_row("SELECT MONTH(post_date) AS month, YEAR(post_date) AS year FROM $wpdb->posts
-            WHERE post_date > '$thisyear-$thismonth-{$last_day} 23:59:59'
-            AND post_type = 'post' AND post_status = 'publish'
-                ORDER BY post_date ASC
-                LIMIT 1");
-
-        $html       = '<a href="%1$s" class="%3$s">%2$s</a>';
-
-        if ( $previous ) {
-            $calendar_output = sprintf( $html,
-                                        get_month_link($previous->year,
-                                        $previous->month) ,
-                                        sprintf(__('Prev Month( %sth )','enough'),
-                                        $previous->month),
-                                        'alignleft'
-                                      );
-        }
-        $calendar_output .= "\t" ;
-        if ( $next ) {
-            $calendar_output .= sprintf( $html,
-                                        get_month_link($next->year,
-                                        $next->month),
-                                        sprintf(__('Next Month( %sth )','enough'),
-                                        $next->month),
-                                        'alignright'
-                                        );
-        }
-
-        $html = '<div class="%1$s">%2$s</div>';
-
-            $calendar_output = sprintf( $html,
-                                        'enough-monthly-archive-prev-next-avigation',
-                                        $calendar_output
-                                    );
-
-        echo apply_filters( 'enough_monthly_archive_prev_next_navigation', $calendar_output );
-    }
+	function enough_monthly_archive_prev_next_navigation(){
+		global $wpdb, $wp_query;
+	
+		if( is_month() ){
+	
+			$thisyear   = mysql2date('Y', $wp_query->posts[0]->post_date);
+			$thismonth  = mysql2date('m', $wp_query->posts[0]->post_date);
+	
+			$unixmonth  = mktime(0, 0 , 0, $thismonth, 1, $thisyear);
+			$last_day   = date('t', $unixmonth);
+	
+			$previous   = $wpdb->get_row("SELECT MONTH(post_date) AS month, YEAR(post_date) AS year FROM $wpdb->posts
+				WHERE post_date < '$thisyear-$thismonth-01'
+				AND post_type = 'post' AND post_status = 'publish'
+					ORDER BY post_date DESC
+					LIMIT 1");
+			$next       = $wpdb->get_row("SELECT MONTH(post_date) AS month, YEAR(post_date) AS year FROM $wpdb->posts
+				WHERE post_date > '$thisyear-$thismonth-{$last_day} 23:59:59'
+				AND post_type = 'post' AND post_status = 'publish'
+					ORDER BY post_date ASC
+					LIMIT 1");
+	
+			$html       = '<a href="%1$s" class="%3$s">%2$s</a>';
+	
+			if ( $previous ) {
+				$calendar_output = sprintf( $html,
+											get_month_link($previous->year,
+											$previous->month) ,
+											sprintf(__('Prev Month( %sth )','enough'),
+											$previous->month),
+											'alignleft'
+										  );
+			}
+			$calendar_output .= "\t" ;
+			if ( $next ) {
+				$calendar_output .= sprintf( $html,
+											get_month_link($next->year,
+											$next->month),
+											sprintf(__('Next Month( %sth )','enough'),
+											$next->month),
+											'alignright'
+											);
+			}
+	
+			$html = '<div class="%1$s">%2$s</div>';
+	
+				$calendar_output = sprintf( $html,
+											'enough-monthly-archive-prev-next-avigation',
+											$calendar_output
+										);
+	
+			echo apply_filters( 'enough_monthly_archive_prev_next_navigation', $calendar_output );
+		}
+	}
 }
+
+if( ! function_exists( 'enough_article_title' ) ){
+	function enough_article_title(){
+	
+		$content_exists = get_the_content();
+		if( ( has_post_format( 'link' ) and empty( $content_exists ) ) or
+			( has_post_format( 'image' ) and empty( $content_exists ) )	or
+			( has_post_format( 'quote' ) and empty( $content_exists ) )	or
+			( has_post_format( 'video' ) and empty( $content_exists ) )	or
+			( has_post_format( 'audio' ) and empty( $content_exists ) )	or
+			( has_post_format( 'gallery' ) and empty( $content_exists ) )	
+		){
+				return;
+		}
+?>
+	<h2 class="entry-title"><a href="<?php the_permalink();?>"><?php the_title(); ?></a></h2>
+<?php
+	}
 }
 ?>

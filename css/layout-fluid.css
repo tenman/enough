@@ -121,7 +121,7 @@
 		text-align:center;
 	}
 	.widget{
-		margin-right:10px;
+		margin-right:10px!important;
 	}
 
 
@@ -249,17 +249,17 @@
 	blockquote{
 		margin:.5em 1em;
 		margin:.5rem 1rem;
-		word-break:break-all;
-		word-wrap: break-word;
+		/*word-break:break-all;*/
+		/*word-wrap: break-word;*/
 		padding:10px;
 	}
 	blockquote > blockquote,
 	blockquote > blockquote > blockquote{
 		padding:3px 3px 3px 3px;
 		margin:5px;
-		word-break:break-all;
-		word-wrap: break-word;
-	}
+		/*word-break:break-all;*/
+		/*word-wrap: break-word;
+*/	}
 	.widget{margin-right:10px;}
 	
 	#enough-page .menu-header .sub-menu, 
@@ -271,6 +271,24 @@
 		z-index: 99;
 		text-align: left;
 	}
+	.widget{
+		margin-right:0!important;
+	}
+	
+	nav,
+	article{
+		width:100%;
+		margin-bottom:3px;
+		border:none!important;
+	}
+	.textwidget img{
+		max-width: 98%!important;
+	}
+	.textwidget{
+		padding:10px;
+	}
+
+
 
 }
 @media screen and (min-width: 481px){
@@ -386,7 +404,7 @@
 		text-align:center;
 	}
 	.widget{
-		margin-right:10px;
+		margin-right:5px;
 	}
 
 }
@@ -435,6 +453,7 @@ article{
 	.enough-comment-link{
 		top:20px;
 	}
+
 }
 @media screen and (max-width: 640px){
 	.widget_links .widgettitle,

@@ -1,4 +1,8 @@
 Changelog -----------------------------------
+version:0.48
+Fixed
+----------------------------------------------
+Changelog -----------------------------------
 version:0.47
 Fixed
     Fixed Custom Header display randam not work.

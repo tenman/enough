@@ -112,9 +112,10 @@ if( ! has_nav_menu( 'primary' ) ){
  *
  *
  */
-?>
-        <h2 class="entry-title"><a href="<?php the_permalink();?>"><?php the_title(); ?></a></h2>
-<?php
+
+	enough_article_title();
+        
+
 /**
  * posted date, author ,comment(s)
  *
@@ -122,7 +123,20 @@ if( ! has_nav_menu( 'primary' ) ){
  *
  *
  */
-    enough_posted_on($diaplay = true);?>
+	if ( has_post_format( 'aside' ) or
+		 has_post_format( 'image' ) or
+		 has_post_format( 'quote' ) or
+		 has_post_format( 'video' ) or
+		 has_post_format( 'audio' ) or
+		 has_post_format( 'gallery' ) or
+		 has_post_format( 'status' ) or
+		 has_post_format( 'chat' ) or
+		 has_post_format( 'link' )
+	){
+		enough_post_format_posted_on();	
+	}else{
+    	enough_posted_on($diaplay = true);
+	}?>
 <?php
 /**
  *
@@ -143,7 +157,7 @@ if( ! has_nav_menu( 'primary' ) ){
     <div class="entry-content">
 <?php enough_the_content(__( 'Continue&nbsp;reading&nbsp;<span class="meta-nav">&rarr;</span>', 'enough')); ?>
     </div>
-<p><br class="clear .vspacer-1" /></p>
+<br class="clear vspacer-1" />
 <?php
 /**
  * navigation for attachment when display attachment
@@ -161,7 +175,22 @@ if( ! has_nav_menu( 'primary' ) ){
  *
  *
  */
-    enough_posted_in();?>
+ 		if ( has_post_format( 'aside' ) or
+			 has_post_format( 'image' ) or
+			 has_post_format( 'quote' ) or
+			 has_post_format( 'video' ) or
+			 has_post_format( 'audio' ) or
+			 has_post_format( 'gallery' ) or
+			 has_post_format( 'status' ) or
+			 has_post_format( 'chat' ) or
+			 has_post_format( 'link' )
+		){
+		 	enough_post_format_posted_in();
+	 	}else{
+
+    		enough_posted_in();
+		}
+?>
 <?php
 /**
  * <!--nextpage--> Navigation
@@ -187,8 +216,9 @@ if( ! has_nav_menu( 'primary' ) ){
  *
  */
     enough_prev_next_post('nav-below');?>
+<?php if( is_singular() ){ ?>
 <br class="clear"  />
-<?php
+<?php }//is_singular()
 /**
  * comment
  *
@@ -196,9 +226,17 @@ if( ! has_nav_menu( 'primary' ) ){
  *
  *
  */
-    comments_template(); ?>
+if( is_singular() ){
+    comments_template();
+}else{
+?>
+<br class="clear"  />
+<?php
+}
+?>
     </article>
           <?php }//endwhile
+
     }else{
         if ( locate_template( array( '404.php' ) , true , true ) == '') {//template existance check ?>
 <?php

@@ -67,7 +67,7 @@
 		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000', endColorstr='#333');
 		-moz-box-shadow: 0 1px 3px #555;
 		-webkit-box-shadow: 0 1px 3px #555;	
-		border-bottom:1px solid rgba(255,255,255,0.6);
+		border-bottom:1px solid rgba(255,255,255,0.5);
 	}
 	footer{
 		background:#000;
@@ -96,6 +96,9 @@
 	html,
 	.posted-on,
 	.posted-on a.enough-comment-link:active,
+	.widget_search .widgettitle,
+	.widget_calendar .widgettitle,
+	.widget_text .widgettitle,
 	.widget_rss .widgettitle,
 	.widget_links .widgettitle,
 	.widget_categories .widgettitle,
@@ -109,7 +112,7 @@
 		color:#191919;
 		background: -webkit-gradient(linear, left top, left bottom, from(#eeeeee), to(#efefef));
 		background: -moz-linear-gradient(top,  #eeeeee,  #efefef);
-		border-bottom:1px solid rgba(100,100,100,.3);
+	/*	border-bottom:1px solid rgba(100,100,100,.3);*/
 
 	}
 .posted-in{
@@ -145,7 +148,7 @@
 	}
 	.posted-in,
 	.posted-on {
-		margin-right:3px;
+		/*margin-right:10px;*/
 	}
 	.posted-on{
 		padding-left:25px;;
@@ -180,6 +183,20 @@
 		top:10px;
 		display:block;
 	}
+	.post-format-name{
+		position:relative;
+	}
+	
+	.post-format-name a.enough-comment-link em{
+		position:static!important;
+		display:block;
+	}
+	.post-format-name a.enough-comment-link span.enough-comment-string{
+		position:absolute;
+		top:0;
+		display:block;
+	}
+
 
 	
 	.page-item a{
@@ -226,6 +243,13 @@
 	}	
 	
 	}
+@media screen and (min-width: 481px) and (max-width: 639px) {
+	.post-format-name a.enough-comment-link em{
+		position:static!important;
+		display:block;
+	}
+}
+
 @media screen and (max-width : 480px){
 	.alignleft,
 	.alignright{
@@ -275,5 +299,13 @@
 	.enough-w-iphone .enough-toggle-title span{
 		border:1px solid #ccc;
 		padding:10px;
+	}
+	
+
+	.post-format-name a.enough-comment-link em{
+		position:relative;
+		top:-20px;
+		left:0;
+		display:block;
 	}
 }

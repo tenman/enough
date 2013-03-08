@@ -53,8 +53,8 @@ line-height:3;
 a {
 max-width:100%;
 text-decoration:none;
-word-break:break-all;
-word-wrap:break-word;
+/*word-break:break-all;*/
+/*word-wrap:break-word;*/
 }
 
 address {
