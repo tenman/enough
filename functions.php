@@ -14,18 +14,18 @@
  *
  * @since 0.48
  */
-	if(!defined('ABSPATH')){
-		exit;
-	}
+    if(!defined('ABSPATH')){
+        exit;
+    }
 /**
  *
  *
  *
  *
- * 
+ *
  */
-	$enough_check_wp_version = explode('-',$wp_version);
-	$enough_wp_version      = $enough_check_wp_version[0];
+    $enough_check_wp_version = explode('-',$wp_version);
+    $enough_wp_version      = $enough_check_wp_version[0];
 
     if( $enough_wp_version >= '3.4' ){
 
@@ -457,9 +457,9 @@ if( ! function_exists( 'enough_attachment_navigation' ) ){
  *
  */
 if( ! function_exists( 'enough_post_format_posted_on' ) ){
-	function enough_post_format_posted_on(){
-					
-		if (comments_open()){
+    function enough_post_format_posted_on(){
+
+        if (comments_open()){
             $enough_comment_html = '<a href="%1$s" class="enough-comment-link"><span class="enough-comment-string point"></span><em>%2$s %3$s</em></a>';
             if(get_comments_number() > 0 ){
                 $enough_comment_string = _n('Comment','Comments',get_comments_number(),'enough');
@@ -473,16 +473,16 @@ if( ! function_exists( 'enough_post_format_posted_on' ) ){
             $enough_comment_string = '';
             $enough_comment_number = '';
         }
-		    $comments = sprintf($enough_comment_html,get_comments_link(),$enough_comment_number,$enough_comment_string);
+            $comments = sprintf($enough_comment_html,get_comments_link(),$enough_comment_number,$enough_comment_string);
 
-			
-			 $format = get_post_format( );
-			 $format = '<a class="post-format-link" href="' . esc_url( get_post_format_link( $format ) ) . '"><span>' . get_post_format_string( $format ) . '</span></a>'; 
-			?>
-			<div class="post-format-name"><?php echo $format;?><?php echo $comments;?></div>
-			<?php
-			return;
-	}
+
+             $format = get_post_format( );
+             $format = '<a class="post-format-link" href="' . esc_url( get_post_format_link( $format ) ) . '"><span>' . get_post_format_string( $format ) . '</span></a>';
+            ?>
+            <div class="post-format-name"><?php echo $format;?><?php echo $comments;?></div>
+            <?php
+            return;
+    }
 }
 /**
  * Template function posted_on
@@ -494,7 +494,7 @@ if( ! function_exists( 'enough_post_format_posted_on' ) ){
  */
 if( ! function_exists( 'enough_posted_on' ) ){
     function enough_posted_on( $diaplay = true ){
-			
+
         if( ! is_page( ) and $diaplay == true ){
         ?>
 <div class="posted-on">
@@ -545,28 +545,28 @@ if( ! function_exists( 'enough_posted_on' ) ){
  * @since 0.48
  */
 if( ! function_exists( 'enough_post_format_posted_in' ) ){
-	function enough_post_format_posted_in( ){
-	
-				$author = get_the_author();
-				$author = sprintf( '<span class="meta-sep">by</span><span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" >%3$s</a></span>',
-					get_author_posts_url( get_the_author_meta( 'ID' ) ),
-					sprintf( esc_attr__( 'View all posts by %s', 'enough' ), $author ),
-					$author
-				);
-				$permalink	= get_permalink();
-				$format 	= get_post_format();
-				$html		= '<a href="%1$s" class="permalink-post-format-%2$s" rel="bookmark"><span>%4$s %3$s</span></a>';
-				
-				$permalink		= sprintf( $html, 
-									esc_url( $permalink ),
-									esc_attr( $format ),
-									get_post_format_string( $format ), 
-									__('link to','enough')
-								);
-				?>
-				<div class="post-format-entry-meta" style="position:relative;"><?php echo $author;?><?php echo $permalink;?> </div>
-				<?php
-	}
+    function enough_post_format_posted_in( ){
+
+                $author = get_the_author();
+                $author = sprintf( '<span class="meta-sep">by</span><span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" >%3$s</a></span>',
+                    get_author_posts_url( get_the_author_meta( 'ID' ) ),
+                    sprintf( esc_attr__( 'View all posts by %s', 'enough' ), $author ),
+                    $author
+                );
+                $permalink  = get_permalink();
+                $format     = get_post_format();
+                $html       = '<a href="%1$s" class="permalink-post-format-%2$s" rel="bookmark"><span>%4$s %3$s</span></a>';
+
+                $permalink      = sprintf( $html,
+                                    esc_url( $permalink ),
+                                    esc_attr( $format ),
+                                    get_post_format_string( $format ),
+                                    __('link to','enough')
+                                );
+                ?>
+                <div class="post-format-entry-meta" style="position:relative;"><?php echo $author;?><?php echo $permalink;?> </div>
+                <?php
+    }
 }
 /**
  *
@@ -577,7 +577,7 @@ if( ! function_exists( 'enough_post_format_posted_in' ) ){
  */
 if( ! function_exists( 'enough_posted_in' ) ){
     function enough_posted_in( $diaplay = true ){
-	
+
         if( ! is_page( ) and $diaplay == true ){
         ?>
 <div class="posted-in">
@@ -678,40 +678,45 @@ if( ! function_exists( 'enough_the_content') ){
  * @since 0.48
  */
 
-	add_filter( 'the_content', 'enough_chat_filter' );
-	
-if( ! function_exists( 'enough_chat_filter' ) ){
-	function enough_chat_filter($contents){
-	 		if ( ! has_post_format( 'chat' ) ){
-				return $contents;
-			}
-			
-			$new_contents 	= explode( '<p>', $contents);
-			$result 		= '';
-			$prev_author_id = '';
-			$html 			= '<h4 class="enough-chat enough-chat-author-%1$s">%2$s</h4>
-				<div class="enough-chat-text enough-chat-author-text-%1$s"><p>%3$s</div>';
-					
-			foreach( $new_contents as $key=>$new ){
+    add_filter( 'the_content', 'enough_chat_filter' );
 
-				preg_match( '|([^\:]+)(\:)(.+)|si', $new, $regs );
-				
-				if( isset( $regs[1] ) and !empty( $regs[1] ) ){
-					$regs[1] = strip_tags( $regs[1] );
-				}
-				if(isset( $regs[1] ) and ! preg_match('!(http|https|ftp)!',$regs[1]) and !empty($regs[1])){
-				
-					$result .= sprintf( $html,
-								esc_attr( enough_chat_author_id( $regs[1] ) ),
-								esc_html($regs[1]),
-								$regs[3]
-							  );
-				}else{
-					$result .= '<p>'.$new;
-				}
-			}
-		return $result;
-	}
+if( ! function_exists( 'enough_chat_filter' ) ){
+    function enough_chat_filter($contents){
+            if ( ! has_post_format( 'chat' ) ){
+                return $contents;
+            }
+
+            $new_contents   = explode( '<p>', $contents);
+
+            if( count ( $new_contents ) == 2 ){
+                return $contents;
+            }
+
+            $result         = '';
+            $prev_author_id = '';
+            $html           = '<h4 class="enough-chat enough-chat-author-%1$s">%2$s</h4>
+                <div class="enough-chat-text enough-chat-author-text-%1$s"><p>%3$s</div>';
+
+            foreach( $new_contents as $key=>$new ){
+
+                preg_match( '|([^\:]+)(\:)(.+)|si', $new, $regs );
+
+                if( isset( $regs[1] ) and !empty( $regs[1] ) ){
+                    $regs[1] = strip_tags( $regs[1] );
+                }
+                if(isset( $regs[1] ) and ! preg_match('!(http|https|ftp)!',$regs[1]) and !empty($regs[1])){
+
+                    $result .= sprintf( $html,
+                                esc_attr( enough_chat_author_id( $regs[1] ) ),
+                                esc_html($regs[1]),
+                                $regs[3]
+                              );
+                }else{
+                    $result .= '<p>'.$new;
+                }
+            }
+        return $result;
+    }
 }
 /**
  *
@@ -722,15 +727,15 @@ if( ! function_exists( 'enough_chat_filter' ) ){
  */
 
 if( ! function_exists( 'enough_chat_author_id' ) ){
-	function enough_chat_author_id( $author ){
-		static $enough_chat_author_id 	= array();
-		$enough_chat_author_id[] 		= $author;
-		$enough_chat_author_id 			= array_unique( $enough_chat_author_id );
-			
-		return array_search( $author, $enough_chat_author_id);
-	}
+    function enough_chat_author_id( $author ){
+        static $enough_chat_author_id   = array();
+        $enough_chat_author_id[]        = $author;
+        $enough_chat_author_id          = array_unique( $enough_chat_author_id );
+
+        return array_search( $author, $enough_chat_author_id);
+    }
 }
-	
+
 /**
  *
  *
@@ -949,7 +954,7 @@ if($enough_options['enough_use_slider'] !== 'no'){?>
             jQuery('.widget ul, .widget form, .widget select, .widget .textwidget').hide();
             jQuery('.menu-header-container > ul,menu-wplook-main-menu-container > ul,.widget .menu-all-pages-container ul').show();
             if(jQuery('.widgettitle').text() !== ''){
-            	jQuery('.widgettitle').show().css({"list-style":"none","font-weight":"bold",'max-width':'100%'});
+                jQuery('.widgettitle').show().css({"list-style":"none","font-weight":"bold",'max-width':'100%'});
             }
             jQuery('.widgettitle').css("cursor","pointer").toggle(
                 function(){
@@ -1242,19 +1247,19 @@ if( ! function_exists( 'enough_loop_title' ) ){
     function enough_loop_title(){
         $enough_class_name = "";
         $page_title = "";
-		if ( has_post_format( 'aside' ) or
-			 has_post_format( 'image' ) or
-			 has_post_format( 'quote' ) or
-			 has_post_format( 'video' ) or
-			 has_post_format( 'audio' ) or
-			 has_post_format( 'gallery' ) or
-			 has_post_format( 'status' ) or
-			 has_post_format( 'link' )
-		){
+        if ( has_post_format( 'aside' ) or
+             has_post_format( 'image' ) or
+             has_post_format( 'quote' ) or
+             has_post_format( 'video' ) or
+             has_post_format( 'audio' ) or
+             has_post_format( 'gallery' ) or
+             has_post_format( 'status' ) or
+             has_post_format( 'link' )
+        ){
             $enough_class_name = 'post-format-archives';
             $page_title = __("Post Format",'enough');
-            $page_title_c = get_post_format_string( get_post_format() );		
-		}elseif(is_search()){
+            $page_title_c = get_post_format_string( get_post_format() );
+        }elseif(is_search()){
             $enough_class_name = 'serch-result';
             $page_title = __("Search Results",'enough');
             $page_title_c = get_search_query();
@@ -2160,78 +2165,78 @@ if( class_exists( 'WP_Customize_Control' ) ){
  */
 
 if( ! function_exists( 'enough_monthly_archive_prev_next_navigation' ) ){
-	function enough_monthly_archive_prev_next_navigation(){
-		global $wpdb, $wp_query;
-	
-		if( is_month() ){
-	
-			$thisyear   = mysql2date('Y', $wp_query->posts[0]->post_date);
-			$thismonth  = mysql2date('m', $wp_query->posts[0]->post_date);
-	
-			$unixmonth  = mktime(0, 0 , 0, $thismonth, 1, $thisyear);
-			$last_day   = date('t', $unixmonth);
-	
-			$previous   = $wpdb->get_row("SELECT MONTH(post_date) AS month, YEAR(post_date) AS year FROM $wpdb->posts
-				WHERE post_date < '$thisyear-$thismonth-01'
-				AND post_type = 'post' AND post_status = 'publish'
-					ORDER BY post_date DESC
-					LIMIT 1");
-			$next       = $wpdb->get_row("SELECT MONTH(post_date) AS month, YEAR(post_date) AS year FROM $wpdb->posts
-				WHERE post_date > '$thisyear-$thismonth-{$last_day} 23:59:59'
-				AND post_type = 'post' AND post_status = 'publish'
-					ORDER BY post_date ASC
-					LIMIT 1");
-	
-			$html       = '<a href="%1$s" class="%3$s">%2$s</a>';
-	
-			if ( $previous ) {
-				$calendar_output = sprintf( $html,
-											get_month_link($previous->year,
-											$previous->month) ,
-											sprintf(__('Prev Month( %sth )','enough'),
-											$previous->month),
-											'alignleft'
-										  );
-			}
-			$calendar_output .= "\t" ;
-			if ( $next ) {
-				$calendar_output .= sprintf( $html,
-											get_month_link($next->year,
-											$next->month),
-											sprintf(__('Next Month( %sth )','enough'),
-											$next->month),
-											'alignright'
-											);
-			}
-	
-			$html = '<div class="%1$s">%2$s</div>';
-	
-				$calendar_output = sprintf( $html,
-											'enough-monthly-archive-prev-next-avigation',
-											$calendar_output
-										);
-	
-			echo apply_filters( 'enough_monthly_archive_prev_next_navigation', $calendar_output );
-		}
-	}
+    function enough_monthly_archive_prev_next_navigation(){
+        global $wpdb, $wp_query;
+
+        if( is_month() ){
+
+            $thisyear   = mysql2date('Y', $wp_query->posts[0]->post_date);
+            $thismonth  = mysql2date('m', $wp_query->posts[0]->post_date);
+
+            $unixmonth  = mktime(0, 0 , 0, $thismonth, 1, $thisyear);
+            $last_day   = date('t', $unixmonth);
+
+            $previous   = $wpdb->get_row("SELECT MONTH(post_date) AS month, YEAR(post_date) AS year FROM $wpdb->posts
+                WHERE post_date < '$thisyear-$thismonth-01'
+                AND post_type = 'post' AND post_status = 'publish'
+                    ORDER BY post_date DESC
+                    LIMIT 1");
+            $next       = $wpdb->get_row("SELECT MONTH(post_date) AS month, YEAR(post_date) AS year FROM $wpdb->posts
+                WHERE post_date > '$thisyear-$thismonth-{$last_day} 23:59:59'
+                AND post_type = 'post' AND post_status = 'publish'
+                    ORDER BY post_date ASC
+                    LIMIT 1");
+
+            $html       = '<a href="%1$s" class="%3$s">%2$s</a>';
+
+            if ( $previous ) {
+                $calendar_output = sprintf( $html,
+                                            get_month_link($previous->year,
+                                            $previous->month) ,
+                                            sprintf(__('Prev Month( %sth )','enough'),
+                                            $previous->month),
+                                            'alignleft'
+                                          );
+            }
+            $calendar_output .= "\t" ;
+            if ( $next ) {
+                $calendar_output .= sprintf( $html,
+                                            get_month_link($next->year,
+                                            $next->month),
+                                            sprintf(__('Next Month( %sth )','enough'),
+                                            $next->month),
+                                            'alignright'
+                                            );
+            }
+
+            $html = '<div class="%1$s">%2$s</div>';
+
+                $calendar_output = sprintf( $html,
+                                            'enough-monthly-archive-prev-next-avigation',
+                                            $calendar_output
+                                        );
+
+            echo apply_filters( 'enough_monthly_archive_prev_next_navigation', $calendar_output );
+        }
+    }
 }
 
 if( ! function_exists( 'enough_article_title' ) ){
-	function enough_article_title(){
-	
-		$content_exists = get_the_content();
-		if( ( has_post_format( 'link' ) and empty( $content_exists ) ) or
-			( has_post_format( 'image' ) and empty( $content_exists ) )	or
-			( has_post_format( 'quote' ) and empty( $content_exists ) )	or
-			( has_post_format( 'video' ) and empty( $content_exists ) )	or
-			( has_post_format( 'audio' ) and empty( $content_exists ) )	or
-			( has_post_format( 'gallery' ) and empty( $content_exists ) )	
-		){
-				return;
-		}
+    function enough_article_title(){
+
+        $content_exists = get_the_content();
+        if( ( has_post_format( 'link' ) and empty( $content_exists ) ) or
+            ( has_post_format( 'image' ) and empty( $content_exists ) ) or
+            ( has_post_format( 'quote' ) and empty( $content_exists ) ) or
+            ( has_post_format( 'video' ) and empty( $content_exists ) ) or
+            ( has_post_format( 'audio' ) and empty( $content_exists ) ) or
+            ( has_post_format( 'gallery' ) and empty( $content_exists ) )
+        ){
+                return;
+        }
 ?>
-	<h2 class="entry-title"><a href="<?php the_permalink();?>"><?php the_title(); ?></a></h2>
+    <h2 class="entry-title"><a href="<?php the_permalink();?>"><?php the_title(); ?></a></h2>
 <?php
-	}
+    }
 }
 ?>
