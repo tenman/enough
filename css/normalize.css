@@ -242,8 +242,8 @@ samp {
 pre {
     white-space: pre;
     white-space: pre-wrap;
-    /*word-wrap: break-word;
-*/}
+    word-wrap: break-word;
+}
 
 /*
  * 1. Addresses CSS quotes not supported in IE6/7

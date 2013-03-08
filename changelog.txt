@@ -1,6 +1,13 @@
 Changelog -----------------------------------
 version:0.48
 Fixed
+modified
+    Remove word-break,word-wrap style rules
+
+    Suport Post Format
+        Add enough_post_format_posted_on()
+        Add enough_post_format_posted_in()
+        Add enough_chat_filter()
 ----------------------------------------------
 Changelog -----------------------------------
 version:0.47
