@@ -6,6 +6,27 @@
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * @package Enough
  */
+.menu-header{
+		/*background:#000;*/
+}
+.enough-w-iphone .menu-header{
+		background:none;
+}
+.menu-header a{
+		background:#fff;
+		max-width:none;/* ie8 width issue*/
+}
+.menu-header a:hover{
+		/*background:none;*/
+		max-width:none;/* ie8 width issue*/
+		/*color:#fff;*/
+}
+
+.sticky .entry-content,
+.sticky .entry-title{
+	background:#fff;
+	background:rgba(255,255,255,0.9);
+}
 #enough-page{
 	background:rgba(255,255,255,1);
 }
@@ -26,14 +47,14 @@
 .menu-header .children,
 .menu-header a,
 .menu-header{
-	color:#999;	
+	/*color:#999;*/	
 }
 
 .menu-header .sub-menu a:hover,
 .menu-header .children a:hover,
 .menu-header a:hover{
-	background:#eee;
-	color:#555;
+	/*background:#eee;
+	color:#555;*/
 }
 .ie9 .menu-header .sub-menu li,
 .ie9 .menu-header .children li,
@@ -61,6 +82,9 @@ a,
 .widgettitle{
 	/*color:#555;*/
 }
+.widget > li{
+	color:#777;
+}
 
 a:hover{
 	/*color:#333;*/
@@ -76,6 +100,11 @@ footer{
 	background:rgba(200,200,200,0.6);
 }
 
+select{
+	border:1px solid #ccc;
+}
+
+
 nav #searchform,
 nav #wp-calendar thead th,
 .widget_rss .widgettitle,
@@ -89,7 +118,7 @@ nav #wp-calendar thead th,
 .widget_recent_comments .widgettitle,
 .widget_archive .widgettitle,
 .widget_meta .widgettitle{
-	background:rgba(200,200,200,0.5);
+/*	background:rgba(200,200,200,0.5);*/
 }
 
 nav #wp-calendar tbody td a{
@@ -149,7 +178,117 @@ blockquote{
 .format-image,
 .format-quote{
 	background:#efefef;
-	background:rgba(222,222,222,0.2);
-	border-top:1px solid #ccc;	
-	border-bottom:1px solid #ccc;	
+	background:rgba(222,222,222,.1);
+	border-top:1px solid  rgba(222,222,222,.6);	
+	border-bottom:1px solid rgba(222,222,222,.6);	
+}
+@media screen and (min-width: 481px){
+
+	.menu-header {
+		/*color:#191919;
+		background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#333));
+		background: -moz-linear-gradient(top,  #000,  #333);
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000', endColorstr='#333');*/
+		/*-moz-box-shadow: 0 1px 3px #555;
+		-webkit-box-shadow: 0 1px 3px #555;	*/
+		background:rgba(222,222,222,.1);
+		border-bottom:1px solid rgba(222,222,222,0.5);
+		border-top:1px solid rgba(222,222,222,0.5);
+	}
+	.menu-header .menu > li > a{
+		background:none;
+
+	}
+	footer{
+		background:#000;
+		color:#eee;
+	}
+	footer a{
+		color:#aaa;
+		background:none;
+	}
+	footer a:hover{
+		color:#eee;
+		background:none;
+	}
+	#commentform,
+	html,
+	.posted-on,
+	.posted-on a.enough-comment-link:active,
+	.widget_search .widgettitle,
+	.widget_calendar .widgettitle,
+	.widget_text .widgettitle,
+	.widget_rss .widgettitle,
+	.widget_links .widgettitle,
+	.widget_categories .widgettitle,
+	.widget_recent_entries .widgettitle,
+	.widget_tag_cloud .widgettitle,
+	.widget_pages .widgettitle,
+	.widget_nav_menu .widgettitle,
+	.widget_recent_comments .widgettitle,
+	.widget_archive .widgettitle,
+	.widget_meta .widgettitle{
+		color:#191919;
+		background:rgba(222,222,222,.1);
+		border-bottom:1px solid #ddd;
+		border-top:1px solid rgba(222,222,222,.6);
+
+	}
+	.posted-in{
+		color:#191919;
+		color:#191919;
+		background:rgba(222,222,222,.1);
+		border-bottom:1px solid rgba(100,100,100,.2);
+		border-top:1px solid rgba(100,100,100,.2);
+	}	
+	.posted-on a.enough-comment-link{
+		background:rgba(222,222,222,.1);
+		border:1px solid rgba(100,100,100,.3);
+
+	}
+	.posted-on a.enough-comment-link:hover{
+		background:rgba(222,222,222,.3);
+		border:1px solid rgba(100,100,100,.3);
+	}
+
+	.posted-on a{
+		background:none;
+		color:#000;
+	}
+	.posted-on .meta-sep{
+		margin-left:1em;
+	}
+
+	.posted-on a.enough-comment-link{
+		-moz-border-radius: 5px;
+		border-radius: 5px;
+	}
+	.page-item a{
+		/*color:#fff;
+		background:#000;*/
+	}
+	.menu-header .sub-menu a
+	.menu-header .children a {
+		/*background:#000;
+		color:#eee;*/
+	}	
+	.menu-header ul ul a{
+		/*background:#000;
+		color:#fff;*/
+	}
+	
+	.menu-header ul ul:hover a {
+		/*background:#000;
+		color:#fff;*/
+	}
+	.menu-header ul:hover ul a,
+	.menu-header ul ul:hover a{
+	}
+	
+	.menu-header .sub-menu a:hover,
+	.menu-header .children a:hover,
+	 .menu-header a:hover{
+	/*	background:#333;
+		color:#fff;*/
+	}
 }

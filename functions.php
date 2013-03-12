@@ -171,6 +171,19 @@
         'type' => 'text',
          'select_values' => '',
         ),
+        array('option_id' => 8,
+        'blog_id' => 0 ,
+        'option_name' => "enough_post_one_column_bottom_sidebar",
+        'option_value' => 'no',
+        'autoload'=>'yes',
+        'title'=>__('Post One Column Bottom Sidebar','enough'),
+        'excerpt'=>__('Post Full Width One Column','enough'),
+        'validate'=>'enough_post_one_column_bottom_sidebar_validate',
+		'list' => 1,
+        'type' => 'radio',
+        'select_values' => array('yes' => 'yes')
+        ),
+
     );
 /**
  *
@@ -237,6 +250,25 @@ if( !function_exists( 'enough_theme_setup' ) ){
     }
 
     $enough_options  = get_option("enough_theme_settings");
+	
+/**
+ * Enough Post Full width One Clolumn
+ *
+ *
+ *
+ */
+	if ( isset( $enough_options['enough_post_one_column_bottom_sidebar'] ) and
+		$enough_options['enough_post_one_column_bottom_sidebar'] == 'yes' ) {
+		$enough_onecolumn_post = 'yes';
+		add_filter( 'post_class','enough_onecolumn_post' );
+	}else{
+		$enough_onecolumn_post = 'no';
+	}
+	
+/*echo $enough_options['enough_post_one_column_bottom_sidebar'];
+var_dump( $enough_onecolumn_post );*/
+
+	
     add_action( 'wp_head', 'enough_slider' );
 
     /**
@@ -502,18 +534,22 @@ if( ! function_exists( 'enough_posted_on' ) ){
         $enough_date_format = get_option('date_format'). ' '. get_option( 'time_format' );
         $author = get_the_author();
         if (comments_open()){
-            $enough_comment_html = '<a href="%1$s" class="enough-comment-link"><span class="enough-comment-string point"></span><em>%2$s %3$s</em></a>';
+            $enough_comment_html = '<a href="%1$s" class="enough-comment-link"><span class="enough-comment-string point"></span><em %4$s>%2$s %3$s</em></a>';
+            $enough_comment_html = '<a href="%1$s" class="enough-comment-link"><em %4$s>%2$s %3$s</em></a>';
             if(get_comments_number() > 0 ){
                 $enough_comment_string = _n('Comment','Comments',get_comments_number(),'enough');
                 $enough_comment_number = get_comments_number();
+				$enough_comment_number_class = 'class="enough-length-'. strlen( $enough_comment_number ) . '"';
             }else{
                 $enough_comment_string = 'Comment';
                 $enough_comment_number = '';
+				$enough_comment_number_class = '';
             }
         }else{
             $enough_comment_html   = '';
             $enough_comment_string = '';
             $enough_comment_number = '';
+			$enough_comment_number_class = '';
         }
         $result = sprintf( __( '<span class="%1$s">Posted on</span> %2$s <span class="meta-sep">by</span> %3$s %4$s'
 , 'enough' ),
@@ -528,7 +564,7 @@ if( ! function_exists( 'enough_posted_on' ) ){
                 sprintf( esc_attr__( 'View all posts by %s', 'enough' ), $author ),
                 $author
             ),
-            sprintf($enough_comment_html,get_comments_link(),$enough_comment_number,$enough_comment_string)
+            sprintf($enough_comment_html,get_comments_link(),$enough_comment_number,$enough_comment_string, $enough_comment_number_class )
         );
         echo apply_filters( "enough_posted_on", $result );
         ?>
@@ -613,8 +649,15 @@ if( ! function_exists( 'enough_posted_in' ) ){
  *
  *
  */
+
 if( ! function_exists( 'enough_dinamic_sidebar' ) ){
     function enough_dinamic_sidebar($id,$display = true){
+	
+		global $enough_onecolumn_post;
+		if( $enough_onecolumn_post == 'yes' and $display == false ){
+			return;
+		}
+		
         if($display == true){ ?>
 <nav><ul id="<?php echo $id;?>">
 
@@ -629,6 +672,10 @@ if( ! dynamic_sidebar( $id ) ){
     }
 }
 
+function enough_onecolumn_post($classes){
+	$classes[] = 'enough-1col-post';
+	return $classes;
+}
 /**
  *
  *
@@ -867,6 +914,7 @@ if ( ! function_exists( 'enough_add_body_class' ) ) {
 if ( ! function_exists( 'enough_small_device_helper' ) ) {
     function enough_small_device_helper(){
         global $is_IE;
+		
         $enough_title_length       = round(strlen(get_bloginfo('name')) );
         $enough_description_length = round(strlen(get_bloginfo('description')),0);
         $enough_header_image_uri   = get_header_image();
@@ -874,6 +922,7 @@ if ( ! function_exists( 'enough_small_device_helper' ) ) {
         $uploads                    = wp_upload_dir();
     ?>
         <script type="text/javascript">
+
         (function(){
         jQuery(function(){
             var width = jQuery(window).width();
@@ -1163,10 +1212,7 @@ if($enough_options['enough_use_slider'] !== 'no'){?>
     <?php ;
 
 if( $enough_options['enough_use_slider'] !== 'yes' ){?>
-
-
 jQuery('script #enough-slider-js, style #enough-slider-css').remove();
-
 <?php }?>
     <?php
     /**
@@ -1181,7 +1227,7 @@ jQuery('script #enough-slider-js, style #enough-slider-css').remove();
                     var menu_item_position = e.pageX ;
         <?php        // jQuery(".result:first").text(menu_item_position);
                   //jQuery(".result-w").text(width);?>
-                    if( width - 200 < menu_item_position){
+                    if( width - 180 < menu_item_position){
                         jQuery('.menu-header .children .children').addClass('left');
                         jQuery('.menu-header .sub-menu .sub-menu').addClass('left');
                     }else if( width / 2 >  menu_item_position){
@@ -1247,19 +1293,9 @@ if( ! function_exists( 'enough_loop_title' ) ){
     function enough_loop_title(){
         $enough_class_name = "";
         $page_title = "";
-        if ( has_post_format( 'aside' ) or
-             has_post_format( 'image' ) or
-             has_post_format( 'quote' ) or
-             has_post_format( 'video' ) or
-             has_post_format( 'audio' ) or
-             has_post_format( 'gallery' ) or
-             has_post_format( 'status' ) or
-             has_post_format( 'link' )
-        ){
-            $enough_class_name = 'post-format-archives';
-            $page_title = __("Post Format",'enough');
-            $page_title_c = get_post_format_string( get_post_format() );
-        }elseif(is_search()){
+		$page_title_c = '';
+        
+        if(is_search()){
             $enough_class_name = 'serch-result';
             $page_title = __("Search Results",'enough');
             $page_title_c = get_search_query();
@@ -1273,7 +1309,8 @@ if( ! function_exists( 'enough_loop_title' ) ){
             $page_title_c = single_cat_title('', false);
         }elseif (is_archive()){
              $enough_date_format = get_option('date_format');
-            if (is_day()){
+			
+            if ( is_day() ) {
                 $enough_class_name = 'dayly-archives';
                 $page_title = __('Daily Archives', 'enough');
                 $page_title_c = get_the_date(get_option($enough_date_format));
@@ -1296,12 +1333,26 @@ if( ! function_exists( 'enough_loop_title' ) ){
                     $page_title_c = get_avatar( get_the_author_meta( 'user_email' ),  32  ).' '.get_the_author();
                     break;
                 }
-                rewind_posts();
+			}elseif ( has_post_format( 'aside' ) or
+				 has_post_format( 'image' ) or
+				 has_post_format( 'quote' ) or
+				 has_post_format( 'video' ) or
+				 has_post_format( 'audio' ) or
+				 has_post_format( 'gallery' ) or
+				 has_post_format( 'status' ) or
+				 has_post_format( 'chat' ) or
+				 has_post_format( 'link' ) 
+        	){
+            $enough_class_name = 'post-format-archives';
+            $page_title = __("Post Format",'enough');
+            $page_title_c = get_post_format_string( get_post_format() );
             }else{
                 $enough_class_name = 'blog-archives';
                 $page_title = __("Blog Archives",'enough');
             }
+			rewind_posts();
         }
+		
         if(!empty($page_title)){
              printf('<h2 class="archives-title-text">%s <span>%s</span></h2>',
                     $page_title,
@@ -1374,6 +1425,16 @@ if( ! function_exists( 'enough_theme_option' ) ){
  *
  *
  */
+if( ! function_exists( 'enough_post_one_column_bottom_sidebar_validate' ) ){
+    function enough_post_one_column_bottom_sidebar_validate($input){
+        if($input == 'yes' or $input == 'no'){
+            return $input;
+        }else{
+            return 'no';
+        }
+    }
+}
+
 if( ! function_exists( 'enough_format_detection_telephone_validate' ) ){
     function enough_format_detection_telephone_validate($input){
         if($input == 'yes' or $input == 'no'){
@@ -1933,17 +1994,20 @@ height:<?php echo $img_height; ?>px!important;
  *
  *
  */
-
 if( ! function_exists( 'enough_add_post_class' ) ){
     function enough_add_post_class( $classes ){
-
+	
         if ( comments_open() ) {
             $newclass = 'comments-open';
         }else{
             $newclass = 'comments-closed';
         }
         array_push( $classes, $newclass );
-
+		
+		$i = enough_display_count();
+		
+		$classes[] = 'enough-display-count-'. $i;
+		
         return $classes;
     }
 }
@@ -2004,7 +2068,8 @@ if( ! function_exists( "enough_slider" ) ){
             if( $enough_options['enough_use_slider'] == 'yes' and ! empty( $upload_image ) ){?>
             <script type="text/javascript" id="enough-slider-js">
             jQuery(function() {
-            <?php $last = end($headers);?>
+			<?php
+			$last = end( $upload_image );?>
                 jQuery('header').crossSlide({
                 sleep: <?php echo $sleep; ?>,
                 fade: <?php echo $fade; ?>
@@ -2069,6 +2134,22 @@ if( ! function_exists( 'enough_customize_register' ) and $enough_wp_version >= '
             'type'           => 'option',
             'capability'        => 'edit_theme_options'
         ) );
+        $wp_customize->add_setting( 'enough_theme_settings[enough_post_one_column_bottom_sidebar]', array(
+            'default'        => 'no',
+            'type'           => 'option',
+            'capability'        => 'edit_theme_options'
+        ) );
+
+        $wp_customize->add_control( 'enough_post_one_column_bottom_sidebar', array(
+                'label'      => __( 'Post Full Width One Column', 'enough' ),
+                'section'    => 'enough_theme_setting',
+                'settings'   => 'enough_theme_settings[enough_post_one_column_bottom_sidebar]',
+                'type'       => 'radio',
+                'choices'    => array( 'yes'=> __( 'yes' , 'enough' )
+                                        , 'no' => __( 'no', 'enough' )
+                                    )
+                )
+        );
 
         $wp_customize->add_control( 'enough_use_slider', array(
                 'label'      => __( 'Slider Header Image', 'enough' ),
@@ -2239,4 +2320,21 @@ if( ! function_exists( 'enough_article_title' ) ){
 <?php
     }
 }
+/**
+ *
+ *
+ *
+ *
+ */
+	if ( ! function_exists( 'enough_display_count' ) ) {
+	
+		function enough_display_count(){
+		
+		static $count = 1;
+		
+		return $count++;
+		
+		}
+	}
+
 ?>

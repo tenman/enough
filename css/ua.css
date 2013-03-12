@@ -705,3 +705,6 @@ padding:0;
 
 }
 .ie8 #enough-page{background:#fff;}
+	.ie8 .sticky{
+		background:none;
+	}

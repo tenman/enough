@@ -100,7 +100,9 @@ if( ! has_nav_menu( 'primary' ) ){
  */
     if ( have_posts() ){
         while ( have_posts() ) {
-            the_post(); ?>
+            the_post(); 
+			
+?>
 
 
     <article <?php post_class(); ?> <?php if( is_single() ){ printf( 'role="%1$s"', 'main' ); } ?> >
@@ -278,6 +280,21 @@ if( is_singular() ){
     <?php posts_nav_link(' '); ?>
     </div>
 <br class="clear vspacer-3" />
+<?php
+/**
+ * Sidebar show bottom when post 1column
+ *
+ *
+ *
+ *
+ */
+    if ( locate_template( array( 'sidebar-1.php' , 'sidebar.php' ) , true , true ) == '') {//template existance check
+		if( $enough_onecolumn_post == true ){
+        	enough_dinamic_sidebar( 'sidebar-1', false );
+		}
+    }//locate_template( array( 'sidebar-1.php' )
+
+?>
 <?php
 wp_reset_query();
  if(!is_page_template('page-blog.php')): ?>

@@ -49,8 +49,8 @@
 	margin-top:-15px;
 }
 .archives-title-text .avatar{
-position:relative;
-top:15px;
+	position:relative;
+	top:15px;
 }
 .archives-title-text .span{
 
@@ -105,11 +105,12 @@ top:15px;
 .sticky{
 	padding:10px 10px 10px 0;
 }
-
+.tagcloud-wrapper:after{
+clear:both;
+}
 .tagcloud{
 	padding:1em;
 }
-
 .tagcloud a{
 	display:inline-block;
 	padding:.3em 0.5em;
@@ -246,6 +247,18 @@ div.widget{
 	margin:0;
 	padding:0;
 }
+.widget li a{
+	display:inline-block;
+	width:80%;
+}
+.widget li:not(a){
+	font-size:small;
+	color:#999;
+}
+.widget .cat-item .children,
+.widget .cat-item .sub-menu{
+	margin-left:1em;
+}
 
 header img{
 	margin:0 0 -2px!important;
@@ -370,20 +383,27 @@ ul,menu,dir{
 	-webkit-margin-start:0;
 	-webkit-padding-start:1rem;
 }
-ul#sidebar-1 h2.widgettitle{
-	margin-top:0!important;
-	margin-bottom:0!important;
+#sidebar-1 h2.widgettitle{
+	margin:16px 0;
+}
+#sidebar-1 li:first-child h2{
+margin-top:0;
 }
 .menu-header{
-	margin:0;
+	margin:12px 12px 0;
 	z-index:3;
-	width:100%;
 }
+
+.menu-header ul{
+	margin:auto;
+}
+
 /* post format */
 .post-format-content{
 	margin:48px 0;
 	text-align:center;
 }
+
 .post-format-content blockquote{
 	text-align:left;
 }
@@ -397,6 +417,9 @@ ul#sidebar-1 h2.widgettitle{
 	margin:0 10px 0 0;
 	height:100%;
 }
+.enough-1col-post .entry-content{
+	margin:0;
+}
 .format-aside,
 .format-audio,
 .format-link,
@@ -407,6 +430,18 @@ ul#sidebar-1 h2.widgettitle{
 .format-image,
 .format-quote{
 }
+.format-aside.comments-open .entry-title,
+.format-audio.comments-open .entry-title,
+.format-link .comments-open .entry-title,
+.format-video.comments-open .entry-title,
+.format-gallery.comments-open .entry-title,
+.format-link.comments-open .entry-title,
+.format-status.comments-open .entry-title,
+.format-image.comments-open .entry-title,
+.format-quote.comments-open .entry-title{
+	max-width:100%;
+}
+
 .format-standard{
 }
 .post-format-link{
@@ -426,5 +461,47 @@ ul#sidebar-1 h2.widgettitle{
 .enough-chat-text{
 	margin-left:4em;
 }
+/* from example */
 
+	/* Menu Centerd start */
+	.menu-header{
+		position: relative;
+	}
+	.menu-header .menu{
+		position: relative;
+		left: 50%;
+		float: left;
+	}
+	.menu-header .menu > li{
+		position: relative;
+		left: -50%;
+		float: left;
+	}
+	/* Menu Centerd end */
 
+	.posted-on a:active,
+	.posted-in a:active,
+	nav a:active,
+	.entry-title a:active,
+	.entry-content a:active,	
+	.posted-in a:active{
+			position:relative;
+			top:1px;
+	}
+	.menu-header a{
+			max-width:none;/* ie8 width issue*/
+	}
+	.menu-header a:hover{
+			max-width:none;/* ie8 width issue*/
+	}
+	.sticky .entry-content,
+	.sticky .entry-title{
+		padding:3px;
+		margin-left:3px;
+	}
+	.sticky .entry-title{
+	}
+	.sticky .posted-on,
+	.sticky .posted-in{
+		display:none;
+	}
