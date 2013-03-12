@@ -2,6 +2,13 @@ Changelog -----------------------------------
 version:0.50
 Fixed
 modified
+    New function enough_display_count()
+        Element article class attribute value add enough-display-count-{num}
+    New Theme option 'item enough_post_one_column_bottom_sidebar'
+        function enough_post_one_column_bottom_sidebar_validate()
+            Enough 1column full width post view support.
+removed
+    Removed file skin-example.css
 ----------------------------------------------
 Changelog -----------------------------------
 version:0.49
