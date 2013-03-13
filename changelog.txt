@@ -1,5 +1,5 @@
 Changelog -----------------------------------
-version:0.50
+version:0.51
 Fixed
 modified
     New function enough_display_count()

@@ -314,7 +314,7 @@ var_dump( $enough_onecolumn_post );*/
                     , 'wp-head-callback' => 'enough_small_device_helper'
                     , 'admin-head-callback' => 'enough_admin_header_style'
                 );
-        add_theme_support( 'custom-header', $args );
+	add_theme_support( 'custom-header', $args );
 
     $args = array('default-color' => ''
                 , 'default-image' => ''
@@ -1041,6 +1041,7 @@ if($enough_options['enough_use_slider'] !== 'no'){?>
                 }else{
                 ?>var use_slider = false;<?php
                 }
+				$ratio 		= 0.2084210;
 
                 if($enough_title_length !== 0){?>
                 var px = width /<?php echo $enough_title_length;?>;
@@ -1081,16 +1082,17 @@ if($enough_options['enough_use_slider'] !== 'no'){?>
                             $ratio = $img_height / $img_width;
                         }else{
                             $raindrops_hd_images_path = get_template_directory().'/images/headers/'. basename( $url );
-                            $ratio = 0.2084210;
+							//$ratio 		= 0.2084210;
                         }
                     }
-?>
+				?>
 
                 var header_width = jQuery( 'header' ).width();
                 var ratio = <?php echo $ratio;?>;
                 var height =  ( header_width * ratio ).toFixed(0);
 
                 jQuery('header').removeAttr('style').css({'background-image':'url('+ image_exists + ')', 'height': height + 'px', });
+				
              <?php if( get_header_textcolor() == 'blank' ){?>
                         jQuery('header').css('cursor','pointer').click(function(){
 
@@ -1963,9 +1965,20 @@ if( ! function_exists( 'enough_admin_header_style' ) ){
     function enough_admin_header_style(){
 
             $url            = get_theme_mod( 'header_image' );
-            $uploads        = wp_upload_dir();
-            $path           = $uploads['path'].'/'. basename( $url );
+			
+			if( empty( $url ) ){ //When child theme $url empty
+				$url    = get_header_image();
+			}
 
+			if( $url == 'random-uploaded-image'){
+				$url = get_random_header_image();
+			}
+
+			$uploads    = wp_upload_dir();
+			$file_name  =  basename( $url );
+			$child_path = '/'. $file_name;
+			$path       = $uploads['path']. $child_path;
+	if ( file_exists( $path ) ){
         list($img_width, $img_height, $img_type, $img_attr) = getimagesize($path);
 ?>
 <style type="text/css"><!--
@@ -1973,6 +1986,11 @@ if( ! function_exists( 'enough_admin_header_style' ) ){
 width:<?php echo $img_width; ?>px!important;
 height:<?php echo $img_height; ?>px!important;
 }
+<?php
+	}else{?>
+<style type="text/css"><!--
+<?php	
+	} //end if ( file_exists( $path ) ) ?>
             <?php if ( 'blank' == get_header_textcolor() ) {?>
             #headimg a span{visibility:hidden;}
             #headimg .site-description span{ display: none; }
