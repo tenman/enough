@@ -12,6 +12,9 @@
 .enough-w-iphone .menu-header{
 		background:none;
 }
+.menu-header > ul > li > a{
+		background:none;
+}
 .menu-header a{
 		background:#fff;
 		max-width:none;/* ie8 width issue*/

@@ -1,4 +1,10 @@
 Changelog -----------------------------------
+version:0.52
+Fixed
+modified
+removed
+----------------------------------------------
+Changelog -----------------------------------
 version:0.51
 Fixed
 modified

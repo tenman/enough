@@ -467,11 +467,13 @@ margin-top:0;
 	.menu-header{
 		position: relative;
 	}
+	.menu-header > ul,
 	.menu-header .menu{
 		position: relative;
 		left: 50%;
 		float: left;
 	}
+	.menu-header > ul > li,
 	.menu-header .menu > li{
 		position: relative;
 		left: -50%;

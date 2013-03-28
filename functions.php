@@ -658,6 +658,8 @@ if( ! function_exists( 'enough_dinamic_sidebar' ) ){
 			return;
 		}
 		
+		do_action( 'get_sidebar' );
+			
         if($display == true){ ?>
 <nav><ul id="<?php echo $id;?>">
 
@@ -1850,10 +1852,14 @@ if( ! function_exists( "enough_first_only_msg" ) ){
             if (version_compare(PHP_VERSION, '5.0.0', '<')) {
             $msg    = sprintf(__('Sorry Your PHP version is %1$s Please use PHP version 5 or later.','enough'),PHP_VERSION);
             }else{
-            $msg    = sprintf(__('Thank you for adopting the %1$s theme. It is necessary to set it to this theme. Please move to a set screen clicking this <a href="%2$s">settings page</a>.','enough'), $enough_current_theme_name ,$link);
+           /* $msg    = sprintf(__('Thank you for adopting the %1$s theme. It is necessary to set it to this theme. Please move to a set screen clicking this <a href="%2$s">settings page</a>.','enough'), $enough_current_theme_name ,$link);*/
             }
         }
-        return '<div id="testmsg" class="error"><p>' . $msg . '</p></div>' . "\n";
+		if( ! empty ( $msg ) ){
+        	return '<div id="testmsg" class="error"><p>' . $msg . '</p></div>' . "\n";
+		} else {
+			return;
+		}
     }
 }
 /**
