@@ -197,7 +197,6 @@
         add_action('admin_init', 'enough_deploy');
     }
 
-    add_action( 'after_setup_theme', 'enough_theme_setup' );
 /**
  *
  *
@@ -205,7 +204,9 @@
  *
  *
  */
-if( !function_exists( 'enough_theme_setup' ) ){
+    add_action( 'after_setup_theme', 'enough_theme_setup' );
+
+//if( !function_exists( 'enough_theme_setup' ) ){ /*ver 0.53 comment out, next version remove.*/
     function enough_theme_setup(){
         global $enough_sidebar_args;
         global $enough_register_nav_menus_args;
@@ -241,15 +242,14 @@ if( !function_exists( 'enough_theme_setup' ) ){
             add_action("wp_head",'enough_embed_iphone_status_bar');
         }
         add_filter( 'post_class', 'enough_add_post_class' );
-    $enough_site_image = get_template_directory_uri().'/images/headers/wp3.jpg';
-    if( $enough_wp_version >= '3.4' ){
+		
+		$enough_site_image = get_template_directory_uri().'/images/headers/wp3.jpg';
+		
+		if( $enough_wp_version >= '3.4' ){
+			add_action( 'wp_head', 'enough_embed_meta' );
+		}
 
-    add_action( 'wp_head', 'enough_embed_meta' );
-
-
-    }
-
-    $enough_options  = get_option("enough_theme_settings");
+    	$enough_options  = get_option("enough_theme_settings");
 	
 /**
  * Enough Post Full width One Clolumn
@@ -257,19 +257,19 @@ if( !function_exists( 'enough_theme_setup' ) ){
  *
  *
  */
-	if ( isset( $enough_options['enough_post_one_column_bottom_sidebar'] ) and
-		$enough_options['enough_post_one_column_bottom_sidebar'] == 'yes' ) {
-		$enough_onecolumn_post = 'yes';
-		add_filter( 'post_class','enough_onecolumn_post' );
-	}else{
-		$enough_onecolumn_post = 'no';
-	}
+		if ( isset( $enough_options['enough_post_one_column_bottom_sidebar'] ) and
+			$enough_options['enough_post_one_column_bottom_sidebar'] == 'yes' ) {
+			$enough_onecolumn_post = 'yes';
+			add_filter( 'post_class','enough_onecolumn_post' );
+		}else{
+			$enough_onecolumn_post = 'no';
+		}
 	
 /*echo $enough_options['enough_post_one_column_bottom_sidebar'];
 var_dump( $enough_onecolumn_post );*/
 
 	
-    add_action( 'wp_head', 'enough_slider' );
+    	add_action( 'wp_head', 'enough_slider' );
 
     /**
      * Add option helper
@@ -279,22 +279,27 @@ var_dump( $enough_onecolumn_post );*/
      *
      *
      */
-    if( version_compare(PHP_VERSION, '5.3.0', '<' ) ) {
-        if(isset( $enough_admin_options_setting ) and is_array( $enough_admin_options_setting ) ){
-            foreach($enough_admin_options_setting as $setting){
-                $function_name = $setting['option_name'].'_validate';
-                if(!function_exists($function_name)){
-                    $message = sprintf(__('If you add  %s when you must create function %s for data validation','enough'),$setting['option_name'],$function_name);
-                    printf('<script type="text/javascript">alert(\'%s\');</script>',$message);
-                return;
-                }
-            }
-        }
+		if( version_compare(PHP_VERSION, '5.3.0', '<' ) ) {
+			if(isset( $enough_admin_options_setting ) and is_array( $enough_admin_options_setting ) ){
+				foreach($enough_admin_options_setting as $setting){
+					$function_name = $setting['option_name'].'_validate';
+					if(!function_exists($function_name)){
+						$message = sprintf(__('If you add  %s when you must create function %s for data validation','enough'),$setting['option_name'],$function_name);
+						printf('<script type="text/javascript">alert(\'%s\');</script>',$message);
+					return;
+					}
+				}
+			}
+		}
     }
+//} /*ver 0.53 comment out, next version remove.*/
 
-
-    }
-}
+/**
+ *
+ *
+ *
+ *
+ */
     if(file_exists(get_stylesheet_directory().'/images/headers/wp3.jpg')){
         $enough_site_image = get_stylesheet_directory_uri().'/images/headers/wp3.jpg';
         $enough_site_thumbnail_image = get_stylesheet_directory_uri().'/images/headers/wp3-thumbnail.jpg';

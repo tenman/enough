@@ -1,4 +1,10 @@
 Changelog -----------------------------------
+version:0.53
+modified
+    function_exists() conditional wrappers for current WordPress functions.
+    function_exists() remove from enough_theme_setup()
+----------------------------------------------
+Changelog -----------------------------------
 version:0.52
 Fixed
 modified
