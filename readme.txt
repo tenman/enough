@@ -139,6 +139,19 @@
 
         filename jquery.cross-slide.min.js
 
+*ver 0.54 Add
+        do_action( 'enough_setup_before' );
+        do_action( 'enough_setup_after' );
+            in function enough_theme_setup().
+    Code Example
+        You can override parent theme settiongs when child theme.
 
+        child-theme/functions.php
+        <?php
+        add_action( 'enough_setup_after','my_setup' );
 
+        function my_setup(){
+            add_filter( 'post_class','enough_onecolumn_post' );
+        }
+        ?>
 

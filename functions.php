@@ -206,12 +206,13 @@
  */
     add_action( 'after_setup_theme', 'enough_theme_setup' );
 
-//if( !function_exists( 'enough_theme_setup' ) ){ /*ver 0.53 comment out, next version remove.*/
     function enough_theme_setup(){
         global $enough_sidebar_args;
         global $enough_register_nav_menus_args;
         global $enough_admin_options_setting;
         global $enough_wp_version;
+		
+		do_action( 'enough_setup_before' );
 
         register_sidebar( $enough_sidebar_args );
         add_theme_support( 'automatic-feed-links' );
@@ -265,10 +266,6 @@
 			$enough_onecolumn_post = 'no';
 		}
 	
-/*echo $enough_options['enough_post_one_column_bottom_sidebar'];
-var_dump( $enough_onecolumn_post );*/
-
-	
     	add_action( 'wp_head', 'enough_slider' );
 
     /**
@@ -291,8 +288,9 @@ var_dump( $enough_onecolumn_post );*/
 				}
 			}
 		}
+
+		do_action( 'enough_setup_after' );
     }
-//} /*ver 0.53 comment out, next version remove.*/
 
 /**
  *
