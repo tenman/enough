@@ -179,7 +179,7 @@
         'title'=>__('Post One Column Bottom Sidebar','enough'),
         'excerpt'=>__('Post Full Width One Column','enough'),
         'validate'=>'enough_post_one_column_bottom_sidebar_validate',
-		'list' => 1,
+        'list' => 1,
         'type' => 'radio',
         'select_values' => array('yes' => 'yes')
         ),
@@ -205,14 +205,14 @@
  *
  */
     add_action( 'after_setup_theme', 'enough_theme_setup' );
-
+if( ! function_exists( 'enough_theme_setup' ) ){
     function enough_theme_setup(){
         global $enough_sidebar_args;
         global $enough_register_nav_menus_args;
         global $enough_admin_options_setting;
         global $enough_wp_version;
-		
-		do_action( 'enough_setup_before' );
+
+        do_action( 'enough_setup_before' );
 
         register_sidebar( $enough_sidebar_args );
         add_theme_support( 'automatic-feed-links' );
@@ -243,30 +243,30 @@
             add_action("wp_head",'enough_embed_iphone_status_bar');
         }
         add_filter( 'post_class', 'enough_add_post_class' );
-		
-		$enough_site_image = get_template_directory_uri().'/images/headers/wp3.jpg';
-		
-		if( $enough_wp_version >= '3.4' ){
-			add_action( 'wp_head', 'enough_embed_meta' );
-		}
 
-    	$enough_options  = get_option("enough_theme_settings");
-	
-/**
- * Enough Post Full width One Clolumn
- *
- *
- *
- */
-		if ( isset( $enough_options['enough_post_one_column_bottom_sidebar'] ) and
-			$enough_options['enough_post_one_column_bottom_sidebar'] == 'yes' ) {
-			$enough_onecolumn_post = 'yes';
-			add_filter( 'post_class','enough_onecolumn_post' );
-		}else{
-			$enough_onecolumn_post = 'no';
-		}
-	
-    	add_action( 'wp_head', 'enough_slider' );
+        $enough_site_image = get_template_directory_uri().'/images/headers/wp3.jpg';
+
+        if( $enough_wp_version >= '3.4' ){
+            add_action( 'wp_head', 'enough_embed_meta' );
+        }
+
+        $enough_options  = get_option("enough_theme_settings");
+
+    /**
+     * Enough Post Full width One Clolumn
+     *
+     *
+     *
+     */
+        if ( isset( $enough_options['enough_post_one_column_bottom_sidebar'] ) and
+            $enough_options['enough_post_one_column_bottom_sidebar'] == 'yes' ) {
+            $enough_onecolumn_post = 'yes';
+            add_filter( 'post_class','enough_onecolumn_post' );
+        }else{
+            $enough_onecolumn_post = 'no';
+        }
+
+        add_action( 'wp_head', 'enough_slider' );
 
     /**
      * Add option helper
@@ -276,22 +276,22 @@
      *
      *
      */
-		if( version_compare(PHP_VERSION, '5.3.0', '<' ) ) {
-			if(isset( $enough_admin_options_setting ) and is_array( $enough_admin_options_setting ) ){
-				foreach($enough_admin_options_setting as $setting){
-					$function_name = $setting['option_name'].'_validate';
-					if(!function_exists($function_name)){
-						$message = sprintf(__('If you add  %s when you must create function %s for data validation','enough'),$setting['option_name'],$function_name);
-						printf('<script type="text/javascript">alert(\'%s\');</script>',$message);
-					return;
-					}
-				}
-			}
-		}
+        if( version_compare(PHP_VERSION, '5.3.0', '<' ) ) {
+            if(isset( $enough_admin_options_setting ) and is_array( $enough_admin_options_setting ) ){
+                foreach($enough_admin_options_setting as $setting){
+                    $function_name = $setting['option_name'].'_validate';
+                    if(!function_exists($function_name)){
+                        $message = sprintf(__('If you add  %s when you must create function %s for data validation','enough'),$setting['option_name'],$function_name);
+                        printf('<script type="text/javascript">alert(\'%s\');</script>',$message);
+                    return;
+                    }
+                }
+            }
+        }
 
-		do_action( 'enough_setup_after' );
+        do_action( 'enough_setup_after' );
     }
-
+}
 /**
  *
  *
@@ -317,7 +317,7 @@
                     , 'wp-head-callback' => 'enough_small_device_helper'
                     , 'admin-head-callback' => 'enough_admin_header_style'
                 );
-	add_theme_support( 'custom-header', $args );
+    add_theme_support( 'custom-header', $args );
 
     $args = array('default-color' => ''
                 , 'default-image' => ''
@@ -542,17 +542,17 @@ if( ! function_exists( 'enough_posted_on' ) ){
             if(get_comments_number() > 0 ){
                 $enough_comment_string = _n('Comment','Comments',get_comments_number(),'enough');
                 $enough_comment_number = get_comments_number();
-				$enough_comment_number_class = 'class="enough-length-'. strlen( $enough_comment_number ) . '"';
+                $enough_comment_number_class = 'class="enough-length-'. strlen( $enough_comment_number ) . '"';
             }else{
                 $enough_comment_string = 'Comment';
                 $enough_comment_number = '';
-				$enough_comment_number_class = '';
+                $enough_comment_number_class = '';
             }
         }else{
             $enough_comment_html   = '';
             $enough_comment_string = '';
             $enough_comment_number = '';
-			$enough_comment_number_class = '';
+            $enough_comment_number_class = '';
         }
         $result = sprintf( __( '<span class="%1$s">Posted on</span> %2$s <span class="meta-sep">by</span> %3$s %4$s'
 , 'enough' ),
@@ -655,14 +655,14 @@ if( ! function_exists( 'enough_posted_in' ) ){
 
 if( ! function_exists( 'enough_dinamic_sidebar' ) ){
     function enough_dinamic_sidebar($id,$display = true){
-	
-		global $enough_onecolumn_post;
-		if( $enough_onecolumn_post == 'yes' and $display == false ){
-			return;
-		}
-		
-		do_action( 'get_sidebar' );
-			
+
+        global $enough_onecolumn_post;
+        if( $enough_onecolumn_post == 'yes' and $display == false ){
+            return;
+        }
+
+        do_action( 'get_sidebar' );
+
         if($display == true){ ?>
 <nav><ul id="<?php echo $id;?>">
 
@@ -678,8 +678,8 @@ if( ! dynamic_sidebar( $id ) ){
 }
 
 function enough_onecolumn_post($classes){
-	$classes[] = 'enough-1col-post';
-	return $classes;
+    $classes[] = 'enough-1col-post';
+    return $classes;
 }
 /**
  *
@@ -919,7 +919,7 @@ if ( ! function_exists( 'enough_add_body_class' ) ) {
 if ( ! function_exists( 'enough_small_device_helper' ) ) {
     function enough_small_device_helper(){
         global $is_IE;
-		
+
         $enough_title_length       = round(strlen(get_bloginfo('name')) );
         $enough_description_length = round(strlen(get_bloginfo('description')),0);
         $enough_header_image_uri   = get_header_image();
@@ -1046,7 +1046,7 @@ if($enough_options['enough_use_slider'] !== 'no'){?>
                 }else{
                 ?>var use_slider = false;<?php
                 }
-				$ratio 		= 0.2084210;
+                $ratio      = 0.2084210;
 
                 if($enough_title_length !== 0){?>
                 var px = width /<?php echo $enough_title_length;?>;
@@ -1087,17 +1087,17 @@ if($enough_options['enough_use_slider'] !== 'no'){?>
                             $ratio = $img_height / $img_width;
                         }else{
                             $raindrops_hd_images_path = get_template_directory().'/images/headers/'. basename( $url );
-							//$ratio 		= 0.2084210;
+                            //$ratio        = 0.2084210;
                         }
                     }
-				?>
+                ?>
 
                 var header_width = jQuery( 'header' ).width();
                 var ratio = <?php echo $ratio;?>;
                 var height =  ( header_width * ratio ).toFixed(0);
 
                 jQuery('header').removeAttr('style').css({'background-image':'url('+ image_exists + ')', 'height': height + 'px', });
-				
+
              <?php if( get_header_textcolor() == 'blank' ){?>
                         jQuery('header').css('cursor','pointer').click(function(){
 
@@ -1300,8 +1300,8 @@ if( ! function_exists( 'enough_loop_title' ) ){
     function enough_loop_title(){
         $enough_class_name = "";
         $page_title = "";
-		$page_title_c = '';
-        
+        $page_title_c = '';
+
         if(is_search()){
             $enough_class_name = 'serch-result';
             $page_title = __("Search Results",'enough');
@@ -1316,7 +1316,7 @@ if( ! function_exists( 'enough_loop_title' ) ){
             $page_title_c = single_cat_title('', false);
         }elseif (is_archive()){
              $enough_date_format = get_option('date_format');
-			
+
             if ( is_day() ) {
                 $enough_class_name = 'dayly-archives';
                 $page_title = __('Daily Archives', 'enough');
@@ -1340,16 +1340,16 @@ if( ! function_exists( 'enough_loop_title' ) ){
                     $page_title_c = get_avatar( get_the_author_meta( 'user_email' ),  32  ).' '.get_the_author();
                     break;
                 }
-			}elseif ( has_post_format( 'aside' ) or
-				 has_post_format( 'image' ) or
-				 has_post_format( 'quote' ) or
-				 has_post_format( 'video' ) or
-				 has_post_format( 'audio' ) or
-				 has_post_format( 'gallery' ) or
-				 has_post_format( 'status' ) or
-				 has_post_format( 'chat' ) or
-				 has_post_format( 'link' ) 
-        	){
+            }elseif ( has_post_format( 'aside' ) or
+                 has_post_format( 'image' ) or
+                 has_post_format( 'quote' ) or
+                 has_post_format( 'video' ) or
+                 has_post_format( 'audio' ) or
+                 has_post_format( 'gallery' ) or
+                 has_post_format( 'status' ) or
+                 has_post_format( 'chat' ) or
+                 has_post_format( 'link' )
+            ){
             $enough_class_name = 'post-format-archives';
             $page_title = __("Post Format",'enough');
             $page_title_c = get_post_format_string( get_post_format() );
@@ -1357,9 +1357,9 @@ if( ! function_exists( 'enough_loop_title' ) ){
                 $enough_class_name = 'blog-archives';
                 $page_title = __("Blog Archives",'enough');
             }
-			rewind_posts();
+            rewind_posts();
         }
-		
+
         if(!empty($page_title)){
              printf('<h2 class="archives-title-text">%s <span>%s</span></h2>',
                     $page_title,
@@ -1858,11 +1858,11 @@ if( ! function_exists( "enough_first_only_msg" ) ){
            /* $msg    = sprintf(__('Thank you for adopting the %1$s theme. It is necessary to set it to this theme. Please move to a set screen clicking this <a href="%2$s">settings page</a>.','enough'), $enough_current_theme_name ,$link);*/
             }
         }
-		if( ! empty ( $msg ) ){
-        	return '<div id="testmsg" class="error"><p>' . $msg . '</p></div>' . "\n";
-		} else {
-			return;
-		}
+        if( ! empty ( $msg ) ){
+            return '<div id="testmsg" class="error"><p>' . $msg . '</p></div>' . "\n";
+        } else {
+            return;
+        }
     }
 }
 /**
@@ -1974,20 +1974,20 @@ if( ! function_exists( 'enough_admin_header_style' ) ){
     function enough_admin_header_style(){
 
             $url            = get_theme_mod( 'header_image' );
-			
-			if( empty( $url ) ){ //When child theme $url empty
-				$url    = get_header_image();
-			}
 
-			if( $url == 'random-uploaded-image'){
-				$url = get_random_header_image();
-			}
+            if( empty( $url ) ){ //When child theme $url empty
+                $url    = get_header_image();
+            }
 
-			$uploads    = wp_upload_dir();
-			$file_name  =  basename( $url );
-			$child_path = '/'. $file_name;
-			$path       = $uploads['path']. $child_path;
-	if ( file_exists( $path ) ){
+            if( $url == 'random-uploaded-image'){
+                $url = get_random_header_image();
+            }
+
+            $uploads    = wp_upload_dir();
+            $file_name  =  basename( $url );
+            $child_path = '/'. $file_name;
+            $path       = $uploads['path']. $child_path;
+    if ( file_exists( $path ) ){
         list($img_width, $img_height, $img_type, $img_attr) = getimagesize($path);
 ?>
 <style type="text/css"><!--
@@ -1996,10 +1996,10 @@ width:<?php echo $img_width; ?>px!important;
 height:<?php echo $img_height; ?>px!important;
 }
 <?php
-	}else{?>
+    }else{?>
 <style type="text/css"><!--
-<?php	
-	} //end if ( file_exists( $path ) ) ?>
+<?php
+    } //end if ( file_exists( $path ) ) ?>
             <?php if ( 'blank' == get_header_textcolor() ) {?>
             #headimg a span{visibility:hidden;}
             #headimg .site-description span{ display: none; }
@@ -2023,18 +2023,18 @@ height:<?php echo $img_height; ?>px!important;
  */
 if( ! function_exists( 'enough_add_post_class' ) ){
     function enough_add_post_class( $classes ){
-	
+
         if ( comments_open() ) {
             $newclass = 'comments-open';
         }else{
             $newclass = 'comments-closed';
         }
         array_push( $classes, $newclass );
-		
-		$i = enough_display_count();
-		
-		$classes[] = 'enough-display-count-'. $i;
-		
+
+        $i = enough_display_count();
+
+        $classes[] = 'enough-display-count-'. $i;
+
         return $classes;
     }
 }
@@ -2095,8 +2095,8 @@ if( ! function_exists( "enough_slider" ) ){
             if( $enough_options['enough_use_slider'] == 'yes' and ! empty( $upload_image ) ){?>
             <script type="text/javascript" id="enough-slider-js">
             jQuery(function() {
-			<?php
-			$last = end( $upload_image );?>
+            <?php
+            $last = end( $upload_image );?>
                 jQuery('header').crossSlide({
                 sleep: <?php echo $sleep; ?>,
                 fade: <?php echo $fade; ?>
@@ -2353,15 +2353,15 @@ if( ! function_exists( 'enough_article_title' ) ){
  *
  *
  */
-	if ( ! function_exists( 'enough_display_count' ) ) {
-	
-		function enough_display_count(){
-		
-		static $count = 1;
-		
-		return $count++;
-		
-		}
-	}
+    if ( ! function_exists( 'enough_display_count' ) ) {
+
+        function enough_display_count(){
+
+        static $count = 1;
+
+        return $count++;
+
+        }
+    }
 
 ?>
