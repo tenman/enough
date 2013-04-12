@@ -223,13 +223,18 @@ article.page{
 	max-width: 90%;
 	box-sizing: border-box;
 }
+.page.enough-1col-post{
+	max-width: 94%;
+	margin:3%;
+}
 .page-template-default article.type-page {
 	display:block;
 	float:none;
 }
 
 article.page .entry-content,article.page .entry-title{
-	margin:0;
+	margin:2em 0;
+	margin:2rem 0;
 }
 
 article.sticky .entry-title,article.sticky .entry-content{

@@ -185,6 +185,26 @@
         ),
 
     );
+
+/**
+ *
+ *
+ *
+ *
+ *
+ */
+	add_theme_support( 'post-formats',
+		array(  'aside',
+				'gallery',
+				'chat',
+				'link',
+				'image',
+				'status',
+				'quote',
+				'video'
+			)
+	);
+
 /**
  *
  *
@@ -492,6 +512,7 @@ if( ! function_exists( 'enough_attachment_navigation' ) ){
  *
  */
 if( ! function_exists( 'enough_post_format_posted_on' ) ){
+
     function enough_post_format_posted_on(){
 
         if (comments_open()){
@@ -798,7 +819,7 @@ if( ! function_exists( 'enough_chat_author_id' ) ){
 if( ! function_exists( 'enough_the_footer' ) ){
     function enough_the_footer( $diaplay = true ){
     global $enough_current_theme_name;
-    ?>
+?>
 <footer role="contentinfo">
     <address>
     <?php
@@ -824,7 +845,9 @@ if( ! function_exists( 'enough_the_footer' ) ){
     ?>
     </address>
 </footer>
-    <?php
+<?php
+		do_action( 'wp_print_footer_scripts' );
+		do_action( 'wp_footer' );
     }
 }
 /**
@@ -1232,12 +1255,14 @@ jQuery('script #enough-slider-js, style #enough-slider-css').remove();
      ?>
                jQuery(".menu-header").mousemove(function(e){
                     var menu_item_position = e.pageX ;
-        <?php        // jQuery(".result:first").text(menu_item_position);
-                  //jQuery(".result-w").text(width);?>
-                    if( width - 180 < menu_item_position){
+				<?php	/* Position check
+                  jQuery(".result:first").text(menu_item_position);
+                  jQuery(".result-w").text(header_width);*/
+				 ?>
+                    if( header_width - 100 < menu_item_position){
                         jQuery('.menu-header .children .children').addClass('left');
                         jQuery('.menu-header .sub-menu .sub-menu').addClass('left');
-                    }else if( width / 2 >  menu_item_position){
+                    }else if( width / 5 >  menu_item_position){
                         jQuery('.menu-header .children .children').removeClass('left');
                         jQuery('.menu-header .sub-menu .sub-menu').removeClass('left');
                     }
