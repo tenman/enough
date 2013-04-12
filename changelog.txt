@@ -1,9 +1,9 @@
 Changelog -----------------------------------
 version:0.56
     modified
-        function_exists() conditional wrappers for current WordPress functions.
-        function_exists() remove from enough_theme_setup()
-    ver 0.53  Revert Changes
+        Add add_theme_support( 'post-formats',array( 'aside','gallery','chat','link','image','status','quote','video' ));
+        Add do_action( 'wp_print_footer_scripts' );
+        Add do_action( 'wp_footer' );
 ----------------------------------------------
 Changelog -----------------------------------
 version:0.55
