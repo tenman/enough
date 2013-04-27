@@ -42,7 +42,8 @@
 
 .archives-title-text{
 	clear:both;
-	margin:0 0 1rem;
+	margin:1em 0;
+	margin:1rem 0;
 	text-align:center;
 }
 .archive.author .archives-title-text{
@@ -171,7 +172,8 @@ overflow:hidden;
 	margin-bottom:10px;
 }
 .wp-caption img{
-	margin:5px;
+	margin:2%;
+	max-width:96%;
 }
 
 .wp-caption,article img{
@@ -452,6 +454,10 @@ margin-top:0;
 .post-format-link{
 	font-weight:bold;
 	color:gray;
+	display:inline-block;
+}
+.post-format-link + .enough-comment-link{
+	width:10em;
 }
 .post-format-entry-meta{
 	text-align:center;
@@ -462,7 +468,8 @@ margin-top:0;
 	font-size:small;
 	
 }
-.ecnough-chat-text-after,
+.enough-chat-text+div:not(.enough-chat-text),
+.enough-chat-text+p,
 .enough-chat-text{
 	margin-left:4em;
 }
@@ -511,4 +518,12 @@ margin-top:0;
 	.sticky .posted-on,
 	.sticky .posted-in{
 		display:none;
+	}
+/* mejs audio */
+	.mejs-container{
+		max-width:100%;
+		margin:48px auto;
+	}
+	.mejs-horizontal-volume-current{
+		max-width:100%;
 	}

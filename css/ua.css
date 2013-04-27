@@ -47,7 +47,7 @@ border-bottom:1px solid #ccc;
 .ie8 .posted-in,
 .ie8 .posted-on,
 .ie8 #commentform {
-background:#eef;
+background:#fff;
 color:#333;
 }
 
@@ -108,6 +108,7 @@ margin:0;
 float:left;
 position:relative;
 }
+
 .ie8 .menu-header .sub-menu,
 .ie8 .menu-header .children {
 display:none;
@@ -679,7 +680,7 @@ padding:0;
 	margin-top:5px;
 }
 .ie8 article.sticky{
-	background:#eee;
+	background:#fff;
 	margin-left:10px;
 } 
 
@@ -705,6 +706,44 @@ padding:0;
 
 }
 .ie8 #enough-page{background:#fff;}
-	.ie8 .sticky{
-		background:none;
-	}
+
+.ie8.home .sticky,
+.id8 .format-standard,
+.ie8 .format-chat,
+.ie8 .format-aside,
+.ie8 .format-audio,
+.ie8 .format-link,
+.ie8 .format-video,
+.ie8 .format-gallery,
+.ie8 .format-link,
+.ie8 .format-status,
+.ie8 .format-image,
+.ie8 .format-quote,
+.ie8 #enough-page{
+	background:#fff;
+	margin-left:10px;
+}
+.e8 .gallery-icon{
+	border:none!important;
+}
+.ie8 .attachment-thumbnail{
+	border: 1px solid #fff!important;
+	background-color: #fff!important;
+}
+.ie8 .menu-header .sub-menu .sub-menu{
+	position:static;
+	position:relative;
+}
+.ie8 .menu-header .sub-menu .sub-menu li{
+	position:absolute;
+	top:-58px;
+	left:10em;
+}
+.ie8 .menu-header .sub-menu li,
+.ie8 .menu-header .sub-menu .sub-menu li{
+	border:1px solid #ccc;
+}
+.ie8 .site-title,
+.ie8 .site-description{
+	margin:16px;
+}

@@ -141,11 +141,12 @@ blockquote{
 blockquote{
 	border-left:6px solid #ccc;
 }
-
+.format-quote blockquote,
 .entry-content blockquote{
 	border:none;
 	border-left:1px solid #ccc;
 }
+.format-quote blockquote:before,
 .entry-content blockquote:before{
 	content:'“';
 	font-family:serif;
@@ -153,6 +154,7 @@ blockquote{
 	font-size:30px;
 	display:block;
 }
+.format-quote blockquote:after,
 .entry-content blockquote:after{
 	content:'”';
 	font-family:serif;

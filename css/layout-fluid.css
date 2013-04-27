@@ -198,9 +198,17 @@
 		margin: 0;
 		padding: 0;
 		vertical-align: baseline;
+		position:static;
+		display:block;
+		left:0;
+		float:none;
 	}
 	 .menu-header > ul > li{
 		border-bottom:1px solid rgba(200,200,200,0.5);
+		position:static;
+		left:0;
+		float:none;
+		
 	}
 	 .menu-header li{
 		margin:0;

@@ -78,6 +78,9 @@ text-decoration:none;
 html {
 margin:0;
 padding:0;
+overflow-x:hidden;
+overflow-y:overflow;
+
 }
 
 html,body,form,fieldset,p,div,h1,h2,h3,h4,h5,h6 {

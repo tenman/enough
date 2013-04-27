@@ -1,4 +1,35 @@
 Changelog -----------------------------------
+version:0.6
+    Change from 2 template theme to  necessary minimum structure theme.
+
+    Fixed Two template has issues when child theme.
+        new file header.php, footer.php, content.php, content-status.php
+
+    Prev Review recommendations.
+
+        1) The menu has a number of issues.
+            a) Looks odd on small screen layout (see screenshot one)
+                Fixed display improperly.
+            b) It can cause a horizontal scroll (see screenshot two) in the basic layout.
+                Fixed horizontal scroll
+
+        2) Drop the device sniffing, just use CSS media queries.
+
+                I would like to use a long-term subject.
+
+        3) Drop the inline styles for the admin page. This is unexpected behavior and can make screen hard to read (see screenshot #3).
+        4) Don't output inline styles if they are not set (front facing), broken css there.
+        3) and 4)
+
+                Fixed background issue.
+                    remove admin-preview-callback value.
+
+        Also, the direct SQL queries in enough_monthly_archive_prev_next_navigation are a bit intense. Was there no other way to do this?
+
+                Sorry Now I have no idea.
+                I would like to use a long-term subject.
+----------------------------------------------
+Changelog -----------------------------------
 version:0.56
     modified
         Add add_theme_support( 'post-formats',array( 'aside','gallery','chat','link','image','status','quote','video' ));
