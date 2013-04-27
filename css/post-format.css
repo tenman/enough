@@ -1,0 +1,42 @@
+/* post format status */
+.format-status .post-status-title:focus,
+.format-status .entry-content:focus{
+	outline:none;
+}
+.format-status .entry-content{
+	display:none;
+}
+.format-status .post-status-title:focus{
+	outline:none;
+}
+.format-status .post-status-title:focus ~.entry-content{
+	display:block;
+}
+.format-status .post-status-title:hover{
+	cursor:pointer;
+	}
+.format-status .entry-content:focus{
+	display:block;
+	outline:none;
+}
+.term-post-format-status .format-status{
+	background:#fff;
+}
+.statuses{
+	width:100%;
+	}
+.statuses td.avatar{
+	width:70px;
+	padding:5px;
+	vertical-align:top;
+	border:none;
+	}
+.statuses td.content{
+	padding:5px;
+	border:none;
+}
+.statuses .post-status-title{
+	text-align:left;
+	margin:1em;
+}
+/* post format status end */
