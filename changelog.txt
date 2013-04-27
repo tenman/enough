@@ -1,9 +1,9 @@
 Changelog -----------------------------------
-version:0.6
+version:0.60
     Change from 2 template theme to  necessary minimum structure theme.
 
     Fixed Two template has issues when child theme.
-        new file header.php, footer.php, content.php, content-status.php
+        new file header.php, footer.php, content.php, content-status.php, post-format.css
 
     Prev Review recommendations.
 
