@@ -448,6 +448,10 @@ margin-top:0;
 .format-quote.comments-open .entry-title{
 	max-width:100%;
 }
+.single-attachment p.attachment{
+text-align:center;
+}
+
 
 .format-standard{
 }

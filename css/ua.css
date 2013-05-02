@@ -705,10 +705,8 @@ padding:0;
 		margin:0 auto;
 
 }
-.ie8 #enough-page{background:#fff;}
 
 .ie8.home .sticky,
-.id8 .format-standard,
 .ie8 .format-chat,
 .ie8 .format-aside,
 .ie8 .format-audio,
@@ -723,7 +721,50 @@ padding:0;
 	background:#fff;
 	margin-left:10px;
 }
-.e8 .gallery-icon{
+.ie10.home .sticky{
+
+	background:#fff;
+}
+.ie9 .format-standard,
+.ie9 .format-chat,
+.ie9 .format-aside,
+.ie9 .format-audio,
+.ie9 .format-link,
+.ie9 .format-video,
+.ie9 .format-gallery,
+.ie9 .format-link,
+.ie9 .format-status,
+.ie9 .format-image,
+.ie9 .format-quote,
+.ie10 .format-standard,
+.ie10 .format-chat,
+.ie10 .format-aside,
+.ie10 .format-audio,
+.ie10 .format-link,
+.ie10 .format-video,
+.ie10 .format-gallery,
+.ie10 .format-link,
+.ie10 .format-status,
+.ie10 .format-image,
+.ie10 .format-quote{
+	background:rgba( 222,222,222,.2);
+	margin-left:10px;
+}
+.ie9 .format-standard,
+.ie9 #enough-page,
+.ie10 .format-standard,
+.ie10 #enough-page
+.ie8 .format-standard,
+.ie8 #enough-page{
+	background:#fff;
+}
+
+.ie8 .attachment-thumbnail,
+.ie9 .attachment-thumbnail,
+.ie10 .attachment-thumbnail,
+.ie10 .gallery-icon,
+.ie9 .gallery-icon,
+.ie8 .gallery-icon{
 	border:none!important;
 }
 .ie8 .attachment-thumbnail{
@@ -746,4 +787,75 @@ padding:0;
 .ie8 .site-title,
 .ie8 .site-description{
 	margin:16px;
+}
+
+body.ie7{
+	text-align:center;
+}
+.ie7 #enough-page{
+	width:90%;
+	text-align:left;
+	background:#fff;
+	padding:2%;
+	
+}
+.ie7 #enough-page header{
+	background-color:#ccc;
+	height:158px;
+	padding:20px;
+	background-repeat:no-repeat;
+	color:#fff;
+	
+}
+.ie7 .menu-header{
+		position: static;
+	}
+.ie7 .menu-header > ul,
+.ie7 .menu-header .menu{
+		position: static;
+		left: 0;
+		float: none;
+	}
+.ie7 .menu-header .menu > li{
+		position: static;
+		left: 0;
+		float: none;
+	}
+.ie7 nav{
+	display:block;
+	clear:both;
+	width:100%;
+	z-index:0;
+	margin-left:0;
+	margin-top:40px;
+	}
+.ie7 article{
+	margin-right:0;
+	width:98%;
+}
+.ie7 .statuses .entry-content a:hover,
+.ie8 .statuses .entry-content a:hover,
+.ie9 .statuses .entry-content a:hover,
+.ie10 .statuses .entry-content a:hover{
+	color:#000;
+}
+.ie7 .statuses .entry-content a,
+.ie8 .statuses .entry-content a,
+.ie9 .statuses .entry-content a,
+.ie10 .statuses .entry-content a{
+	pointer-events: none;
+    cursor: default;
+    text-decoration:none;
+	color:#000;
+}
+.ie7 .statuses .entry-content img,
+.ie8 .statuses .entry-content img,
+.ie9 .statuses .entry-content img,
+.ie10 .statuses .entry-content img{
+	width:100%;
+	max-width:100%;
+	
+}
+.ie7 .format-status .entry-content{
+	display:block;
 }

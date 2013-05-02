@@ -486,9 +486,9 @@
 	
 		function enough_enqueue_scripts_styles( ) {
 		
-			global $is_IE;
+			global $is_IE, $enough_version;
 			
-			wp_enqueue_style( 'styles', get_stylesheet_uri() );
+				wp_enqueue_style( 'styles', get_stylesheet_uri(), array(), $enough_version );
 			
 			wp_enqueue_script( 'jquery' );
 			
@@ -1073,7 +1073,7 @@
 				
 				case( $is_IE ):
 				
-					preg_match(" |(MSIE )([0-9])(\.)|si",$_SERVER['HTTP_USER_AGENT'],$regs);
+					preg_match(" |(MSIE )([0-9]{1,2})(\.)|si",$_SERVER['HTTP_USER_AGENT'],$regs);
 					$classes[]      = 'ie'.$regs[2];
 				break;
 				

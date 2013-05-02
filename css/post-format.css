@@ -39,4 +39,47 @@
 	text-align:left;
 	margin:1em;
 }
+
+
+.format-image .post-format-content img{
+	text-align:center;
+	float:none;
+}
 /* post format status end */
+/* post format image */
+
+.term-post-format-image .tiled-post-format-image {
+	line-height:0;
+	-webkit-column-count:3;
+	-webkit-column-gap:2px;
+	-moz-column-count:3;
+	-moz-column-gap:2px;
+	column-count:3;
+	column-gap:2px;
+	background:#555;
+	padding:5px;
+}
+
+.term-post-format-image  .tiled-post-format-image img {
+	width:100% !important;
+	height:auto !important;
+	margin:1px;
+	padding:0;
+}
+
+@media (max-width: 640px) {
+	.term-post-format-image .tiled-post-format-image{
+		-moz-column-count:2;
+		-webkit-column-count:2;
+		column-count:2;
+	}
+}
+
+@media (max-width: 480px) {
+	.term-post-format-image .tiled-post-format-image{
+		-moz-column-count:1;
+		-webkit-column-count:1;
+		column-count:1;
+	}
+}
+/* post format image end */

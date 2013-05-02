@@ -3,15 +3,25 @@
 ?>
 	<article <?php post_class(); ?> <?php if( is_single() ){ printf( 'role="%1$s"', 'main' ); } ?> >
 <?php
-
+		$enough_content 			= '';
+		
 		$enough_status_date 		= get_the_date( get_option( 'date_format' ) );
 		
 		$enough_status_time 		= get_the_date( get_option( 'time_format' ) );
 		
-		$enough_avatar 				= get_avatar( get_the_author_meta( 'user_email' ), 48 );
-		
 		$enough_status_title 		= the_title('<p tabindex="-1" class="post-status-title">','</p>',false);
-	
+		
+		if( empty( $enough_status_title ) ){
+		
+			$enough_status_title = get_the_content();
+			
+		}else{
+		
+			$enough_content = get_the_content();
+		}
+		
+		$enough_status_title = '<p tabindex="-1" class="post-status-title">'.$enough_status_title.'</p>';
+		
 		$enough_html = '<table class="statuses"><tr><td class="avatar">%1$s</td><td class="content">%2$s %3$s</td></tr></table>';
    
 		$enough_content_html = '<div class="entry-content" tabindex="-1"><p>%1$s</p>%2$s %3$s<div>%4$s</div></div>';
@@ -20,17 +30,28 @@
 		
 		$enough_content_permalink 	= get_permalink();
 		
+		$enough_comments =  get_comments(array( 'post_id' => $post->ID ));
+				
+		$enough_avatar 				= get_avatar( get_the_author_meta( 'user_email' ), 48 );
+		
+		$enough_avatar 				= sprintf( $enough_content_date_html,
+												$enough_content_permalink,
+												get_avatar( get_the_author_meta( 'user_email' ), 48 )
+										);
+
+		
 		$enough_content_html 		= sprintf( $enough_content_html,
 												sprintf( $enough_content_date_html,
 															$enough_content_permalink, 
 															$enough_status_date. $enough_status_time 
 													),
 												apply_filters( 'enough_post_thumbnail', 
-															get_the_post_thumbnail(  ) 
+															get_the_post_thumbnail( null, 'post-thumbnail' ) 
 													),
-													
-												get_the_content( esc_html__( 'Continue&nbsp;reading', 'enough' ) . '&nbsp;<span class="meta-nav">&rarr;</span>' ),
+												
+												$enough_content,
 												enough_post_format_posted_in( false )
+												
 										);
 
 		if( is_front_page( ) ){
@@ -46,9 +67,10 @@
 		printf( $enough_html,
 				$enough_avatar,
 				$enough_status_title,
-				$enough_content_html
-			); 		
-				
+				$enough_content_html	
+			);
+			
+							
 		wp_link_pages( array( 'before' => '<div class="wp-link-pages">',
 								'after' => '</div>',
 								'link_before' => '<span>',

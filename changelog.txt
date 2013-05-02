@@ -1,4 +1,12 @@
 Changelog -----------------------------------
+version:0.61
+    Add
+        new file content-image.php, taxonomy.php
+    Modified
+        content-status.php
+            content-status not use title at WordPress 3.6-beta2
+----------------------------------------------
+Changelog -----------------------------------
 version:0.60
     Change from 2 template theme to  necessary minimum structure theme.
 
