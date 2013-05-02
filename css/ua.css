@@ -843,10 +843,10 @@ body.ie7{
 .ie8 .statuses .entry-content a,
 .ie9 .statuses .entry-content a,
 .ie10 .statuses .entry-content a{
-	pointer-events: none;
+/*	pointer-events: none;
     cursor: default;
     text-decoration:none;
-	color:#000;
+	color:#000;*/
 }
 .ie7 .statuses .entry-content img,
 .ie8 .statuses .entry-content img,
@@ -858,4 +858,22 @@ body.ie7{
 }
 .ie7 .format-status .entry-content{
 	display:block;
+}
+/*post format image*/
+.ie8.term-post-format-image{
+	text-align:center;
+}
+.ie8.term-post-format-image  .tiled-post-format-image img {
+	width:32%!important;
+	max-width:100%;
+	height:auto;
+	margin:1px;
+	padding:0;
+}
+.enough-w-vga.ie8.term-post-format-image  .tiled-post-format-image img {
+	width:48%!important;
+}
+.enough-w-iphone.ie8.term-post-format-image  .tiled-post-format-image img,
+.enough-w-qvga.ie8.term-post-format-image  .tiled-post-format-image img {
+	width:98%!important;
 }

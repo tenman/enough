@@ -20,11 +20,11 @@
 			$enough_content = get_the_content();
 		}
 		
-		$enough_status_title = '<p tabindex="-1" class="post-status-title">'.$enough_status_title.'</p>';
+		$enough_status_title = '<p tabindex="1" class="post-status-title">'.$enough_status_title.'</p>';
 		
 		$enough_html = '<table class="statuses"><tr><td class="avatar">%1$s</td><td class="content">%2$s %3$s</td></tr></table>';
    
-		$enough_content_html = '<div class="entry-content" tabindex="-1"><p>%1$s</p>%2$s %3$s<div>%4$s</div></div>';
+		$enough_content_html = '<div class="entry-content" tabindex="1"><p>%1$s</p>%2$s %3$s<div>%4$s</div></div>';
 		
 		$enough_content_date_html 	= '<a href="%1$s">%2$s</a>';
 		

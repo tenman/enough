@@ -1,4 +1,9 @@
 Changelog -----------------------------------
+version:0.62
+    Add
+        new file image.php
+----------------------------------------------
+Changelog -----------------------------------
 version:0.61
     Add
         new file content-image.php, taxonomy.php

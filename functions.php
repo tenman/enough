@@ -307,6 +307,9 @@
 				$enough_onecolumn_post = 'no';
 			}
 			
+			
+
+			
 			add_action( 'wp_head', 'enough_slider' );
 	
 		/**
@@ -561,12 +564,12 @@
 	<div class="attachment-navigation clear">
 		<div class="nav-previous">
 <?php 
-				previous_image_link(0);
+				previous_image_link( );
 ?>
 		</div>
 		<div class="nav-next">
 <?php
-				next_image_link(0);
+				next_image_link( );
 ?>
 		</div>
 		<br class="clear" />
@@ -606,7 +609,12 @@
 				$enough_comment_number		= '';
 			}
 			
-			$comments = sprintf($enough_comment_html,get_comments_link(),$enough_comment_number,$enough_comment_string);
+			if( ! is_single() ){
+			
+				$comments = sprintf($enough_comment_html,get_comments_link(),$enough_comment_number,$enough_comment_string);
+			}else{
+				$comments = '';
+			}
 	
 			$format = get_post_format( );
 			
@@ -661,6 +669,13 @@
 				$enough_comment_number_class		= '';
 			}
 			
+			if( ! is_single() ){
+			
+			$enough_comment = sprintf($enough_comment_html,get_comments_link(),$enough_comment_number,$enough_comment_string, $enough_comment_number_class );
+			
+			}else{
+			$enough_comment = '';
+			}
 			$result = sprintf( __( '<span class="%1$s">Posted on</span> %2$s <span class="meta-sep">by</span> %3$s %4$s'
 	, 'enough' ),
 				'meta-prep meta-prep-author',
@@ -674,7 +689,8 @@
 					sprintf( esc_attr__( 'View all posts by %s', 'enough' ), $author ),
 					$author
 				),
-				sprintf($enough_comment_html,get_comments_link(),$enough_comment_number,$enough_comment_string, $enough_comment_number_class )
+				$enough_comment
+				
 			);
 			
 			echo apply_filters( "enough_posted_on", $result );
@@ -2906,4 +2922,15 @@ if ( ! function_exists( 'enough_get_header' ) ) {
 		}//End locate_template( array( 'header.php' )
 	}
 }
+
+	if( ! function_exists( 'enough_counter' ) ){
+	
+		function enough_counter( ){
+		
+			static $count = 1;
+			
+			return $count++;
+		}
+	}
+
 ?>
