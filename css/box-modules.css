@@ -452,7 +452,13 @@ margin-top:0;
 text-align:center;
 }
 
+iframe,
+.twitter-tweet{
+}
 
+article embed{
+	max-width:100%;
+}
 .format-standard{
 }
 .post-format-link{

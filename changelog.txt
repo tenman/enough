@@ -1,7 +1,8 @@
 Changelog -----------------------------------
-version:0.62
+version:0.63
     Add
-        new file image.php
+        new file content-video.php, taxonomy.php
+
 ----------------------------------------------
 Changelog -----------------------------------
 version:0.61

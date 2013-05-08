@@ -98,6 +98,19 @@ width:100%;
 font-size:0.9em;
 max-width:100%;
 }
+.ie9 .menu-header > .menu,
+.ie10 .menu-header > .menu{
+/* line break bug?*/
+width:100%;
+}
+.ie9 html,
+.ie10 html{
+overflow:hidden;
+}
+.ie9 article,
+.ie10 article{
+max-width:100%;
+}
 
 .ie8 .menu-header li {
 list-style-type:none;
@@ -619,7 +632,30 @@ padding:.5em;
 .ie9 .wp-link-pages {
 text-align:center;
 }
-
+.ie9.enough-w-keitai article,
+.ie9.enough-w-qvga article,
+.ie9.enough-w-iphone article,
+.ie9.enough-w-vga article,
+.ie9.enough-w-keitai body.page article,
+.ie9.enough-w-qvga body.page article,
+.ie9.enough-w-iphone body.page article,
+.ie9.enough-w-vga body.page article,
+.ie9.enough-w-keitai nav,
+.ie9.enough-w-qvga nav,
+.ie9.enough-w-iphone nav,
+.ie10.enough-w-vga nav,
+.ie10.enough-w-keitai article,
+.ie10.enough-w-qvga article,
+.ie10.enough-w-iphone article,
+.ie10.enough-w-vga article,
+.ie10.enough-w-keitai body.page article,
+.ie10.enough-w-qvga body.page article,
+.ie10.enough-w-iphone body.page article,
+.ie10.enough-w-vga body.page article,
+.ie10.enough-w-keitai nav,
+.ie10.enough-w-qvga nav,
+.ie10.enough-w-iphone nav,
+.ie10.enough-w-vga nav,
 .ie8.enough-w-keitai article,
 .ie8.enough-w-qvga article,
 .ie8.enough-w-iphone article,
@@ -843,10 +879,10 @@ body.ie7{
 .ie8 .statuses .entry-content a,
 .ie9 .statuses .entry-content a,
 .ie10 .statuses .entry-content a{
-/*	pointer-events: none;
+	pointer-events: none;
     cursor: default;
     text-decoration:none;
-	color:#000;*/
+	color:#000;
 }
 .ie7 .statuses .entry-content img,
 .ie8 .statuses .entry-content img,
