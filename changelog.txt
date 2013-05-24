@@ -1,6 +1,31 @@
 Changelog -----------------------------------
 version:0.64
 
+    Add
+        new file content-link.php
+
+        Note: About Post Format link on Theme Enough.
+
+            Enough post format link has Predefined custom field keys.
+
+                key names:  rel = a element attribute rel
+                                ex. field value 'bookmark'
+
+                            target = a element attribute target
+                                ex. field value '_blank'
+
+                            class = a element attribute class
+                                ex. field value 'my-class'
+            above custom fields automaticaly add to the post format link.
+
+    Fixed
+        Fixed When using firefox browser image display improperly
+        Fixed When Browser grater than width 1281px has javascript error
+        Fixed value empty
+            $enough_theme_uri, $enough_author_uri, $enough_version,
+            $enough_current_theme_name, $enough_description,
+            $enough_author, $enough_template, $enough_tags
+
 ----------------------------------------------
 Changelog -----------------------------------
 version:0.63
