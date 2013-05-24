@@ -20,7 +20,7 @@
 /**
  *
  *
- *
+ *Version 
  *
  *
  */
@@ -29,16 +29,16 @@
 
     if( $enough_wp_version >= '3.4' ){
 
-        $theme_data = wp_get_theme();
+        $enough_theme_data = wp_get_theme();
 
-        $enough_theme_uri           = $theme_data->ThemeURI;
-        $enough_author_uri          = $theme_data->Author_URI;
-        $enough_version             = $theme_data->Version;
-        $enough_current_theme_name  = $theme_data->Name;
-        $enough_description         = $theme_data->Description;
-        $enough_author              = $theme_data->Author;
-        $enough_template            = $theme_data->Template;
-        $enough_tags                = $theme_data->Tags;
+        $enough_theme_uri           = $enough_theme_data->get( 'ThemeURI' );
+        $enough_author_uri          = $enough_theme_data->get( 'AuthorURI' );
+        $enough_version             = $enough_theme_data->get( 'Version' );
+        $enough_current_theme_name  = $enough_theme_data->get( 'Name' );
+        $enough_description         = $enough_theme_data->get( 'Description' );
+        $enough_author              = $enough_theme_data->get( 'Author' );
+        $enough_template            = $enough_theme_data->get( 'Template' );
+        $enough_tags                = $enough_theme_data->get( 'Tags' );
         $enough_tags                = implode(',',$enough_tags);
 
     }else{
@@ -724,11 +724,18 @@
 			$format     = get_post_format();
 			
 			$html       = '<a href="%1$s" class="permalink-post-format-%2$s" rel="bookmark"><span>%4$s %3$s</span></a>';
+			
+			$link_to_title = strip_tags( get_the_title() );
+			
+			if ( empty( $link_to_title ) ) {
+			
+				$link_to_title = get_post_format_string( $format );
+			}
 
 			$permalink	= sprintf( $html,
 								esc_url( $permalink ),
 								esc_attr( $format ),
-								get_post_format_string( $format ),
+								$link_to_title,
 								__('link to','enough')
 							);
 
@@ -1397,6 +1404,8 @@
 			
 			if( width < 1281 ){
 				body_class = 'enough-w-sxga';
+			}else{
+				body_class = '';
 			}
 			if( width < 1025 ){
 				body_class = 'enough-w-xga';

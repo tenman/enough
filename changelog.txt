@@ -1,4 +1,8 @@
 Changelog -----------------------------------
+version:0.64
+
+----------------------------------------------
+Changelog -----------------------------------
 version:0.63
     Add
         new file content-video.php, taxonomy.php

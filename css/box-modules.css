@@ -238,9 +238,31 @@ article.page .entry-content,article.page .entry-title{
 	margin:2em 0;
 	margin:2rem 0;
 }
-
+.home article.sticky .entry-title{
+	text-align:center;
+}
 article.sticky .entry-title,article.sticky .entry-content{
 	max-width:90%;
+}
+article.post dt{
+	margin:1em 0 .5em;
+	margin:1rem 0 .5rem;
+}
+article h1,
+article h2,
+article h3{
+	margin:2em 0 1em;
+	margin:2rem 0 1rem;
+}
+
+article ul ol,
+article ol ul,
+article ol ol,
+article ul ul{
+	margin:0;	
+}
+article li{
+	line-height:1.5;
 }
 
 div.widget{

@@ -18,7 +18,13 @@
     copyright   Copyright (c) 2010-2012, Tenman
     License: GNU General Public License v2.0
     License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
 **About this theme
+Enough consept change
+ver 0.6 <
+	Satisfied enough necessary minimum structure Responsive Theme.
+[del version=0.6]
+last version 0.56
     This theme has only two template files.
         index.php
         comments.php
@@ -38,7 +44,7 @@
             404.php
 
     These files saved to the theme directory are included automatically.
-
+[/del]
 **Other notes
     Although this theme is Responsive design, jQuery is used for that operation.
 
@@ -154,4 +160,26 @@
             add_filter( 'post_class','enough_onecolumn_post' );
         }
         ?>
+*ver 0.64
+
+	Add template content-link.php
+	
+	This template is used when the post format link.
+	
+	Enough post format link has Predefined custom field keys.
+	
+	key names:	rel = a element attribute rel
+					ex. field value 'bookmark'
+				target = a element attribute target
+					ex. field value '_blank'
+				class = a element attribute class
+					ex. field value 'my-class'
+	
+	above custom fields automaticaly add to the post format link.
+				
+				
+
+
+
+
 
