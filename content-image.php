@@ -1,6 +1,6 @@
 <?php
 	
-	global $enough_wp_version;
+	global $enough_wp_version, $enough_post_format_functionality;
 	
 if ( is_tax( ) ) {
 		$allow_img_filetype = "(\.gif|\.png|\.jpe?g)";
@@ -9,18 +9,7 @@ if ( is_tax( ) ) {
 		$content 			= get_the_content( );
 		$uri_detect_regex	= "/(<img[^\"]+\")(https?:\/\/)([-_.!˜*\'()a-zA-Z0-9;\/?:@&=+$,%#]+)($allow_img_filetype)/siu";
 		
-		
-				
-		if( $enough_wp_version >= '3.6' ){
-		
-			$enough_post_format = get_post_format_meta( $post->ID );
-	
-			if(preg_match($uri_detect_regex,$enough_post_format['image'],$matches) ) {
 			
-				//$image = $matches[1].$matches[2].$matches[3];
-				$image = $matches[2].$matches[3].$matches[4];
-			}
-		}
 		if( empty( $image ) ){
 			
 			if(preg_match($uri_detect_regex, $content, $matches) ) {
@@ -43,7 +32,7 @@ if ( is_tax( ) ) {
 } else {
 
 ?>
-    <article <?php post_class(); ?> <?php if( is_single() ){ printf( 'role="%1$s"', 'main' ); } ?> >
+    <article <?php post_class(); ?> <?php if( is_single() ){ printf( 'role="%1$s"', 'main' ); } ?>>
 <?php
 
 		enough_article_title();

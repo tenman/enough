@@ -1,4 +1,6 @@
 <?php
+		global $enough_wp_version, $enough_post_format_functionality;
+
 	if ( is_tax( ) or is_front_page() ) {
 ?>
 	<article <?php post_class(); ?> <?php if( is_single() ){ printf( 'role="%1$s"', 'main' ); } ?> >

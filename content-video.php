@@ -1,5 +1,5 @@
 <?php
-		global $enough_wp_version;
+		global $enough_wp_version, $enough_post_format_functionality;
 	
 		if ( is_tax( ) or is_front_page( ) ) {
 
@@ -7,37 +7,31 @@
 			$enough_link			= get_permalink( );
 			$content 				= get_the_content( );
 			$enough_video_thumbnail = '';
-				
-		if ( $enough_wp_version >= '3.6' ) {
-		
-			$enough_post_format 	= get_post_format_meta( $post->ID );
-			$enough_video_url 		= $enough_post_format["video_embed"];
-			
-			if ( preg_match( '|http://youtu.be/([A-z0-9]+)$|', $enough_video_url,$regs ) ) {
+							
+			if ( preg_match( '|http://youtu.be/([A-z0-9]+)|', $content,$regs ) ) {
 				
 				$enough_video 		= $regs[1];
 			} else {
 				$enough_video 		= '';
 			}
-		}
 ?>			
     <article <?php post_class(); ?> <?php if( is_single() ){ printf( 'role="%1$s"', 'main' ); } ?> >
 <?php
 
-		enough_article_title();
-		
-		$enough_post_format = get_post_format();
-		
-		if ( is_front_page( ) ) {
-		
-			if ( $enough_post_format === false ) {
+			enough_article_title();
 			
-				enough_posted_on( $diaplay = true );
-			}else{
+			$enough_post_format = get_post_format();
 			
-				enough_post_format_posted_on( );	
+			if ( is_front_page( ) ) {
+			
+				if ( $enough_post_format === false ) {
+				
+					enough_posted_on( $diaplay = true );
+				}else{
+				
+					enough_post_format_posted_on( );	
+				}
 			}
-		}
 	
     	echo apply_filters( 'enough_post_thumbnail', get_the_post_thumbnail(  ) );
 ?>

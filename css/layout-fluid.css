@@ -299,7 +299,13 @@
 		/*word-wrap: break-word;
 */	}
 	.widget{margin-right:10px;}
-	
+	.custom-format-link-list-wrapper{
+		margin-left:0;
+	}
+	.approach-categories-content{
+		margin-right:0;
+		padding-right:0;
+	}	
 	#enough-page .menu-header .sub-menu, 
 	#enough-page .menu-header .children{
 		display:block!important;

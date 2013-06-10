@@ -57,7 +57,6 @@
 	-moz-column-gap:2px;
 	column-count:3;
 	column-gap:2px;
-	background:#555;
 	padding:5px;
 }
 
@@ -171,3 +170,10 @@ div.post-format-link-content{
 	margin-left:10%;
 }
 /* post format link end */
+/* post format video */
+
+.format-video iframe{
+	margin:auto;
+	display:block;
+}
+/* post format video end */

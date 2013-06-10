@@ -264,7 +264,6 @@ article ul ul{
 article li{
 	line-height:1.5;
 }
-
 div.widget{
 	margin-right:10px;
 }
@@ -490,6 +489,7 @@ article embed{
 }
 .post-format-link + .enough-comment-link{
 	width:10em;
+	text-align:right;
 }
 .post-format-entry-meta{
 	text-align:center;
@@ -559,3 +559,37 @@ article embed{
 	.mejs-horizontal-volume-current{
 		max-width:100%;
 	}
+/* */	
+	.custom-format-link-list-wrapper{
+		float:left;
+		margin-left:10px;/* see layout-fluid.css max-width : 480px*/
+	}
+	
+	 #custom-post-format-widget-link{
+		margin:1em 0 0;
+		padding:0;
+	}
+	 #custom-post-format-widget-link li{
+		display:inline-block;
+		width:12.5%;
+		min-width:50px;
+		margin:.5em 0;
+		padding:0;
+		text-align:center;
+	}
+	.custom-format-link-list-wrapper .approach-widget{
+		list-style:none;
+		margin:0;
+		padding:0;
+		width:100%;
+	}
+	.custom-format-link-list-wrapper .approach-widget li{
+		list-style:none;
+			margin-right:0!important;
+	
+	}
+	.enough-1col-post + .custom-format-link-list-wrapper .approach-widget li{
+			margin-right:5px!important;
+
+	}
+

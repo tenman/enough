@@ -1,12 +1,35 @@
 <?php
-/**
- * Functions and class for WordPress theme Enough
+/* Functions and class for WordPress theme Enough
  *
  *
  * License: GNU General Public License v2.0
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * @package Enough
  */
+	
+	$enough_options  	= get_option( "enough_theme_settings" );
+	$home_template 		= $enough_options[ 'enough_approach_type' ];	
+
+	add_action( 'pre_get_posts', 'foo_modify_query_exclude_category' );
+	 
+	function foo_modify_query_exclude_category( $query ) {
+	
+	global $home_template;
+	
+	if( empty( $home_template ) ){ return $query; }
+
+	 if ( ! is_admin() and 
+	 		$query->is_main_query() and 
+			$query->is_home() and 
+	 		$home_template !== 'default' and
+			$home_template !== 'author' and
+			$home_template !== 'standard' and
+			$home_template !== 'categories' ) {
+			
+			$query->set('posts_per_page', 100 );
+		}	
+	}
+
 /**
  *
  *
@@ -76,15 +99,11 @@
  *
  *
  */
-    $enough_sidebar_args = array(
-        'name'          => sprintf(__('Sidebar %d', 'enough'), 1 ),
-        'id'            => 'sidebar-1',
-        'description'   => '',
-        'before_widget' => '<li id="%1$s" class="widget %2$s">',
-        'after_widget'  => '</li>',
-        'before_title'  => '<h2 class="widgettitle">',
-        'after_title'   => '</h2>'
-        );
+
+
+		
+		
+
 /**
  *
  *
@@ -184,14 +203,41 @@
         'type' => 'radio',
         'select_values' => array('yes' => 'yes')
         ),
+        array('option_id' => 9,
+        'blog_id' => 0 ,
+        'option_name' => "enough_approach_type",
+        'option_value' => 'default',
+        'autoload'=>'yes',
+        'title'=>__('Enough Approach Type','enough'),
+        'excerpt'=>__('Blog Home Type','enough'),
+        'validate'=>'enough_approach_type_validate',
+        'list' => 1,
+        'type' => 'radio',
+        'select_values' => array(	'Author'				=> 'author',
+									'Blank'					=> 'blank',
+									'Categories'		=> 'categories',
+									'Post Format chat'		=> 'chat',
+									'Post Format Gallery'	=> 'gallery',
+									'Post Format Image'  	=> 'image',
+									'Post Format Link'		=>	'link',
+									'Post Format Quote'		=> 'quote',
+									'Post Format Status' 	=> 'status' ,
+									'Post Format Video'  	=> 'video',
+									)
+        ),
     );
 /**
- *
+ * 
  *
  *
  *
  *
  */
+	if( ! isset( $enough_post_format_functionality ) ){
+	
+		$enough_post_format_functionality == false ;
+	
+	}
 	add_theme_support( 'post-formats',
 		array(  'aside',
 				'gallery',
@@ -238,7 +284,26 @@
 	
 			do_action( 'enough_setup_before' );
 	
-			register_sidebar( $enough_sidebar_args );
+			register_sidebar( array(
+				'name'          => sprintf(__('Sidebar %d', 'enough'), 1 ),
+				'id'            => 'sidebar-1',
+				'description'   => '',
+				'before_widget' => '<li id="%1$s" class="widget %2$s">',
+				'after_widget'  => '</li>',
+				'before_title'  => '<h2 class="widgettitle">',
+				'after_title'   => '</h2>'
+			));
+			
+			register_sidebar( array(
+				'name'          => __('Approach Page Post Format After', 'enough'),
+				'id'            => 'sidebar-approach',
+				'description'   => __( 'Blog Home Widget After Content', 'enough' ),
+				'before_widget' => '<li id="%1$s" class="widget %2$s">',
+				'after_widget'  => '</li>',
+				'before_title'  => '<h2 class="widgettitle">',
+				'after_title'   => '</h2>'
+			));
+
 			
 			add_theme_support( 'automatic-feed-links' );
 			
@@ -307,9 +372,6 @@
 				$enough_onecolumn_post = 'no';
 			}
 			
-			
-
-			
 			add_action( 'wp_head', 'enough_slider' );
 	
 		/**
@@ -375,6 +437,17 @@
 			
     add_theme_support( 'custom-background', $args );
 
+	add_action( 'admin_init', 'enough_register_settings' );
+	
+	function enough_register_settings(){	
+		register_setting( 'enough_theme_settings', 'enough_post_one_column_bottom_sidebar', 'enough_post_one_column_bottom_sidebar_validate' );
+		register_setting( 'enough_theme_settings', 'enough_use_slider', 'enough_use_slider_validate' );
+		register_setting( 'enough_theme_settings', 'enough_slider_sleep', 'enough_slider_sleep_validate' );
+		register_setting( 'enough_theme_settings', 'enough_slider_fade', 'enough_slider_fade_validate' );
+		register_setting( 'enough_theme_settings', 'enough_approach_type', 'enough_approach_type_validate' );
+	}
+
+	
 /**
  *
  *
@@ -1778,6 +1851,30 @@ jQuery(".result-w").text(header_width);*/
  *
  *
  */
+// For theme mods:
+	if ( ! function_exists( 'enough_approach_type_validate' ) ) {
+	
+		function enough_approach_type_validate( $input ){
+				
+			$formats = get_theme_support( 'post-formats' );
+			
+			if( array_search( $input, $formats[0] ) !== false ){
+
+				return $input;
+			}
+									
+			if ( $input == 'default' or
+				$input == 'author' or
+				$input == 'categories' or
+				$input == 'blank' ) {
+				
+				return $input;
+			}
+			
+			return 'default';
+		 
+		}
+	}
 	if ( ! function_exists( 'enough_post_one_column_bottom_sidebar_validate' ) ) {
 	
 		function enough_post_one_column_bottom_sidebar_validate($input){
@@ -2607,7 +2704,7 @@ jQuery(".result-w").text(header_width);*/
  *
  *
  */
-
+	
 	if( ! function_exists( 'enough_customize_register' ) and $enough_wp_version >= '3.4' ) {
 	
 		function enough_customize_register( $wp_customize ) {
@@ -2626,27 +2723,60 @@ jQuery(".result-w").text(header_width);*/
 			$wp_customize->add_setting( 'enough_theme_settings[enough_use_slider]', array(
 				'default'        => 'no',
 				'type'           => 'option',
-				'capability'    => 'edit_theme_options'
+				'capability'    => 'edit_theme_options',
+				'sanitize_callback' => 'enough_use_slider_validate'
+
 			) );
 	
 			$wp_customize->add_setting( 'enough_theme_settings[enough_slider_sleep]', array(
 				'default'        => 3,
 				'type'           => 'option',
-				'capability'        => 'edit_theme_options'
+				'capability'        => 'edit_theme_options',
+				'sanitize_callback' => 'enough_slider_sleep_validate'
+
 			) );
 			$wp_customize->add_setting( 'enough_theme_settings[enough_slider_fade]', array(
 				'default'        => 1,
 				'type'           => 'option',
-				'capability'        => 'edit_theme_options'
+				'capability'        => 'edit_theme_options',
+				'sanitize_callback' => 'enough_slider_fade_validate'
 			) );
 			$wp_customize->add_setting( 'enough_theme_settings[enough_post_one_column_bottom_sidebar]', array(
 				'default'        => 'no',
 				'type'           => 'option',
-				'capability'        => 'edit_theme_options'
+				'capability'        => 'edit_theme_options',
+				'sanitize_callback' => 'enough_post_one_column_bottom_sidebar_validate'
 			) );
+			$wp_customize->add_setting( 'enough_theme_settings[enough_approach_type]', array(
+				'default'        => '',
+				'type'           => 'option',
+				'capability'        => 'edit_theme_options',
+				'sanitize_callback' => 'enough_approach_type_validate'
+
+			) );
+			$wp_customize->add_control( 'enough_approach_type', array(
+					'label'      =>  __( 'Enough Approach Type ', 'enough' )."( Not Support Preview )" ,
+					'section'    => 'enough_theme_setting',
+					'settings'   => 'enough_theme_settings[enough_approach_type]',
+					'type'       => 'radio',
+					'choices'    => array(  'default'	=> 'Default',
+											'author'	=> 'Author',
+											'blank'		=> 'Blank',
+											'categories'		=> 'Categories',
+											'chat'		=> 'Post Format Chat',
+											'gallery'	=> 'Post Format Gallery',
+											'image'		=> 'Post Format Image',
+											'link'		=> 'Post Format Link',
+											'quote'		=> 'Post Format Quote',
+											'status'	=> 'Post Format Status',
+									 		'video'		=> 'Post Format Video',
+									)
+					)
+			);
+			
 	
 			$wp_customize->add_control( 'enough_post_one_column_bottom_sidebar', array(
-					'label'      => __( 'Post Full Width One Column', 'enough' ),
+					'label'      => __( 'Post Full Width One Column ', 'enough' ).'( Not Support Preview )',
 					'section'    => 'enough_theme_setting',
 					'settings'   => 'enough_theme_settings[enough_post_one_column_bottom_sidebar]',
 					'type'       => 'radio',
@@ -2760,7 +2890,7 @@ jQuery(".result-w").text(header_width);*/
 		function enough_monthly_archive_prev_next_navigation(){
 		
 			global $wpdb, $wp_query;
-	
+			$calendar_output = '';
 			if ( is_month() ) {
 	
 				$thisyear   = mysql2date('Y', $wp_query->posts[0]->post_date);
@@ -2942,4 +3072,62 @@ if ( ! function_exists( 'enough_get_header' ) ) {
 		}
 	}
 
+
+
+
+function enough_approach_blank_style(){
+?>
+<style type="text/css">
+html{
+	height: 100%;
+	min-height:100%;
+
+}
+body {
+	height: 100%;
+	min-height:100%;
+	
+}
+
+#enough-page {
+	width: 100%;
+	display: -webkit-box;
+	display: -moz-box;
+	padding:0;
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+}
+footer {
+  position: fixed!important;
+  bottom: 0;
+  right:0;
+  left: 0;
+  z-index: 1030;
+  margin-bottom: 0;
+}
+.menu-header{
+  position: fixed!important;
+  top: 40%;
+  right:0;
+  left: 0;
+  z-index: 1030;
+  margin-bottom: 0;
+
+}
+.enough-w-vga .menu-header,
+.enough-w-iphone .menu-header{
+  position: static!important;
+  height:auto;
+  margin-bottom: 20px;
+
+}
+.menu-header {
+    background: none repeat scroll 0 0 rgba(255, 255, 255, 0.7)!important;
+    border-bottom: 1px solid #fff!important;
+    border-top: 1px solid #fff!important;
+}
+</style>
+<?php
+}
 ?>

@@ -115,17 +115,26 @@ iframe{
 max-width:100%!important;
 }
 table {
+display:table;
 box-sizing:border-box;
+table-layout:fixed;
+width:100%;
+}
+table.auto {
+	table-layout:auto;
 }
 th,
 td {
+display:table-cell;
 padding:5px;
 max-width:100%;
 }
 tr{
 max-width:100%;
 }
-
+td image{
+position:relative;
+}
 textarea {
 margin:0 5%;
 width:90%;

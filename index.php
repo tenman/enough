@@ -8,7 +8,8 @@
  * @package Enough
  */
 ?>
-<?php 
+<?php
+			global $enough_onecolumn_post; 
 			get_header();
 ?>
 				<br class="clear" />
@@ -65,16 +66,7 @@
 /**
  * Sidebar show bottom when post 1column
  */
-			
 			enough_dinamic_sidebar( 'sidebar-1', $enough_onecolumn_post );
-/*
-	
-			wp_reset_query();
-			
-			if ( ! is_page_template('page-blog.php') ){
-			
-				get_template_part('login'); 
-			}*/
 		
 			get_footer();
 ?>
