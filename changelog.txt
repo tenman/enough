@@ -1,6 +1,35 @@
 Changelog -----------------------------------
 version:0.70
+    Add
+        new file:   approach-author.php
+        new file:   approach-blank.php
+        new file:   approach-categories.php
+        new file:   approach-format.php
+        new file:   approach.php
+        new file:   css/approach.css
+        new file:   home.php
 
+        New enough theme can swich home templates.
+
+        You can select the layout type below from theme options and customizer
+
+            Enough Approach Type
+
+                Default
+                Author
+                Blank
+                Categories
+                Post Format Chat
+                Post Format Gallery
+                Post Format Image
+                Post Format Link
+                Post Format Quote
+                Post Format Status
+                Post Format Video
+
+    Modified
+        customizer Add sanitize_callback
+        Post Format settings for WordPress 3.6
 ----------------------------------------------
 Changelog -----------------------------------
 version:0.64
