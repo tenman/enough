@@ -1,0 +1,45 @@
+.approach-author-content{
+
+}
+.approach-author-content .user{
+	margin:8px 0;
+	padding:0;
+}
+.approach-author-content li{
+	display:inline-block;
+	margin:0;
+}
+.approach-author-content .user-description{
+	display:inline-block;
+}
+.approach-author-content .user-description .avatar{
+	float:left;
+	margin-right:10px;
+	margin-top:10px;
+}
+.approach-author-content .user-nicename{
+	display:block;
+	text-align:right;
+}
+.approach-categories-content div{
+	width:32.5%;
+	height:120px;
+	display:table;
+	border:1px solid rgba(222, 222, 222, 0.5);
+	background:rgba(222, 222, 222, 0.1);
+	float:left;
+}
+.approach-categories-content div:hover{
+	background:#fff;
+}
+
+.approach-categories-content div a{
+	display:table-cell;
+	text-align:center;
+	vertical-align:middle;
+}
+.custom-format-link-list-wrapper{
+	max-width:100%;
+}
+
+
