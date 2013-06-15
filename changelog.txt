@@ -1,4 +1,7 @@
 Changelog -----------------------------------
+version:0.72
+----------------------------------------------
+Changelog -----------------------------------
 version:0.71
     Fixed
         Notice: Undefined variable: enough_post_format_functionality in ...enough\functions.php on line 238
