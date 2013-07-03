@@ -1,5 +1,8 @@
 Changelog -----------------------------------
-version:0.72
+version:0.73
+    Fixed regex works improperly.
+    wrapped ' url make broken link when post format link.
+        <a href='http://example.com'>text</a>
 ----------------------------------------------
 Changelog -----------------------------------
 version:0.71

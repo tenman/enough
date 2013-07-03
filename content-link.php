@@ -5,7 +5,7 @@
 		$link_url				= '';
 		$permalink				= get_permalink( );
 		$content 				= get_the_content( );
-		$uri_detect_regex		= "/(https?:\/\/)([-_.!˜*\'()a-zA-Z0-9;\/?:@&=+$,%#]+)/siu";
+		$uri_detect_regex		= "/(https?:\/\/)([-_.!˜*()a-zA-Z0-9;\/?:@&=+$,%#]+)/siu";
 		
 		$strip_tags_content		= strip_tags( $content );
 		$url_removed_content	= preg_replace( $uri_detect_regex, '' , $strip_tags_content );
@@ -53,6 +53,7 @@
 		
 		
 			if( ! empty( $link_url ) ){
+			
 					
 				printf ( $html , esc_url( $link_url ), $title, esc_attr( $rel ), esc_attr( $target ), esc_attr( $class ) );
 				

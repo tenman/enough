@@ -4,7 +4,7 @@ Theme URI: http://www.tenman.info/wp3/enough/
 Description: Satisfied enough necessary minimum structure Responsive Theme. HTML5 normalize.css . 11 kinds of homepage templates can be chosen for the purpose of using you.
 Author: Tenman
 Author URI: http://www.tenman.info/wp3/
-Version: 0.72
+Version: 0.73
 Tags:white,two-columns,custom-colors, custom-header, custom-background, custom-menu, editor-style, threaded-comments, sticky-post
 License: GNU General Public License v2.0
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -81,3 +81,83 @@ body{
 		width:98%;
 	}
 }
+
+/* optional responsive grid  width < 640px then 100% 
+	example 
+	
+	div.line
+		div.unit.size1of3
+		div.unit.size2of3
+	/div
+*/
+.line ul,
+.line li{
+	margin:0;
+	padding:0;
+}
+.line img{
+	max-width:100%;
+	height:auto;
+}
+
+.line,
+.lastUnit {
+	overflow: hidden;
+}
+.unit{
+	float:left;
+}
+.unitExt{
+	float:right;
+}
+.size1of1{
+	float:none;
+}
+.size1of2{
+	width:50%;
+}
+.size1of3{
+	width:33.33333%;
+}
+.size2of3{
+	width:66.66666%;
+}
+.size1of4{
+	width:24.99%;
+}
+.size3of4{
+	width:75%;
+}
+.size1of5{
+	width:19.99%;
+}
+.size2of5{
+	width:40%;
+}
+.size3of5{
+	width:60%;
+}
+.size4of5{
+	width:80%;
+}
+.lastUnit {
+	float:none;
+	width:auto;
+}
+.size1of1,
+.size1of2,
+.size1of3,
+.size2of3,
+.size1of4,
+.size3of4,
+.size1of5,
+.size2of5,
+.size3of5,
+.size4of5{
+    padding:10px;
+    -moz-box-sizing:border-box;
+    -ms-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box;*/
+}
+/* optional responsive grid  end */

@@ -3180,7 +3180,7 @@ footer {
 			
 			if ( ! is_admin( ) ) {
 			
-				return preg_replace_callback("|>([-_.!˜*\'()a-zA-Z0-9;\/?:@&=+$,%#]{30,})<|", 'enough_add_wbr_content_long_text', $content );
+				return preg_replace_callback("|>([-_.!˜*()a-zA-Z0-9;\/?:@&=+$,%#]{30,})<|", 'enough_add_wbr_content_long_text', $content );
 				
 			}
 			
