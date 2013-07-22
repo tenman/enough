@@ -1,4 +1,16 @@
 Changelog -----------------------------------
+version:0.74
+    Modified
+        css files remove comment out rules
+        posts_nav_link() label
+        home.php codes move to index.php
+        approach.php
+            index.php codes move to approach.php
+        comment form set html5 when WordPress 3.6
+        Post format link attribute add default values.
+    Added ja.css
+----------------------------------------------
+Changelog -----------------------------------
 version:0.73
     Fixed regex works improperly.
     wrapped ' url make broken link when post format link.
