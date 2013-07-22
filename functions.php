@@ -427,7 +427,7 @@
 				
     add_theme_support( 'custom-header', $args );
 
-    $args = array( 'default-color' => ''
+    $args = array( 'default-color' => 'ffffff'
 					, 'default-image' => ''
 					, 'wp-head-callback' => 'enough_embed_meta'
 					, 'admin-head-callback' => 'enough_admin_header_style'
@@ -3166,9 +3166,8 @@ footer {
  *
  *
  * test filter.
- * @since 1.119
+ * 
  */
-	
 	add_filter( 'the_content','enough_non_breaking_content', 11 );
 	
     if ( ! function_exists( 'enough_non_breaking_content' ) ) {
@@ -3188,10 +3187,65 @@ footer {
 		}
 	}
 
+if ( ! function_exists( 'enough_add_wbr_content_long_text' ) ) {
+
 	function enough_add_wbr_content_long_text( $matches ){
 	
 		foreach( $matches as $match ){
 			return preg_replace( '!([/])!','$1<wbr>', $match );
 		}	
 	}
+}
+	
+/**
+ * WordPress is correct but Currnt W3C validate is noisy
+ *
+ *
+ * 
+ * @since 0.74
+ */
+if ( ! function_exists( 'enough_remove_rel_category' ) ) {
+	
+	function enough_remove_rel_category( $text ) {
+	  $text = str_replace('rel="category tag"', 'rel="tag"', $text); 
+	  $text = str_replace('rel="category"', '', $text); 
+	  return $text;
+	}
+}
+add_filter( 'the_category', 'enough_remove_rel_category',99 );
+
+/**
+ * Test
+ *
+ *
+ * 
+ * @since 0.74
+ */
+
+//add_filter( 'the_content', 'enough_force_valid' );
+if ( ! function_exists( 'enough_force_valid' ) ) {
+
+	function enough_force_valid( $content ){
+	
+		if( class_exists( 'tidy' ) ){
+			$config = array(
+					   'indent'         => true,
+					   'output-xhtml'   => true,
+					   'wrap-php'       => true,
+					   'wrap'           => 144);
+		
+			// Tidy
+		
+			$tidy = new tidy;
+			$tidy->parseString($content, $config, 'utf8');
+			$tidy->cleanRepair();
+		
+			$content = tidy_get_output($tidy);
+		}else{
+			$content = str_replace( '<td>',"<td><p>",$content );
+		}
+		
+		return $content;
+	}
+}
 ?>

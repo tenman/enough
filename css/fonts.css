@@ -32,18 +32,15 @@
 .comment-meta{
 	font-size:0.75rem;
 }
-
 .wp-link-pages > span,
 dt,
 .pagenate-comment-links .current{
 	font-weight:700;
 }
-
 body{
 	font-family:Geneva, Arial, Helvetica, sans-serif;
 	font-size:100%;
 }
-
 cite,
 input[type=file],
 input[type=reset],
@@ -55,7 +52,6 @@ cite.fn,
 .form-allowed-tags{
 	font-size:0.8rem;
 }
-
 nav #wp-calendar caption,
 .archives-title-text,
 h1,
@@ -66,27 +62,25 @@ h2 a,
 h3 a{
 	font-family:Georgia, "Times New Roman", Times, serif;
 }
-
 nav #wp-calendar thead th{
 	font-size:0.9em;
 	font-weight:400;
 }
 
 @media screen and ( max-width: 480px ){
-	.enough-comment-link
-	{
+	.enough-comment-link{
 		font-size:0.8rem;
 	}
 	
-	body
-	{
+	body{
 		font-size:75%;
 	}
 }
 
 @media screen and ( min-width: 481px ){
-	.menu-header
-	{
+	.menu-header{
 		font-size:0.9rem;
 	}
 }
+
+

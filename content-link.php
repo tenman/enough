@@ -14,14 +14,19 @@
 		$rel					= '';
 		$target					= '_self';
 		$class					= '';
-		$html = '<a href="%1$s" class="term-post-format-link-item" title="link to %1$s" rel="%3$s" target="%4$s" class="%5$s"><span>%2$s</span></a>';
-
+		$html = '<a href="%1$s" class="term-post-format-link-item %5$s" title="link to %1$s" rel="%3$s" target="%4$s"><span>%2$s</span></a>';
 		$rel 					= get_post_meta($post->ID, 'rel', true );
 		$rel					= addslashes( $rel );
 		
+		if ( empty( $rel ) ) {
+			$rel				= 'bookmark';
+		}
+		$target					= '_self';
 		$target 				= get_post_meta($post->ID, 'target', true );
 		$target					= addslashes( $target );
-		 
+		if ( empty( $target ) ) {
+			$target				= '_self';
+		}
 		$class	 				= get_post_meta($post->ID, 'class', true );
 		$class	 				= addslashes( $class );
 

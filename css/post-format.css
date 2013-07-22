@@ -1,22 +1,25 @@
 /* post format status */
+.format-status{
+	margin-righ:10px;
+}
 .format-status .post-status-title:focus,
 .format-status .entry-content:focus{
 	outline:none;
 }
-.format-status .entry-content{
+body:not(.single-post) .format-status .entry-content{
 	display:none;
 }
 .format-status .post-status-title:focus{
 	outline:none;
 }
-.format-status .post-status-title:focus ~.entry-content{
+body:not(.single-post) .format-status .post-status-title:focus ~.entry-content{
 	display:block;
 }
 .format-status .post-status-title:hover{
 	cursor:pointer;
 	}
-.format-status .entry-content:active,
-.format-status .entry-content:focus{
+body:not(.single-post) .format-status .entry-content:active,
+body:not(.single-post) .format-status .entry-content:focus{
 	display:block;
 	outline:none;
 }
@@ -167,7 +170,8 @@
 	margin:2rem 0;
 }
 div.post-format-link-content{
-	margin-left:10%;
+	margin:1em;
+	margin:1rem;
 }
 /* post format link end */
 /* post format video */

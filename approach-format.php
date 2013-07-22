@@ -78,7 +78,7 @@
 ?>
 			<div class="clear posts-nav-link">
 <?php
-			posts_nav_link(' ');
+			posts_nav_link(' ', esc_html__( 'Previous Page', 'enough'), esc_html__( 'Next Page', 'enough'));
 ?>
     		</div>
 			<br class="clear vspacer-3" />

@@ -7,33 +7,27 @@
  * @package Enough
  */
 .menu-header{
-		/*background:#000;*/
 }
 .enough-w-iphone .menu-header{
-		background:none;
+	background:none;
 }
 .menu-header > ul > li > a{
-		background:none;
+	background:none;
 }
 .menu-header a{
-		background:#fff;
-		max-width:none;/* ie8 width issue*/
+	background:#fff;
+	max-width:none;/* ie8 width issue*/
 }
 .menu-header a:hover{
-		/*background:none;*/
-		max-width:none;/* ie8 width issue*/
-		/*color:#fff;*/
+	max-width:none;/* ie8 width issue*/
 }
-
 .sticky .entry-content,
 .sticky .entry-title{
-	background:#fff;
-	background:rgba(255,255,255,0.9);
+
 }
 #enough-page{
-	background:rgba(255,255,255,1);
-}
 
+}
 .comment-body blockquote,
 .comment-body td,
 .comment-body th{
@@ -43,21 +37,16 @@
 .comment-body blockquote{
 	border-left:6px solid #999;
 }
-
 .menu-header .sub-menu a,
 .menu-header .children a,
 .menu-header .sub-menu,
 .menu-header .children,
 .menu-header a,
 .menu-header{
-	/*color:#999;*/	
 }
-
 .menu-header .sub-menu a:hover,
 .menu-header .children a:hover,
 .menu-header a:hover{
-	/*background:#eee;
-	color:#555;*/
 }
 .ie9 .menu-header .sub-menu li,
 .ie9 .menu-header .children li,
@@ -83,14 +72,12 @@ hr{
 
 a,
 .widgettitle{
-	/*color:#555;*/
 }
 .widget > li{
 	color:#777;
 }
 
 a:hover{
-	/*color:#333;*/
 }
 
 
@@ -106,7 +93,10 @@ footer{
 select{
 	border:1px solid #ccc;
 }
-
+.entry-content form{
+	background:rgba(200,200,200, .1);
+	border:1px solid rgba(200,200,200, .4);
+}
 
 nav #searchform,
 nav #wp-calendar thead th,
@@ -121,7 +111,6 @@ nav #wp-calendar thead th,
 .widget_recent_comments .widgettitle,
 .widget_archive .widgettitle,
 .widget_meta .widgettitle{
-/*	background:rgba(200,200,200,0.5);*/
 }
 
 nav #wp-calendar tbody td a{
@@ -131,7 +120,6 @@ nav #wp-calendar tbody td a{
 nav .widget_calendar{
 	border:none!important;
 }
-
 th,
 td,
 blockquote{
@@ -190,12 +178,6 @@ blockquote{
 @media screen and (min-width: 481px){
 
 	.menu-header {
-		/*color:#191919;
-		background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#333));
-		background: -moz-linear-gradient(top,  #000,  #333);
-		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000', endColorstr='#333');*/
-		/*-moz-box-shadow: 0 1px 3px #555;
-		-webkit-box-shadow: 0 1px 3px #555;	*/
 		background:rgba(222,222,222,.1);
 		border-bottom:1px solid rgba(222,222,222,0.5);
 		border-top:1px solid rgba(222,222,222,0.5);
@@ -269,22 +251,14 @@ blockquote{
 		border-radius: 5px;
 	}
 	.page-item a{
-		/*color:#fff;
-		background:#000;*/
 	}
 	.menu-header .sub-menu a
 	.menu-header .children a {
-		/*background:#000;
-		color:#eee;*/
 	}	
 	.menu-header ul ul a{
-		/*background:#000;
-		color:#fff;*/
 	}
 	
 	.menu-header ul ul:hover a {
-		/*background:#000;
-		color:#fff;*/
 	}
 	.menu-header ul:hover ul a,
 	.menu-header ul ul:hover a{
@@ -293,7 +267,5 @@ blockquote{
 	.menu-header .sub-menu a:hover,
 	.menu-header .children a:hover,
 	 .menu-header a:hover{
-	/*	background:#333;
-		color:#fff;*/
 	}
 }

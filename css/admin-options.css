@@ -37,33 +37,30 @@ input[type="text"]{
 	
 }
 .enough-wp-native-style{
-position:relative;
-left:50px;
+	position:relative;
+	left:50px;
 }
 .enough-wp-native-style-settings-link a{
-text-align:center;border:1px solid #ccc;
-float:left;
-displat:inline-block;
-width:100px;
-height:22px;
-padding:39px 0;
-border-radius: 50px;
-margin:2px;background:#eee;
+	text-align:center;border:1px solid #ccc;
+	float:left;
+	displat:inline-block;
+	width:100px;
+	height:22px;
+	padding:39px 0;
+	border-radius: 50px;
+	margin:2px;background:#eee;
 }
-
 .enough-wp-native-style-settings-link div{
-display:none;
+	display:none;
 }
-
 .enough-wp-native-style-settings-link:hover div{
-display:block;
-position:absolute;
-top:30px;
-left:360px;
+	display:block;
+	position:absolute;
+	top:30px;
+	left:360px;
 }
-
 .enough-wp-native-style-settings-link br{
-line-height:2;
+	line-height:2;
 }
 .enough-left-col-title{
 	font-weight:bold;vertical-align:middle;border-bottom:3px solid #fff;

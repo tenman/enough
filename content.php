@@ -53,7 +53,6 @@
     comments_template();
 			} else {
 ?>
-		<br class="clear"  />
 <?php
 			}
 ?>

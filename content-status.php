@@ -11,7 +11,7 @@
 		
 		$enough_status_time 		= get_the_date( get_option( 'time_format' ) );
 		
-		$enough_status_title 		= the_title('<p tabindex="-1" class="post-status-title">','</p>',false);
+		$enough_status_title 		= the_title('<div tabindex="-1" class="post-status-title">','</div>',false)."\n";
 		
 		if( empty( $enough_status_title ) ){
 		
@@ -40,7 +40,6 @@
 												$enough_content_permalink,
 												get_avatar( get_the_author_meta( 'user_email' ), 48 )
 										);
-
 		
 		$enough_content_html 		= sprintf( $enough_content_html,
 												sprintf( $enough_content_date_html,
@@ -59,7 +58,7 @@
 		if( is_front_page( ) ){
 			$enough_post_format = get_post_format();
 		
-		 	printf('<a class="post-format-link" href="%1$s"><span>%2$s</span></a>',
+		 	printf('<p><a class="post-format-link" href="%1$s"><span>%2$s</span></a></p>',
 						esc_url( get_post_format_link( $enough_post_format ) ), 
 						get_post_format_string( $enough_post_format ) 
 				);

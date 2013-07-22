@@ -21,6 +21,13 @@
 ?>
 		</div>
 <?php
-		comment_form();
+		global $enough_wp_version;
+		
+		$args = array();
+		
+		if( $enough_wp_version >= 3.6 ){
+			$args['format'] = 'html5';
+		}
+		comment_form( $args );
 ?>
 	</div>
