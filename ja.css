@@ -1,0 +1,26 @@
+/* CSS Document */
+
+.ja .site-description{
+	margin-top:.4rem;
+	text-indent:1rem;
+}
+
+body.ja{
+	font-family: sans-serif;
+}
+.ja nav #wp-calendar caption,
+.ja .archives-title-text,
+.ja h1,
+.ja h2,
+.ja h3,
+.ja h1 a,
+.ja h2 a,
+.ja h3 a{
+	font-family: sans-serif;
+	font-weight:bold;
+}
+
+.meta-prep,
+.meta-sep{
+	display:none;
+}
