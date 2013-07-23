@@ -691,7 +691,7 @@
 	
 			$format = get_post_format( );
 			
-			$format = '<a class="post-format-link" href="' . esc_url( get_post_format_link( $format ) ) . '"><span>' . get_post_format_string( $format ) . '</span></a>';
+			$format = '<a class="post-format-link" href="' . esc_url( get_post_format_link( $format ) ) . '"><span>' . enough_get_post_format_string( $format ) . '</span></a>';
 			
 ?>
 	<div class="post-format-name"><?php echo $format;?><?php echo $comments;?></div>
@@ -802,7 +802,7 @@
 			
 			if ( empty( $link_to_title ) ) {
 			
-				$link_to_title = get_post_format_string( $format );
+				$link_to_title = enough_get_post_format_string( $format );
 			}
 
 			$permalink	= sprintf( $html,
@@ -1743,7 +1743,7 @@ jQuery(".result-w").text(header_width);*/
 					 
 					$enough_class_name	= 'post-format-archives';
 					$page_title			= __("Post Format",'enough');
-					$page_title_c		= get_post_format_string( get_post_format() );
+					$page_title_c		= enough_get_post_format_string( get_post_format() );
 					
 				} else {
 					$enough_class_name	= 'blog-archives';
@@ -3248,4 +3248,35 @@ if ( ! function_exists( 'enough_force_valid' ) ) {
 		return $content;
 	}
 }
+
+function enough_get_post_format_string( $slug ) {
+
+	$strings = array(
+		'standard' => esc_html__( 'Standard', 'enough' ),
+		'aside'    => esc_html__( 'Aside', 'enough' ),
+		'chat'     => esc_html__( 'Chat', 'enough' ),
+		'gallery'  => esc_html__( 'Gallery', 'enough' ),
+		'link'     => esc_html__( 'Link', 'enough' ),
+		'image'    => esc_html__( 'Image', 'enough' ),
+		'quote'    => esc_html__( 'Quote', 'enough' ),
+		'status'   => esc_html__( 'Status', 'enough' ),
+		'video'    => esc_html__( 'Video', 'enough' ),
+		'audio'    => esc_html__( 'Audio', 'enough' ),
+	);
+	if ( !$slug ) {
+	
+		return $strings['standard'];
+	} else {
+	
+		if (isset( $strings[$slug] ) ) {
+		
+			return $strings[$slug];
+		} else {
+			return;
+		}
+	}
+
+
+}
+
 ?>

@@ -24,3 +24,7 @@ body.ja{
 .meta-sep{
 	display:none;
 }
+
+i, cite, em, var, address, dfn {
+	font-style:normal;
+}

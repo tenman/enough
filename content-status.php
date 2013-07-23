@@ -60,7 +60,7 @@
 		
 		 	printf('<p><a class="post-format-link" href="%1$s"><span>%2$s</span></a></p>',
 						esc_url( get_post_format_link( $enough_post_format ) ), 
-						get_post_format_string( $enough_post_format ) 
+						enough_get_post_format_string( $enough_post_format ) 
 				);
 		}
 
@@ -99,7 +99,7 @@
 		
 		 	printf('<a class="post-format-link" href="%1$s"><span>%2$s</span></a>',
 						esc_url( get_post_format_link( $enough_post_format ) ), 
-						get_post_format_string( $enough_post_format ) 
+						enough_get_post_format_string( $enough_post_format ) 
 				);
 		}
 

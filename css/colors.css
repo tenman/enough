@@ -87,7 +87,7 @@ body,
 }
 
 footer{
-	background:rgba(200,200,200,0.6);
+
 }
 
 select{
@@ -173,7 +173,19 @@ blockquote{
 	background:#efefef;
 	background:rgba(222,222,222,.1);
 	border-top:1px solid  rgba(222,222,222,.6);	
-	border-bottom:1px solid rgba(222,222,222,.6);	
+	border-bottom:1px solid rgba(222,222,222,.6);
+}
+#custom-post-format-widget-link .chat,
+#custom-post-format-widget-link .aside,
+#custom-post-format-widget-link .audio,
+#custom-post-format-widget-link .link,
+#custom-post-format-widget-link .video,
+#custom-post-format-widget-link .gallery,
+#custom-post-format-widget-link .link,
+#custom-post-format-widget-link .status,
+#custom-post-format-widget-link .image,
+#custom-post-format-widget-link .quote{
+	
 }
 @media screen and (min-width: 481px){
 
@@ -187,16 +199,12 @@ blockquote{
 
 	}
 	footer{
-		background:#000;
-		color:#eee;
 	}
 	footer a{
-		color:#aaa;
-		background:none;
+
 	}
 	footer a:hover{
-		color:#eee;
-		background:none;
+
 	}
 	#commentform,
 	html,

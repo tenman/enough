@@ -549,8 +549,8 @@
 	}
 	.posted-on a.enough-comment-link em{
 		position:absolute;
-		top:8px;
-		left:18px;
+		top:10px;
+		left:24px;
 		display:block;
 	}
 	.posted-on .enough-comment-link em.enough-length-2{

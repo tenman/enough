@@ -41,13 +41,14 @@
 				<ul id="custom-post-format-widget-link">
 <?php
 			
-			$html = '	<li><a href="%1$s">%2$s</a></li>';
+			$html = '	<li class="%3$s"><a href="%1$s"><span>%2$s</span></a></li>';
 			
 			foreach( $enough_post_formats[0] as $format ){
 			
 				printf( $html, 
 						esc_url( get_post_format_link( $format ) ), 
-						esc_html( get_post_format_string( $format ) )
+						esc_html( enough_get_post_format_string( $format ) ),
+						esc_attr( $format )
 					);
 			}
 ?>
