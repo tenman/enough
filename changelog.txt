@@ -1,4 +1,18 @@
 Changelog -----------------------------------
+version:0.77
+    Modified
+        content-status.php
+            comment out $enough_status_title
+
+    Fixed
+        Bad prefix change
+            from    foo_modify_query_exclude_category()
+            to      enough_modify_query_exclude_category()
+        style rules
+            Fixed bad propety value.
+
+----------------------------------------------
+Changelog -----------------------------------
 version:0.76
     Modified
         Post Format link html structure change
