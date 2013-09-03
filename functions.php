@@ -6,13 +6,29 @@
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * @package Enough
  */
-	
+ 
+/**
+ *
+ *
+ *
+ *
+ * @since 0.48
+ */
+    if(!defined('ABSPATH')){
+        exit;
+    }
+/**
+ *
+ *
+ *
+ *
+ */	
 	$enough_options  	= get_option( "enough_theme_settings" );
 	$home_template 		= $enough_options[ 'enough_approach_type' ];	
 
-	add_action( 'pre_get_posts', 'foo_modify_query_exclude_category' );
+	add_action( 'pre_get_posts', 'enough_modify_query_exclude_category' );
 	 
-	function foo_modify_query_exclude_category( $query ) {
+	function enough_modify_query_exclude_category( $query ) {
 	
 	global $home_template;
 	
@@ -30,16 +46,6 @@
 		}	
 	}
 
-/**
- *
- *
- *
- *
- * @since 0.48
- */
-    if(!defined('ABSPATH')){
-        exit;
-    }
 /**
  *
  *
@@ -694,7 +700,7 @@
 			$format = '<a class="post-format-link" href="' . esc_url( get_post_format_link( $format ) ) . '"><span>' . enough_get_post_format_string( $format ) . '</span></a>';
 			
 ?>
-	<div class="post-format-name"><?php echo $format;?><?php echo $comments;?></div>
+	<div class="post-format-name"><?php echo $format;?>&nbsp;<?php echo $comments;?></div>
 <?php
 				return;
 		}

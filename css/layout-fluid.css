@@ -588,7 +588,7 @@
 	 .menu-header .sub-menu:hover > a,
 	 .menu-header .children:hover > a {
 		border:1px solid #555;
-		font-color:#000;
+		color:#000;
 	}
 	.enough-monthly-archive-prev-next-avigation,
 	article{

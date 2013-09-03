@@ -1,7 +1,5 @@
 <?php
-
 		global $enough_wp_version, $enough_post_format_functionality;
-
 ?>
     <article <?php post_class(); ?> <?php if( is_single() ){ printf( 'role="%1$s"', 'main' ); } ?> >
 <?php

@@ -31,11 +31,14 @@
 .comment-body blockquote,
 .comment-body td,
 .comment-body th{
-	border:1px solid #999;
+	border:1px solid #bbb;
+	border:1px solid rgba(200,200,200,0.5);
 }
 
 .comment-body blockquote{
-	border-left:6px solid #999;
+	border-left:6px solid #bbb;
+	border-left:6px solid rgba(200,200,200,0.5);
+
 }
 .menu-header .sub-menu a,
 .menu-header .children a,

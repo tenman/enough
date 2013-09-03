@@ -68,7 +68,7 @@
 }
 
 .ie8 .nav-next {
-	diaplay:inline;
+	display:inline;
 	float:right;
 }
 .ie8 blockquote {

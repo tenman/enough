@@ -61,6 +61,7 @@ h1 a,
 h2 a,
 h3 a{
 	font-family:Georgia, "Times New Roman", Times, serif;
+	font-weight:normal;
 }
 nav #wp-calendar thead th{
 	font-size:0.9em;
