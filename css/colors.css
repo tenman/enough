@@ -73,17 +73,25 @@ hr{
 	border:1px solid rgba(200,200,200,0.5);
 }
 
+a{
+	color:#009966;
+}
+a:link {
+	color:#666;
+}
+a:visited {
+	color:#999;
+}
+
 a,
 .widgettitle{
 }
 .widget > li{
 	color:#777;
 }
-
-a:hover{
+.widget > li a:hover {
+	
 }
-
-
 body,
 .fail-search{
 	background:rgba(200,200,200,0.3);
@@ -114,6 +122,10 @@ nav #wp-calendar thead th,
 .widget_recent_comments .widgettitle,
 .widget_archive .widgettitle,
 .widget_meta .widgettitle{
+}
+nav #wp-calendar thead th{
+	background:orange;
+	color:#fff;
 }
 
 nav #wp-calendar tbody td a{

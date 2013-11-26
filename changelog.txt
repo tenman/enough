@@ -1,4 +1,15 @@
 Changelog -----------------------------------
+version:0.78
+    Modified
+		Change header image
+			Default image size change from 950x198 to 950x100 blank image
+		Change screenshot.png
+
+		Add WEB Fonts
+			http://fonts.googleapis.com/css?family=Ubuntu:400,700
+			You can change using enough_web_font filter hook
+----------------------------------------------
+Changelog -----------------------------------
 version:0.77
     Modified
         content-status.php

@@ -178,8 +178,8 @@ last version 0.56
 	above custom fields automaticaly add to the post format link.
 				
 				
+*ver0.78
+		Add WEB Fonts
+			http://fonts.googleapis.com/css?family=Ubuntu:400,700
 
-
-
-
-
+			You can change using enough_web_font filter hook

@@ -105,18 +105,6 @@
  *
  *
  */
-
-
-		
-		
-
-/**
- *
- *
- *
- *
- *
- */
     $enough_register_nav_menus_args = array(
         'primary' => __( 'Main navigation', 'enough' )
         );
@@ -420,10 +408,10 @@
         $enough_site_thumbnail_image	= get_template_directory_uri().'/images/headers/wp3-thumbnail.jpg';
     }
 
-    $args = array(  'default-text-color' => 'ffffff'
+    $args = array(  'default-text-color' => '333333'
                     , 'width' => apply_filters( 'enough_header_image_width', '950' )
                     , 'flex-width' => true
-                    , 'height' => apply_filters( 'enough_header_image_height', '198' )
+                    , 'height' => apply_filters( 'enough_header_image_height', '100' )
                     , 'flex-height' => true
                     , 'header-text' => true
                     , 'default-image' => $enough_site_image
@@ -453,7 +441,6 @@
 		register_setting( 'enough_theme_settings', 'enough_approach_type', 'enough_approach_type_validate' );
 	}
 
-	
 /**
  *
  *
@@ -495,7 +482,7 @@
 			}else{
 			
 				$header_image_css = 'header{ background: url('.$enough_site_image.'); }';
-				$header_image_css .= 'header{ height: 198px; }';
+				$header_image_css .= 'header{ height: 100px; }';
 			}
 	
 			/*
@@ -571,6 +558,8 @@
 			global $is_IE, $enough_version;
 			
 				wp_enqueue_style( 'styles', get_stylesheet_uri(), array(), $enough_version );
+				
+				wp_enqueue_style('enough-web-font', apply_filters( 'enough_web_font', 'http://fonts.googleapis.com/css?family=Ubuntu:400,700' ) );
 			
 			wp_enqueue_script( 'jquery' );
 			
@@ -1363,7 +1352,7 @@
 			}else{
 			?>var use_slider = false;<?php
 			}
-			$ratio      = 0.2084210;
+			$ratio      = 0.11;
 
 			if ( $enough_title_length !== 0 ) {
 ?>
@@ -1464,7 +1453,7 @@
 			$path = $uploads['path']. $child_path;
 ?>
                     if( image_exists ){
-                        jQuery('header').removeAttr('style').css({'background-image':'url('+ image_exists + ')', 'min-height': height + 'px', 'background-color':'#777777','background-repeat':'no-repeat','background-size':'cover'});
+                        jQuery('header').removeAttr('style').css({'background-image':'url('+ image_exists + ')', 'min-height': height + 'px','background-repeat':'no-repeat','background-size':'cover'});
                     }
 
 <?php 
@@ -2761,7 +2750,7 @@ jQuery(".result-w").text(header_width);*/
 
 			) );
 			$wp_customize->add_control( 'enough_approach_type', array(
-					'label'      =>  __( 'Enough Approach Type ', 'enough' )."( Not Support Preview )" ,
+					'label'      =>  __( 'Enough Approach Type ', 'enough' )."( Not Support Preview, Please saved and Browser reload)" ,
 					'section'    => 'enough_theme_setting',
 					'settings'   => 'enough_theme_settings[enough_approach_type]',
 					'type'       => 'radio',
@@ -2782,7 +2771,7 @@ jQuery(".result-w").text(header_width);*/
 			
 	
 			$wp_customize->add_control( 'enough_post_one_column_bottom_sidebar', array(
-					'label'      => __( 'Post Full Width One Column ', 'enough' ).'( Not Support Preview )',
+					'label'      => __( 'Post Full Width One Column ', 'enough' ).'( Not Support Preview, Please saved and Browser reload )',
 					'section'    => 'enough_theme_setting',
 					'settings'   => 'enough_theme_settings[enough_post_one_column_bottom_sidebar]',
 					'type'       => 'radio',
