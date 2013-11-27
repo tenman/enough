@@ -44,6 +44,13 @@ a{
 	max-width:100%;
 	text-decoration:none;
 }
+a:active{
+	margin-top:1px;
+}
+.menu-header a:active{
+	margin-top:0;
+}
+
 address {
 	text-align:center;
 }

@@ -73,21 +73,20 @@ hr{
 	border:1px solid rgba(200,200,200,0.5);
 }
 
-a{
-	color:#009966;
-}
 a:link {
 	color:#666;
 }
 a:visited {
-	color:#999;
+	color:#444;
 }
-
+a:active{
+	text-shadow: 0px -2px 6px #ccc;
+}
 a,
 .widgettitle{
 }
 .widget > li{
-	color:#777;
+	color:#666;
 }
 .widget > li a:hover {
 	
@@ -124,7 +123,7 @@ nav #wp-calendar thead th,
 .widget_meta .widgettitle{
 }
 nav #wp-calendar thead th{
-	background:orange;
+	background:#ccc;
 	color:#fff;
 }
 
@@ -202,6 +201,13 @@ blockquote{
 #custom-post-format-widget-link .quote{
 	
 }
+#custom-post-format-widget-link li a{
+	background: orange;
+}
+#custom-post-format-widget-link li a span{
+	text-align: center;color: #fff;
+}
+
 @media screen and (min-width: 481px){
 
 	.menu-header {

@@ -1,5 +1,5 @@
 Changelog -----------------------------------
-version:0.78
+version:0.79
     Modified
 		Change header image
 			Default image size change from 950x198 to 950x100 blank image
