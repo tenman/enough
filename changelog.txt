@@ -1,4 +1,24 @@
 Changelog -----------------------------------
+version:0.80
+	Fixed comment link work improperly.
+		position move when link active
+	Modified
+		Add filter hook
+			enough_new_period
+		Add post_class new CSS class
+			enough-pub-new
+			enough-mod-new
+		Add function
+			enough_prepend_body()
+			enough_append_body()
+			enough_prepend_header()
+			enough_append_header()
+			enough_prepend_footer()
+			enough_append_footer()
+			enough_nev_menu_after()
+			enough_insert_position_guid()
+----------------------------------------------
+Changelog -----------------------------------
 version:0.79
     Modified
 		Change header image

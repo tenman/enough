@@ -13,6 +13,7 @@
 ?>
 </head>
 <body <?php body_class(); ?>>
+<?php enough_prepend_body();?>
 	<div id="enough-page">
 <?php
 /**
@@ -25,6 +26,7 @@
 ?>
 		<div>
 			<header role="banner">
+<?php enough_prepend_header();?>
 				<h1 class="site-title">
 					<a href="<?php echo home_url(); ?>">
 						<span><?php bloginfo(); ?></span>
@@ -35,6 +37,7 @@
 					<p class="no-script-and-small-view"><?php _e('This content shows Simple View','enough');?></p>
 				</noscript>
 				<p class="unknown-ua"><?php _e('This content shows Simple View','enough');?></p>
+<?php enough_append_header();?>
 			</header>
 <?php
 /**
@@ -56,5 +59,5 @@
 							, 'echo'=> true );
 				wp_nav_menu($args);
 			}
-
+			enough_nav_menu_after();
 ?>

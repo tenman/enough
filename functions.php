@@ -18,6 +18,14 @@
         exit;
     }
 /**
+ * Show insert point guid WP_DEBUG true and $enough_show_insert_point value true
+ *
+ *
+ * @since 0.80
+ */
+	$enough_show_insert_point = false;
+
+/**
  *
  *
  *
@@ -1269,7 +1277,7 @@
         */
 ?>
 		jQuery('.enough-toggle').hide();
-		jQuery('.enough-toggle.enough-toggle-title').show().css({"list-style":"none","font-weight":"bold","margin":"0" });
+		jQuery('.enough-toggle.enough-toggle-title').show().css({"list-style":"none","font-weight":"bold","margin-top":"20px" });
 		
 		jQuery('.enough-toggle.enough-toggle-title').css("cursor","pointer").toggle(
 		function(){
@@ -2593,6 +2601,22 @@ jQuery(".result-w").text(header_width);*/
 				$newclass = 'comments-closed';
 			}
 			
+			$enough_now = current_time( 'timestamp' );
+			$enough_publish_time = get_the_time( 'U' );
+			$enough_modified_time = get_the_modified_time( 'U' );
+			$enough_period = apply_filters( 'enough_new_period', 3 );
+			$enough_Period = 60 * 60 * 24 * $enough_period;
+
+			if ( $enough_now < $enough_Period + $enough_publish_time ) {
+	
+				$classes[] = 'enough-pub-new ';
+			}
+	
+			if ( $enough_now < $enough_Period + $enough_modified_time ) {
+	
+				$classes[] = 'enough-mod-new';
+			}
+			
 			array_push( $classes, $newclass );
 	
 			$i = enough_display_count();
@@ -3272,6 +3296,109 @@ function enough_get_post_format_string( $slug ) {
 	}
 
 
+}
+
+/**
+ *
+ *
+ *
+ *
+ * @since 0.980
+ */
+
+if ( ! function_exists( 'enough_prepend_body' ) ) {
+
+	function enough_prepend_body( ) {
+
+		get_template_part( 'enough', 'prepend-body' );
+		$args = array( 'hook_name' => 'enough_prepend_body', 'template_part_name' => 'enough-prepend-body.php' );
+		enough_insert_position_guid ( $args );
+		do_action( 'enough_prepend_body', $args );
+	}
+}
+if ( ! function_exists( 'enough_append_body' ) ) {
+
+	function enough_append_body( ) {
+
+		get_template_part( 'enough', 'append-body' );
+		$args = array( 'hook_name' => 'enough_append_body', 'template_part_name' => 'enough-append-body.php' );
+		enough_insert_position_guid ( $args );
+		do_action( 'enough_append_body', $args );
+	}
+}
+
+
+if ( ! function_exists( 'enough_prepend_header' ) ) {
+
+	function enough_prepend_header( ) {
+
+		get_template_part( 'enough', 'prepend-header' );
+		$args = array( 'hook_name' => 'enough_prepend_header', 'template_part_name' => 'enough-prepend-header.php' );
+		enough_insert_position_guid ( $args );
+		do_action( 'enough_prepend_header', $args );
+	}
+}
+
+if ( ! function_exists( 'enough_append_header' ) ) {
+
+	function enough_append_header( ) {
+
+		get_template_part( 'enough', 'append-header' );
+		$args = array( 'hook_name' => 'enough_append_header', 'template_part_name' => 'enough-append-header.php' );
+		enough_insert_position_guid ( $args );
+
+		do_action( 'enough_append_header', $args );
+	}
+}
+
+if ( ! function_exists( 'enough_prepend_footer' ) ) {
+
+	function enough_prepend_footer( ) {
+
+
+		get_template_part( 'enough', 'prepend-footer' );
+		$args = array( 'hook_name' => 'enough_prepend_footer', 'template_part_name' => 'enough-prepend-footer.php' );
+		
+		enough_insert_position_guid ( $args );
+		
+		do_action( 'enough_prepend_footer', $args );
+	}
+}
+if ( ! function_exists( 'enough_append_footer' ) ) {
+
+	function enough_append_footer( ) {
+
+		get_template_part( 'enough', 'append-footer' );
+		$args = array( 'hook_name' => 'enough_append_footer', 'template_part_name' => 'enough-append-footer.php' );
+		enough_insert_position_guid ( $args );	
+		do_action( 'enough_append_footer', $args );
+	}
+}
+if ( ! function_exists( 'enough_nav_menu_after' ) ) {
+
+	function enough_nav_menu_after( ) {
+
+		get_template_part( 'enough', 'nav-menu-after' );
+		$args = array( 'hook_name' => 'enough_nav_menu_after', 'template_part_name' => 'enough-nav-menu-after.php' );
+		enough_insert_position_guid ( $args );	
+		do_action( 'enough_nav_menu_after', $args );
+	}
+}
+if ( ! function_exists( 'enough_insert_position_guid' ) ) {
+
+	function enough_insert_position_guid ( $args ) {
+
+		global $enough_show_insert_point;
+		
+		$text = sprintf( esc_html__( 'Insert this position with Action hook %1$s  or  Template %2$s', 'enough' ),$args['template_part_name'], $args['template_part_name'] );
+		
+		$enough_insert_position_html = '<p class="enough-insert-position">%1$s</p>';
+
+		if ( WP_DEBUG == true && $enough_show_insert_point == true ) {
+		
+			printf( $enough_insert_position_html, $text );
+		}
+	}
 }
 
 ?>

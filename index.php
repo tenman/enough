@@ -71,6 +71,7 @@
 ?>
 		</div>
 	</div>
+<?php enough_append_body();?>
 <?php wp_footer(); ?>
 </body>
 </html>

@@ -2,6 +2,7 @@
 	global $enough_current_theme_name;
 ?>
 	<footer role="contentinfo">
+<?php enough_prepend_footer();?>
 		<address>
 <?php
 				printf(
@@ -27,6 +28,7 @@
 					);
 ?>
 		</address>
+<?php enough_append_footer();?>
 	</footer>
 <?php
 				do_action( 'wp_print_footer_scripts' );

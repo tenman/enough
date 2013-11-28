@@ -60,7 +60,16 @@
 }
 
 .not-found{
-	background:rgba(255,200,200,0.5);
+	/* background:rgba(255,200,200,0.5);*/
+}
+#searchform input[type="text"]{
+	border:1px solid #ccc;
+	height:20px;
+
+}
+#searchform input[type="submit"]{
+	border:1px solid #ccc;
+	height:22px;
 }
 
 .sticky .posted-in,
@@ -201,11 +210,18 @@ blockquote{
 #custom-post-format-widget-link .quote{
 	
 }
+
 #custom-post-format-widget-link li a{
 	background: orange;
 }
 #custom-post-format-widget-link li a span{
 	text-align: center;color: #fff;
+}
+.enough-pub-new .meta-prep:before{
+	content:"new";
+	color:red;
+	font-size:100%;
+	margin-right:.3em;
 }
 
 @media screen and (min-width: 481px){

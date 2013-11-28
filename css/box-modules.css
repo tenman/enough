@@ -25,14 +25,14 @@
 	margin-right:auto;
 }
 .alignleft,.nav-previous{
-	margin:5px 10px 5px 0;
+/*	margin:5px 10px 5px 0;*/
 	display:inline-block;
 	float:left;
 }
 .alignright,.nav-next{
 	display:inline-block;
 	float:right;
-	margin:5px 0 5px 10px;
+/*	margin:5px 0 5px 10px;*/
 }
 .archives-title-text{
 	clear:both;
@@ -533,7 +533,7 @@ article embed{
 }
 /* Menu Centerd end */
 
-.posted-on a:active,
+/*.posted-on a:active,*/
 .posted-in a:active,
 nav a:active,
 .entry-title a:active,
