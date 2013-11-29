@@ -471,12 +471,12 @@
 			}
 			
 			$image_size                     = get_theme_mod('header_image_data');
-			$body_background_color          = get_theme_mod( "background_color" );
-			$body_background_image          = get_theme_mod( "background_image" );
-			$body_background_repeat         = get_theme_mod( "background_repeat" );
-			$body_background_position_x     = get_theme_mod( "background_position_x" );
-			$body_background_attachment     = get_theme_mod( "background_attachment" );
-			$header_textcolor               = get_theme_mod( "header_textcolor" );
+			$body_background_color          = get_theme_mod( "background_color", 'fff' );
+			$body_background_image          = get_theme_mod( "background_image", 'none' );
+			$body_background_repeat         = get_theme_mod( "background_repeat", 'no-repeat' );
+			$body_background_position_x     = get_theme_mod( "background_position_x",'left' );
+			$body_background_attachment     = get_theme_mod( "background_attachment", 'scroll' );
+			$header_textcolor               = get_theme_mod( "header_textcolor", '333' );
 			
 			if($image_uri !== "remove-header" or !empty( $image_uri ) ){
 			
@@ -492,15 +492,7 @@
 				$header_image_css = 'header{ background: url('.$enough_site_image.'); }';
 				$header_image_css .= 'header{ height: 100px; }';
 			}
-	
-			/*
-			 * fallback . when $header text color return false
-			 */
-			if ( ! $header_textcolor ) {
-			
-				$header_textcolor = 'fff';
-			}
-	
+		
 			$header_style = '%1$s
 			.site-title a,
 			.site-title a span,
@@ -1409,9 +1401,6 @@
 					list($img_width, $img_height, $img_type, $img_attr) = getimagesize($path);
 					
 					$ratio = $img_height / $img_width;
-				}else{
-				
-					$raindrops_hd_images_path = get_template_directory().'/images/headers/'. basename( $url );
 				}
 			}
 ?>
@@ -2679,7 +2668,7 @@ jQuery(".result-w").text(header_width);*/
 ?>
 	<style type="text/css" id="enough-slider-css">
 		header .site-title, header .site-description{display:none;}
-		.site-title{display:inline-block;position:absolute;z-index:999;color:#fff;max-width:960px;margin:auto;padding:0.6em;}
+		.site-title{display:inline-block;position:absolute;z-index:999;color:#333;max-width:960px;margin:auto;padding:0.6em;}
 	</style>
 <?php
 			}

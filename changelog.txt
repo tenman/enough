@@ -1,4 +1,8 @@
 Changelog -----------------------------------
+version:0.81
+	Fixed Site Title visibility issue
+----------------------------------------------
+Changelog -----------------------------------
 version:0.80
 	Fixed comment link work improperly.
 		position move when link active
