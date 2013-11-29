@@ -103,9 +103,6 @@
     if(!defined('ENOUGH_TABLE_TITLE')){
         define("ENOUGH_TABLE_TITLE",'options');
     }
-    if(!defined('HEADER_TEXTCOLOR')){
-        define('HEADER_TEXTCOLOR', 'ffffff');
-    }
 /**
  *
  *

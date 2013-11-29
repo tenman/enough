@@ -1,4 +1,15 @@
 Changelog -----------------------------------
+version:0.82
+	Fixed Still Site Title visibility issue.
+		Remove Old Header Image Const
+			define( 'HEADER_TEXTCOLOR', '333333' );
+			Not Exist Const Check 
+				HEADER_IMAGE
+				HEADER_IMAGE_HEIGHT
+				HEADER_IMAGE_WIDTH
+				HEADER_TEXTCOLOR
+----------------------------------------------
+Changelog -----------------------------------
 version:0.81
 	Fixed Site Title visibility issue
 ----------------------------------------------
