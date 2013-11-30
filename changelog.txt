@@ -1,4 +1,9 @@
 Changelog -----------------------------------
+version:0.83
+	Fixed Still Site Title visibility issue.
+		CSS hex color code change from #333 to #333333
+----------------------------------------------
+Changelog -----------------------------------
 version:0.82
 	Fixed Still Site Title visibility issue.
 		Remove Old Header Image Const

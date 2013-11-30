@@ -468,12 +468,12 @@
 			}
 			
 			$image_size                     = get_theme_mod('header_image_data');
-			$body_background_color          = get_theme_mod( "background_color", 'fff' );
+			$body_background_color          = get_theme_mod( "background_color", 'ffffff' );
 			$body_background_image          = get_theme_mod( "background_image", 'none' );
 			$body_background_repeat         = get_theme_mod( "background_repeat", 'no-repeat' );
 			$body_background_position_x     = get_theme_mod( "background_position_x",'left' );
 			$body_background_attachment     = get_theme_mod( "background_attachment", 'scroll' );
-			$header_textcolor               = get_theme_mod( "header_textcolor", '333' );
+			$header_textcolor               = get_theme_mod( "header_textcolor", '333333' );
 			
 			if($image_uri !== "remove-header" or !empty( $image_uri ) ){
 			
@@ -2665,7 +2665,7 @@ jQuery(".result-w").text(header_width);*/
 ?>
 	<style type="text/css" id="enough-slider-css">
 		header .site-title, header .site-description{display:none;}
-		.site-title{display:inline-block;position:absolute;z-index:999;color:#333;max-width:960px;margin:auto;padding:0.6em;}
+		.site-title{display:inline-block;position:absolute;z-index:999;color:#333333;max-width:960px;margin:auto;padding:0.6em;}
 	</style>
 <?php
 			}
