@@ -1,4 +1,8 @@
 Changelog -----------------------------------
+version:0.84
+	
+----------------------------------------------
+Changelog -----------------------------------
 version:0.83
 	Fixed Still Site Title visibility issue.
 		CSS hex color code change from #333 to #333333

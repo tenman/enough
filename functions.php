@@ -6,7 +6,6 @@
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * @package Enough
  */
- 
 /**
  *
  *
@@ -307,6 +306,8 @@
 			add_theme_support( 'automatic-feed-links' );
 			
 			add_theme_support( 'post-thumbnails' );
+			
+			add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form' ) );
 			
 			add_editor_style(  );
 			
@@ -1405,7 +1406,8 @@
 					var ratio = <?php echo $ratio;?>;
 					var height =  ( header_width * ratio ).toFixed(0);
 			
-					jQuery('header').removeAttr('style').css({'background-image':'url('+ image_exists + ')', 'height': height + 'px', });
+					//jQuery('header').removeAttr('style').css({'background-image':'url('+ image_exists + ')', 'height': height + 'px', });
+					jQuery('header').removeAttr('style').css({'height': height + 'px', });
 <?php 
 			if( get_header_textcolor() == 'blank' ){
 
@@ -1447,7 +1449,8 @@
 			$path = $uploads['path']. $child_path;
 ?>
                     if( image_exists ){
-                        jQuery('header').removeAttr('style').css({'background-image':'url('+ image_exists + ')', 'min-height': height + 'px','background-repeat':'no-repeat','background-size':'cover'});
+                       // jQuery('header').removeAttr('style').css({'background-image':'url('+ image_exists + ')', 'min-height': height + 'px','background-repeat':'no-repeat','background-size':'cover'});
+                        jQuery('header').removeAttr('style').css({'min-height': height + 'px','background-repeat':'no-repeat','background-size':'cover'});
                     }
 
 <?php 
