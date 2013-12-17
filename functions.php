@@ -16,6 +16,9 @@
     if(!defined('ABSPATH')){
         exit;
     }
+/* enough-icon or enouth-text
+*/
+$enough_navigation_type = 'enough-icon';
 /**
  * Show insert point guid WP_DEBUG true and $enough_show_insert_point value true
  *
@@ -684,7 +687,7 @@
 	
 			$format = get_post_format( );
 			
-			$format = '<a class="post-format-link" href="' . esc_url( get_post_format_link( $format ) ) . '"><span>' . enough_get_post_format_string( $format ) . '</span></a>';
+			$format = '<a class="post-format-link '. $format. '" href="' . esc_url( get_post_format_link( $format ) ) . '"><span class="nav-text">' . enough_get_post_format_string( $format ) . '</span></a>';
 			
 ?>
 	<div class="post-format-name"><?php echo $format;?>&nbsp;<?php echo $comments;?></div>
@@ -714,7 +717,7 @@
 			
 			if ( comments_open( ) ) {
 			
-				$enough_comment_html = '<a href="%1$s" class="enough-comment-link"><em %4$s>%2$s %3$s</em></a>';
+				$enough_comment_html = '<a href="%1$s" class="enough-comment-link"><em %4$s title="%2$s">%2$s <span>%3$s</span></em></a>';
 				
 				if ( get_comments_number( ) > 0 ) {
 				
@@ -744,13 +747,13 @@
 			}
 			$result = sprintf( __( '<span class="%1$s">Posted on</span> %2$s <span class="meta-sep">by</span> %3$s %4$s'
 	, 'enough' ),
-				'meta-prep meta-prep-author',
-				sprintf( '<a href="%1$s" title="%2$s"><span class="entry-date updated">%3$s</span></a>',
+				'meta-prep meta-prep-author nav-text',
+				sprintf( '<a href="%1$s" title="%2$s"><span class="entry-date updated nav-text">%3$s</span></a>',
 					get_permalink(),
 					esc_attr( get_the_time($enough_date_format) ),
 					get_the_date( $enough_date_format )
 				),
-				sprintf( '<span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" >%3$s</a></span>',
+				sprintf( '<span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" ><span class="nav-text">%3$s</span></a></span>',
 					get_author_posts_url( get_the_author_meta( 'ID' ) ),
 					sprintf( esc_attr__( 'View all posts by %s', 'enough' ), $author ),
 					$author
@@ -836,12 +839,12 @@
 			
 			if ( $category_count > 1 ) {
 ?>
-			<li class="toggle-category toggle-title"><?php _e('Categories:','enough');?></li>
+			<li class="toggle-category toggle-title"><span class="nav-text"><?php _e('Categories:','enough');?></span></li>
 			<li class="toggle-category"><?php the_category(' '); ?></li>
 <?php 
 			} else {    
 ?>
-			<li><?php _e('Categories:','enough');?></li>
+			<li class="category-title"><span class="nav-text"><?php _e('Categories:','enough');?></span></li>
 			<li><?php the_category(' '); ?></li>
 <?php 
 			} 
@@ -853,7 +856,7 @@
 			if ( $tags ) {
 ?>
 		<ul>
-			<li class="toggle-tag toggle-title"><?php _e('Tags:','enough');?></li>
+			<li class="toggle-tag toggle-title"><span class="nav-text"><?php _e('Tags:','enough');?></span></li>
 			<li class="toggle-tag"><?php the_tags(' ',' '); ?></li>
 		</ul>
 <?php
@@ -1103,7 +1106,7 @@
 	
 		function enough_add_body_class( $class ) {
 		
-			global $post, $is_lynx, $is_gecko, $is_IE, $is_opera, $is_NS4, $is_safari, $is_chrome, $is_iphone;
+			global $post, $is_lynx, $is_gecko, $is_IE, $is_opera, $is_NS4, $is_safari, $is_chrome, $is_iphone, $enough_navigation_type;
 		
 			$lang						= get_locale();
 			$enough_options				= get_option("enough_theme_settings");
@@ -1145,7 +1148,8 @@
 				$classes				= array( $lang, $color_type );
 			}
 			
-			$classes= array_merge( $classes, $class );
+			$classes	= array_merge( $classes, $class );
+			$classes[]	= $enough_navigation_type;
 			
 			$iphone = false;
 			
@@ -2918,7 +2922,7 @@ jQuery(".result-w").text(header_width);*/
 						ORDER BY post_date ASC
 						LIMIT 1");
 	
-				$html       = '<a href="%1$s" class="%3$s">%2$s</a>';
+				$html       = '<a href="%1$s" class="%3$s" title="%4$sth"><span class="nav-text">%2$s</span></a>';
 	
 				if ( $previous ) {
 					$calendar_output = sprintf( $html,
@@ -2926,7 +2930,8 @@ jQuery(".result-w").text(header_width);*/
 												$previous->month) ,
 												sprintf(__('Prev Month( %sth )','enough'),
 												$previous->month),
-												'alignleft'
+												'alignleft',
+												esc_attr( $previous->month )
 											  );
 				}
 				$calendar_output .= "\t" ;
@@ -2936,14 +2941,15 @@ jQuery(".result-w").text(header_width);*/
 												$next->month),
 												sprintf(__('Next Month( %sth )','enough'),
 												$next->month),
-												'alignright'
+												'alignright',
+												esc_attr( $next->month )
 												);
 				}
 	
 				$html = '<div class="%1$s">%2$s</div>';
 	
 					$calendar_output = sprintf( $html,
-												'enough-monthly-archive-prev-next-avigation',
+												'enough-monthly-archive-prev-next-navigation',
 												$calendar_output
 											);
 	

@@ -4,13 +4,14 @@ Theme URI: http://www.tenman.info/wp3/enough/
 Description: Satisfied enough necessary minimum structure Responsive Theme. HTML5 normalize.css . 11 kinds of homepage templates can be chosen for the purpose of using you.
 Author: Tenman
 Author URI: http://www.tenman.info/wp3/
-Version: 0.84
+Version: 0.85
 Tags:white,two-columns,custom-colors, custom-header, custom-background, custom-menu, editor-style, threaded-comments, sticky-post
 License: GNU General Public License v2.0
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
 @import url("css/normalize.css");
+@import url("genericons/genericons.css");
 @import url("css/fonts.css");
 @import url("css/box-modules.css");
 @import url("css/comment.css");
@@ -50,8 +51,9 @@ body{
 	/* right column width when two column view */
 	width: 28%;
 	}
+	.posts-nav-link,
 	.custom-format-link-list-wrapper,	
-	.enough-monthly-archive-prev-next-avigation,
+	.enough-monthly-archive-prev-next-navigation,
 	article{
 	/* main content width when two column view */ 
 	width: 69.4%;
@@ -163,6 +165,9 @@ body{
 /* optional responsive grid  end */
 
 /* Special presentation for sidebar menus start*/
+
+/* Pending Now
+
 .widget_archive ul li:nth-child(n+7){
         display:none;
 
@@ -187,6 +192,8 @@ body{
 	#sidebar-1 .widget_categories .children:hover li a{
 	}
 }
+
+*/
 /*
 	#sidebar-1 .widget_pages .children{
 			display:none!important;
@@ -267,5 +274,4 @@ body{
 }
 
 /* Special presentation for comments menus end*/
-
 

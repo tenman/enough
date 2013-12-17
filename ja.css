@@ -1,5 +1,12 @@
 /* CSS Document */
-
+html{
+	font-size:14px;
+}
+.menu-header a,
+nav a{
+	font-size:1em;
+	font-size:1rem;
+}
 .ja .site-description{
 	margin-top:.4rem;
 	text-indent:1rem;
@@ -17,12 +24,16 @@ body.ja{
 .ja h2 a,
 .ja h3 a{
 	font-family: sans-serif;
-	font-weight:bold;
+	font-weight:normal;
 }
 
 .meta-prep,
 .meta-sep{
 	display:none;
+}
+.enough-icon .meta-prep,
+.enough-icon .meta-sep{
+	display:inline;
 }
 
 i, cite, em, var, address, dfn {

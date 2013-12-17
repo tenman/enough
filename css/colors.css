@@ -278,9 +278,19 @@ blockquote{
 		border:1px solid rgba(100,100,100,.3);
 
 	}
+	.enough-icon .posted-on a.enough-comment-link{
+		background:none;
+		border:none;
+
+	}
+
 	.posted-on a.enough-comment-link:hover{
 		background:rgba(222,222,222,.3);
 		border:1px solid rgba(100,100,100,.3);
+	}
+	.enough-icon .posted-on a.enough-comment-link:hover{
+		background:none;
+		border:none;
 	}
 
 	.posted-on a{

@@ -48,16 +48,21 @@
 			enough_not_found();
 		} 
 /**
- * Sidebar
- */
-			enough_dinamic_sidebar( 'sidebar-1', ! is_page() );
-/**
  * list of posts Navigation
  */
 ?>
-			<div class="clear posts-nav-link">
+			<div class="posts-nav-link">
 <?php
-			posts_nav_link( ' ', esc_html__( 'Previous Page', 'enough'), esc_html__( 'Next Page', 'enough') );
+			posts_nav_link( ' ', '<span class="nav-text prev">'. esc_html__( 'Previous Page', 'enough'). '</span>' , '<span class="nav-text next">'. esc_html__( 'Next Page', 'enough'). '</span>' );
+?>
+    		</div>
+			
+<?php		
+		
+/**
+ * Sidebar
+ */
+			enough_dinamic_sidebar( 'sidebar-1', ! is_page() );
 ?>
     		</div>
 			<br class="clear vspacer-3" />

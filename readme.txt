@@ -20,6 +20,10 @@
     License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 **About this theme
+ver 0.85
+	Add genericons
+		http://genericons.com/
+
 Enough consept change
 ver 0.6 <
 	Satisfied enough necessary minimum structure Responsive Theme.

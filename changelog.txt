@@ -1,6 +1,8 @@
 Changelog -----------------------------------
-version:0.84
+version:0.85
 	Modify	CSS and javascript.
+	Add genericons
+		http://genericons.com/
 ----------------------------------------------
 Changelog -----------------------------------
 version:0.83
