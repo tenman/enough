@@ -1,4 +1,9 @@
 Changelog -----------------------------------
+version:0.86
+	Modify	remove CSS @import 
+			Add wp_enqueue_style
+----------------------------------------------
+Changelog -----------------------------------
 version:0.85
 	Modify	CSS and javascript.
 	Add genericons

@@ -557,10 +557,26 @@ $enough_navigation_type = 'enough-icon';
 		function enough_enqueue_scripts_styles( ) {
 		
 			global $is_IE, $enough_version;
+
+			$enough_csses = array("css/normalize.css", "genericons/genericons.css", "css/fonts.css", "css/box-modules.css", "css/comment.css", "css/ua.css", "css/colors.css", "css/base.css", "css/layout-fluid.css", "css/post-format.css", "css/approach.css" );
+
+			foreach( $enough_csses as $ecnough_css_path ) {
 			
-				wp_enqueue_style( 'styles', get_stylesheet_uri(), array(), $enough_version );
+				//$ecnough_css_path = 'css/normalize.css';
 				
-				wp_enqueue_style('enough-web-font', apply_filters( 'enough_web_font', 'http://fonts.googleapis.com/css?family=Ubuntu:400,700' ) );
+				if( file_exists( trailingslashit( get_stylesheet_directory() ). $ecnough_css_path ) ) {
+			
+					wp_enqueue_style( 'enough_'. basename($ecnough_css_path,'.css'), trailingslashit( get_stylesheet_directory_uri() ). $ecnough_css_path, array(), $enough_version );
+				} else {
+				
+					wp_enqueue_style( 'enough_'. basename($ecnough_css_path,'.css'), trailingslashit( get_template_directory_uri() ). $ecnough_css_path, array(), $enough_version );
+				
+				}
+			}	
+				
+			wp_enqueue_style( 'styles', get_stylesheet_uri(), array('enough_approach'), $enough_version );
+			
+			wp_enqueue_style('enough-web-font', apply_filters( 'enough_web_font', 'http://fonts.googleapis.com/css?family=Ubuntu:400,700' ) );
 			
 			wp_enqueue_script( 'jquery' );
 			
