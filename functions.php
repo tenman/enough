@@ -479,19 +479,22 @@ $enough_navigation_type = 'enough-icon';
 			$body_background_attachment     = get_theme_mod( "background_attachment", 'scroll' );
 			$header_textcolor               = get_theme_mod( "header_textcolor", '333333' );
 			
-			if($image_uri !== "remove-header" or !empty( $image_uri ) ){
+			if ( $image_uri !== "remove-header" ) {
 			
-				$header_image_css = 'header{ background: url('.$image_uri.'); }';
+				if( !empty( $image_uri ) ){
 				
-				if( $image_uri == "remove-header" ){ //need multisite child theme style rule
+					$header_image_css = 'header{ background: url('.$image_uri.'); }';
+					
+					if( $image_uri == "remove-header" ){ //need multisite child theme style rule
+					
+						$header_image_css .= 'header{ height:auto; }';
+					}
+		
+				} else {
 				
-					$header_image_css .= 'header{ height:auto; }';
+					$header_image_css = 'header{ background: url('.$enough_site_image.'); }';
+					$header_image_css .= 'header{ height: 100px; }';
 				}
-	
-			}else{
-			
-				$header_image_css = 'header{ background: url('.$enough_site_image.'); }';
-				$header_image_css .= 'header{ height: 100px; }';
 			}
 		
 			$header_style = '%1$s
@@ -1257,7 +1260,7 @@ $enough_navigation_type = 'enough-icon';
 	jQuery(function(){
 		var width = jQuery(window).width();
 <?php
-			if($enough_options['enough_use_slider'] !== 'no'){
+			if($enough_options['enough_use_slider'] !== 'no' and is_front_page( ) ){
 ?>
     	jQuery('header').before('<h1 class="site-title" style="width:80%;"><a href="<?php echo home_url();?>" style="color:#<?php echo get_theme_mod("header_textcolor");?>"><?php bloginfo('site-title');?><\/a><\/h1>');
 <?php 
@@ -2106,10 +2109,11 @@ jQuery(".result-w").text(header_width);*/
 							array($this, 'enough_theme_option_panel')
 					);
 					
+					
 					if ( $hook_suffix ) {
 					
 						add_action( 'admin_print_styles-' . $hook_suffix, array($this,'enough_admin_print_styles') );
-						add_action( 'load-' . $hook_suffix, array($this,'enough_settings_page_contextual_help') );
+						add_action( 'load-themes.php', array($this,'enough_settings_page_contextual_help') ,20);
 					}
 			}
 /**
@@ -2122,8 +2126,10 @@ jQuery(".result-w").text(header_width);*/
 			function enough_settings_page_contextual_help() {
 	
 				global $enough_theme_uri, $enough_author_uri, $enough_version, $enough_current_theme_name, $enough_description, $enough_author, $enough_template, $enough_tags;
+				
 	
 				$screen		= get_current_screen();
+				
 	
 				$html		= '<dt>%1$s</dt><dd>%2$s</dd>';
 				$link		= '<a href="%1$s" %3$s>%2$s</a>';
@@ -2174,7 +2180,7 @@ jQuery(".result-w").text(header_width);*/
 	
 	
 				$content = '<dl id="enough-help">'.$content.'</dl>';
-	
+				
 					$screen->add_help_tab( array(
 						'id'      => 'enough-settings-help',
 						'title'   => __( 'Enough infomation', 'enough' ),
@@ -2662,6 +2668,18 @@ jQuery(".result-w").text(header_width);*/
 	if( ! function_exists( "enough_slider" ) ){
 	
 		function enough_slider(){
+		
+			$remove_header_check  = get_theme_mod( 'header_image' );
+			
+			if ( $remove_header_check == 'remove-header' ) {
+			
+				return;
+			}
+			if ( ! is_front_page() ) {
+			
+				return;
+			}
+
 	
 			wp_register_script( 'jquery.cross-slide.js', get_template_directory_uri(). '/jquery.cross-slide.js',array( 'jquery' ) );
 			wp_enqueue_script( 'jquery.cross-slide.js' );
@@ -2815,7 +2833,7 @@ jQuery(".result-w").text(header_width);*/
 			);
 	
 			$wp_customize->add_control( 'enough_use_slider', array(
-					'label'      => __( 'Slider Header Image', 'enough' ),
+					'label'      => __( 'Slider Header Image (Works only front page)', 'enough' ),
 					'section'    => 'enough_theme_setting',
 					'settings'   => 'enough_theme_settings[enough_use_slider]',
 					'type'       => 'radio',

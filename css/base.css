@@ -20,6 +20,7 @@
 }
 .posts-nav-link a:first-child {
 	float:left;
+	margin-left:1em;
 }
 .posts-nav-link a:last-child {
 	float:right;

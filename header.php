@@ -25,6 +25,7 @@
  */
 ?>
 		<div>
+
 			<header role="banner">
 <?php enough_prepend_header();?>
 				<h1 class="site-title">

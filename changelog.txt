@@ -1,4 +1,11 @@
 Changelog -----------------------------------
+version:0.87
+	Fixed Theme help tab not work
+		Change action filter from load-$hook_suffix to load-themes.php
+	Modify header image slider
+		Change Works only home page.
+----------------------------------------------
+Changelog -----------------------------------
 version:0.86
 	Modify	remove CSS @import 
 			Add wp_enqueue_style

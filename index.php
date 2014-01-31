@@ -53,7 +53,7 @@
 ?>
 			<div class="posts-nav-link">
 <?php
-			posts_nav_link( ' ', '<span class="nav-text prev">'. esc_html__( 'Previous Page', 'enough'). '</span>' , '<span class="nav-text next">'. esc_html__( 'Next Page', 'enough'). '</span>' );
+			posts_nav_link( ' ', '<span class="nav-text prev"> '. esc_html__( 'Previous Page', 'enough'). '</span>' , '<span class="nav-text next">'. esc_html__( 'Next Page', 'enough'). ' </span>' );
 ?>
     		</div>
 			
