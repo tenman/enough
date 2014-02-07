@@ -1,5 +1,6 @@
 Changelog -----------------------------------
 version:0.88
+	Modify post_thumbnail hide when post_password_required
 	Modify Add help tab theme options page
 	Modify Remove Theme description from help tabs
 	Fixed remove bloginfo() from title element
