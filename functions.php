@@ -305,6 +305,7 @@ $enough_navigation_type = 'enough-icon';
 				'after_title'   => '</h2>'
 			));
 
+			add_filter( 'wp_title', 'enough_site_title' );
 			
 			add_theme_support( 'automatic-feed-links' );
 			
@@ -532,7 +533,7 @@ $enough_navigation_type = 'enough-icon';
 			background-attachment:{$body_background_attachment};
 			}
 			$header_style
-			</style>";
+			</style>\n";
 	
 			if ( 'blank' == get_theme_mod('header_textcolor') ) {
 			
@@ -2114,6 +2115,7 @@ jQuery(".result-w").text(header_width);*/
 					
 						add_action( 'admin_print_styles-' . $hook_suffix, array($this,'enough_admin_print_styles') );
 						add_action( 'load-themes.php', array($this,'enough_settings_page_contextual_help') ,20);
+						add_action( 'load-'. $hook_suffix, array($this,'enough_settings_page_contextual_help') ,20);
 					}
 			}
 /**
@@ -2135,13 +2137,6 @@ jQuery(".result-w").text(header_width);*/
 				$link		= '<a href="%1$s" %3$s>%2$s</a>';
 				$content	= '';
 	
-				/* theme description*/
-				
-				$content .= sprintf($html
-						, __( 'Description', 'enough' )
-						, __( $enough_description ,'enough' )
-						);
-						
 				/* theme URI*/
 				
 				$content .= sprintf($html
@@ -3052,11 +3047,7 @@ if ( ! function_exists( 'enough_get_header' ) ) {
 <html <?php language_attributes(); ?>>
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
-	<title>
-<?php
-				bloginfo(); 
-				wp_title( '|' );
-?>
+	<title><?php wp_title( '|' );?>
 	</title>
 <?php
 				wp_head();
@@ -3428,6 +3419,12 @@ if ( ! function_exists( 'enough_insert_position_guid' ) ) {
 			printf( $enough_insert_position_html, $text );
 		}
 	}
+}
+
+
+function enough_site_title( $title ) {
+
+	return bloginfo(). $title;
 }
 
 ?>

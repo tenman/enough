@@ -45,8 +45,9 @@ if ( is_tax( ) ) {
 			enough_post_format_posted_on();	
 
 		}
-	
+	if ( ! post_password_required() ) {
     	echo apply_filters( 'enough_post_thumbnail', get_the_post_thumbnail(  ) );
+	}
 ?>
     <div class="entry-content">
 <?php 
@@ -58,18 +59,18 @@ if ( is_tax( ) ) {
 
 		enough_attachment_navigation();
 		
-		if ( $enough_post_format === false ){
-			enough_posted_in();
-		}else{
-			enough_post_format_posted_in();
-		}
-			
 		wp_link_pages( array(
 						'before'=>'<div class="wp-link-pages">',
 						'after'=>'</div>',
 						'link_before'=>'<span>',
 						'link_after'=>'</span>'
 						) );
+								
+		if ( $enough_post_format === false ){
+			enough_posted_in();
+		}else{
+			enough_post_format_posted_in();
+		}
 ?>
 		<br class="clear"  />
 <?php

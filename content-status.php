@@ -112,8 +112,9 @@
 		
 			enough_post_format_posted_on();	
 		}
-	
-    	echo apply_filters( 'enough_post_thumbnail', get_the_post_thumbnail(  ) );
+		if ( ! post_password_required() ) {
+    		echo apply_filters( 'enough_post_thumbnail', get_the_post_thumbnail(  ) );
+		}
 ?>
     <div class="entry-content">
 <?php 
@@ -124,6 +125,12 @@
 <?php
 
 		enough_attachment_navigation();
+		wp_link_pages( array(
+						'before'=>'<div class="wp-link-pages">',
+						'after'=>'</div>',
+						'link_before'=>'<span>',
+						'link_after'=>'</span>'
+						) );
 		
 		if ( $enough_post_format === false or is_single( ) ) {
 		
@@ -132,13 +139,6 @@
 		
 			enough_post_format_posted_in();
 		}
-			
-		wp_link_pages( array(
-						'before'=>'<div class="wp-link-pages">',
-						'after'=>'</div>',
-						'link_before'=>'<span>',
-						'link_after'=>'</span>'
-						) );
 ?>
 		<br class="clear"  />
 <?php

@@ -32,8 +32,9 @@
 					enough_post_format_posted_on( );	
 				}
 			}
-	
-    	echo apply_filters( 'enough_post_thumbnail', get_the_post_thumbnail(  ) );
+		if ( ! post_password_required() ) {
+    		echo apply_filters( 'enough_post_thumbnail', get_the_post_thumbnail(  ) );
+		}
 ?>
 		<br class="clear vspacer-1" />
     	<div class="entry-content">
@@ -79,8 +80,9 @@
 			enough_post_format_posted_on();	
 
 		}
-	
-    	echo apply_filters( 'enough_post_thumbnail', get_the_post_thumbnail(  ) );
+		if ( ! post_password_required() ) {
+    		echo apply_filters( 'enough_post_thumbnail', get_the_post_thumbnail(  ) );
+		}
 ?>
     <div class="entry-content">
 <?php 
@@ -92,18 +94,19 @@
 
 		enough_attachment_navigation();
 		
-		if ( $enough_post_format === false ){
-			enough_posted_in();
-		}else{
-			enough_post_format_posted_in();
-		}
-			
 		wp_link_pages( array(
 						'before'=>'<div class="wp-link-pages">',
 						'after'=>'</div>',
 						'link_before'=>'<span>',
 						'link_after'=>'</span>'
 						) );
+		
+		if ( $enough_post_format === false ){
+			enough_posted_in();
+		}else{
+			enough_post_format_posted_in();
+		}
+			
 ?>
 		<br class="clear"  />
 <?php

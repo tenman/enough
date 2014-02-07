@@ -1,4 +1,11 @@
 Changelog -----------------------------------
+version:0.88
+	Modify Add help tab theme options page
+	Modify Remove Theme description from help tabs
+	Fixed remove bloginfo() from title element
+		Add enough_site_title() and use wp_title hook
+----------------------------------------------
+Changelog -----------------------------------
 version:0.87
 	Fixed Theme help tab not work
 		Change action filter from load-$hook_suffix to load-themes.php
