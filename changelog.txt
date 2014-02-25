@@ -1,4 +1,14 @@
 Changelog -----------------------------------
+version:0.90
+	Modify IMPORTANT CHANGES
+		out-of-the-box support
+			Raindrops not save default settings to the database without explicit user action
+	Add
+		wp_nav_menu() related Social link Menu
+		how to use 
+			http://www.tenman.info/wp3/enough/create-social-links/
+----------------------------------------------
+Changelog -----------------------------------
 version:0.88
 	Modify post_thumbnail hide when post_password_required
 	Modify Add help tab theme options page

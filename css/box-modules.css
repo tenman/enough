@@ -364,6 +364,10 @@ nav #searchform .screen-reader-text,
 nav #searchform input[type="text"]{
 	width:60%;
 }
+nav #searchform input[type="submit"]{
+	width:35%;
+}
+
 nav input[type="submit"], nav input[type="submit"]:hover {
 	position:relative;
 	top:-1px;

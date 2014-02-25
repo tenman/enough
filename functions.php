@@ -32,96 +32,6 @@ $enough_navigation_type = 'enough-icon';
  *
  *
  *
- */	
-	$enough_options  	= get_option( "enough_theme_settings" );
-	$home_template 		= $enough_options[ 'enough_approach_type' ];	
-
-	add_action( 'pre_get_posts', 'enough_modify_query_exclude_category' );
-	 
-	function enough_modify_query_exclude_category( $query ) {
-	
-	global $home_template;
-	
-	if( empty( $home_template ) ){ return $query; }
-
-	 if ( ! is_admin() and 
-	 		$query->is_main_query() and 
-			$query->is_home() and 
-	 		$home_template !== 'default' and
-			$home_template !== 'author' and
-			$home_template !== 'standard' and
-			$home_template !== 'categories' ) {
-			
-			$query->set('posts_per_page', 100 );
-		}	
-	}
-
-/**
- *
- *
- *Version 
- *
- *
- */
-    $enough_check_wp_version = explode('-',$wp_version);
-    $enough_wp_version      = $enough_check_wp_version[0];
-
-    if( $enough_wp_version >= '3.4' ){
-
-        $enough_theme_data = wp_get_theme();
-
-        $enough_theme_uri           = $enough_theme_data->get( 'ThemeURI' );
-        $enough_author_uri          = $enough_theme_data->get( 'AuthorURI' );
-        $enough_version             = $enough_theme_data->get( 'Version' );
-        $enough_current_theme_name  = $enough_theme_data->get( 'Name' );
-        $enough_description         = $enough_theme_data->get( 'Description' );
-        $enough_author              = $enough_theme_data->get( 'Author' );
-        $enough_template            = $enough_theme_data->get( 'Template' );
-        $enough_tags                = $enough_theme_data->get( 'Tags' );
-        $enough_tags                = implode(',',$enough_tags);
-
-    }else{
-        $enough_theme_uri           = "";
-        $enough_author_uri          = "";
-        $enough_version             = "";
-        $enough_current_theme_name  = "";
-        $enough_description         = "";
-        $enough_author              = "";
-        $enough_template            = "";
-        $enough_tags                = "";
-    }
-
-    load_textdomain( 'enough', get_template_directory().'/languages/'.get_locale().'.mo' );
-/**
- *
- *
- *
- *
- *
- */
-    if ( !isset( $content_width ) ){
-         $content_width = 480;
-    }
-    if(!defined('ENOUGH_TABLE_TITLE')){
-        define("ENOUGH_TABLE_TITLE",'options');
-    }
-/**
- *
- *
- *
- *
- *
- */
-    $enough_register_nav_menus_args = array(
-        'primary' => __( 'Main navigation', 'enough' )
-        );
-		
-    register_nav_menus( $enough_register_nav_menus_args );
-/**
- *
- *
- *
- *
  *
  */
     $enough_admin_options_setting = array(
@@ -227,6 +137,175 @@ $enough_navigation_type = 'enough-icon';
 									)
         ),
     );
+
+/**
+ * return enough settings
+ *
+ *
+ * @see enough_warehouse()
+ *
+ */
+	if ( ! function_exists( 'enough_theme_option' ) ) {
+	
+		function enough_theme_option( $name, $property = '' ){
+		
+			global $enough_admin_options_setting;
+			
+			$vertical = array();
+			
+			$result	= get_option('enough_theme_settings');
+			
+			$defaults = array();
+			foreach( $enough_admin_options_setting as $key=>$val ) {
+			
+				if( $val['autoload'] == 'yes' ) {
+				
+					$defaults = array_merge( $defaults, array( $val['option_name'] =>  $val['option_value'] ) );
+				}					
+			}
+			if ( $result == false && $name == 'defaults' ) {
+					
+					return $defaults;
+			} elseif (  $result !== false && $name == 'defaults' ) {
+						
+					return array_merge( $defaults, $result );
+			}
+						
+			if ( isset( $enough_admin_options_setting ) ) {
+			
+				foreach( $enough_admin_options_setting as $key=>$val ) {
+								
+					if ( ! is_null( $enough_admin_options_setting ) ) {
+					
+						$vertical[] = $val['option_name'];
+					}
+				}
+			
+				
+				$row	= array_search($name,$vertical);
+								
+				if ( ! empty( $property ) ) {
+				
+					if ( isset( $enough_admin_options_setting[$row][$property] ) and
+						 !empty( $enough_admin_options_setting[$row][$property] ) ) {
+				 
+						return $enough_admin_options_setting[$row][$property];
+					} else {
+					
+						return false;
+					}
+				}
+				
+				
+
+				
+				if ( isset( $result[$name] ) and !empty( $result[$name] ) ) {
+
+					return apply_filters( 'enough_theme_settings_'.$name , $result[$name]);
+					
+				} elseif ( isset($enough_admin_options_setting[$row]['option_value']) and
+							!empty($enough_admin_options_setting[$row]['option_value'] ) ) {
+					return apply_filters('enough_theme_settings_'.$row, $enough_admin_options_setting[$row]['option_value']);
+				
+				} else {
+				
+					return false;
+				}
+			}
+		}
+	}
+/**
+ *
+ *
+ *
+ *
+ */	
+	$enough_options  	= get_option( "enough_theme_settings" );
+	//$home_template 		= $enough_options[ 'enough_approach_type' ];
+	$home_template 	= enough_theme_option( 'enough_approach_type' );
+
+
+	add_action( 'pre_get_posts', 'enough_modify_query_exclude_category' );
+	 
+	function enough_modify_query_exclude_category( $query ) {
+	
+	global $home_template;
+	
+	if( empty( $home_template ) ){ return $query; }
+
+	 if ( ! is_admin() and 
+	 		$query->is_main_query() and 
+			$query->is_home() and 
+	 		$home_template !== 'default' and
+			$home_template !== 'author' and
+			$home_template !== 'standard' and
+			$home_template !== 'categories' ) {
+			
+			$query->set('posts_per_page', 100 );
+		}	
+	}
+
+/**
+ *
+ *
+ *Version 
+ *
+ *
+ */
+    $enough_check_wp_version = explode('-',$wp_version);
+    $enough_wp_version      = $enough_check_wp_version[0];
+
+    if( $enough_wp_version >= '3.4' ){
+
+        $enough_theme_data = wp_get_theme();
+
+        $enough_theme_uri           = $enough_theme_data->get( 'ThemeURI' );
+        $enough_author_uri          = $enough_theme_data->get( 'AuthorURI' );
+        $enough_version             = $enough_theme_data->get( 'Version' );
+        $enough_current_theme_name  = $enough_theme_data->get( 'Name' );
+        $enough_description         = $enough_theme_data->get( 'Description' );
+        $enough_author              = $enough_theme_data->get( 'Author' );
+        $enough_template            = $enough_theme_data->get( 'Template' );
+        $enough_tags                = $enough_theme_data->get( 'Tags' );
+        $enough_tags                = implode(',',$enough_tags);
+
+    }else{
+        $enough_theme_uri           = "";
+        $enough_author_uri          = "";
+        $enough_version             = "";
+        $enough_current_theme_name  = "";
+        $enough_description         = "";
+        $enough_author              = "";
+        $enough_template            = "";
+        $enough_tags                = "";
+    }
+
+    load_textdomain( 'enough', get_template_directory().'/languages/'.get_locale().'.mo' );
+/**
+ *
+ *
+ *
+ *
+ *
+ */
+    if ( !isset( $content_width ) ){
+         $content_width = 480;
+    }
+    if(!defined('ENOUGH_TABLE_TITLE')){
+        define("ENOUGH_TABLE_TITLE",'options');
+    }
+/**
+ *
+ *
+ *
+ *
+ *
+ */
+    $enough_register_nav_menus_args = array(
+        'primary' => __( 'Main navigation', 'enough' )
+        );
+		
+    register_nav_menus( $enough_register_nav_menus_args );
 /**
  * 
  *
@@ -262,7 +341,7 @@ $enough_navigation_type = 'enough-icon';
 	
     if ($enough_deploy_check == false or !array_key_exists('install', $enough_deploy_check) ) {
 	
-        add_action('admin_init', 'enough_deploy');
+        //add_action('admin_init', 'enough_deploy');
     }
 
 /**
@@ -324,8 +403,8 @@ $enough_navigation_type = 'enough-icon';
 			$enough_is_submenu = new enough_menu_create;
 			
 			add_action('admin_menu', array($enough_is_submenu, 'enough_add_menus'));
-	
-			add_action('load-themes.php', 'enough_install_navigation');
+///////////////////////////////////////////////////////////////////////////////////////	
+			//add_action('load-themes.php', 'enough_install_navigation');
 	
 			$enough_embed_format_detection_telephone = enough_theme_option("enough_format_detection_telephone");
 	
@@ -357,8 +436,9 @@ $enough_navigation_type = 'enough-icon';
 				add_action( 'wp_head', 'enough_embed_meta' );
 			}
 	
-			$enough_options  = get_option("enough_theme_settings");
-	
+			//$enough_options  = get_option("enough_theme_settings");
+			$enough_options  = enough_theme_option( 'defaults' );
+				
 		/**
 		 * Enough Post Full width One Clolumn
 		 *
@@ -1129,7 +1209,8 @@ $enough_navigation_type = 'enough-icon';
 			global $post, $is_lynx, $is_gecko, $is_IE, $is_opera, $is_NS4, $is_safari, $is_chrome, $is_iphone, $enough_navigation_type;
 		
 			$lang						= get_locale();
-			$enough_options				= get_option("enough_theme_settings");
+			//$enough_options				= get_option("enough_theme_settings");
+			$enough_options				= enough_theme_option( 'defaults' );
 			
 			if ( isset($enough_options["enough_style_type"]) and !empty($enough_options["enough_style_type"] ) ) {
 			
@@ -1252,8 +1333,9 @@ $enough_navigation_type = 'enough-icon';
 			$enough_title_length       = round(strlen(get_bloginfo('name')) );
 			$enough_description_length = round(strlen(get_bloginfo('description')),0);
 			$enough_header_image_uri   = get_header_image();
-			$enough_options            = get_option("enough_theme_settings");
-			$uploads                    = wp_upload_dir();
+			//$enough_options            = get_option("enough_theme_settings");
+			$enough_options            =  enough_theme_option( 'defaults' );
+			$uploads                   = wp_upload_dir();
 ?>
 	<script type="text/javascript">
 
@@ -1802,64 +1884,11 @@ jQuery(".result-w").text(header_width);*/
 					$enough_theme_settings[$option_name] = $add['option_value'];
 				}
 			}
-			update_option( 'enough_theme_settings', $enough_theme_settings, "", $add['autoload'] );
+/////////////////////////////////////////////////////////////////////////////
+			//update_option( 'enough_theme_settings', $enough_theme_settings, "", $add['autoload'] );
 		}
 	}
-/**
- * return enough settings
- *
- *
- * @see enough_warehouse()
- *
- */
-	if ( ! function_exists( 'enough_theme_option' ) ) {
-	
-		function enough_theme_option( $name, $property = '' ){
-		
-			global $enough_admin_options_setting;
-			
-			$vertical = array();
-			
-			if ( isset( $enough_admin_options_setting ) ) {
-			
-				foreach( $enough_admin_options_setting as $key=>$val ) {
-				
-					if ( ! is_null( $enough_admin_options_setting ) ) {
-					
-						$vertical[] = $val['option_name'];
-					}
-				}
-				
-				$row	= array_search($name,$vertical);
-				$result	= get_option('enough_theme_settings');
-				
-				if ( ! empty( $property ) ) {
-				
-					if ( isset( $enough_admin_options_setting[$row][$property] ) and
-						 !empty( $enough_admin_options_setting[$row][$property] ) ) {
-						 
-						return $enough_admin_options_setting[$row][$property];
-					} else {
-					
-						return false;
-					}
-				}
-				
-				if ( isset( $result[$name] ) and !empty( $result[$name] ) ) {
-				
-					return apply_filters( 'enough_theme_settings_'.$name , $result[$name]);
-					
-				} elseif ( isset($enough_admin_options_setting[$row]['option_value']) and
-							!empty($enough_admin_options_setting[$row]['option_value'] ) ) {
-							
-					return apply_filters('enough_theme_settings_'.$row, $enough_admin_options_setting[$row]['option_value']);
-				} else {
-				
-					return false;
-				}
-			}
-		}
-	}
+
 /**
  * Validate admin panel form value.
  *
@@ -2032,7 +2061,8 @@ jQuery(".result-w").text(header_width);*/
 					foreach( $_POST["enough_option_values"] as $key=>$val ){
 	
 						$valid_function         = $key.'_validate';
-						$new_settings           = get_option('enough_theme_settings');
+						//$new_settings           = get_option('enough_theme_settings');
+						$new_settings           = enough_theme_option( 'defaults' );
 						$new_settings[$key]     = $valid_function( $val );
 	
 						if ( update_option('enough_theme_settings', $new_settings ) ) {
@@ -2214,7 +2244,8 @@ jQuery(".result-w").text(header_width);*/
 				$lines          = "";
 				$i              = 0;
 				$deliv          = htmlspecialchars($_SERVER['REQUEST_URI']);
-				$results        = get_option('enough_theme_settings');
+				//$results        = get_option('enough_theme_settings');
+				$results        =  enough_theme_option( 'defaults' );
 				$lines 			.= '<div class="enough-options-panel">';
 				$lines			.= $this->navigation_list($enough_admin_options_setting);
 				
@@ -2416,24 +2447,26 @@ jQuery(".result-w").text(header_width);*/
  *
  *
  */
-	if ( ! function_exists( "enough_install_navigation" ) ) {
+ add_action('switch_theme', 'enough_uninstall' );
+/*	if ( ! function_exists( "enough_install_navigation" ) ) {
 	
 		function enough_install_navigation() {
 		
 			$install = get_option('enough_theme_settings');
 			
 			if ($install == false or !array_key_exists('install', $install)) {
-			
-				add_action('admin_notices', 'enough_first_message');
+/////////////////////////////////////////////////////////////////////////////////////			
+		add_action('admin_notices', 'enough_first_message');
 				$install['install'] = true;
 				update_option('enough_theme_settings',$install);
+
 			} else {
 			
 				add_action('switch_theme', 'enough_uninstall' );
 			}
 		}
 	}
-	
+*/	
 	if ( ! function_exists( "enough_first_message" ) ) {
 	
 		function enough_first_message( ){
@@ -2679,8 +2712,9 @@ jQuery(".result-w").text(header_width);*/
 			wp_register_script( 'jquery.cross-slide.js', get_template_directory_uri(). '/jquery.cross-slide.js',array( 'jquery' ) );
 			wp_enqueue_script( 'jquery.cross-slide.js' );
 	
-			$enough_options  = get_option( "enough_theme_settings" );
-	
+			//$enough_options  = get_option( "enough_theme_settings" );
+			$enough_options  = enough_theme_option( 'defaults' );
+			
 			if ( ! empty( $enough_options['enough_slider_sleep'] ) ) {
 			
 				$sleep = $enough_options['enough_slider_sleep'];
