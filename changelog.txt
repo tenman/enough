@@ -1,4 +1,10 @@
 Changelog -----------------------------------
+version:0.91
+	Fixed
+		Fixed Not support Responsive 
+			wp_nav_menu() related Social link Menu
+----------------------------------------------
+Changelog -----------------------------------
 version:0.90
 	Modify IMPORTANT CHANGES
 		out-of-the-box support
