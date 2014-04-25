@@ -8,60 +8,60 @@
  */
 
 .enough-options-panel{
-	max-width:90%;
-	margin:0 auto;
+    max-width:90%;
+    margin:0 auto;
 }
 .setting-title{
-	background-color: #83B4D8;
-	padding:0.3em;
-	padding:0.3rem;
-	color:#fff;
+    background-color: #83B4D8;
+    padding:0.3em;
+    padding:0.3rem;
+    color:#fff;
 }
 .widefat{
-	padding-top:0;
+    padding-top:0;
 }
 .theme-option-menu{
-	margin-bottom:3em;
-	margin-bottom:3rem;
+    margin-bottom:3em;
+    margin-bottom:3rem;
 }
 
 form input[type="radio"]{
-	margin-left:1em;
-	margin-right:1em;
+    margin-left:1em;
+    margin-right:1em;
 }
 input[type="text"]{
-	width:20em;
+    width:20em;
 }
 .submit-box{
-	margin:50px; 0;
-	
+    margin:50px 0;
+
 }
 .enough-wp-native-style{
-	position:relative;
-	left:50px;
+    position:relative;
+    left:50px;
 }
 .enough-wp-native-style-settings-link a{
-	text-align:center;border:1px solid #ccc;
-	float:left;
-	displat:inline-block;
-	width:100px;
-	height:22px;
-	padding:39px 0;
-	border-radius: 50px;
-	margin:2px;background:#eee;
+    text-align:center;border:1px solid #ccc;
+    float:left;
+    display:inline-block;
+    width:100px;
+    height:22px;
+    padding:39px 0;
+    border-radius: 50px;
+    margin:2px;background:#eee;
 }
 .enough-wp-native-style-settings-link div{
-	display:none;
+    display:none;
 }
 .enough-wp-native-style-settings-link:hover div{
-	display:block;
-	position:absolute;
-	top:30px;
-	left:360px;
+    display:block;
+    position:absolute;
+    top:30px;
+    left:360px;
 }
 .enough-wp-native-style-settings-link br{
-	line-height:2;
+    line-height:2;
 }
 .enough-left-col-title{
-	font-weight:bold;vertical-align:middle;border-bottom:3px solid #fff;
+    font-weight:bold;vertical-align:middle;border-bottom:3px solid #fff;
 }

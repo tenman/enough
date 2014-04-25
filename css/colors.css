@@ -212,7 +212,7 @@ blockquote{
 }
 
 #custom-post-format-widget-link li a{
-	background: orange;
+	background: #999;
 }
 #custom-post-format-widget-link li a span{
 	text-align: center;color: #fff;

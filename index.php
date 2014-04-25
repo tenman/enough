@@ -7,76 +7,64 @@
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * @package Enough
  */
-
-			global $enough_onecolumn_post; 
-			get_header();
+global $enough_onecolumn_post;
+get_header();
 ?>
-				<br class="clear" />
+<br class="clear" />
 <?php
 /**
  * index , archive and another list of contents page title.
  */
-    		enough_loop_title();
+enough_loop_title();
 /**
  * Monthly archive prev next links
  */
-			enough_monthly_archive_prev_next_navigation();
+enough_monthly_archive_prev_next_navigation();
 
 /**
  * post and page content start
  */
-		if ( have_posts() ){
-		
-				while ( have_posts() ) {
-				
-					the_post();
-						
-					$enough_post_format = get_post_format();
-					
-					if( $enough_post_format === false ) {
-					
-						get_template_part( 'content' );
-					} else {
-				
-						get_template_part( 'content', $enough_post_format );
-					}
-	
-				}//endwhile
-	
-		} else {
+if ( have_posts() ) {
 
-			enough_not_found();
-		} 
+    while ( have_posts() ) {
+
+        the_post();
+
+        $enough_post_format = get_post_format();
+
+        if ( $enough_post_format === false ) {
+
+            get_template_part( 'content' );
+        } else {
+
+            get_template_part( 'content', $enough_post_format );
+        }
+    }//endwhile
+} else {
+
+    enough_not_found();
+}
 /**
  * list of posts Navigation
  */
-?>
-			<div class="posts-nav-link">
-<?php
-			posts_nav_link( ' ', '<span class="nav-text prev"> '. esc_html__( 'Previous Page', 'enough'). '</span>' , '<span class="nav-text next">'. esc_html__( 'Next Page', 'enough'). ' </span>' );
-?>
-    		</div>
-			
-<?php		
-		
+enough_next_prev_links( 'nav-below' );
 /**
  * Sidebar
  */
-			enough_dinamic_sidebar( 'sidebar-1', ! is_page() );
+enough_dinamic_sidebar( 'sidebar-1', !is_page() );
 ?>
-    		</div>
-			<br class="clear vspacer-3" />
+<br class="clear vspacer-3" />
 <?php
 /**
  * Sidebar show bottom when post 1column
  */
-			enough_dinamic_sidebar( 'sidebar-1', $enough_onecolumn_post );
-		
-			get_footer();
+enough_dinamic_sidebar( 'sidebar-1', $enough_onecolumn_post );
+
+get_footer();
 ?>
-		</div>
-	</div>
-<?php enough_append_body();?>
+</div>
+</div>
+<?php enough_append_body(); ?>
 <?php wp_footer(); ?>
 </body>
 </html>

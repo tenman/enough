@@ -1,7 +1,10 @@
 Changelog -----------------------------------
+version:0.92
+----------------------------------------------
+Changelog -----------------------------------
 version:0.91
 	Fixed
-		Fixed Not support Responsive 
+		Fixed Not support Responsive
 			wp_nav_menu() related Social link Menu
 ----------------------------------------------
 Changelog -----------------------------------
@@ -11,7 +14,7 @@ version:0.90
 			Raindrops not save default settings to the database without explicit user action
 	Add
 		wp_nav_menu() related Social link Menu
-		how to use 
+		how to use
 			http://www.tenman.info/wp3/enough/create-social-links/
 ----------------------------------------------
 Changelog -----------------------------------
@@ -31,7 +34,7 @@ version:0.87
 ----------------------------------------------
 Changelog -----------------------------------
 version:0.86
-	Modify	remove CSS @import 
+	Modify	remove CSS @import
 			Add wp_enqueue_style
 ----------------------------------------------
 Changelog -----------------------------------

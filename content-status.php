@@ -145,10 +145,8 @@
 		enough_prev_next_post('nav-below');
 		
 			if( is_singular() ){
-?>
-		<br class="clear"  />
-<?php
-    comments_template();
+
+    	comments_template();
 			} else {
 ?>
 		<br class="clear"  />

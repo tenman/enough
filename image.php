@@ -63,9 +63,7 @@
 						) );
 
 					if( is_singular() ){
-?>
-		<br class="clear"  />
-<?php
+					
     					comments_template();
 					} else {
 ?>

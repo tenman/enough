@@ -141,14 +141,20 @@ body:not(.single-post) .format-status .entry-content:focus{
 
 /* post format image end */
 /* post format link */
-.single-post .post-format-link-content,
+.single-post .post-format-link-content{
+	text-align:center;
+	padding:20px;
+	background:rgba(222,222,222,.4);
+}
 .single-post .format-link #comments,
 .single-post .format-link .entry-title,
 .single-post .post-format-name,
 .home .post-format-name{
 	text-align:left;
 }
-.single-post .format-link,
+.single-post .format-link{
+	text-align:left;
+}
 .home .format-link,
 .term-post-format-link .format-link{
 	text-align:center;

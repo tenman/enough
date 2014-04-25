@@ -51,7 +51,7 @@ nav a,
 nav #wp-calendar tbody td,
 cite.fn,
 .form-allowed-tags{
-	font-size:0.8rem;
+	font-size:.9rem;
 }
 nav #wp-calendar caption,
 .archives-title-text,
@@ -83,7 +83,7 @@ nav #wp-calendar thead th{
 
 @media screen and ( min-width: 481px ){
 	.menu-header{
-		font-size:0.9rem;
+		font-size:1rem;
 	}
 }
 

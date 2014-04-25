@@ -1,5 +1,7 @@
 <?php
 		global $enough_wp_version, $enough_post_format_functionality;
+		
+		do_action( 'enough_content_before' , '' );
 ?>
     <article <?php post_class(); ?> <?php if( is_single() ){ printf( 'role="%1$s"', 'main' ); } ?> >
 <?php
@@ -46,10 +48,7 @@
 		enough_prev_next_post('nav-below');
 		
 			if( is_singular() ){
-?>
-		<br class="clear"  />
-<?php
-    comments_template();
+			    comments_template();
 			} else {
 ?>
 <?php

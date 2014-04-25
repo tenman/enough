@@ -41,7 +41,8 @@
 .vspacer-3 {
 	line-height:3;
 }
-a{
+#sidebar-1 a,
+.menu-header a{
 	max-width:100%;
 	text-decoration:none;
 }
@@ -76,7 +77,7 @@ html,body,form,fieldset,p,div,h1,h2,h3,h4,h5,h6 {
 	-webkit-text-size-adjust:none;
 }
 img{
-	margin:.5rem;
+	/*margin:.5rem;*/
 }
 input[type=file],
 input[type=reset],
@@ -110,12 +111,16 @@ iframe{
 table {
 	display:table;
 	box-sizing:border-box;
-	table-layout:fixed;
+	table-layout:auto;
 	width:100%;
 }
 table.auto {
 	table-layout:auto;
 }
+table.fixed {
+	table-layout:auto;
+}
+
 th,
 td {
 	display:table-cell;

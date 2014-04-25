@@ -8,7 +8,7 @@
  * @package Enough
  */
 ?>
-	<div id="comments">
+	<div id="comments" class="clear">
 		<ul class="wp-list-comments">
 <?php
 		wp_list_comments();

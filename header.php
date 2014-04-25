@@ -18,6 +18,7 @@
  *
  *
  */
+	do_action( 'enough_page_top', '' );
 ?>
 		<div>
 
