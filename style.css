@@ -4,7 +4,7 @@ Theme URI: http://www.tenman.info/wp3/enough/
 Description: Satisfied enough necessary minimum structure Responsive Theme. HTML5 normalize.css . 11 kinds of homepage templates can be chosen for the purpose of using you.
 Author: Tenman
 Author URI: http://www.tenman.info/wp3/
-Version: 0.91
+Version: 0.92
 Tags:white,two-columns,custom-colors, custom-header, custom-background, custom-menu, editor-style, threaded-comments, sticky-post, responsive-layout, flexible-header
 License: GNU General Public License v2.0
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -43,10 +43,10 @@ body{
         width: 28%;
     }
     .posts-nav-link,
-    .custom-format-link-list-wrapper,	
+    .custom-format-link-list-wrapper,
     .enough-monthly-archive-prev-next-navigation,
     article{
-        /* main content width when two column view */ 
+        /* main content width when two column view */
         width: 69.4%;
     }
 
@@ -75,9 +75,9 @@ body{
     }
 }
 
-/* optional responsive grid  width < 640px then 100% 
-        example 
-        
+/* optional responsive grid  width < 640px then 100%
+        example
+
         div.line
                 div.unit.size1of3
                 div.unit.size2of3
@@ -192,7 +192,7 @@ input[type="search"]{
         }
         #sidebar-1 .widget_categories li:hover .children{
                         display:block!important;
-                        
+
         }
         #sidebar-1 .widget_categories .children:hover li a{
         }
@@ -203,10 +203,10 @@ input[type="search"]{
         #sidebar-1 .widget_pages .children{
                         display:none!important;
         }
-        
+
         #sidebar-1 .widget_pages li:hover .children{
                         display:block!important;
-                        
+
         }*/
 
 /* Special presentation for sidebar menus end*/
@@ -250,7 +250,7 @@ input[type="search"]{
     border-style:solid;
     border-color:#f3961c transparent;
     /* reduce the damage in FF3.0 */
-    display:block; 
+    display:block;
     width:0;
 }
 .enough-insert-position,
