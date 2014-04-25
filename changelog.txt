@@ -1,5 +1,8 @@
 Changelog -----------------------------------
 version:0.92
+	Modify
+		Change Max Page width 1280px
+			and Miscellaneous changes
 ----------------------------------------------
 Changelog -----------------------------------
 version:0.91
