@@ -28,11 +28,22 @@
     /*	margin:5px 10px 5px 0;*/
     display:inline-block;
     float:left;
+   
+}
+.page .alignleft{
+    margin-right:1em;   
+    margin-right:1rem;
 }
 .alignright,.nav-next{
     display:inline-block;
     float:right;
     /*	margin:5px 0 5px 10px;*/
+}
+#nav-below .nav-previous a, #nav-below .nav-next a{
+ text-decoration:none;
+}
+#nav-below .nav-previous span{
+    margin-left:1em;
 }
 .archives-title-text{
     clear:both;
@@ -560,6 +571,22 @@ article embed{
     position: relative;
     left: -50%;
     float: left;
+}
+.ie11 .menu-header > ul,
+.ie .menu-header > ul{
+    
+    width:100%;
+}
+.ie .menu-header > ul,
+.ie .menu-header .menu,
+.ie .menu-header > ul > li,
+.ie .menu-header .menu > li,
+.ie11 .menu-header > ul,
+.ie11 .menu-header .menu,
+.ie11 .menu-header > ul > li,
+.ie11 .menu-header .menu > li{
+    left:0;
+
 }
 /* Menu Centerd end */
 .posted-in a,

@@ -4,7 +4,7 @@ Theme URI: http://www.tenman.info/wp3/enough/
 Description: Satisfied enough necessary minimum structure Responsive Theme. HTML5 normalize.css . 11 kinds of homepage templates can be chosen for the purpose of using you.
 Author: Tenman
 Author URI: http://www.tenman.info/wp3/
-Version: 0.92
+Version: 0.93
 Tags:white,two-columns,custom-colors, custom-header, custom-background, custom-menu, editor-style, threaded-comments, sticky-post, responsive-layout, flexible-header
 License: GNU General Public License v2.0
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -14,7 +14,7 @@ html{
 }
 body{
     /* Page width setting */
-    padding:2% 5%;
+    /*  padding:2% 5%;*/
 
     /* font color*/
     color:#000;
@@ -166,51 +166,6 @@ input[type="search"]{
     border:1px solid #ccc;
 }
 
-
-/* optional responsive grid  end */
-
-/* Special presentation for sidebar menus start*/
-
-/* Pending Now
-
-.widget_archive ul li:nth-child(n+7){
-        display:none;
-
-}
-.widget_archive:hover ul li:nth-child(n+7){
-        display:block;
-
-}
-@media screen and (min-width : 800px){
-
-        .widget_categories ul li {
-                        width:48%;
-                        display:inline-block;
-        }
-        #sidebar-1 .widget_categories .children{
-                        display:none!important;
-        }
-        #sidebar-1 .widget_categories li:hover .children{
-                        display:block!important;
-
-        }
-        #sidebar-1 .widget_categories .children:hover li a{
-        }
-}
-
-*/
-/*
-        #sidebar-1 .widget_pages .children{
-                        display:none!important;
-        }
-
-        #sidebar-1 .widget_pages li:hover .children{
-                        display:block!important;
-
-        }*/
-
-/* Special presentation for sidebar menus end*/
-
 /* Special presentation for comments menus start*/
 #comments .comment-notes{
     font-size:small;
@@ -310,6 +265,55 @@ input[type="search"]{
         display:block;
         float:none;
     }
+}
+.enough-status-bar{
+    position:fixed;
+    bottom:0;
+    width:100%;
+    max-height:80px;color:#fff;
+    background:rgba(0,9,9,.6);
+    color:#fff;
+    width:100%;
+    margin:0;
+    padding:.2em 0;
+    padding:.2rem 0;
+   /* height:200px;*/
+}
+.enough-status-bar .move-to-top{
+    margin:0 10px;
+    display:inline-block;
+    position:relative;
+    left:90%;
+}
+.enough-status-bar a{
+    text-decoration:none;
+    color:#fff;
+}
+.enough-status-bar .enough-monthly-archive-prev-next-navigation{
+    padding:0;
+    margin:-14px;
+ }
+.enough-status-bar .enough-next-prev-link .posts-nav-link{
+     width:714px!important;
+     max-width:100%!important;
+}
+.enough-status-bar .enough-next-prev-link a{
+    /*margin-top:-16px;*/
+    padding:0;
+}
+
+.enough-status-bar .enough_prev_next_post{
+   margin-right:300px;
+   width:714px;
+   max-width:100%;
+}
+.tag .enough-status-bar .enough-next-prev-link a,
+.category .enough-status-bar .enough-next-prev-link a{
+
+}
+.archive.date　.enough-status-bar #nav-below{
+   position:relative;
+   top:-12px;
 }
 
 

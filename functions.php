@@ -688,7 +688,6 @@ if ( !function_exists( 'enough_prev_next_post' ) ) {
                 $enough_max_length = 40;
                 $enough_prev_post_id = get_adjacent_post( true, '', true );
                 $enough_prev_length = strlen( get_the_title( $enough_prev_post_id ) );
-                $enough_next_post_id = get_adjacent_post( false, '', false );
             }
 
             $html_1 = '<div id="%1$s" class="%2$s"><span class="%3$s">';
@@ -1079,8 +1078,8 @@ if ( !function_exists( 'enough_chat_filter' ) ) {
         $result = '';
         $html = '<h4 class="enough-chat enough-chat-author-%1$s">%2$s</h4>
 					<div class="enough-chat-text enough-chat-author-text-%1$s"><p>%3$s</div>';
-
-        foreach ( $new_contents as $key => $new ) {
+        $regs = array();
+        foreach ( $new_contents as $new ) {
 
             preg_match( '|([^\:]+)(\:)(.+)|si', $new, $regs );
 
@@ -1131,7 +1130,7 @@ if ( !function_exists( 'enough_chat_author_id' ) ) {
  */
 if ( !function_exists( 'enough_the_footer' ) ) {
 
-    function enough_the_footer( $diaplay = true ) {
+    function enough_the_footer( ) {
         if ( locate_template( array( 'footer.php' ), true, true ) == '' ) { //template existance check
             global $enough_current_theme_name;
             ?>
@@ -1174,7 +1173,7 @@ if ( !function_exists( 'enough_add_body_class' ) ) {
     function enough_add_body_class( $class ) {
 
         global $post, $is_lynx, $is_gecko, $is_IE, $is_opera, $is_NS4, $is_safari, $is_chrome, $is_iphone, $enough_navigation_type;
-
+        $regs = array();
         $lang = get_locale();
         //$enough_options				= get_option("enough_theme_settings");
         $enough_options = enough_theme_option( 'defaults' );
@@ -1315,7 +1314,31 @@ if ( !function_exists( 'enough_small_device_helper' ) ) {
         if ( $enough_options[ 'enough_use_slider' ] !== 'no' and is_front_page() ) {
             ?>
                         jQuery('header').before('<h1 class="site-title" style="width:80%;"><a href="<?php echo home_url(); ?>" style="color:#<?php echo get_theme_mod( "header_textcolor" ); ?>"><?php bloginfo( 'site-title' ); ?><\/a><\/h1>');
-            <?php
+           
+            
+
+        <?php
+        }
+        /**
+         * Enough Status Bar
+         *
+         *
+         *
+         *
+         */   
+        ?>
+               jQuery('.enough-status-bar').hide();
+        <?php  
+        if ( !is_page() ) {
+            ?>
+               jQuery(this).scroll(function(){
+                   if (jQuery(this).scrollTop() > 200) {
+                        jQuery('.enough-status-bar').show();
+                    }else{
+                        jQuery('.enough-status-bar').hide();               
+                    }
+                });
+         <?php
         }
         /**
          * Menu header toggle controll
@@ -1554,12 +1577,17 @@ if ( !function_exists( 'enough_small_device_helper' ) ) {
         }
         ?>
                         }
-
-
+                       if (width < 1920) {
+                            body_class = 'enough-w-wuxga';
+                        }
+                       if (width < 1600) {
+                            body_class = 'enough-w-uxga';
+                        }
+                       if (width < 1401) {
+                            body_class = 'enough-w-sxga+';
+                        }
                         if (width < 1281) {
                             body_class = 'enough-w-sxga';
-                        } else {
-                            body_class = '';
                         }
                         if (width < 1025) {
                             body_class = 'enough-w-xga';
@@ -1674,10 +1702,12 @@ if ( !function_exists( 'enough_small_device_helper' ) ) {
         ?>
                     fontResize();
                     jQuery(window).resize(function() {
-                        fontResize()
+                        fontResize();
                     });
 
                 });
+                
+
             })(jQuery);
         </script>
         <?php

@@ -7,6 +7,7 @@
 				wp_head();
 ?>
 </head>
+
 <body <?php body_class(); ?>>
 <?php enough_prepend_body();?>
 	<div id="enough-page">
