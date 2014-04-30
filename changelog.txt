@@ -1,4 +1,11 @@
 Changelog -----------------------------------
+version:0.94
+	Fixed
+		0.93 wrong update
+			add enough-append-body.php
+
+----------------------------------------------
+Changelog -----------------------------------
 version:0.93
 	Create
 		Enough status bar for sub navigation
