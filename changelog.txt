@@ -1,4 +1,10 @@
 Changelog -----------------------------------
+version:0.95
+	Modify
+		Code format.
+		Change Base font size
+----------------------------------------------
+Changelog -----------------------------------
 version:0.94
 	Fixed
 		0.93 wrong update
