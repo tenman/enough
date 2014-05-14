@@ -28,7 +28,6 @@
     /*	margin:5px 10px 5px 0;*/
     display:inline-block;
     float:left;
-   
 }
 .page .alignleft{
     margin-right:1em;   
@@ -40,7 +39,7 @@
     /*	margin:5px 0 5px 10px;*/
 }
 #nav-below .nav-previous a, #nav-below .nav-next a{
- text-decoration:none;
+    text-decoration:none;
 }
 #nav-below .nav-previous span{
     margin-left:1em;
@@ -58,14 +57,10 @@
     position:relative;
     top:15px;
 }
-.archives-title-text .span{
-
-}
 .enough-comment-link{
     position:absolute;
     right:1rem;
 }
-
 .entry-content,.entry-title{
     max-width:100%;
 }
@@ -171,7 +166,7 @@
 .enough-w-svga .wp-caption,
 article img{
     height:auto;
-    max-width:96%;
+    max-width:100%;
 }
 .wp-caption-text{
     margin:auto;
@@ -242,12 +237,6 @@ article h3{
     margin:2rem 0 1rem;
 }
 
-article ul ol,
-article ol ul,
-article ol ol,
-article ul ul{
-    /*margin:0;*/	
-}
 article li{
     line-height:1.4;
     margin-bottom:.5em;
@@ -422,13 +411,11 @@ nav #wp-calendar tbody td{
 nav #wp-calendar tbody td a{
     padding-top:.33em;
 }
-
 nav #wp-calendar thead th{
     padding:0;
     text-align:center;
     font-weight:bold;
 }
-
 nav #wp-calendar tfoot td{
     padding-top:.6em;
 }
@@ -574,7 +561,7 @@ article embed{
 }
 .ie11 .menu-header > ul,
 .ie .menu-header > ul{
-    
+
     width:100%;
 }
 .ie .menu-header > ul,
@@ -586,7 +573,6 @@ article embed{
 .ie11 .menu-header > ul > li,
 .ie11 .menu-header .menu > li{
     left:0;
-
 }
 /* Menu Centerd end */
 .posted-in a,
@@ -694,7 +680,6 @@ nav a:active,
 .slides_control div h3{
     margin-left:1em;
 }
-
 .wp-audio-shortcode{
     max-width:320px;
 }

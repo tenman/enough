@@ -10,14 +10,14 @@ License: GNU General Public License v2.0
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 html{
-    font-size:16px;
+    font-size:18px;
 }
 body{
     /* Page width setting */
     /*  padding:2% 5%;*/
 
     /* font color*/
-    color:#000;
+    color:#333;
 }
 
 #enough-page{
@@ -277,7 +277,7 @@ input[type="search"]{
     margin:0;
     padding:.2em 0;
     padding:.2rem 0;
-   /* height:200px;*/
+    /* height:200px;*/
 }
 .enough-status-bar .move-to-top{
     margin:0 10px;
@@ -292,10 +292,10 @@ input[type="search"]{
 .enough-status-bar .enough-monthly-archive-prev-next-navigation{
     padding:0;
     margin:-14px;
- }
+}
 .enough-status-bar .enough-next-prev-link .posts-nav-link{
-     width:714px!important;
-     max-width:100%!important;
+    width:714px!important;
+    max-width:100%!important;
 }
 .enough-status-bar .enough-next-prev-link a{
     /*margin-top:-16px;*/
@@ -303,17 +303,17 @@ input[type="search"]{
 }
 
 .enough-status-bar .enough_prev_next_post{
-   margin-right:300px;
-   width:714px;
-   max-width:100%;
+    margin-right:300px;
+    width:714px;
+    max-width:100%;
 }
 .tag .enough-status-bar .enough-next-prev-link a,
 .category .enough-status-bar .enough-next-prev-link a{
 
 }
 .archive.date　.enough-status-bar #nav-below{
-   position:relative;
-   top:-12px;
+    position:relative;
+    top:-12px;
 }
 
 

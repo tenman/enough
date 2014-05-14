@@ -8,26 +8,26 @@
  * @package Enough
  */
 ?>
-	<div id="comments" class="clear">
-		<ul class="wp-list-comments">
-<?php
-		wp_list_comments();
-?>
-		</ul>
-		<br class="clear vspacer-3" />
-		<div class="pagenate-comment-links">
-<?php
-		paginate_comments_links();
-?>
-		</div>
-<?php
-		global $enough_wp_version;
-		
-		$args = array();
-		
-		if( $enough_wp_version >= 3.6 ){
-			$args['format'] = 'html5';
-		}
-		comment_form( $args );
-?>
-	</div>
+<div id="comments" class="clear">
+    <ul class="wp-list-comments">
+        <?php
+        wp_list_comments();
+        ?>
+    </ul>
+    <br class="clear vspacer-3" />
+    <div class="pagenate-comment-links">
+        <?php
+        paginate_comments_links();
+        ?>
+    </div>
+    <?php
+    global $enough_wp_version;
+
+    $args = array();
+
+    if ( $enough_wp_version >= 3.6 ) {
+        $args[ 'format' ] = 'html5';
+    }
+    comment_form( $args );
+    ?>
+</div>

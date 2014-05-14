@@ -7,51 +7,36 @@
  * @package Enough
  */
 .form-allowed-tags code{
-	font-family:"Courier New", Courier, mono;
+    font-family:"Courier New", Courier, mono;
 }
 .widgettitle a.rsswidget,
 .widgettitle{
-	font-size:1em;
-	font-size:1rem;
+    font-size:1em;
+    font-size:1rem;
 }
 .rssSummary{
-	font-size:.75em;
-	font-size:.75rem;
-
+    font-size:.75em;
+    font-size:.75rem;
 }
 .rss-date{
-	font-size:.75em;
-	font-size:.75rem;
-	font-weight:bold;
+    font-size:.75em;
+    font-size:.75rem;
+    font-weight:bold;
 }
-
 .wp-caption-text,
 .toggle-tag,
-.posted-on,
-.posted-in,
 .comment-meta{
-	font-size:0.75rem;
+    font-size:0.75rem;
 }
 .wp-link-pages > span,
 dt,
 .pagenate-comment-links .current{
-	font-weight:700;
+    font-weight:700;
 }
+.menu-header,
+#nav-below,
 body{
-/*	font-family:Geneva, Arial, Helvetica, sans-serif;*/
-	font-family:Ubuntu, sans-serif;
-	font-size:100%;
-}
-cite,
-input[type=file],
-input[type=reset],
-input[type=submit],
-nav a,
-#searchsubmit,
-nav #wp-calendar tbody td,
-cite.fn,
-.form-allowed-tags{
-	font-size:.9rem;
+  font-family: Ubuntu, sans-serif;
 }
 nav #wp-calendar caption,
 .archives-title-text,
@@ -61,30 +46,39 @@ h3,
 h1 a,
 h2 a,
 h3 a{
-	font-family:Ubuntu, sans-serif;
-
-	/*font-family:Georgia, "Times New Roman", Times, serif;*/
-	font-weight:normal;
+    
+       font-weight: normal;
 }
+
+
+cite,
+input[type=file],
+input[type=reset],
+input[type=submit],
+nav a,
+#searchsubmit,
+nav #wp-calendar tbody td,
+cite.fn,
+.form-allowed-tags{
+    font-size:.9rem;
+}
+
 nav #wp-calendar thead th{
-	font-size:0.9em;
-	font-weight:400;
+    font-size:0.9em;
+    font-weight:400;
 }
 
 @media screen and ( max-width: 480px ){
-	.enough-comment-link{
-		font-size:0.8rem;
-	}
-	
-	body{
-		font-size:75%;
-	}
+    .enough-comment-link{
+        font-size:0.8rem;
+    }
+    body{
+        font-size:75%;
+    }
 }
 
 @media screen and ( min-width: 481px ){
-	.menu-header{
-		font-size:1rem;
-	}
+    .menu-header{
+        font-size:1rem;
+    }
 }
-
-

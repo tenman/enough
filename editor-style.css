@@ -7,36 +7,36 @@
  * @package Enough
  */
 img{
-	margin:0.5rem;
+    margin:0.5rem;
 }
 th,
 td,
 blockquote{
-	border:1px solid #ccc;
+    border:1px solid #ccc;
 }
 dt{
-	font-weight:bold;
+    font-weight:bold;
 }
 p{
-	line-height:1.5;
+    line-height:1.5;
 }
 .wp-content table{
 
-	width:90%;
-	margin:5%;
+    width:90%;
+    margin:5%;
 }
 .wp-content th,
 .wp-content td {
-	padding:5px;
+    padding:5px;
 }
 .wp-caption{
-	margin:.3rem;	
+    margin:.3rem;	
 }
 .wp-caption img{
-	margin:5px;
+    margin:5px;
 }
 .wp-caption-text{
-	text-align:center;
+    text-align:center;
 }
 .wp-caption,
 .wp-caption-text,
@@ -46,60 +46,60 @@ p{
 }
 .nav-previous,
 .alignleft {
-	display: inline;
-	float: left;
+    display: inline;
+    float: left;
 }
 .nav-next,
 .alignright {
-	display: inline;
-	float: right;
+    display: inline;
+    float: right;
 }
 .aligncenter {
-	clear: both;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
+    clear: both;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 .clear {
-	clear: both;
+    clear: both;
 }
 iframe,
 .size-full,
 .wp-caption .size-full {
-	height: auto;
-	max-width: 100%;
+    height: auto;
+    max-width: 100%;
 }
 h1 a,
 h2 a,
 h3 a{
-	text-decoration:none;
+    text-decoration:none;
 }
 blockquote{
-	border-left:6px solid #ccc;
-	padding:1rem 1rem 1rem 2rem;
+    border-left:6px solid #ccc;
+    padding:1rem 1rem 1rem 2rem;
 }
 input[type="text"],
 input[type="radio"],
 input[type="checkbox"]{
-	margin:0.1rem 0.3rem;
+    margin:0.1rem 0.3rem;
 }
 input[type="file"],
 input[type="reset"],
 input[type="submit"]{
-	padding:0.3rem 0.5rem;
-	font-size:0.8rem;
+    padding:0.3rem 0.5rem;
+    font-size:0.8rem;
 }
 textarea{
-	width:90%;
-	margin:0 5%;
+    width:90%;
+    margin:0 5%;
 }
 address{
-	text-align:center;
+    text-align:center;
 }
 .posts-nav-link a:first-child{
-	float:left;
+    float:left;
 }
 .posts-nav-link a:last-child{
-	float:right;
+    float:right;
 }
 

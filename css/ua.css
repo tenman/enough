@@ -6,158 +6,151 @@
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * @package Enough
  */
+
 .ie8 article {
-	margin:auto;
-	padding:10px;
+    margin:auto;
+    padding:10px;
 }
 .ie8 nav {
-	width:28%;
-	padding-right:1em;
-	margin-left:70%;
-	margin-top:-1.2em;
-	padding-top:1em;
-	-webkit-box-sizing:border-box;
-	-moz-box-sizing:border-box;
-	-ms-box-sizing:border-box;
-	box-sizing:border-box;
-	min-width:30%!important;
+    width:28%;
+    padding-right:1em;
+    margin-left:70%;
+    margin-top:-1.2em;
+    padding-top:1em;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -ms-box-sizing:border-box;
+    box-sizing:border-box;
+    min-width:30%!important;
 }
 .ie8 nav ul {
-	margin-top:0;
-	margin-left:.5em;
-	padding-left:0.4em;
+    margin-top:0;
+    margin-left:.5em;
+    padding-left:0.4em;
 }
 .ie8 nav li {
-	margin-left:0;
-	padding-left:0;
+    margin-left:0;
+    padding-left:0;
 }
 .ie8 nav input {
-	max-width:80%;
+    max-width:80%;
 }
 
 .ie8 nav > ul > li {
-	border-bottom:1px solid #ccc;
+    border-bottom:1px solid #ccc;
 }
 
 .ie8 .posted-in,
 .ie8 .posted-on,
 .ie8 #commentform {
-	background:#fff;
-	color:#333;
+    background:#fff;
+    color:#333;
 }
 .ie8 .posted-in,
 .ie8 .posted-on {
-	margin-bottom:1em;
-	padding:.3em;
+    margin-bottom:1em;
+    padding:.3em;
 }
-
 .ie8 .posted-in ul {
-	margin-left:1em;
-	padding-left:0;
+    margin-left:1em;
+    padding-left:0;
 }
 .ie8 .wp-list-comments .odd {
-	background:#eef;
+    background:#eef;
 }
 .ie8 .wp-list-comments .even {
-	background:#eff;
+    background:#eff;
 }
 .ie8 img {
-	height:auto!important;
+    height:auto!important;
 }
 .ie8 .comment-body {
 }
-
 .ie8 .nav-next {
-	display:inline;
-	float:right;
+    display:inline;
+    float:right;
 }
 .ie8 blockquote {
-	padding:1em;
+    padding:1em;
 }
 .ie8 .comment-meta {
-	position:static;
+    position:static;
 }
-
 .ie8 .menu-header {
-	display:inline-block;
-	width:100%;
-	font-size:0.9em;
-	max-width:100%;
+    display:inline-block;
+    width:100%;
+    font-size:0.9em;
+    max-width:100%;
 }
 .ie9 .menu-header > .menu,
 .ie10 .menu-header > .menu{
-/* line break bug?*/
-	width:100%;
+    /* line break bug?*/
+    width:100%;
 }
 .ie9 html,
 .ie10 html{
-	overflow:hidden;
+    overflow:hidden;
 }
 .ie9 article,
 .ie10 article{
-	max-width:100%;
+    max-width:100%;
 }
-
 .ie8 .menu-header li {
-	list-style-type:none;
-	margin:0;
+    list-style-type:none;
+    margin:0;
 }
-
 .ie8 .menu-header > ul > li {
-	float:left;
-	position:relative;
+    float:left;
+    position:relative;
 }
-
 .ie8 .menu-header .sub-menu,
 .ie8 .menu-header .children {
-	display:none;
-	position:absolute;
-	top:2em;
-	left:0;
-	float:left;
-	width:10em;
-	z-index:99;
-	text-align:center;
+    display:none;
+    position:absolute;
+    top:2em;
+    left:0;
+    float:left;
+    width:10em;
+    z-index:99;
+    text-align:center;
 }
 .ie8 .menu-header .sub-menu li,
 .ie8 .menu-header .children li {
-	min-width:10em;
-	margin:0;
+    min-width:10em;
+    margin:0;
 }
 .ie8 .menu-header .sub-menu .submenu,
 .ie8 .menu-header .children .children {
-	left:100%;
-	top:-1px;
-	text-align:center;
+    left:100%;
+    top:-1px;
+    text-align:center;
 }
 .ie8 .sub-menu a,
 .ie8 .children a {
-	line-height:1em;
-	height:auto;
-	padding:0.8em;
+    line-height:1em;
+    height:auto;
+    padding:0.8em;
 }
-
 .ie8.enough-w-keitai .menu-header,
 .ie8.enough-w-qvga .menu-header,
 .ie8.enough-w-iphone .menu-header{
-	display:block;
-	width:100%;
-	font-size:0.9em;
+    display:block;
+    width:100%;
+    font-size:0.9em;
 }
 
 .ie8.enough-w-keitai .menu-header li,
 .ie8.enough-w-qvga .menu-header li,
 .ie8.enough-w-iphone .menu-header li{
-	list-style-type:none;
-	display:block;
-	margin:0;
+    list-style-type:none;
+    display:block;
+    margin:0;
 }
-
 .ie8.enough-w-keitai .menu-header > ul > li,
 .ie8.enough-w-qvga .menu-header > ul > li,
 .ie8.enough-w-iphone .menu-header > ul > li{
-	float:none;
-	display:block;
+    float:none;
+    display:block;
 }
 .ie8.enough-w-keitai .menu-header .sub-menu,
 .ie8.enough-w-qvga .menu-header .sub-menu,
@@ -165,11 +158,11 @@
 .ie8.enough-w-keitai .menu-header .children,
 .ie8.enough-w-qvga .menu-header .children,
 .ie8.enough-w-iphone .menu-header .children{
-	position:static;
-	float:none;
-	text-align:center;
-	display:block;
-	background:none;
+    position:static;
+    float:none;
+    text-align:center;
+    display:block;
+    background:none;
 }
 .ie8.enough-w-keitai .menu-header .sub-menu li,
 .ie8.enough-w-qvga .menu-header .sub-menu li,
@@ -177,11 +170,11 @@
 .ie8.enough-w-keitai .menu-header .children li,
 .ie8.enough-w-qvga .menu-header .children li,
 .ie8.enough-w-iphone .menu-header .children li{
-	min-width:10em;
-	float:none;
-	display:block;
-	background:none;
-	margin:0;
+    min-width:10em;
+    float:none;
+    display:block;
+    background:none;
+    margin:0;
 }
 .ie8.enough-w-keitai .menu-header .sub-menu .sub-menu,
 .ie8.enough-w-qvga .menu-header .sub-menu .sub-menu,
@@ -189,10 +182,10 @@
 .ie8.enough-w-keitai .menu-header .children .children,
 .ie8.enough-w-qvga .menu-header .children .children,
 .ie8.enough-w-iphone .menu-header .children .children{
-	text-align:center;
-	float:none;
-	display:block;
-	background:none;
+    text-align:center;
+    float:none;
+    display:block;
+    background:none;
 }
 .ie8.enough-w-keitai .sub-menu a,
 .ie8.enough-w-qvga .sub-menu a,
@@ -200,30 +193,30 @@
 .ie8.enough-w-keitai .children a,
 .ie8.enough-w-qvga .children a,
 .ie8.enough-w-iphone .children a{
-	height:auto;
-	display:block;
-	background:none;
-	padding:0.8em 0;
+    height:auto;
+    display:block;
+    background:none;
+    padding:0.8em 0;
 }
 .ie8.enough-w-keitai body,
 .ie8.enough-w-qvga body,
 .ie8.enough-w-iphone body,
 .ie8.enough-w-vga body {
-	font-size:80%;
+    font-size:80%;
 }
 .ie8.enough-w-keitai #enough-page,
 .ie8.enough-w-qvga #enough-page,
 .ie8.enough-w-iphone #enough-page,
 .ie8.enough-w-vga #enough-page {
-	width:94%;
-	margin:0 auto;
+    width:94%;
+    margin:0 auto;
 }
 .ie8.enough-w-keitai .sticky,
 .ie8.enough-w-qvga .sticky,
 .ie8.enough-w-iphone .sticky,
 .ie8.enough-w-vga .sticky {
-	margin-left:.4em;
-	margin-top:.5em;
+    margin-left:.4em;
+    margin-top:.5em;
 }
 
 .ie8.enough-w-keitai body,
@@ -231,29 +224,29 @@
 .ie8.enough-w-iphone body,
 .ie8.enough-w-qvga body,
 .ie8.enough-w-iphone body {
-	font-size:75%;
+    font-size:75%;
 }
 
 .ie8.enough-w-keitai .menu-header,
 .ie8.enough-w-qvga .menu-header,
 .ie8.enough-w-iphone .menu-header{
-	display:block;
-	width:100%;
+    display:block;
+    width:100%;
 }
 
 .ie8.enough-w-keitai .menu-header > ul > li,
 .ie8.enough-w-qvga .menu-header > ul > li,
 .ie8.enough-w-iphone .menu-header > ul > li{
-	border-bottom:1px solid #aaa;
-	display:block!important;
+    border-bottom:1px solid #aaa;
+    display:block!important;
 }
 
 .ie8.enough-w-keitai .menu-header li,
 .ie8.enough-w-qvga .menu-header li,
 .ie8.enough-w-iphone .menu-header li,
 .ie8.enough-w-vga .menu-header li{
-	list-style:none;
-	margin:0;
+    list-style:none;
+    margin:0;
 }
 .ie8.enough-w-keitai .menu-header .sub-menu,
 .ie8.enough-w-qvga .menu-header .sub-menu,
@@ -261,9 +254,9 @@
 .ie8.enough-w-keitai .menu-header .children,
 .ie8.enough-w-qvga .menu-header .children,
 .ie8.enough-w-iphone .menu-header .children{
-	margin-left:1em;
-	max-width:100%;
-	list-style:none;
+    margin-left:1em;
+    max-width:100%;
+    list-style:none;
 }
 .ie8.enough-w-keitai .menu-header .sub-menu a,
 .ie8.enough-w-qvga .menu-header .sub-menu a,
@@ -277,16 +270,16 @@
 .ie8.enough-w-qvga .menu-header .children a,
 .ie8.enough-w-vga .menu-header .children a,
 .ie8.enough-w-iphone .menu-header .children a {
-	display:block;
-	text-decoration:none;
-	padding:.5em;
+    display:block;
+    text-decoration:none;
+    padding:.5em;
 }
 
 .ie8.enough-w-keitai .enough-comment-link,
 .ie8.enough-w-qvga .enough-comment-link,
 .ie8.enough-w-vga .enough-comment-link,
 .ie8.enough-w-iphone .enough-comment-link {
-	font-size:0.8em;
+    font-size:0.8em;
 }
 
 .ie8.enough-w-keitai .posted-in,
@@ -297,57 +290,57 @@
 .ie8.enough-w-qvga .posted-on,
 .ie8.enough-w-vga .posted-on,
 .ie8.enough-w-iphone .posted-on {
-	width:96%;
-	left:0;
+    width:96%;
+    left:0;
 }
 .ie8.enough-w-keitai .entry-content,
 .ie8.enough-w-qvga .entry-content,
 .ie8.enough-w-vga .entry-content,
 .ie8.enough-w-iphone .entry-content {
-	width:96%;
-	position:relative;
-	left:0;
-	margin:0;
-	padding:0;
+    width:96%;
+    position:relative;
+    left:0;
+    margin:0;
+    padding:0;
 }
 .ie8.enough-w-keitai .entry-content h1,
 .ie8.enough-w-iphone .entry-content h1,
 .ie8.enough-w-vga .entry-content h1,
 .ie8.enough-w-qvga .entry-content h1,
 .ie8.enough-w-iphone .entry-content {
-	width:96%;
-	font-size:24px;
+    width:96%;
+    font-size:24px;
 }
 .ie8.enough-w-keitai .entry-content h2,
 .ie8.enough-w-qvga .entry-content h2,
 .ie8.enough-w-iphone .entry-content h2,
 .ie8.enough-w-vga .entry-content h2,
 .ie8.enough-w-iphone .entry-content {
-	width:96%;
-	font-size:18px;
+    width:96%;
+    font-size:18px;
 }
 .ie8.enough-w-keitai .entry-content h3,
 .ie8.enough-w-qvga .entry-content h3,
 .ie8.enough-w-iphone .entry-content h3,
 .ie8.enough-w-vga .entry-content h3,
 .ie8.enough-w-iphone .entry-content {
-	width:96%;
-	font-size:14px;
+    width:96%;
+    font-size:14px;
 }
 .ie8.enough-w-keitai .entry-content h4,
 .ie8.enough-w-iphone .entry-content h4,
 .ie8.enough-w-vga .entry-content h4,
 .ie8.enough-w-qvga .entry-content h4,
 .ie8.enough-w-iphone .entry-content {
-	font-size:13px;
+    font-size:13px;
 }
 .ie8.enough-w-keitai article img,
 .ie8.enough-w-iphone article img,
 .ie8.enough-w-vga article img,
 .ie8.enough-w-qvga article img,
 .ie8.enough-w-iphone article img {
-	max-width:90%;
-	margin:0;
+    max-width:90%;
+    margin:0;
 }
 .ie8 .enough-toggle,
 .ie8.enough-w-keitai .toggle-category.toggle-title,
@@ -364,67 +357,67 @@
 .ie8.enough-w-vga .posted-in li,
 .ie8.enough-w-qvga .posted-in li,
 .ie8.enough-w-iphone .posted-in li {
-	list-style-type:none;
-	display:block;
-	margin:0;
-	padding:.5em;
+    list-style-type:none;
+    display:block;
+    margin:0;
+    padding:.5em;
 }
 
 .ie8.enough-w-keitai .posted-in ul,
 .ie8.enough-w-qvga .posted-in ul,
 .ie8.enough-w-iphone .posted-in ul,
 .ie8.enough-w-vga .posted-in ul {
-	margin:0;
-	padding:0;
+    margin:0;
+    padding:0;
 }
 
 .ie8.enough-w-keitai .posted-in a[rel~=tag],
 .ie8.enough-w-qvga .posted-in a[rel~=tag],
 .ie8.enough-w-vga .posted-in a[rel~=tag],
 .ie8.enough-w-iphone .posted-in a[rel~=tag] {
-	display:block;
-	border-bottom:1px solid #999;
-	padding:.5em;
+    display:block;
+    border-bottom:1px solid #999;
+    padding:.5em;
 }
 
 .ie8.enough-w-keitai blockquote,
 .ie8.enough-w-qvga blockquote,
 .ie8.enough-w-vga blockquote,
 .ie8.enough-w-iphone blockquote {
-	margin:.5em 1.5em;
+    margin:.5em 1.5em;
 }
 
 .ie8 .wp-link-pages {
-	text-align:center;
-	margin:1em;
+    text-align:center;
+    margin:1em;
 }
 
 .ie8 .wp-link-pages span {
-	font-weight:700;
-	border:1px solid #999;
+    font-weight:700;
+    border:1px solid #999;
 }
 
 .ie8 .wp-link-pages a span {
-	border:none;
-	font-weight:400;
+    border:none;
+    font-weight:400;
 }
 
 .ie8 .wp-caption {
-	border:1px solid #ccc;
+    border:1px solid #ccc;
 }
 
 .ie8 .wp-caption-text {
-	text-align:center;
-	width:90%;
-	margin:auto;
+    text-align:center;
+    width:90%;
+    margin:auto;
 }
 
 .ie8 .wp-caption img {
-	margin:5px;
+    margin:5px;
 }
 
 .ie8 .menu-header .page_item a {
-	text-align:left!important;
+    text-align:left!important;
 }
 
 .ie8.enough-w-keitai .widget_pages,
@@ -443,13 +436,13 @@
 .ie8.enough-w-keitai nav .widget_meta,
 .ie8.enough-w-qvga nav .widget_meta,
 .ie8.enough-w-iphone nav .widget_meta {
-	border:none;
+    border:none;
 }
 
 .ie8.enough-w-keitai nav,
 .ie8.enough-w-qvga nav,
 .ie8.enough-w-iphone nav {
-	clear:both!important;
+    clear:both!important;
 }
 
 .ie8.enough-w-keitai nav .widget_tag_cloud,
@@ -479,31 +472,31 @@
 .ie8.enough-w-qvga .widget_rss .widgettitle,
 .ie8.enough-w-iphone .widget_meta .widgettitle,
 .ie8.enough-w-vga .widget_meta .widgettitle {
-	background:none;
-	max-width:100%;
+    background:none;
+    max-width:100%;
 }
 .ie8.enough-w-iphone nav .widget_tag_cloud,
 .ie8.enough-w-keitai .widgettitle {
-	background:none;
+    background:none;
 }
 .ie9 #nav-below .nav-next a {
-	float:right;
+    float:right;
 }
 .ie9 .wp-link-pages > span {
-	border:1px solid #999;
-	font-weight:700;
-	padding:.5em;
+    border:1px solid #999;
+    font-weight:700;
+    padding:.5em;
 }
 .ie9 .wp-link-pages > a >span {
-	border:1px solid #999;
-	padding:.5rem;
+    border:1px solid #999;
+    padding:.5rem;
 }
 
 .ie9 #enough-page dl.gallery-item dd.wp-caption-text {
-	text-align:left;
-	width:90%;
-	max-width:150px;
-	margin:0 auto;
+    text-align:left;
+    width:90%;
+    max-width:150px;
+    margin:0 auto;
 }
 
 .ie8 nav ul ul li,
@@ -561,7 +554,7 @@
 .ie8.enough-w-vga noscript .no-script-and-small-view,
 .ie8.enough-w-qvga noscript .no-script-and-small-view,
 .ie8.enough-w-iphone noscript .no-script-and-small-view {
-	display:block;
+    display:block;
 }
 
 .ie8 .menu-header ul,
@@ -573,9 +566,9 @@
 .ie8.enough-w-vga .menu-header ul,
 .ie8.enough-w-qvga .menu-header ul,
 .ie8.enough-w-iphone .menu-header ul {
-	vertical-align:baseline;
-	margin:0;
-	padding:0;
+    vertical-align:baseline;
+    margin:0;
+    padding:0;
 }
 
 .ie8 .menu-header a,
@@ -583,18 +576,18 @@
 .ie8.enough-w-qvga .menu-header a,
 .ie8.enough-w-iphone .menu-header a,
 .ie8.enough-w-vga .menu-header a {
-	display:block;
-	text-decoration:none;
-	text-align:center;
-	min-width:5em;
-	padding:.5em;
+    display:block;
+    text-decoration:none;
+    text-align:center;
+    min-width:5em;
+    padding:.5em;
 }
 
 .ie8 .menu-header li.current-menu-ancestor > a,
 .ie8 .menu-header li.current-menu-item > a,
 .ie8 .menu-header li.current-menu-parent > a,
 .ie9 .wp-link-pages {
-	text-align:center;
+    text-align:center;
 }
 .ie9.enough-w-keitai article,
 .ie9.enough-w-qvga article,
@@ -632,29 +625,29 @@
 .ie8.enough-w-qvga nav,
 .ie8.enough-w-iphone nav,
 .ie8.enough-w-vga nav {
-	width:94%;
-	margin:0 2%;
+    width:94%;
+    margin:0 2%;
 }
 .ie8 .attachment-post-thumbnail,
 .ie8 .wp-post-image{
-	max-width:90%!important;
-	margin:0 3%;
-	height:auto;
+    max-width:90%!important;
+    margin:0 3%;
+    height:auto;
 }
 .ie9 .menu-header .sub-menu .sub-menu.left,
 .ie9 .menu-header .children .children.left,
 .ie8 .menu-header .sub-menu .sub-menu.left,
 .ie8 .menu-header .children .children.left {
-	left: -100%;
-	top: 0;
-	text-align:center;
+    left: -100%;
+    top: 0;
+    text-align:center;
 }
 .ie8.enough-w-vga nav .widget{
-	border:none!important;
+    border:none!important;
 }
 .ie8 header h2,
 .ie8 header h1{
-	margin:0 15px;
+    margin:0 15px;
 }
 .ie9 a > img,
 .ie9 a > img,
@@ -662,7 +655,7 @@
 .ie8 a > img,
 .ie8 a > img,
 .ie8 a > img{
-	padding:1em;
+    padding:1em;
 }
 .ie9 .wp-caption a > img,
 .ie9 .wp-caption a > img,
@@ -670,14 +663,14 @@
 .ie8 .wp-caption a > img,
 .ie8 .wp-caption a > img,
 .ie8 .wp-caption a > img{
-	padding:0;
+    padding:0;
 }
 .ie8 .sticky{
-	margin-top:5px;
+    margin-top:5px;
 }
 .ie8 article.sticky{
-	background:#fff;
-	margin-left:10px;
+    background:#fff;
+    margin-left:10px;
 } 
 .ie8.enough-w-keitai article .entry-title,
 .ie8.enough-w-iphone article .entry-title,
@@ -689,15 +682,15 @@
 .ie8.enough-w-vga article .entry-content,
 .ie8.enough-w-qvga article .entry-content,
 .ie8.enough-w-iphone article .entry-content{
-	max-width:100%;
-	margin:0;
+    max-width:100%;
+    margin:0;
 }
 .ie8.enough-iphone .entry-content .alignright,
 .ie8.enough-iphone .entry-content .alignleft{
-	float:none;
-	clear:both;
-	display:block;
-	margin:0 auto;
+    float:none;
+    clear:both;
+    display:block;
+    margin:0 auto;
 }
 .ie8.home .sticky,
 .ie8 .format-chat,
@@ -711,12 +704,12 @@
 .ie8 .format-image,
 .ie8 .format-quote,
 .ie8 #enough-page{
-	background:#fff;
-	margin-left:10px;
+    background:#fff;
+    margin-left:10px;
 }
 .ie10.home .sticky{
 
-	background:#fff;
+    background:#fff;
 }
 .ie9 .format-standard,
 .ie9 .format-chat,
@@ -740,8 +733,8 @@
 .ie10 .format-status,
 .ie10 .format-image,
 .ie10 .format-quote{
-	background:rgba( 222,222,222,.2);
-	margin-left:10px;
+    background:rgba( 222,222,222,.2);
+    margin-left:10px;
 }
 .ie9 .format-standard,
 .ie9 #enough-page,
@@ -749,7 +742,7 @@
 .ie10 #enough-page
 .ie8 .format-standard,
 .ie8 #enough-page{
-	background:#fff;
+    background:#fff;
 }
 
 .ie8 .attachment-thumbnail,
@@ -758,113 +751,113 @@
 .ie10 .gallery-icon,
 .ie9 .gallery-icon,
 .ie8 .gallery-icon{
-	border:none!important;
+    border:none!important;
 }
 .ie8 .attachment-thumbnail{
-	border: 1px solid #fff!important;
-	background-color: #fff!important;
+    border: 1px solid #fff!important;
+    background-color: #fff!important;
 }
 .ie8 .menu-header .sub-menu .sub-menu{
-	position:static;
-	position:relative;
+    position:static;
+    position:relative;
 }
 .ie8 .menu-header .sub-menu .sub-menu li{
-	position:absolute;
-	top:-58px;
-	left:10em;
+    position:absolute;
+    top:-58px;
+    left:10em;
 }
 .ie8 .menu-header .sub-menu li,
 .ie8 .menu-header .sub-menu .sub-menu li{
-	border:1px solid #ccc;
+    border:1px solid #ccc;
 }
 .ie8 .site-title,
 .ie8 .site-description{
-	margin:16px;
+    margin:16px;
 }
 body.ie7{
-	text-align:center;
+    text-align:center;
 }
 .ie7 #enough-page{
-	width:90%;
-	text-align:left;
-	background:#fff;
-	padding:2%;
-	
+    width:90%;
+    text-align:left;
+    background:#fff;
+    padding:2%;
+
 }
 .ie7 #enough-page header{
-	background-color:#ccc;
-	height:158px;
-	padding:20px;
-	background-repeat:no-repeat;
-	color:#fff;
-	
+    background-color:#ccc;
+    height:158px;
+    padding:20px;
+    background-repeat:no-repeat;
+    color:#fff;
+
 }
 .ie7 .menu-header{
-		position: static;
+    position: static;
 }
 .ie7 .menu-header > ul,
 .ie7 .menu-header .menu{
-		position: static;
-		left: 0;
-		float: none;
+    position: static;
+    left: 0;
+    float: none;
 }
 .ie7 .menu-header .menu > li{
-		position: static;
-		left: 0;
-		float: none;
+    position: static;
+    left: 0;
+    float: none;
 }
 .ie7 nav{
-	display:block;
-	clear:both;
-	width:100%;
-	z-index:0;
-	margin-left:0;
-	margin-top:40px;
+    display:block;
+    clear:both;
+    width:100%;
+    z-index:0;
+    margin-left:0;
+    margin-top:40px;
 }
 .ie7 article{
-	margin-right:0;
-	width:98%;
+    margin-right:0;
+    width:98%;
 }
 .ie7 .statuses .entry-content a:hover,
 .ie8 .statuses .entry-content a:hover,
 .ie9 .statuses .entry-content a:hover,
 .ie10 .statuses .entry-content a:hover{
-	color:#000;
+    color:#000;
 }
 .ie7 .statuses .entry-content a,
 .ie8 .statuses .entry-content a,
 .ie9 .statuses .entry-content a,
 .ie10 .statuses .entry-content a{
-	pointer-events: none;
+    pointer-events: none;
     cursor: default;
     text-decoration:none;
-	color:#000;
+    color:#000;
 }
 .ie7 .statuses .entry-content img,
 .ie8 .statuses .entry-content img,
 .ie9 .statuses .entry-content img,
 .ie10 .statuses .entry-content img{
-	width:100%;
-	max-width:100%;
+    width:100%;
+    max-width:100%;
 }
 .ie7 .format-status .entry-content{
-	display:block;
+    display:block;
 }
-/*post format image*/
+
 .ie8.term-post-format-image{
-	text-align:center;
+    text-align:center;
 }
 .ie8.term-post-format-image  .tiled-post-format-image img {
-	width:32%!important;
-	max-width:100%;
-	height:auto;
-	margin:1px;
-	padding:0;
+    width:32%!important;
+    max-width:100%;
+    height:auto;
+    margin:1px;
+    padding:0;
 }
 .enough-w-vga.ie8.term-post-format-image  .tiled-post-format-image img {
-	width:48%!important;
+    width:48%!important;
 }
 .enough-w-iphone.ie8.term-post-format-image  .tiled-post-format-image img,
 .enough-w-qvga.ie8.term-post-format-image  .tiled-post-format-image img {
-	width:98%!important;
+    width:98%!important;
 }
