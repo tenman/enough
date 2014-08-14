@@ -955,8 +955,9 @@ if ( !function_exists( 'enough_dinamic_sidebar' ) ) {
     function enough_dinamic_sidebar( $id, $display = true ) {
         if ( locate_template( array( 'sidebar-1.php', 'sidebar.php' ), true, true ) == '' ) { //template existance check
             global $enough_onecolumn_post;
-
-            if ( $enough_onecolumn_post == 'yes' and $display == false ) {
+            
+          
+            if ( $enough_onecolumn_post == 'yes' and $display == true ) {
                 return;
             }
 
@@ -993,6 +994,15 @@ if ( !function_exists( 'enough_onecolumn_post' ) ) {
     function enough_onecolumn_post( $classes ) {
 
         $classes[] = 'enough-1col-post';
+        return $classes;
+    }
+
+}
+if ( !function_exists( 'enough_twocolumn_post' ) ) {
+
+    function enough_twocolumn_post( $classes ) {
+
+        $classes[] = 'enough-2col-post';
         return $classes;
     }
 

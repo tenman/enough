@@ -45,18 +45,18 @@ $enough_post_formats = get_theme_support( 'post-formats' );
 ?>				
 <aside class="custom-format-link-list-wrapper">
     <ul id="custom-post-format-widget-link">
-<?php
-$html = '	<li class="%3$s"><a href="%1$s"><span>%2$s</span></a></li>';
+        <?php
+        $html                = '	<li class="%3$s"><a href="%1$s"><span>%2$s</span></a></li>';
 
-foreach ( $enough_post_formats[ 0 ] as $format ) {
+        foreach ( $enough_post_formats[0] as $format ) {
 
-    if ( $format !== $enough_home_template ) {
+            if ( $format !== $enough_home_template ) {
 
-        printf( $html, esc_url( get_post_format_link( $format ) ), esc_html( enough_get_post_format_string( $format ) ), esc_attr( $format )
-        );
-    }
-}
-?>
+                printf( $html, esc_url( get_post_format_link( $format ) ), esc_html( enough_get_post_format_string( $format ) ), esc_attr( $format )
+                );
+            }
+        }
+        ?>
     </ul>
     <br class="clear" />
     <ul class="approach-widget">
@@ -65,26 +65,19 @@ foreach ( $enough_post_formats[ 0 ] as $format ) {
         ?>
     </ul>
 </aside>
-        <?php
-        /**
-         * Sidebar
-         */
-        enough_dinamic_sidebar( 'sidebar-1', !is_page() );
-        ?>
-<div class="clear posts-nav-link">
 <?php
-posts_nav_link( ' ', ' ' . esc_html__( 'Previous Page', 'enough' ), esc_html__( 'Next Page', 'enough' ) . ' ' );
+/**
+ * Sidebar
+ */
+enough_dinamic_sidebar( 'sidebar-1', !is_page() );
 ?>
+<div class="clear posts-nav-link">
+    <?php
+    posts_nav_link( ' ', ' ' . esc_html__( 'Previous Page', 'enough' ), esc_html__( 'Next Page', 'enough' ) . ' ' );
+    ?>
 </div>
 <br class="clear vspacer-3" />
-    <?php
-    /**
-     * Sidebar show bottom when post 1column
-     */
-    enough_dinamic_sidebar( 'sidebar-1', $enough_onecolumn_post );
-
-    get_footer();
-    ?>
+<?php get_footer(); ?>
 </div>
 </div>
 <?php wp_footer(); ?>

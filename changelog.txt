@@ -1,4 +1,8 @@
 Changelog -----------------------------------
+version:0.97
+	Fixed Bug Sidebar shows twice.
+----------------------------------------------
+Changelog -----------------------------------
 version:0.96
 	Fixed Theme Customizer can not preview issue
 ----------------------------------------------

@@ -51,7 +51,9 @@ enough_next_prev_links( 'nav-below' );
 /**
  * Sidebar
  */
+    
 enough_dinamic_sidebar( 'sidebar-1', !is_page() );
+
 ?>
 <br class="clear vspacer-3" />
 <?php

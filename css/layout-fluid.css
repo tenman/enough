@@ -111,7 +111,7 @@
     .menu-header ul li:hover > .children {
         display:block;
         position:absolute;
-        top:-2px;
+        top:0;
     }
     .menu-header li.current_page_item > a,
     .menu-header li.current-menu-ancestor > a,

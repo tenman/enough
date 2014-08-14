@@ -8,15 +8,15 @@ $enough_options       = enough_theme_option( 'defaults' );
  *
  *
  */
-if ( isset( $enough_options['enough_post_one_column_bottom_sidebar'] ) and
-        $enough_options['enough_post_one_column_bottom_sidebar'] == 'yes' ) {
+if ( isset( $enough_options['enough_post_one_column_bottom_sidebar'] ) && $enough_options['enough_post_one_column_bottom_sidebar'] == 'yes' ) {
 
     $enough_onecolumn_post = 'yes';
-
     add_filter( 'post_class', 'enough_onecolumn_post' );
     add_filter( 'body_class', 'enough_onecolumn_post' );
 } else {
-
+    
+    add_filter( 'post_class', 'enough_twocolumn_post' );
+    add_filter( 'body_class', 'enough_twocolumn_post' );
     $enough_onecolumn_post = 'no';
 }
 
@@ -30,6 +30,7 @@ if ( $enough_home_template == 'image' or
 
     get_template_part( 'approach', 'format' );
 } else {
+    
     get_template_part( 'approach', $enough_home_template );
 }
 ?>

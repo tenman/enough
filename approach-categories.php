@@ -63,11 +63,6 @@ $enough_post_formats = get_theme_support( 'post-formats' );
         ?>
 <br class="clear vspacer-3" />
 <?php
-/**
- * Sidebar show bottom when post 1column
- */
-enough_dinamic_sidebar( 'sidebar-1', $enough_onecolumn_post );
-
 get_footer();
 ?>
 </div>
