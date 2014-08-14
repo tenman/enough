@@ -7,7 +7,7 @@
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * @package Enough
  */
-global $enough_onecolumn_post, $home_template;
+global $enough_onecolumn_post, $enough_home_template;
 
 get_header();
 ?>

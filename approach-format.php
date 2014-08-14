@@ -7,7 +7,7 @@
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * @package Enough
  */
-global $enough_onecolumn_post, $home_template;
+global $enough_onecolumn_post, $enough_home_template;
 get_header();
 ?>
 <br class="clear" />
@@ -29,9 +29,9 @@ if ( have_posts() ) {
 
 
         the_post();
-        if ( has_post_format( $home_template ) ) {
+        if ( has_post_format( $enough_home_template ) ) {
 
-            get_template_part( 'content', $home_template );
+            get_template_part( 'content', $enough_home_template );
 
             break;
         }
@@ -50,7 +50,7 @@ $html = '	<li class="%3$s"><a href="%1$s"><span>%2$s</span></a></li>';
 
 foreach ( $enough_post_formats[ 0 ] as $format ) {
 
-    if ( $format !== $home_template ) {
+    if ( $format !== $enough_home_template ) {
 
         printf( $html, esc_url( get_post_format_link( $format ) ), esc_html( enough_get_post_format_string( $format ) ), esc_attr( $format )
         );

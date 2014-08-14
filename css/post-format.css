@@ -151,13 +151,17 @@ body:not(.single-post) .format-status .entry-content:focus{
 .single-post .term-post-format-link-item,
 .home .term-post-format-link-item,
 .term-post-format-link .term-post-format-link-item{
-    display:inline-block;
+    display:block;
     margin:auto;
+    padding:2em;
     width:auto;
     margin:1em;
     margin:1rem;
     font-weight:bold;
-
+    displey:block;
+    background:rgba(222,222,222,.2);
+    border-bottom:1px solid rgba(222,222,222,.6);
+    border-top:1px solid rgba(222,222,222,.6);
 }
 .single-post .term-post-format-link-item,
 .home .term-post-format-link-item{

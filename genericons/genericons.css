@@ -313,7 +313,7 @@ time:before,
 .enough-icon .post-format-name .gallery:before{
     content: '\f103'!important; 
     visibility:visible;
-    background:yellow;
+    background:#A0C0F0;
     color:#006600;
 }
 /* Post formats */
@@ -329,7 +329,7 @@ time:before,
 .enough-icon .post-format-name .image:before {
     content: '\f102'!important;
     visibility:visible;
-    background:#66FF00;
+    background:#336699;
     color:#fff;
 }
 
@@ -354,7 +354,7 @@ time:before,
 .enough-icon .post-format-name .link:before {
     content: '\f107'!important;
     visibility:visible;
-    background:#CCFF00;
+    background:#dd4b39;
     color:#fff;
 }
 .enough-icon .post-format-name .chat:before {

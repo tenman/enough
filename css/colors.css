@@ -169,10 +169,10 @@ blockquote{
     border-bottom:1px solid rgba(222,222,222,.6);*/
 }
 #custom-post-format-widget-link li a{
-    background: #999;
+    background:rgba(222,222,222,.5);
 }
 #custom-post-format-widget-link li a span{
-    text-align: center;color: #fff;
+    color: #777;
 }
 .enough-pub-new .meta-prep:before{
     content:"new";

@@ -1,4 +1,8 @@
 Changelog -----------------------------------
+version:0.96
+	Fixed Theme Customizer can not preview issue
+----------------------------------------------
+Changelog -----------------------------------
 version:0.95
 	Modify
 		Code format.

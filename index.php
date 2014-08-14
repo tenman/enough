@@ -55,11 +55,6 @@ enough_dinamic_sidebar( 'sidebar-1', !is_page() );
 ?>
 <br class="clear vspacer-3" />
 <?php
-/**
- * Sidebar show bottom when post 1column
- */
-enough_dinamic_sidebar( 'sidebar-1', $enough_onecolumn_post );
-
 get_footer();
 ?>
 </div>

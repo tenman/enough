@@ -4,7 +4,7 @@ Theme URI: http://www.tenman.info/wp3/enough/
 Description: Satisfied enough necessary minimum structure Responsive Theme. HTML5 normalize.css . 11 kinds of homepage templates can be chosen for the purpose of using you.
 Author: Tenman
 Author URI: http://www.tenman.info/wp3/
-Version: 0.95
+Version: 0.96
 Tags:white,two-columns,custom-colors, custom-header, custom-background, custom-menu, editor-style, threaded-comments, sticky-post, responsive-layout, flexible-header
 License: GNU General Public License v2.0
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -277,13 +277,28 @@ input[type="search"]{
     margin:0;
     padding:.2em 0;
     padding:.2rem 0;
-    /* height:200px;*/
+    z-index:999;
+}
+.enough-status-bar .posts-nav-link{
+    width:100%;
+}
+.enough-status-bar .enough-monthly-archive-prev-next-navigation{
+    position:relative;
+    max-width:100%;
+    margin:0 auto;
+    width:100%;
+}
+.enough-status-bar .navigation-link-wrapper{
+    position:relative;
+    max-width:100%;
+    margin:auto;
+    width:98%;
+    padding-right: 2%;
 }
 .enough-status-bar .move-to-top{
     margin:0 10px;
-    display:inline-block;
-    position:relative;
-    left:90%;
+    display:block;
+    text-align:center;
 }
 .enough-status-bar a{
     text-decoration:none;
@@ -291,7 +306,7 @@ input[type="search"]{
 }
 .enough-status-bar .enough-monthly-archive-prev-next-navigation{
     padding:0;
-    margin:-14px;
+    margin:-14px auto;
 }
 .enough-status-bar .enough-next-prev-link .posts-nav-link{
     width:714px!important;
@@ -301,11 +316,10 @@ input[type="search"]{
     /*margin-top:-16px;*/
     padding:0;
 }
-
 .enough-status-bar .enough_prev_next_post{
-    margin-right:300px;
+ /*   margin-right:300px;
     width:714px;
-    max-width:100%;
+    max-width:100%;*/
 }
 .tag .enough-status-bar .enough-next-prev-link a,
 .category .enough-status-bar .enough-next-prev-link a{
@@ -313,7 +327,21 @@ input[type="search"]{
 }
 .archive.date　.enough-status-bar #nav-below{
     position:relative;
-    top:-12px;
+  /*  top:-12px;*/
 }
+
+
+.approach-blank h1{
+   margin: 0 0 0.67em 0;
+   padding:.67em;
+}
+.approach-blank .site-description{
+    margin-left:1.5em
+}
+.enough-icon .approach-categories-content a{
+    font-size:1.5rem!important;
+   text-decoration:none;
+}
+
 
 

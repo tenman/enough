@@ -1,17 +1,35 @@
 <?php
 
-locate_template( array( 'functions.php' ), true, true );
+$enough_home_template = enough_theme_option( 'enough_approach_type' );
+$enough_options       = enough_theme_option( 'defaults' );
+/**
+ * Enough Post Full width One Clolumn
+ *
+ *
+ *
+ */
+if ( isset( $enough_options['enough_post_one_column_bottom_sidebar'] ) and
+        $enough_options['enough_post_one_column_bottom_sidebar'] == 'yes' ) {
 
-if ( $home_template == 'image' or
-        $home_template == 'gallery' or
-        $home_template == 'link' or
-        $home_template == 'chat' or
-        $home_template == 'quote' or
-        $home_template == 'status' or
-        $home_template == 'video' ) {
+    $enough_onecolumn_post = 'yes';
+
+    add_filter( 'post_class', 'enough_onecolumn_post' );
+    add_filter( 'body_class', 'enough_onecolumn_post' );
+} else {
+
+    $enough_onecolumn_post = 'no';
+}
+
+if ( $enough_home_template == 'image' or
+        $enough_home_template == 'gallery' or
+        $enough_home_template == 'link' or
+        $enough_home_template == 'chat' or
+        $enough_home_template == 'quote' or
+        $enough_home_template == 'status' or
+        $enough_home_template == 'video' ) {
 
     get_template_part( 'approach', 'format' );
 } else {
-    get_template_part( 'approach', $home_template );
+    get_template_part( 'approach', $enough_home_template );
 }
 ?>

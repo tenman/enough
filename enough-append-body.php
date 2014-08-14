@@ -1,7 +1,7 @@
 <div class="enough-status-bar">
 
     <p class="move-to-top"><a href="#">top</a></p>  
-    <div style="margin-left:100px; position:relative;"> 
+    <div class="navigation-link-wrapper"> 
         <div class="enough-monthly-archive-prev-next-navigation">
             <?php enough_monthly_archive_prev_next_navigation(); ?>
         </div>
