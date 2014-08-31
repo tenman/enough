@@ -180,7 +180,7 @@
 }
 
 @media screen and (max-width : 480px){
-   
+
     #sidebar-1 h2.widgettitle{
         margin:2px 0;
     }
@@ -237,13 +237,13 @@
         text-decoration:none;
         background:none!important;
     }
-     noscript .no-script-and-small-view{
+    noscript .no-script-and-small-view{
         display:block;
     }
     .posted-on {
     }
     .enough-icon .meta-prep.nav-text{
-        margin-left:-20%;
+        /*  margin-left:-20%;*/
     }
     .entry-content{
         margin:0;
@@ -504,7 +504,7 @@
     .widget{
         margin-right:5px;
     }
- 
+
     .site-title a:hover span{
     }
     .widget_links,
@@ -542,6 +542,7 @@
         width: 100px;
         top:-40px;
         right:0;
+        color:#000;
     }
     .posted-on a.enough-comment-link em{
         position:absolute;
@@ -554,6 +555,31 @@
         top:8px;
         left:12px;
         display:block;
+    }
+    .enough-icon .posted-on .enough-comment-link em.enough-length-2 i {
+        position: absolute;
+        top: 8px;
+        left: 42px;
+        display: block;
+        z-index: 99;
+        font-size: small;
+        color: #fff;
+    }
+    .ie.enough-icon .posted-on .enough-comment-link em.enough-length-2 i {
+        background:#6cf;
+         position: absolute;
+        top: 0;
+        left: 42px;
+        display:inline-block;
+        padding:5px;
+         border-radius: 5px; 
+    }
+    .enough-text .posted-on .enough-comment-link em.enough-length-2 span{
+        font-size:small;
+        color:#000;
+        position:absolute;
+        top:0;
+        left:15px;
     }
     .posted-on .enough-comment-link em.enough-length-1{
         position:absolute;
@@ -592,7 +618,7 @@
     }	
 }
 @media screen and (max-width: 480px){
-    
+
     .widget_links .widgettitle,
     .widget_rss .widgettitle,
     .widget_categories .widgettitle,

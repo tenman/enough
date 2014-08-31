@@ -86,7 +86,7 @@ if ( have_posts() ) {
                      * list of posts Navigation
                      */
                     ?>
-                    <div class="clear posts-nav-link">
+                    <div class="posts-nav-link">
                         <?php
                         posts_nav_link( ' ', ' ' . esc_html__( 'Previous Page', 'enough' ), esc_html__( 'Next Page', 'enough' ) . ' ' );
                         ?>

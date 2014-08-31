@@ -58,6 +58,10 @@ h3 a{
 .sticky .posted-on{
     background:none;
 }
+.sticky{
+    border-top:3px double rgba(200,200,200,0.5);
+    border-bottom:3px double rgba(200,200,200,0.5);
+}
 .wp-caption,
 hr{
     border:1px solid rgba(200,200,200,0.5);
@@ -163,10 +167,10 @@ blockquote{
 .format-status,
 .format-image,
 .format-quote{
- /*   background:#efefef;
-    background:rgba(222,222,222,.1);
-    border-top:1px solid  rgba(222,222,222,.6);	
-    border-bottom:1px solid rgba(222,222,222,.6);*/
+    /*   background:#efefef;
+       background:rgba(222,222,222,.1);
+       border-top:1px solid  rgba(222,222,222,.6);	
+       border-bottom:1px solid rgba(222,222,222,.6);*/
 }
 #custom-post-format-widget-link li a{
     background:rgba(222,222,222,.5);
@@ -246,4 +250,17 @@ blockquote{
         -moz-border-radius: 5px;
         border-radius: 5px;
     }
+}
+address{
+    border-top:1px solid rgba(200,200,200,.5);
+}
+address a{
+    text-decoration:none;
+}
+#nav-below .nav-next,
+#nav-below .nav-previous,
+.posts-nav-link .nav-next,
+.posts-nav-link .nav-previous{
+    border:1px solid rgba(200,200,200,.8);
+    background: rgba(222,222,222,.2);
 }

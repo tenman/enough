@@ -4,7 +4,7 @@ Theme URI: http://www.tenman.info/wp3/enough/
 Description: Satisfied enough necessary minimum structure Responsive Theme. HTML5 normalize.css . 11 kinds of homepage templates can be chosen for the purpose of using you.
 Author: Tenman
 Author URI: http://www.tenman.info/wp3/
-Version: 0.97
+Version: 0.98
 Tags:white,two-columns,custom-colors, custom-header, custom-background, custom-menu, editor-style, threaded-comments, sticky-post, responsive-layout, flexible-header
 License: GNU General Public License v2.0
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -30,6 +30,7 @@ body{
 
 }
 
+
 /* Note: 1columns layout when screen width < 641px */
 
 /* Sidebar and main content  width setting */
@@ -49,9 +50,9 @@ body{
         /* main content width when two column view */
         width: 69.4%;
     }
-
+    
     /* for Post Full Width One Column */
-
+    .enough-1col-post .posts-nav-link,
     article.enough-1col-post  {
         display:block;
         margin:1%;
@@ -342,6 +343,8 @@ input[type="search"]{
     font-size:1.5rem!important;
    text-decoration:none;
 }
-
-
+.widget_recent-post-groupby-cat li .author,
+.widget_recent-post-groupby-cat li time{
+    display:none;
+}
 

@@ -16,6 +16,9 @@
 if ( !defined( 'ABSPATH' ) ) {
     exit;
 }
+
+include_once( get_template_directory(). '/inc/widgets.php');
+
 /* enough-icon or enouth-text
  */
 $enough_navigation_type       = 'enough-icon';
@@ -156,9 +159,9 @@ if ( !function_exists( 'enough_theme_option' ) ) {
         $defaults = array();
         foreach ( $enough_admin_options_setting as $key => $val ) {
 
-            if ( $val[ 'autoload' ] == 'yes' ) {
+            if ( $val['autoload'] == 'yes' ) {
 
-                $defaults = array_merge( $defaults, array( $val[ 'option_name' ] => $val[ 'option_value' ] ) );
+                $defaults = array_merge( $defaults, array( $val['option_name'] => $val['option_value'] ) );
             }
         }
         if ( $result == false && $name == 'defaults' ) {
@@ -175,7 +178,7 @@ if ( !function_exists( 'enough_theme_option' ) ) {
 
                 if ( !is_null( $enough_admin_options_setting ) ) {
 
-                    $vertical[] = $val[ 'option_name' ];
+                    $vertical[] = $val['option_name'];
                 }
             }
 
@@ -184,9 +187,9 @@ if ( !function_exists( 'enough_theme_option' ) ) {
 
             if ( !empty( $property ) ) {
 
-                if ( isset( $enough_admin_options_setting[ $row ][ $property ] ) and ! empty( $enough_admin_options_setting[ $row ][ $property ] ) ) {
+                if ( isset( $enough_admin_options_setting[$row][$property] ) and ! empty( $enough_admin_options_setting[$row][$property] ) ) {
 
-                    return $enough_admin_options_setting[ $row ][ $property ];
+                    return $enough_admin_options_setting[$row][$property];
                 } else {
 
                     return false;
@@ -196,11 +199,11 @@ if ( !function_exists( 'enough_theme_option' ) ) {
 
 
 
-            if ( isset( $result[ $name ] ) and ! empty( $result[ $name ] ) ) {
+            if ( isset( $result[$name] ) and ! empty( $result[$name] ) ) {
 
-                return apply_filters( 'enough_theme_settings_' . $name, $result[ $name ] );
-            } elseif ( isset( $enough_admin_options_setting[ $row ][ 'option_value' ] ) and ! empty( $enough_admin_options_setting[ $row ][ 'option_value' ] ) ) {
-                return apply_filters( 'enough_theme_settings_' . $row, $enough_admin_options_setting[ $row ][ 'option_value' ] );
+                return apply_filters( 'enough_theme_settings_' . $name, $result[$name] );
+            } elseif ( isset( $enough_admin_options_setting[$row]['option_value'] ) and ! empty( $enough_admin_options_setting[$row]['option_value'] ) ) {
+                return apply_filters( 'enough_theme_settings_' . $row, $enough_admin_options_setting[$row]['option_value'] );
             } else {
 
                 return false;
@@ -215,9 +218,9 @@ if ( !function_exists( 'enough_theme_option' ) ) {
  *
  *
  */
-$enough_options = get_option( "enough_theme_settings" );
+$enough_options       = get_option( "enough_theme_settings" );
 //$enough_home_template 		= $enough_options[ 'enough_approach_type' ];
-$enough_home_template  = enough_theme_option( 'enough_approach_type' );
+$enough_home_template = enough_theme_option( 'enough_approach_type' );
 
 
 add_action( 'pre_get_posts', 'enough_modify_query_exclude_category' );
@@ -250,7 +253,7 @@ function enough_modify_query_exclude_category( $query ) {
  *
  */
 $enough_check_wp_version = explode( '-', $wp_version );
-$enough_wp_version       = $enough_check_wp_version[ 0 ];
+$enough_wp_version       = $enough_check_wp_version[0];
 
 if ( $enough_wp_version >= '3.4' ) {
 
@@ -435,8 +438,8 @@ if ( !function_exists( 'enough_theme_setup' ) ) {
          *
          *
          */
-        if ( isset( $enough_options[ 'enough_post_one_column_bottom_sidebar' ] ) and
-                $enough_options[ 'enough_post_one_column_bottom_sidebar' ] == 'yes' ) {
+        if ( isset( $enough_options['enough_post_one_column_bottom_sidebar'] ) and
+                $enough_options['enough_post_one_column_bottom_sidebar'] == 'yes' ) {
 
             $enough_onecolumn_post = 'yes';
 
@@ -447,7 +450,12 @@ if ( !function_exists( 'enough_theme_setup' ) ) {
             $enough_onecolumn_post = 'no';
         }
 
+
+
         add_action( 'wp_head', 'enough_slider' );
+        
+        add_action( 'widgets_init', 'enough_register_recent_post_group_by_category' );
+         add_action( 'widgets_init', 'enough_register_pinup_entry_Widget' );
 
         /**
          * Add option helper
@@ -810,7 +818,7 @@ if ( !function_exists( 'enough_posted_on' ) ) {
 
                 if ( comments_open() ) {
 
-                    $enough_comment_html = '<a href="%1$s" class="enough-comment-link"><em %4$s title="%2$s">%2$s <span>%3$s</span></em></a>';
+                    $enough_comment_html = '<a href="%1$s" class="enough-comment-link"><em %4$s title="%2$s"><i class="count">%2$s</i> <span>%3$s</span></em></a>';
 
                     if ( get_comments_number() > 0 ) {
 
@@ -955,8 +963,8 @@ if ( !function_exists( 'enough_dinamic_sidebar' ) ) {
     function enough_dinamic_sidebar( $id, $display = true ) {
         if ( locate_template( array( 'sidebar-1.php', 'sidebar.php' ), true, true ) == '' ) { //template existance check
             global $enough_onecolumn_post;
-            
-          
+
+
             if ( $enough_onecolumn_post == 'yes' and $display == true ) {
                 return;
             }
@@ -1093,14 +1101,14 @@ if ( !function_exists( 'enough_chat_filter' ) ) {
 
             preg_match( '|([^\:]+)(\:)(.+)|si', $new, $regs );
 
-            if ( isset( $regs[ 1 ] ) and ! empty( $regs[ 1 ] ) ) {
+            if ( isset( $regs[1] ) and ! empty( $regs[1] ) ) {
 
-                $regs[ 1 ] = strip_tags( $regs[ 1 ] );
+                $regs[1] = strip_tags( $regs[1] );
             }
 
-            if ( isset( $regs[ 1 ] ) and ! preg_match( '!(http|https|ftp)!', $regs[ 1 ] ) and ! empty( $regs[ 1 ] ) ) {
+            if ( isset( $regs[1] ) and ! preg_match( '!(http|https|ftp)!', $regs[1] ) and ! empty( $regs[1] ) ) {
 
-                $result .= sprintf( $html, esc_attr( enough_chat_author_id( $regs[ 1 ] ) ), esc_html( $regs[ 1 ] ), $regs[ 3 ]
+                $result .= sprintf( $html, esc_attr( enough_chat_author_id( $regs[1] ) ), esc_html( $regs[1] ), $regs[3]
                 );
             } else {
                 $result .= '<p>' . $new;
@@ -1188,9 +1196,9 @@ if ( !function_exists( 'enough_add_body_class' ) ) {
         //$enough_options				= get_option("enough_theme_settings");
         $enough_options = enough_theme_option( 'defaults' );
 
-        if ( isset( $enough_options[ "enough_style_type" ] ) and ! empty( $enough_options[ "enough_style_type" ] ) ) {
+        if ( isset( $enough_options["enough_style_type"] ) and ! empty( $enough_options["enough_style_type"] ) ) {
 
-            $color_type = "rd-type-" . $enough_options[ "enough_style_type" ];
+            $color_type = "rd-type-" . $enough_options["enough_style_type"];
         } else {
 
             $color_type = '';
@@ -1203,21 +1211,21 @@ if ( !function_exists( 'enough_add_body_class' ) ) {
 
             if ( preg_match( "!\[enough[^\]]+(color_type)=(\"|')*?([^\"' ]+)(\"|')*?[^\]]*\]!si", $enough_content_check, $regs ) ) {
 
-                $color_type = "rd-type-" . trim( $regs[ 3 ] );
+                $color_type = "rd-type-" . trim( $regs[3] );
             }
 
             if ( preg_match( "!\[enough[^\]]+(col)=(\"|')*?([^\"' ]+)(\"|')*?[^\]]*\]!si", $enough_content_check, $regs ) ) {
 
                 $color_type .= ' ';
-                $color_type .= "rd-col-" . $regs[ 3 ];
+                $color_type .= "rd-col-" . $regs[3];
             }
         }
 
-        if ( isset( $_SERVER[ "HTTP_ACCEPT_LANGUAGE" ] ) ) {
+        if ( isset( $_SERVER["HTTP_ACCEPT_LANGUAGE"] ) ) {
 
-            $browser_lang = $_SERVER[ "HTTP_ACCEPT_LANGUAGE" ];
+            $browser_lang = $_SERVER["HTTP_ACCEPT_LANGUAGE"];
             $browser_lang = explode( ",", $browser_lang );
-            $browser_lang = esc_html( $browser_lang[ 0 ] );
+            $browser_lang = esc_html( $browser_lang[0] );
             $browser_lang = 'accept-lang-' . $browser_lang;
             $classes      = array( $lang, $color_type, $browser_lang );
         } else {
@@ -1243,8 +1251,8 @@ if ( !function_exists( 'enough_add_body_class' ) ) {
 
             case( $is_IE ):
 
-                preg_match( " |(MSIE )([0-9]{1,2})(\.)|si", $_SERVER[ 'HTTP_USER_AGENT' ], $regs );
-                $classes[] = 'ie' . $regs[ 2 ];
+                preg_match( " |(MSIE )([0-9]{1,2})(\.)|si", $_SERVER['HTTP_USER_AGENT'], $regs );
+                $classes[] = 'ie' . $regs[2];
                 break;
 
             case( $is_opera ):
@@ -1261,7 +1269,7 @@ if ( !function_exists( 'enough_add_body_class' ) ) {
 
                 $classes[] = 'safari';
 
-                if ( preg_match( "|(mobile)|si", $_SERVER[ 'HTTP_USER_AGENT' ], $regs ) ) {
+                if ( preg_match( "|(mobile)|si", $_SERVER['HTTP_USER_AGENT'], $regs ) ) {
 
                     $classes[] = 'iphone';
                     $iphone    = true;
@@ -1286,7 +1294,7 @@ if ( !function_exists( 'enough_add_body_class' ) ) {
                 break;
         }
 
-        if ( preg_match( "|(mobile)|si", $_SERVER[ 'HTTP_USER_AGENT' ], $regs ) ) {
+        if ( preg_match( "|(mobile)|si", $_SERVER['HTTP_USER_AGENT'], $regs ) ) {
 
             $classes[] = 'mobile';
         }
@@ -1302,7 +1310,6 @@ if ( !function_exists( 'enough_add_body_class' ) ) {
  *
  *
  */
-
 if ( !function_exists( 'enough_small_device_helper' ) ) {
 
     function enough_small_device_helper() {
@@ -1322,7 +1329,7 @@ if ( !function_exists( 'enough_small_device_helper' ) ) {
                 jQuery(function() {
                     var width = jQuery(window).width();
         <?php
-        if ( $enough_options[ 'enough_use_slider' ] !== 'no' and is_front_page() ) {
+        if ( $enough_options['enough_use_slider'] !== 'no' and is_front_page() ) {
             ?>
                         jQuery('header').before('<h1 class="site-title" style="width:80%;"><a href="<?php echo home_url(); ?>" style="color:#<?php echo get_theme_mod( "header_textcolor" ); ?>"><?php bloginfo( 'site-title' ); ?><\/a><\/h1>');
 
@@ -1341,16 +1348,20 @@ if ( !function_exists( 'enough_small_device_helper' ) ) {
                     jQuery('.enough-status-bar').hide();
         <?php
         if ( !is_page() ) {
-            ?>                        
-            jQuery(window).mousemove(function(e){
-                
-                var window_height =  jQuery(window).innerHeight();
-                if ( window_height - 100 < e.pageY - jQuery(this).scrollTop() ) {
-                    jQuery('.enough-status-bar').show();
-                } else {
-                    jQuery('.enough-status-bar').hide();
-                }
-           });
+            ?>
+                        jQuery(window).mousemove(function(e) {
+
+                            var window_height = jQuery(window).innerHeight();
+                            if (window_height - 100 < e.pageY - jQuery(this).scrollTop()) {
+                                jQuery('address').css('margin-bottom', '75px');
+                                jQuery('.enough-status-bar').show();
+
+
+                            } else {
+                                jQuery('address').css('margin-bottom', '0');
+                                jQuery('.enough-status-bar').hide();
+                            }
+                        });
             <?php
         }
         /**
@@ -1458,7 +1469,7 @@ if ( !function_exists( 'enough_small_device_helper' ) ) {
                                 upload_image = true;<?php
         }
 
-        if ( $enough_options[ 'enough_use_slider' ] == 'yes' ) {
+        if ( $enough_options['enough_use_slider'] == 'yes' ) {
             ?>var
                                 use_slider = true;<?php
         } else {
@@ -1503,13 +1514,13 @@ if ( !function_exists( 'enough_small_device_helper' ) ) {
                             if (upload_image && use_slider) {
         <?php
         $url = get_theme_mod( 'header_image' );
-        
-            $enough_header_image     = get_custom_header();
-            $uri = $enough_header_image->url;
+
+        $enough_header_image = get_custom_header();
+        $uri                 = $enough_header_image->url;
 
         if ( empty( $url ) ) { //When child theme $url empty
             $url = get_header_image();
-         }
+        }
 
         if ( $url == 'random-uploaded-image' ) {
 
@@ -1520,7 +1531,7 @@ if ( !function_exists( 'enough_small_device_helper' ) ) {
 
             $enough_header_image_width  = enough_detect_header_image_size( 'width' );
             $enough_header_image_height = enough_detect_header_image_size( 'height' );
-            $ratio = $enough_header_image_height / $enough_header_image_width;
+            $ratio                      = $enough_header_image_height / $enough_header_image_width;
         }
         ?>
                                 var header_width = jQuery('header').width();
@@ -1558,13 +1569,13 @@ if ( !function_exists( 'enough_small_device_helper' ) ) {
 //get_option( 'uploads_use_yearmonth_folders' )
         if ( preg_match( '|/[0-9]{4}/[0-9]{2}/' . $file_name . '$|', $url, $regs ) ) {
 
-            $child_path = $regs[ 0 ];
+            $child_path = $regs[0];
         } else {
 
             $child_path = '/' . $file_name;
         }
 
-        $path = $uploads[ 'path' ] . $child_path;
+        $path = $uploads['path'] . $child_path;
         ?>
                                 if (image_exists) {
                                     // jQuery('header').removeAttr('style').css({'background-image':'url('+ image_exists + ')', 'min-height': height + 'px','background-repeat':'no-repeat','background-size':'cover'});
@@ -1664,7 +1675,7 @@ if ( !function_exists( 'enough_small_device_helper' ) ) {
         ?>
                             }
         <?php
-        if ( $enough_options[ 'enough_use_slider' ] !== 'yes' ) {
+        if ( $enough_options['enough_use_slider'] !== 'yes' ) {
             ?>
                                 jQuery('script #enough-slider-js, style #enough-slider-css').remove();
             <?php
@@ -1721,50 +1732,50 @@ if ( !function_exists( 'enough_small_device_helper' ) ) {
 
 }
 
-    if ( !function_exists( 'enough_detect_header_image_size' ) ) {
+if ( !function_exists( 'enough_detect_header_image_size' ) ) {
 
-        function enough_detect_header_image_size( $xy = 'width' ) {
+    function enough_detect_header_image_size( $xy = 'width' ) {
 
-            global $args_custom_header;
-            $all_header_images     = array();
-            $header_image          = get_custom_header();
-            $header_image_uri      = $header_image->url;
-            $header_image_basename = basename( $header_image_uri );
+        global $args_custom_header;
+        $all_header_images     = array();
+        $header_image          = get_custom_header();
+        $header_image_uri      = $header_image->url;
+        $header_image_basename = basename( $header_image_uri );
 
-            if ( $args_custom_header["default-image"] == $header_image_uri ) {
-
-                if ( 'width' == $xy ) {
-
-                    return $args_custom_header["width"];
-                } elseif ( 'height' == $xy ) {
-                    return $args_custom_header["height"];
-                }
-            }
-            $all_header_images = get_uploaded_header_images();
+        if ( $args_custom_header["default-image"] == $header_image_uri ) {
 
             if ( 'width' == $xy ) {
 
-                if ( isset( $all_header_images[$header_image_basename]['width'] ) ) {
-
-                    return $all_header_images[$header_image_basename]['width'];
-                } else {
-
-                    return $header_image->width;
-                }
+                return $args_custom_header["width"];
             } elseif ( 'height' == $xy ) {
-
-                if ( isset( $all_header_images[$header_image_basename]['height'] ) ) {
-
-                    return $all_header_images[$header_image_basename]['height'];
-                } else {
-
-                    return $header_image->height;
-                }
+                return $args_custom_header["height"];
             }
-            return false;
         }
+        $all_header_images = get_uploaded_header_images();
 
+        if ( 'width' == $xy ) {
+
+            if ( isset( $all_header_images[$header_image_basename]['width'] ) ) {
+
+                return $all_header_images[$header_image_basename]['width'];
+            } else {
+
+                return $header_image->width;
+            }
+        } elseif ( 'height' == $xy ) {
+
+            if ( isset( $all_header_images[$header_image_basename]['height'] ) ) {
+
+                return $all_header_images[$header_image_basename]['height'];
+            } else {
+
+                return $header_image->height;
+            }
+        }
+        return false;
     }
+
+}
 /**
  *
  *
@@ -1935,11 +1946,11 @@ if ( !function_exists( 'enough_deploy' ) ) {
 
         foreach ( $enough_admin_options_setting as $add ) {
 
-            $option_name = $add[ 'option_name' ];
+            $option_name = $add['option_name'];
 
-            if ( !isset( $enough_theme_settings[ $option_name ] ) ) {
+            if ( !isset( $enough_theme_settings[$option_name] ) ) {
 
-                $enough_theme_settings[ $option_name ] = $add[ 'option_value' ];
+                $enough_theme_settings[$option_name] = $add['option_value'];
             }
         }
     }
@@ -1960,7 +1971,7 @@ if ( !function_exists( 'enough_approach_type_validate' ) ) {
 
         $formats = get_theme_support( 'post-formats' );
 
-        if ( array_search( $input, $formats[ 0 ] ) !== false ) {
+        if ( array_search( $input, $formats[0] ) !== false ) {
 
             return $input;
         }
@@ -2117,16 +2128,16 @@ if ( !class_exists( 'enough_menu_create' ) ) {
              *
              *
              */
-            if ( isset( $_POST[ 'enough_option_values' ] ) and ! empty( $_POST[ 'enough_option_values' ] ) ) {
+            if ( isset( $_POST['enough_option_values'] ) and ! empty( $_POST['enough_option_values'] ) ) {
 
                 $enough_updates = "";
 
-                foreach ( $_POST[ "enough_option_values" ] as $key => $val ) {
+                foreach ( $_POST["enough_option_values"] as $key => $val ) {
 
-                    $valid_function       = $key . '_validate';
+                    $valid_function     = $key . '_validate';
                     //$new_settings           = get_option('enough_theme_settings');
-                    $new_settings         = enough_theme_option( 'defaults' );
-                    $new_settings[ $key ] = $valid_function( $val );
+                    $new_settings       = enough_theme_option( 'defaults' );
+                    $new_settings[$key] = $valid_function( $val );
 
                     if ( update_option( 'enough_theme_settings', $new_settings ) ) {
 
@@ -2148,15 +2159,15 @@ if ( !class_exists( 'enough_menu_create' ) ) {
              *
              *
              */
-            if ( isset( $_POST[ 'reset' ] ) ) {
+            if ( isset( $_POST['reset'] ) ) {
 
                 foreach ( $enough_admin_options_setting as $add ) {
 
-                    $option_name                           = $add[ 'option_name' ];
-                    $enough_theme_settings[ $option_name ] = $add[ 'option_value' ];
+                    $option_name                         = $add['option_name'];
+                    $enough_theme_settings[$option_name] = $add['option_value'];
                 }
 
-                update_option( 'enough_theme_settings', $enough_theme_settings, "", $add[ 'autoload' ] );
+                update_option( 'enough_theme_settings', $enough_theme_settings, "", $add['autoload'] );
 
                 remove_theme_mods();
 
@@ -2169,7 +2180,7 @@ if ( !class_exists( 'enough_menu_create' ) ) {
              *
              *
              */
-            if ( isset( $_POST[ 'enough_option_values' ] ) and ! empty( $_POST[ 'enough_option_values' ] ) ) {
+            if ( isset( $_POST['enough_option_values'] ) and ! empty( $_POST['enough_option_values'] ) ) {
 
                 if ( $ok == true ) {
 
@@ -2304,7 +2315,7 @@ if ( !class_exists( 'enough_menu_create' ) ) {
             $option_value = "-";
             $lines        = "";
             $i            = 0;
-            $deliv        = htmlspecialchars( $_SERVER[ 'REQUEST_URI' ] );
+            $deliv        = htmlspecialchars( $_SERVER['REQUEST_URI'] );
             //$results        = get_option('enough_theme_settings');
             $results      = enough_theme_option( 'defaults' );
             $lines .= '<div class="enough-options-panel">';
@@ -2312,8 +2323,8 @@ if ( !class_exists( 'enough_menu_create' ) ) {
 
             foreach ( $enough_admin_options_setting as $key => $row ) {
 
-                $enough_option_name                 = $enough_admin_options_setting[ $key ][ 'option_name' ];
-                $enough_sort[ $enough_option_name ] = $results[ $enough_option_name ];
+                $enough_option_name               = $enough_admin_options_setting[$key]['option_name'];
+                $enough_sort[$enough_option_name] = $results[$enough_option_name];
             }
 
             $results = $enough_sort;
@@ -2328,7 +2339,7 @@ if ( !class_exists( 'enough_menu_create' ) ) {
                     $lines .= '<a href="#wpwrap">Top</a>';
                     $lines .= '<h3 class="setting-title">' . enough_theme_option( $key, 'title' ) . '</h3>';
                     $lines .= '<strong class="setting-excerpt">' . enough_theme_option( $key, 'excerpt' ) . '</strong>';
-                    $lines .= '<p><input  accesskey="' . esc_attr( $this->accesskey[ $i ] ) . '" type="text" name="enough_option_values[' . $key . ']" value="' . esc_attr( $val ) . '"';
+                    $lines .= '<p><input  accesskey="' . esc_attr( $this->accesskey[$i] ) . '" type="text" name="enough_option_values[' . $key . ']" value="' . esc_attr( $val ) . '"';
                     $lines .= ' /></p>';
                     $lines .= '</div>';
                 } elseif ( enough_theme_option( $key, 'type' ) == 'textarea' ) {
@@ -2337,7 +2348,7 @@ if ( !class_exists( 'enough_menu_create' ) ) {
                     $lines .= '<a href="#wpwrap">Top</a>';
                     $lines .= '<h3 class="setting-title">' . enough_theme_option( $key, 'title' ) . '</h3>';
                     $lines .= '<strong class="setting-excerpt">' . enough_theme_option( $key, 'excerpt' ) . '</strong>';
-                    $lines .= '<p><textarea accesskey="' . esc_attr( $this->accesskey[ $i ] ) . '" name="enough_option_values[' . $key . ']" >' . esc_attr( $val ) . '</textarea></p>';
+                    $lines .= '<p><textarea accesskey="' . esc_attr( $this->accesskey[$i] ) . '" name="enough_option_values[' . $key . ']" >' . esc_attr( $val ) . '</textarea></p>';
                     $lines .= '</div>';
 
                     $i++;
@@ -2347,7 +2358,7 @@ if ( !class_exists( 'enough_menu_create' ) ) {
                     $lines .= '<a href="#wpwrap">Top</a>';
                     $lines .= '<h3 class="setting-title">' . enough_theme_option( $key, 'title' ) . '</h3>';
                     $lines .= '<strong class="setting-excerpt">' . enough_theme_option( $key, 'excerpt' ) . '</strong>';
-                    $lines .= '<p><input  accesskey="' . esc_attr( $this->accesskey[ $i ] ) . '" type="checkbox" name="enough_option_values[' . $key . '][]" value="' . esc_attr( enough_theme_option( $key, 'option_value' ) ) . '"';
+                    $lines .= '<p><input  accesskey="' . esc_attr( $this->accesskey[$i] ) . '" type="checkbox" name="enough_option_values[' . $key . '][]" value="' . esc_attr( enough_theme_option( $key, 'option_value' ) ) . '"';
 
                     $i++;
 
@@ -2365,7 +2376,7 @@ if ( !class_exists( 'enough_menu_create' ) ) {
 
                     foreach ( $select_values as $label => $val_check_box ) {
 
-                        $lines .= '<input  accesskey="' . esc_attr( $this->accesskey[ $i ] ) .
+                        $lines .= '<input  accesskey="' . esc_attr( $this->accesskey[$i] ) .
                                 '" type="checkbox" name="enough_option_values[' . $key . '][]" value="' .
                                 esc_attr( $val_check_box ) . '"';
 
@@ -2388,7 +2399,7 @@ if ( !class_exists( 'enough_menu_create' ) ) {
                     $lines .= '<a href="#wpwrap">Top</a>';
                     $lines .= '<h3 class="setting-title">' . enough_theme_option( $key, 'title' ) . '</h3>';
                     $lines .= '<strong class="setting-excerpt">' . enough_theme_option( $key, 'excerpt' ) . '</strong>';
-                    $lines .= '<p><label><input  accesskey="' . esc_attr( $this->accesskey[ $i ] ) . '" type="radio" name="enough_option_values[' . $key . ']" value="' . esc_attr( enough_theme_option( $key, 'option_value' ) ) . '"';
+                    $lines .= '<p><label><input  accesskey="' . esc_attr( $this->accesskey[$i] ) . '" type="radio" name="enough_option_values[' . $key . ']" value="' . esc_attr( enough_theme_option( $key, 'option_value' ) ) . '"';
 
                     $i++;
 
@@ -2410,7 +2421,7 @@ if ( !class_exists( 'enough_menu_create' ) ) {
 
                         foreach ( $select_values as $label => $val_check_box ) {
 
-                            $lines .= '<label><input  accesskey="' . esc_attr( $this->accesskey[ $i ] ) .
+                            $lines .= '<label><input  accesskey="' . esc_attr( $this->accesskey[$i] ) .
                                     '" type="radio" name="enough_option_values[' . $key . ']" value="' .
                                     esc_attr( $val_check_box ) . '"';
                             $i++;
@@ -2446,7 +2457,7 @@ if ( !class_exists( 'enough_menu_create' ) ) {
             $lines = '<h3>Menu</h3><ul class="theme-option-menu">';
 
             foreach ( $enough_admin_options_setting as $val ) {
-                $lines .='<li><a href="#' . $val[ 'option_name' ] . '">' . $val[ 'option_name' ] . '</a></li>';
+                $lines .='<li><a href="#' . $val['option_name'] . '">' . $val['option_name'] . '</a></li>';
             }
 
             $lines .= '</ul>';
@@ -2648,7 +2659,7 @@ if ( !function_exists( 'enough_admin_header_style' ) ) {
         $uploads    = wp_upload_dir();
         $file_name  = basename( $url );
         $child_path = '/' . $file_name;
-        $path       = $uploads[ 'path' ] . $child_path;
+        $path       = $uploads['path'] . $child_path;
 
         if ( file_exists( $path ) ) {
 
@@ -2743,7 +2754,7 @@ if ( !function_exists( "enough_page_menu_args" ) ) {
 
     function enough_page_menu_args( $args ) {
 
-        $args[ 'show_home' ] = true;
+        $args['show_home'] = true;
 
         return $args;
     }
@@ -2779,22 +2790,22 @@ if ( !function_exists( "enough_slider" ) ) {
         //$enough_options  = get_option( "enough_theme_settings" );
         $enough_options = enough_theme_option( 'defaults' );
 
-        if ( !empty( $enough_options[ 'enough_slider_sleep' ] ) ) {
+        if ( !empty( $enough_options['enough_slider_sleep'] ) ) {
 
-            $sleep = $enough_options[ 'enough_slider_sleep' ];
+            $sleep = $enough_options['enough_slider_sleep'];
         } else {
-            $sleep = $enough_admin_options_setting[ 4 ][ 'option_value' ];
+            $sleep = $enough_admin_options_setting[4]['option_value'];
         }
 
-        if ( !empty( $enough_options[ 'enough_slider_fade' ] ) ) {
-            $fade = $enough_options[ 'enough_slider_fade' ];
+        if ( !empty( $enough_options['enough_slider_fade'] ) ) {
+            $fade = $enough_options['enough_slider_fade'];
         } else {
-            $fade = $enough_admin_options_setting[ 5 ][ 'option_value' ];
+            $fade = $enough_admin_options_setting[5]['option_value'];
         }
 
         $upload_image = get_uploaded_header_images();
 
-        if ( $enough_options[ 'enough_use_slider' ] == 'yes' ) {
+        if ( $enough_options['enough_use_slider'] == 'yes' ) {
             ?>
             <style type="text/css" id="enough-slider-css">
                 header .site-title, header .site-description{display:none;}
@@ -2803,7 +2814,7 @@ if ( !function_exists( "enough_slider" ) ) {
             <?php
         }
 
-        if ( $enough_options[ 'enough_use_slider' ] == 'yes' and ! empty( $upload_image ) ) {
+        if ( $enough_options['enough_use_slider'] == 'yes' and ! empty( $upload_image ) ) {
             ?>
             <script type="text/javascript" id="enough-slider-js">
                 jQuery(function() {
@@ -2819,14 +2830,14 @@ if ( !function_exists( "enough_slider" ) ) {
                     $separator = ',';
                 }
                 ?>
-                        {src: '<?php echo $value[ 'url' ]; ?>' }<?php echo $separator; ?><?php } ?>
+                        {src: '<?php echo $value['url']; ?>' }<?php echo $separator; ?><?php } ?>
                     ])
                 });
             </script>
             <?php
         }
 
-        if ( $enough_options[ 'enough_use_slider' ] == 'yes' and empty( $upload_image ) ) {
+        if ( $enough_options['enough_use_slider'] == 'yes' and empty( $upload_image ) ) {
             ?>
             <script type="text/javascript" id="enough-slider-js">
                 jQuery(function() {
@@ -2896,12 +2907,12 @@ if ( !function_exists( 'enough_customize_register' ) and $enough_wp_version >= '
             'sanitize_callback' => 'enough_approach_type_validate'
         ) );
         $wp_customize->add_control( 'enough_approach_type', array(
-            'label'    => __( 'Home Page Type', 'enough' ) ,
+            'label'    => __( 'Home Page Type', 'enough' ),
             'section'  => 'enough_theme_setting',
             'settings' => 'enough_theme_settings[enough_approach_type]',
             'type'     => 'radio',
-            'choices'  => array( 
-                'default' => 'Default',
+            'choices'  => array(
+                'default'    => 'Default',
                 'author'     => 'Author',
                 'blank'      => 'Blank',
                 'categories' => 'Categories',
@@ -2918,7 +2929,7 @@ if ( !function_exists( 'enough_customize_register' ) and $enough_wp_version >= '
 
 
         $wp_customize->add_control( 'enough_post_one_column_bottom_sidebar', array(
-            'label'    => __( 'Post Full Width One Column ', 'enough' ) ,
+            'label'    => __( 'Post Full Width One Column ', 'enough' ),
             'section'  => 'enough_theme_setting',
             'settings' => 'enough_theme_settings[enough_post_one_column_bottom_sidebar]',
             'type'     => 'radio',
@@ -3000,12 +3011,12 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 
                 foreach ( $this->value() as $link ) {
 
-                    if ( $link[ 'target' ] == 'b' ) {
+                    if ( $link['target'] == 'b' ) {
 
-                        $result .= sprintf( $html_place_holder_b, $url . $link[ 'path' ], $link[ 'label' ] );
+                        $result .= sprintf( $html_place_holder_b, $url . $link['path'], $link['label'] );
                     } else {
 
-                        $result .= sprintf( $html_place_holder_s, $url . $link[ 'path' ], $link[ 'label' ] );
+                        $result .= sprintf( $html_place_holder_s, $url . $link['path'], $link['label'] );
                     }
                 }
 
@@ -3033,8 +3044,8 @@ if ( !function_exists( 'enough_monthly_archive_prev_next_navigation' ) ) {
         $calendar_output = '';
         if ( is_month() ) {
 
-            $thisyear  = mysql2date( 'Y', $wp_query->posts[ 0 ]->post_date );
-            $thismonth = mysql2date( 'm', $wp_query->posts[ 0 ]->post_date );
+            $thisyear  = mysql2date( 'Y', $wp_query->posts[0]->post_date );
+            $thismonth = mysql2date( 'm', $wp_query->posts[0]->post_date );
 
             $unixmonth = mktime( 0, 0, 0, $thismonth, 1, $thisyear );
             $last_day  = date( 't', $unixmonth );
@@ -3122,9 +3133,10 @@ if ( !function_exists( 'enough_get_header' ) ) {
 
         do_action( 'get_header', $name );
 
-        $templates   = array();
-        if ( isset( $name ) )
+        $templates = array();
+        if ( isset( $name ) ) {
             $templates[] = "header-{$name}.php";
+        }
 
         $templates[] = 'header.php';
 
@@ -3142,15 +3154,6 @@ if ( !function_exists( 'enough_get_header' ) ) {
                 </head>
                 <body <?php body_class(); ?>>
                     <div id="enough-page">
-                        <?php
-                        /**
-                         * Site title and description
-                         *
-                         *
-                         *
-                         *
-                         */
-                        ?>
                         <div>
                             <header role="banner">
                                 <h1 class="site-title">
@@ -3164,468 +3167,468 @@ if ( !function_exists( 'enough_get_header' ) ) {
                                 </noscript>
                                 <p class="unknown-ua"><?php _e( 'This content shows Simple View', 'enough' ); ?></p>
                             </header>
-                            <?php
-                            /**
-                             * Horizontal menu bar
-                             *
-                             *
-                             *
-                             *
-                             */
-                            if ( !has_nav_menu( 'primary' ) ) {
-                                $args = array( 'menu_class'      => 'menu-header'
-                                    , 'theme_location'  => 'primary'
-                                    , 'container_class' => 'menu-header'
-                                    , 'echo'            => true );
-                                wp_nav_menu( $args );
-                            } else {
-                                $args = array( 'theme_location'  => 'primary'
-                                    , 'container_class' => 'menu-header'
-                                    , 'echo'            => true );
-                                wp_nav_menu( $args );
-                            }
-                        }//End locate_template( array( 'header.php' )
-                    }
+            <?php
+            /**
+             * Horizontal menu bar
+             *
+             *
+             *
+             *
+             */
+            if ( !has_nav_menu( 'primary' ) ) {
+                $args = array( 'menu_class'      => 'menu-header'
+                    , 'theme_location'  => 'primary'
+                    , 'container_class' => 'menu-header'
+                    , 'echo'            => true );
+                wp_nav_menu( $args );
+            } else {
+                $args = array( 'theme_location'  => 'primary'
+                    , 'container_class' => 'menu-header'
+                    , 'echo'            => true );
+                wp_nav_menu( $args );
+            }
+        }//End locate_template( array( 'header.php' )
+    }
 
-                }
-                /**
-                 *
-                 *
-                 *
-                 *
-                 *
-                 */
-                if ( !function_exists( 'enough_counter' ) ) {
+}
+/**
+ *
+ *
+ *
+ *
+ *
+ */
+if ( !function_exists( 'enough_counter' ) ) {
 
-                    function enough_counter() {
+    function enough_counter() {
 
-                        static $count = 1;
+        static $count = 1;
 
-                        return $count++;
-                    }
+        return $count++;
+    }
 
-                }
-                /**
-                 *
-                 *
-                 *
-                 *
-                 *
-                 */
-                if ( !function_exists( 'enough_approach_blank_style' ) ) {
+}
+/**
+ *
+ *
+ *
+ *
+ *
+ */
+if ( !function_exists( 'enough_approach_blank_style' ) ) {
 
-                    function enough_approach_blank_style() {
-                        ?>
-                        <style type="text/css">
-                            html{
-                                height: 100%;
-                                min-height:100%;
+    function enough_approach_blank_style() {
+        ?>
+        <style type="text/css">
+            html{
+                height: 100%;
+                min-height:100%;
 
-                            }
-                            body {
-                                height: 100%;
-                                min-height:100%;
+            }
+            body {
+                height: 100%;
+                min-height:100%;
 
-                            }
+            }
 
-                            #enough-page {
-                                width: 100%;
-                                display: -webkit-box;
-                                display: -moz-box;
-                                padding:0;
-                                min-height: 100%;
-                                height: auto !important;
-                                height: 100%;
-                            }
-                            footer {
-                                position: fixed!important;
-                                bottom: 0;
-                                right:0;
-                                left: 0;
-                                z-index: 1030;
-                                margin-bottom: 0;
-                            }
-                            .menu-header{
-                                position: fixed!important;
-                                top: 40%;
-                                right:0;
-                                left: 0;
-                                z-index: 1030;
-                                margin-bottom: 0;
+            #enough-page {
+                width: 100%;
+                display: -webkit-box;
+                display: -moz-box;
+                padding:0;
+                min-height: 100%;
+                height: auto !important;
+                height: 100%;
+            }
+            footer {
+                position: fixed!important;
+                bottom: 0;
+                right:0;
+                left: 0;
+                z-index: 1030;
+                margin-bottom: 0;
+            }
+            .menu-header{
+                position: fixed!important;
+                top: 40%;
+                right:0;
+                left: 0;
+                z-index: 1030;
+                margin-bottom: 0;
 
-                            }
-                            .enough-w-vga .menu-header,
-                            .enough-w-iphone .menu-header{
-                                position: static!important;
-                                height:auto;
-                                margin-bottom: 20px;
+            }
+            .enough-w-vga .menu-header,
+            .enough-w-iphone .menu-header{
+                position: static!important;
+                height:auto;
+                margin-bottom: 20px;
 
-                            }
-                            .menu-header {
-                                background: none repeat scroll 0 0 rgba(255, 255, 255, 0.7)!important;
-                                border-bottom: 1px solid #fff!important;
-                                border-top: 1px solid #fff!important;
-                            }
-                        </style>
-                        <?php
-                    }
+            }
+            .menu-header {
+                background: none repeat scroll 0 0 rgba(255, 255, 255, 0.7)!important;
+                border-bottom: 1px solid #fff!important;
+                border-top: 1px solid #fff!important;
+            }
+        </style>
+        <?php
+    }
 
-                }
-                /**
-                 * Entry title none breaking text breakable
-                 *
-                 *
-                 * test filter.
-                 * @since 1.119
-                 */
-                add_filter( 'the_title', 'enough_non_breaking_title' );
+}
+/**
+ * Entry title none breaking text breakable
+ *
+ *
+ * test filter.
+ * @since 1.119
+ */
+add_filter( 'the_title', 'enough_non_breaking_title' );
 
-                if ( !function_exists( 'enough_non_breaking_title' ) ) {
+if ( !function_exists( 'enough_non_breaking_title' ) ) {
 
-                    function enough_non_breaking_title( $title ) {
-
-
-                        //Floccinaucinihilipilification
-
-                        if ( !is_admin() ) {
-
-                            if ( preg_match( "/[\x20-\x7E]{30,}/", strip_tags( $title ) ) and preg_match( '!([A-Z])!', $title ) ) {
-
-                                return preg_replace( '!([A-Z])!', '<wbr>$1', $title );
-                            } elseif ( preg_match( "/[\x20-\x7E]{30,}/", strip_tags( $title ) ) ) {
-
-                                return preg_replace( '!([^a-z])!', '$1<wbr>', $title );
-                            }
-                        }
-
-                        return $title;
-                    }
-
-                }
-                /**
-                 * Entry content none breaking text ( url ) breakable
-                 *
-                 *
-                 * test filter.
-                 * 
-                 */
-                add_filter( 'the_content', 'enough_non_breaking_content', 11 );
-
-                if ( !function_exists( 'enough_non_breaking_content' ) ) {
-
-                    function enough_non_breaking_content( $content ) {
+    function enough_non_breaking_title( $title ) {
 
 
-                        //long url link text breakable
+        //Floccinaucinihilipilification
 
-                        if ( !is_admin() ) {
+        if ( !is_admin() &&  get_locale() == 'en_US') {
 
-                            return preg_replace_callback( "|>([-_.!˜*()a-zA-Z0-9;\/?:@&=+$,%#]{30,})<|", 'enough_add_wbr_content_long_text', $content );
-                        }
+            if ( preg_match( "/[\x20-\x7E]{30,}/", strip_tags( $title ) ) and preg_match( '!([A-Z])!', $title ) ) {
 
-                        return $content;
-                    }
+                return preg_replace( '!([A-Z])!', '<wbr>$1', $title );
+            } elseif ( preg_match( "/[\x20-\x7E]{30,}/", strip_tags( $title ) ) ) {
 
-                }
-                /**
-                 *
-                 *
-                 *
-                 *
-                 *
-                 */
-                if ( !function_exists( 'enough_add_wbr_content_long_text' ) ) {
+                return preg_replace( '!([^a-z])!', '$1<wbr>', $title );
+            }
+        }
 
-                    function enough_add_wbr_content_long_text( $matches ) {
+        return $title;
+    }
 
-                        foreach ( $matches as $match ) {
-                            return preg_replace( '!([/])!', '$1<wbr>', $match );
-                        }
-                    }
+}
+/**
+ * Entry content none breaking text ( url ) breakable
+ *
+ *
+ * test filter.
+ * 
+ */
+add_filter( 'the_content', 'enough_non_breaking_content', 11 );
 
-                }
+if ( !function_exists( 'enough_non_breaking_content' ) ) {
 
-                /**
-                 * WordPress is correct but Currnt W3C validate is noisy
-                 *
-                 *
-                 * 
-                 * @since 0.74
-                 */
-                if ( !function_exists( 'enough_remove_rel_category' ) ) {
+    function enough_non_breaking_content( $content ) {
 
-                    function enough_remove_rel_category( $text ) {
-                        $text = str_replace( 'rel="category tag"', 'rel="tag"', $text );
-                        $text = str_replace( 'rel="category"', '', $text );
-                        return $text;
-                    }
 
-                }
-                add_filter( 'the_category', 'enough_remove_rel_category', 99 );
+        //long url link text breakable
 
-                /**
-                 * Test
-                 *
-                 *
-                 * 
-                 * @since 0.74
-                 */
+        if ( !is_admin() ) {
+
+            return preg_replace_callback( "|>([-_.!˜*()a-zA-Z0-9;\/?:@&=+$,%#]{30,})<|", 'enough_add_wbr_content_long_text', $content );
+        }
+
+        return $content;
+    }
+
+}
+/**
+ *
+ *
+ *
+ *
+ *
+ */
+if ( !function_exists( 'enough_add_wbr_content_long_text' ) ) {
+
+    function enough_add_wbr_content_long_text( $matches ) {
+
+        foreach ( $matches as $match ) {
+            return preg_replace( '!([/])!', '$1<wbr>', $match );
+        }
+    }
+
+}
+
+/**
+ * WordPress is correct but Currnt W3C validate is noisy
+ *
+ *
+ * 
+ * @since 0.74
+ */
+if ( !function_exists( 'enough_remove_rel_category' ) ) {
+
+    function enough_remove_rel_category( $text ) {
+        $text = str_replace( 'rel="category tag"', 'rel="tag"', $text );
+        $text = str_replace( 'rel="category"', '', $text );
+        return $text;
+    }
+
+}
+add_filter( 'the_category', 'enough_remove_rel_category', 99 );
+
+/**
+ * Test
+ *
+ *
+ * 
+ * @since 0.74
+ */
 //add_filter( 'the_content', 'enough_force_valid' );
-                if ( !function_exists( 'enough_force_valid' ) ) {
+if ( !function_exists( 'enough_force_valid' ) ) {
 
-                    function enough_force_valid( $content ) {
+    function enough_force_valid( $content ) {
 
-                        if ( class_exists( 'tidy' ) ) {
-                            $config = array(
-                                'indent'       => true,
-                                'output-xhtml' => true,
-                                'wrap-php'     => true,
-                                'wrap'         => 144 );
+        if ( class_exists( 'tidy' ) ) {
+            $config = array(
+                'indent'       => true,
+                'output-xhtml' => true,
+                'wrap-php'     => true,
+                'wrap'         => 144 );
 
-                            // Tidy
+            // Tidy
 
-                            $tidy = new tidy;
-                            $tidy->parseString( $content, $config, 'utf8' );
-                            $tidy->cleanRepair();
+            $tidy = new tidy;
+            $tidy->parseString( $content, $config, 'utf8' );
+            $tidy->cleanRepair();
 
-                            $content = tidy_get_output( $tidy );
-                        } else {
-                            $content = str_replace( '<td>', "<td><p>", $content );
-                        }
+            $content = tidy_get_output( $tidy );
+        } else {
+            $content = str_replace( '<td>', "<td><p>", $content );
+        }
 
-                        return $content;
-                    }
+        return $content;
+    }
 
-                }
-                /**
-                 *
-                 *
-                 *
-                 *
-                 *
-                 */
-                if ( !function_exists( 'enough_get_post_format_string' ) ) {
+}
+/**
+ *
+ *
+ *
+ *
+ *
+ */
+if ( !function_exists( 'enough_get_post_format_string' ) ) {
 
-                    function enough_get_post_format_string( $slug ) {
+    function enough_get_post_format_string( $slug ) {
 
-                        $strings = array(
-                            'standard' => esc_html__( 'Standard', 'enough' ),
-                            'aside'    => esc_html__( 'Aside', 'enough' ),
-                            'chat'     => esc_html__( 'Chat', 'enough' ),
-                            'gallery'  => esc_html__( 'Gallery', 'enough' ),
-                            'link'     => esc_html__( 'Link', 'enough' ),
-                            'image'    => esc_html__( 'Image', 'enough' ),
-                            'quote'    => esc_html__( 'Quote', 'enough' ),
-                            'status'   => esc_html__( 'Status', 'enough' ),
-                            'video'    => esc_html__( 'Video', 'enough' ),
-                            'audio'    => esc_html__( 'Audio', 'enough' ),
-                        );
-                        if ( !$slug ) {
+        $strings = array(
+            'standard' => esc_html__( 'Standard', 'enough' ),
+            'aside'    => esc_html__( 'Aside', 'enough' ),
+            'chat'     => esc_html__( 'Chat', 'enough' ),
+            'gallery'  => esc_html__( 'Gallery', 'enough' ),
+            'link'     => esc_html__( 'Link', 'enough' ),
+            'image'    => esc_html__( 'Image', 'enough' ),
+            'quote'    => esc_html__( 'Quote', 'enough' ),
+            'status'   => esc_html__( 'Status', 'enough' ),
+            'video'    => esc_html__( 'Video', 'enough' ),
+            'audio'    => esc_html__( 'Audio', 'enough' ),
+        );
+        if ( !$slug ) {
 
-                            return $strings[ 'standard' ];
-                        } else {
+            return $strings['standard'];
+        } else {
 
-                            if ( isset( $strings[ $slug ] ) ) {
+            if ( isset( $strings[$slug] ) ) {
 
-                                return $strings[ $slug ];
-                            } else {
-                                return;
-                            }
-                        }
-                    }
+                return $strings[$slug];
+            } else {
+                return;
+            }
+        }
+    }
 
-                }
-                /**
-                 *
-                 *
-                 *
-                 *
-                 * @since 0.980
-                 */
-                if ( !function_exists( 'enough_prepend_body' ) ) {
+}
+/**
+ *
+ *
+ *
+ *
+ * @since 0.980
+ */
+if ( !function_exists( 'enough_prepend_body' ) ) {
 
-                    function enough_prepend_body() {
+    function enough_prepend_body() {
 
-                        get_template_part( 'enough', 'prepend-body' );
-                        $args = array( 'hook_name' => 'enough_prepend_body', 'template_part_name' => 'enough-prepend-body.php' );
-                        enough_insert_position_guid( $args );
-                        do_action( 'enough_prepend_body', $args );
-                    }
+        get_template_part( 'enough', 'prepend-body' );
+        $args = array( 'hook_name' => 'enough_prepend_body', 'template_part_name' => 'enough-prepend-body.php' );
+        enough_insert_position_guid( $args );
+        do_action( 'enough_prepend_body', $args );
+    }
 
-                }
-                /**
-                 *
-                 *
-                 *
-                 *
-                 *
-                 */
-                if ( !function_exists( 'enough_append_body' ) ) {
+}
+/**
+ *
+ *
+ *
+ *
+ *
+ */
+if ( !function_exists( 'enough_append_body' ) ) {
 
-                    function enough_append_body() {
+    function enough_append_body() {
 
-                        get_template_part( 'enough', 'append-body' );
-                        $args = array( 'hook_name' => 'enough_append_body', 'template_part_name' => 'enough-append-body.php' );
-                        enough_insert_position_guid( $args );
-                        do_action( 'enough_append_body', $args );
-                    }
+        get_template_part( 'enough', 'append-body' );
+        $args = array( 'hook_name' => 'enough_append_body', 'template_part_name' => 'enough-append-body.php' );
+        enough_insert_position_guid( $args );
+        do_action( 'enough_append_body', $args );
+    }
 
-                }
-                /**
-                 *
-                 *
-                 *
-                 *
-                 *
-                 */
-                if ( !function_exists( 'enough_prepend_header' ) ) {
+}
+/**
+ *
+ *
+ *
+ *
+ *
+ */
+if ( !function_exists( 'enough_prepend_header' ) ) {
 
-                    function enough_prepend_header() {
+    function enough_prepend_header() {
 
-                        get_template_part( 'enough', 'prepend-header' );
-                        $args = array( 'hook_name' => 'enough_prepend_header', 'template_part_name' => 'enough-prepend-header.php' );
-                        enough_insert_position_guid( $args );
-                        do_action( 'enough_prepend_header', $args );
-                    }
+        get_template_part( 'enough', 'prepend-header' );
+        $args = array( 'hook_name' => 'enough_prepend_header', 'template_part_name' => 'enough-prepend-header.php' );
+        enough_insert_position_guid( $args );
+        do_action( 'enough_prepend_header', $args );
+    }
 
-                }
-                /**
-                 *
-                 *
-                 *
-                 *
-                 *
-                 */
-                if ( !function_exists( 'enough_append_header' ) ) {
+}
+/**
+ *
+ *
+ *
+ *
+ *
+ */
+if ( !function_exists( 'enough_append_header' ) ) {
 
-                    function enough_append_header() {
+    function enough_append_header() {
 
-                        get_template_part( 'enough', 'append-header' );
-                        $args = array( 'hook_name' => 'enough_append_header', 'template_part_name' => 'enough-append-header.php' );
-                        enough_insert_position_guid( $args );
+        get_template_part( 'enough', 'append-header' );
+        $args = array( 'hook_name' => 'enough_append_header', 'template_part_name' => 'enough-append-header.php' );
+        enough_insert_position_guid( $args );
 
-                        do_action( 'enough_append_header', $args );
-                    }
+        do_action( 'enough_append_header', $args );
+    }
 
-                }
-                /**
-                 *
-                 *
-                 *
-                 *
-                 *
-                 */
-                if ( !function_exists( 'enough_prepend_footer' ) ) {
+}
+/**
+ *
+ *
+ *
+ *
+ *
+ */
+if ( !function_exists( 'enough_prepend_footer' ) ) {
 
-                    function enough_prepend_footer() {
+    function enough_prepend_footer() {
 
 
-                        get_template_part( 'enough', 'prepend-footer' );
-                        $args = array( 'hook_name' => 'enough_prepend_footer', 'template_part_name' => 'enough-prepend-footer.php' );
+        get_template_part( 'enough', 'prepend-footer' );
+        $args = array( 'hook_name' => 'enough_prepend_footer', 'template_part_name' => 'enough-prepend-footer.php' );
 
-                        enough_insert_position_guid( $args );
+        enough_insert_position_guid( $args );
 
-                        do_action( 'enough_prepend_footer', $args );
-                    }
+        do_action( 'enough_prepend_footer', $args );
+    }
 
-                }
-                /**
-                 *
-                 *
-                 *
-                 *
-                 *
-                 */
-                if ( !function_exists( 'enough_append_footer' ) ) {
+}
+/**
+ *
+ *
+ *
+ *
+ *
+ */
+if ( !function_exists( 'enough_append_footer' ) ) {
 
-                    function enough_append_footer() {
+    function enough_append_footer() {
 
-                        get_template_part( 'enough', 'append-footer' );
-                        $args = array( 'hook_name' => 'enough_append_footer', 'template_part_name' => 'enough-append-footer.php' );
-                        enough_insert_position_guid( $args );
-                        do_action( 'enough_append_footer', $args );
-                    }
+        get_template_part( 'enough', 'append-footer' );
+        $args = array( 'hook_name' => 'enough_append_footer', 'template_part_name' => 'enough-append-footer.php' );
+        enough_insert_position_guid( $args );
+        do_action( 'enough_append_footer', $args );
+    }
 
-                }
-                /**
-                 *
-                 *
-                 *
-                 *
-                 *
-                 */
-                if ( !function_exists( 'enough_nav_menu_after' ) ) {
+}
+/**
+ *
+ *
+ *
+ *
+ *
+ */
+if ( !function_exists( 'enough_nav_menu_after' ) ) {
 
-                    function enough_nav_menu_after() {
+    function enough_nav_menu_after() {
 
-                        get_template_part( 'enough', 'nav-menu-after' );
-                        $args = array( 'hook_name' => 'enough_nav_menu_after', 'template_part_name' => 'enough-nav-menu-after.php' );
-                        enough_insert_position_guid( $args );
-                        do_action( 'enough_nav_menu_after', $args );
-                    }
+        get_template_part( 'enough', 'nav-menu-after' );
+        $args = array( 'hook_name' => 'enough_nav_menu_after', 'template_part_name' => 'enough-nav-menu-after.php' );
+        enough_insert_position_guid( $args );
+        do_action( 'enough_nav_menu_after', $args );
+    }
 
-                }
-                /**
-                 *
-                 *
-                 *
-                 *
-                 *
-                 */
-                if ( !function_exists( 'enough_insert_position_guid' ) ) {
+}
+/**
+ *
+ *
+ *
+ *
+ *
+ */
+if ( !function_exists( 'enough_insert_position_guid' ) ) {
 
-                    function enough_insert_position_guid( $args ) {
+    function enough_insert_position_guid( $args ) {
 
-                        global $enough_show_insert_point;
+        global $enough_show_insert_point;
 
-                        $text = sprintf( esc_html__( 'Insert this position with Action hook %1$s  or  Template %2$s', 'enough' ), $args[ 'template_part_name' ], $args[ 'template_part_name' ] );
+        $text = sprintf( esc_html__( 'Insert this position with Action hook %1$s  or  Template %2$s', 'enough' ), $args['template_part_name'], $args['template_part_name'] );
 
-                        $enough_insert_position_html = '<p class="enough-insert-position">%1$s</p>';
+        $enough_insert_position_html = '<p class="enough-insert-position">%1$s</p>';
 
-                        if ( WP_DEBUG == true && $enough_show_insert_point == true ) {
+        if ( WP_DEBUG == true && $enough_show_insert_point == true ) {
 
-                            printf( $enough_insert_position_html, $text );
-                        }
-                    }
+            printf( $enough_insert_position_html, $text );
+        }
+    }
 
-                }
+}
 
-                /**
-                 *
-                 *
-                 *
-                 *
-                 *
-                 */
-                function enough_site_title( $title ) {
+/**
+ *
+ *
+ *
+ *
+ *
+ */
+function enough_site_title( $title ) {
 
-                    return bloginfo() . $title;
-                }
+    return bloginfo() . $title;
+}
 
-                /**
-                 *
-                 *
-                 *
-                 *
-                 *
-                 */
-                if ( !function_exists( 'enough_next_prev_links' ) ) {
+/**
+ *
+ *
+ *
+ *
+ *
+ */
+if ( !function_exists( 'enough_next_prev_links' ) ) {
 
-                    function enough_next_prev_links( $position = 'nav-above' ) {
+    function enough_next_prev_links( $position = 'nav-above' ) {
 
-                        global $wp_query, $paged;
+        global $wp_query, $paged;
 
-                        $enough_old = $paged + 1;
-                        $enough_new = $paged - 1;
+        $enough_old = $paged + 1;
+        $enough_new = $paged - 1;
 
-                        if ( $wp_query->max_num_pages > 1 ) {
+        if ( $wp_query->max_num_pages > 1 ) {
 
-                            $html = '<div id="%3$s" class="posts-nav-link"><span class="nav-previous">%1$s</span><span class="nav-next">%2$s</span></div>';
-                            $html = sprintf( $html, get_next_posts_link( '<span class="meta-nav">&larr; $enough_old </span>' . esc_html__( ' Older posts', 'enough' ) ), get_previous_posts_link( '<span>' . esc_html__( 'Newer posts', 'enough' ) . '<span class="meta-nav">' . $enough_new . ' &rarr;</span></span>' ), $position
-                            );
-                            echo apply_filters( 'enough_next_prev_links', $html, $position );
-                        }
-                    }
+            $html = '<div id="%3$s" class="posts-nav-link"><span class="nav-previous">%1$s</span><span class="nav-next">%2$s</span></div>';
+            $html = sprintf( $html, get_next_posts_link( '<span class="meta-nav">&larr; $enough_old </span>' . esc_html__( ' Older posts', 'enough' ) ), get_previous_posts_link( '<span>' . esc_html__( 'Newer posts', 'enough' ) . '<span class="meta-nav">' . $enough_new . ' &rarr;</span></span>' ), $position
+            );
+            echo apply_filters( 'enough_next_prev_links', $html, $position );
+        }
+    }
 
-                }
-                ?>
+}
+?>

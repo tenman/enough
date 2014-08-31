@@ -27,12 +27,12 @@
 }
 .thread-odd .comment-body{
     background:rgba(222,222,222,.3);
-    border-top:ridge #ccc;
+   /* border-top:ridge #ccc;*/
 
 }
 .thread-even .comment-body{
     background:rgba(222,222,222,.1);
-    border-top:ridge #ccc;
+  /*  border-top:ridge #ccc;*/
 }
 .wp-list-comments .sub-menu,
 .wp-list-comments .children{
@@ -55,9 +55,33 @@ cite.fn{
 .comment-meta img{
     vertical-align:middle;
 }
+.comment-meta a{
+    text-decoration:none;
+}
+.comment-meta .fn{
+    margin-left:1em;
+    font-size:1.5em;
+    font-weight:normal;
+}
+.comment-metadata .edit-link{
+    margin-left:.5em;
+}
+.comment-metadata .edit-link a{
+    padding:.1em .3em;
+}
+.comment-author .avatar{
+    border-radius: 50%; 
+    -moz-border-radius: 50%; 
+    -webkit-border-radius:50%; 
+
+}
+
 #comments article{
     width:100%;
     position:relative;
+        box-sizing:border-box;
+        margin:0;
+    padding:1em;
 }
 #comments .reply{
     display:inline-block;
@@ -141,4 +165,18 @@ cite.fn{
 }
 .comment-body address{
     display:block;
+}
+#comments li:after,
+#comments li:last-child:after{
+    content:' ';
+    display:block;
+    clear:both;
+}
+#comments li article{
+
+
+}
+#comments .depth-1.parent{
+    border-left:5px dotted #999;
+   
 }

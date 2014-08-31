@@ -11,7 +11,7 @@
 <div id="comments" class="clear">
     <ul class="wp-list-comments">
         <?php
-        wp_list_comments();
+        wp_list_comments( array('avatar_size' => 64 ) );
         ?>
     </ul>
     <br class="clear vspacer-3" />

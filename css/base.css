@@ -18,13 +18,14 @@
 .clear {
     clear:both;
 }
+
 .posts-nav-link a:first-child {
     float:left;
-    margin-left:1em;
 }
 .posts-nav-link a:last-child {
     float:right;
 }
+
 .unknown .unknown-ua {
     display:block;
     text-align:center;
@@ -56,6 +57,7 @@ a:active{
 
 address {
     text-align:center;
+    font-style:normal;
 }
 blockquote {
     padding:1rem .5rem 1rem 2rem;
@@ -155,4 +157,10 @@ td {
 }
 textarea {
     width:100%;
+}
+nav li{
+    list-style-type:none;
+}
+.more-link{
+    text-decoration:none;
 }

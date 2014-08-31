@@ -7,7 +7,19 @@
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * @package Enough
  */
-global $enough_onecolumn_post;
+$enough_options = enough_theme_option( 'defaults' );
+if ( isset( $enough_options['enough_post_one_column_bottom_sidebar'] ) and
+        $enough_options['enough_post_one_column_bottom_sidebar'] == 'yes' ) {
+
+    $enough_onecolumn_post = 'yes';
+
+    add_filter( 'post_class', 'enough_onecolumn_post' );
+    add_filter( 'body_class', 'enough_onecolumn_post' );
+} else {
+
+    $enough_onecolumn_post = 'no';
+}
+
 get_header();
 ?>
 <br class="clear" />
@@ -51,9 +63,7 @@ enough_next_prev_links( 'nav-below' );
 /**
  * Sidebar
  */
-    
 enough_dinamic_sidebar( 'sidebar-1', !is_page() );
-
 ?>
 <br class="clear vspacer-3" />
 <?php

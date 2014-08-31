@@ -18,6 +18,9 @@
 #wp-calendar tfoot #prev{
     text-align:left;
 }
+#wp-calendar tfoot #next{
+    text-align:right;
+}
 .aligncenter{
     clear:both;
     display:block;
@@ -29,10 +32,10 @@
 }
 .alignleft,
 .nav-previous{
-    
+
     display:inline-block;
     float:left;
-   
+
 }
 .page .alignleft{
     margin-right:1em;   
@@ -44,13 +47,9 @@
 .alignright,.nav-next{
     display:inline-block;
     float:right;
-    
 }
 #nav-below .nav-previous a, #nav-below .nav-next a{
     text-decoration:none;
-}
-#nav-below .nav-previous span{
-    margin-left:1em;
 }
 .archives-title-text{
     clear:both;
@@ -96,6 +95,24 @@
     margin:1em;
     margin:1rem;
     min-width:240px;
+    float:left;
+}
+#nav-below .nav-next,
+#nav-below .nav-previous,
+.posts-nav-link .nav-next,
+.posts-nav-link .nav-previous{
+    padding:.5em .7em;
+    padding:.5rem .7rem;
+}
+#nav-below .nav-next:empty,
+#nav-below .nav-previous:empty,
+.posts-nav-link .nav-next:empty,
+.posts-nav-link .nav-previous:empty{
+    display:none;
+}
+
+.posts-nav-link .nav-next{
+    text-align:left;
 }
 .sticky{
     padding:10px 10px 10px 0;
@@ -293,11 +310,11 @@ header h2,header h1{
     margin:0 35px;
 }
 header,
-footer{
+footer:not('.comment-meta'){
     position:relative;
     min-height:100px;
 }
-footer{
+footer:not('.comment-meta'){
     margin-top:60px;
 }
 .size-full{
@@ -505,7 +522,7 @@ ul,menu,dir{
 .enough-1col-post .entry-content h2,
 .enough-1col-post .entry-content h3,
 .enough-1col-post .entry-content h4{
-    
+
     margin:2em 0;
 }
 .format-aside,
@@ -608,6 +625,7 @@ nav a:active,
 .posted-in a:active{
     position:relative;
     top:1px;
+    margin-bottom:-1px;
 }
 .menu-header a{
     max-width:none;/* ie8 width issue*/
@@ -672,8 +690,8 @@ nav a:active,
 #custom-post-format-widget-link li{
     height:64px;
     margin:0 auto;
-   /* width:13.65%;*/
-   width:12%;
+    /* width:13.65%;*/
+    width:12%;
 }
 .post-format-link,
 #custom-post-format-widget-link a{
@@ -709,4 +727,12 @@ nav a:active,
 }
 .posted-in .toggle-title{
     width:126px;
+}
+
+footer address{
+    margin:100px 0 0;
+    padding:2em 0;
+}
+.enough-monthly-archive-prev-next-navigation a{
+    text-decoration:none; 
 }

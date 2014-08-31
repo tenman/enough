@@ -42,7 +42,11 @@ if ( have_posts() ) {
 }
 
 $enough_post_formats = get_theme_support( 'post-formats' );
-?>				
+?>
+<div class="posts-nav-link">
+    <div class="alignleft"><?php previous_posts_link( esc_html__( '&laquo; Previous Page', 'enough' ) ); ?></div>
+    <div class="alignright"><?php next_posts_link( esc_html__( 'Next Page &raquo;', 'enough' ), '' ); ?></div>
+</div>
 <aside class="custom-format-link-list-wrapper">
     <ul id="custom-post-format-widget-link">
         <?php
@@ -65,17 +69,15 @@ $enough_post_formats = get_theme_support( 'post-formats' );
         ?>
     </ul>
 </aside>
+
+
 <?php
 /**
  * Sidebar
  */
 enough_dinamic_sidebar( 'sidebar-1', !is_page() );
 ?>
-<div class="clear posts-nav-link">
-    <?php
-    posts_nav_link( ' ', ' ' . esc_html__( 'Previous Page', 'enough' ), esc_html__( 'Next Page', 'enough' ) . ' ' );
-    ?>
-</div>
+
 <br class="clear vspacer-3" />
 <?php get_footer(); ?>
 </div>

@@ -50,9 +50,9 @@ if ( !has_post_format( 'image' ) ) {
     enough_dinamic_sidebar( 'sidebar-1', !is_page() );
 }
 
-printf( '<div class="clear posts-nav-link">%1$s</div><br class="clear vspacer-3" />', get_posts_nav_link( array( 'sep' => ' ', 'prelabel' => esc_html__( 'Previous Page', 'enough' ), 'nxtlabel' => esc_html__( 'Next Page', 'enough' ) ) ) );
+printf( '<div class="posts-nav-link">%1$s</div><br class="clear vspacer-3" />', get_posts_nav_link( array( 'sep' => ' ', 'prelabel' => esc_html__( 'Previous Page', 'enough' ), 'nxtlabel' => esc_html__( 'Next Page', 'enough' ) ) ) );
 
-enough_dinamic_sidebar( 'sidebar-1', $enough_onecolumn_post );
+//enough_dinamic_sidebar( 'sidebar-1', $enough_onecolumn_post );
 
 enough_the_footer();
 ?>
