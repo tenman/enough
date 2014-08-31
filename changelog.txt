@@ -1,6 +1,14 @@
 Changelog -----------------------------------
 version:0.98
-
+	Modify
+		previus_posts_link
+		next_posts_link
+		comment avatar size change 64px
+		normalize.css update
+	Added
+		Add Widget
+		enough_recent_post_group_by_category_widget
+		enough_pinup_entry_Widget
 ----------------------------------------------
 Changelog -----------------------------------
 version:0.97
