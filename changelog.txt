@@ -1,5 +1,33 @@
 Changelog -----------------------------------
 version:0.99
+	Fixed posted on display improperly.
+		changes
+			css/colors.css line:182 .enough-pub-new .updated:before
+			css/layout-fluid line:534 .posted-on a
+			css/layout-fluid line:537 .posted-on .meta-sep
+			genericons/genericons.css
+				line:234
+				change from .enough-icon .meta-sep:after, to .enough-icon .author:before,
+				change from .enough-icon .meta-prep.nav-text, to .enough-icon .entry-date:before,
+				line:285
+					remove .enough-icon .posted-on .author
+				line:289
+					remove .enough-icon .posted-on .entry-date
+				line:292-305 comment out
+				line:326
+					remove .enough-icon .posted-on .meta-prep-author:before
+				line:331
+					remove .enough-icon .posted-on .meta-prep-author:after
+				line:363
+					add .enough-icon .post-format-name .gallery span
+				line:366
+					change .enough-icon .meta-sep, .enough-icon .meta-prep.nav-text
+				line:374
+					change selector from	.enough-icon .meta-prep.nav-text:after
+									to 		.enough-icon .entry-date:before
+				line:381
+					change selector from 	.enough-icon .meta-sep:after
+									to		.enough-icon .author:before
 ----------------------------------------------
 Changelog -----------------------------------
 version:0.98
