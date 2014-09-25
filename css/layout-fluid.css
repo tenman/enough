@@ -531,10 +531,10 @@
         padding-left:25px;
     }
     .posted-on a{
-        margin-left:1em;
+        margin-right:.5em;
     }
     .posted-on .meta-sep{
-        margin-left:1em;
+        
     }
     .posted-on a.enough-comment-link{
         display:inline-block;

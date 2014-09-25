@@ -178,12 +178,12 @@ blockquote{
 #custom-post-format-widget-link li a span{
     color: #777;
 }
-.enough-pub-new .meta-prep:before{
-    content:"new";
+
+.enough-pub-new .updated:before{
     color:red;
     font-size:100%;
-    margin-right:.3em;
 }
+
 @media screen and (min-width: 481px){
 
     .menu-header {
@@ -243,9 +243,7 @@ blockquote{
         background:none;
         color:#000;
     }
-    .posted-on .meta-sep{
-        margin-left:1em;
-    }
+
     .posted-on a.enough-comment-link{
         -moz-border-radius: 5px;
         border-radius: 5px;

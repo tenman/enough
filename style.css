@@ -4,7 +4,7 @@ Theme URI: http://www.tenman.info/wp3/enough/
 Description: Satisfied enough necessary minimum structure Responsive Theme. HTML5 normalize.css . 11 kinds of homepage templates can be chosen for the purpose of using you.
 Author: Tenman
 Author URI: http://www.tenman.info/wp3/
-Version: 0.98
+Version: 0.99
 Tags:white,two-columns,custom-colors, custom-header, custom-background, custom-menu, editor-style, threaded-comments, sticky-post, responsive-layout, flexible-header
 License: GNU General Public License v2.0
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -50,7 +50,7 @@ body{
         /* main content width when two column view */
         width: 69.4%;
     }
-    
+
     /* for Post Full Width One Column */
     .enough-1col-post .posts-nav-link,
     article.enough-1col-post  {
@@ -318,9 +318,9 @@ input[type="search"]{
     padding:0;
 }
 .enough-status-bar .enough_prev_next_post{
- /*   margin-right:300px;
-    width:714px;
-    max-width:100%;*/
+    /*   margin-right:300px;
+       width:714px;
+       max-width:100%;*/
 }
 .tag .enough-status-bar .enough-next-prev-link a,
 .category .enough-status-bar .enough-next-prev-link a{
@@ -328,23 +328,25 @@ input[type="search"]{
 }
 .archive.date　.enough-status-bar #nav-below{
     position:relative;
-  /*  top:-12px;*/
+    /*  top:-12px;*/
 }
 
 
 .approach-blank h1{
-   margin: 0 0 0.67em 0;
-   padding:.67em;
+    margin: 0 0 0.67em 0;
+    padding:.67em;
 }
 .approach-blank .site-description{
     margin-left:1.5em
 }
 .enough-icon .approach-categories-content a{
     font-size:1.5rem!important;
-   text-decoration:none;
+    text-decoration:none;
 }
 .widget_recent-post-groupby-cat li .author,
 .widget_recent-post-groupby-cat li time{
     display:none;
 }
+
+
 

@@ -231,8 +231,8 @@ time:before,
 .enough-icon .post-format-name .chat:before, 
 .enough-icon .post-format-name .audio:before,
 .enough-icon .post-format-name .gallery:before,
-.enough-icon .meta-sep:after,
-.enough-icon .meta-prep.nav-text,
+.enough-icon .author:before,
+.enough-icon .entry-date:before,
 .enough-icon .posts-nav-link .next:after,
 .enough-icon .posts-nav-link .prev:before{	
     display: inline;
@@ -282,20 +282,14 @@ time:before,
 .enough-icon .posted-in .category-title .nav-text:before{
     display:inline;
 }
-.enough-icon .posted-on .author{
-    position:absolute;
-    left:274px;      
-}
-.enough-icon .posted-on .entry-date{
-    position:absolute; 
-    left:70px;
-}
+
 .enough-icon .posted-on .meta-sep:after{
     position:absolute; 
     left:270px;
     top:auto;
     bottom:-8px
 }
+/*
 .enough-icon .posted-on .meta-prep-author{
     visibility:hidden;
     margin-left:-50px;
@@ -308,6 +302,7 @@ time:before,
 .enough-icon .posted-on .meta-prep-author:after{
     display:static;
 }
+*/
 @media screen and (max-width : 640px){
 
     .enough-icon .posted-on .author{
@@ -322,15 +317,6 @@ time:before,
     .enough-icon .posted-on .meta-sep:after{
         position:static;
         left:0;  
-    }
-    .enough-icon .posted-on .meta-prep-author:before{
-        position:absolute;
-        top:-20px;
-        left:-2.8em;
-    }
-    .enough-icon .posted-on .meta-prep-author:after{
-        display:static;
-        left:0;
     }
 .enough-icon .posted-in .toggle-tag .nav-text:before,
 .enough-icon .posted-in .toggle-category .nav-text:before,
@@ -374,24 +360,29 @@ time:before,
 .enough-icon .post-format-name .link span,
 .enough-icon .post-format-name .chat span,
 .enough-icon .post-format-name .audio span,
-.enough-icon .post-format-name .gallery span,
+.enough-icon .post-format-name .gallery span{
+    visibility:hidden;
+}
 .enough-icon .meta-sep,
 .enough-icon .meta-prep.nav-text{
-    visibility:hidden;
+    display:none;
 }
 
 .enough-icon .posts-nav-link a{
     text-decoration:none;
 }
-.enough-icon .meta-prep.nav-text:after { 
+.enough-icon .entry-date:before { 
     content: '\f303'!important;
     visibility:visible;
 
 }
-.enough-icon .meta-sep:after {
+
+
+.enough-icon .author:before {
     content: '\f304'!important;
     visibility:visible;
 }
+
 #custom-post-format-widget-link .gallery span{
     background:#c4302b;
     color:#fff;
