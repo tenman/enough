@@ -1,6 +1,13 @@
 Changelog -----------------------------------
 version:1.00
-
+	Fixed navigation hide when using page_on_front option
+		functions.php line3618 enough_next_prev_links()
+	Fixed display improperly when using Static Front page_for_posts
+		functions.php line:3-6
+			add vars $enough_page_for_posts , $enough_page_for_posts_object , $enough_page_for_posts_name , $current_page
+				add conditional elseif ( $current_page == $enough_page_for_posts_name ) {
+	Modifyed
+		Deplicated function change from get_all_category_ids() to  get_terms( 'category', 'fields=ids' )
 ----------------------------------------------
 Changelog -----------------------------------
 version:0.99
