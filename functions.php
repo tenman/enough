@@ -244,7 +244,6 @@ function enough_modify_query_exclude_category( $query ) {
         $query->set( 'posts_per_page', 100 );
     }
 }
-
 /**
  *
  *
@@ -3616,8 +3615,14 @@ if ( !function_exists( 'enough_next_prev_links' ) ) {
 
     function enough_next_prev_links( $position = 'nav-above' ) {
 
-        global $wp_query, $paged;
+        global $wp_query, $paged,$post;
+		
+		$enough_page_on_front = get_option( 'page_on_front' );
 
+		if ( is_front_page() && isset( $enough_page_on_front ) ) {
+			
+			return;
+		}
         $enough_old = $paged + 1;
         $enough_new = $paged - 1;
 

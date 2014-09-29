@@ -1,9 +1,9 @@
 <?php
 /**
  * enough_recent_post_group_by_category_widget
- *
- *
- *
+ * 
+ * 
+ * 
  */
 if ( !class_exists( 'enough_recent_post_group_by_category_widget' ) ) {
 
@@ -69,11 +69,11 @@ if ( !class_exists( 'enough_recent_post_group_by_category_widget' ) ) {
             ?>
 
             <p>
-                <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_html_e( 'Title:', 'enough' ); ?></label>
+                <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_html_e( 'Title:', 'enough' ); ?></label> 
                 <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
             </p>
             <p>
-                <label for="<?php echo $this->get_field_id( 'count' ); ?>"><?php esc_html_e( 'Show Items Counts', 'enough' ); ?></label>
+                <label for="<?php echo $this->get_field_id( 'count' ); ?>"><?php esc_html_e( 'Show Items Counts', 'enough' ); ?></label> 
                 <input class="widefat" id="<?php echo $this->get_field_id( 'count' ); ?>" name="<?php echo $this->get_field_name( 'count' ); ?>" type="text" value="<?php echo absint( $count ); ?>">
             </p>
             <h4><?php esc_html_e( 'Select Categories', 'enough' ); ?></h4>
@@ -120,9 +120,9 @@ if ( !class_exists( 'enough_recent_post_group_by_category_widget' ) ) {
 
     }
     /**
-     *
-     *
-     *
+     * 
+     * 
+     * 
      * @since 1.234
      */
     if ( !function_exists( 'enough_register_recent_post_group_by_category' ) ) {
@@ -134,9 +134,9 @@ if ( !class_exists( 'enough_recent_post_group_by_category_widget' ) ) {
 
     }
     /**
-     *
-     *
-     *
+     * 
+     * 
+     * 
      * @since 1.234
      */
     if ( !function_exists( 'enough_category_id2name' ) ) {
@@ -149,9 +149,9 @@ if ( !class_exists( 'enough_recent_post_group_by_category_widget' ) ) {
 
     }
     /**
-     *
-     *
-     *
+     * 
+     * 
+     * 
      * @since 1.234
      */
     if ( !function_exists( 'enough_reset_val' ) ) {
@@ -163,9 +163,9 @@ if ( !class_exists( 'enough_recent_post_group_by_category_widget' ) ) {
 
     }
     /**
-     *
-     *
-     *
+     * 
+     * 
+     * 
      * @since 1.234
      */
     if ( !function_exists( 'compare_capital_lower_not_distinguish' ) ) {
@@ -177,9 +177,9 @@ if ( !class_exists( 'enough_recent_post_group_by_category_widget' ) ) {
 
     }
     /**
-     *
-     *
-     *
+     * 
+     * 
+     * 
      * @since 1.234
      */
     if ( !function_exists( 'enough_get_post_array_group_by_category' ) ) {
@@ -188,7 +188,7 @@ if ( !class_exists( 'enough_recent_post_group_by_category_widget' ) ) {
 
             global $post;
 
-            $category_ids = array_map( 'enough_category_id2name', get_all_category_ids() );
+            $category_ids = array_map( 'enough_category_id2name', get_terms( 'category', 'fields=ids' ) );
             $category_ids = array_flip( $category_ids );
             $category_ids = array_map( 'enough_reset_val', $category_ids );
 
@@ -222,7 +222,7 @@ if ( !class_exists( 'enough_recent_post_group_by_category_widget' ) ) {
                     } else {
 
                         $categories = get_the_category();
-                        //var_dump( $categories );
+                        //var_dump( $categories );      
 
                         foreach ( $categories as $key => $val ) {
 
@@ -243,9 +243,9 @@ if ( !class_exists( 'enough_recent_post_group_by_category_widget' ) ) {
 
     }
     /**
-     *
-     *
-     *
+     * 
+     * 
+     * 
      * @since 1.234
      */
     if ( !function_exists( 'enough_display_recent_post_group_by_category' ) ) {
@@ -300,9 +300,9 @@ if ( !class_exists( 'enough_recent_post_group_by_category_widget' ) ) {
 
     }
     /**
-     *
-     *
-     *
+     * 
+     * 
+     * 
      * @since 1.238
      */
     if ( !function_exists( 'enough_register_pinup_entry_Widget' ) ) {
@@ -327,7 +327,7 @@ if ( !class_exists( 'enough_recent_post_group_by_category_widget' ) ) {
         }
 
         function widget( $args, $instance ) {
-
+            
             global $attachment;
 
             extract( $args );
@@ -405,8 +405,8 @@ if ( !class_exists( 'enough_recent_post_group_by_category_widget' ) ) {
                     'post_parent' => $instance['id']
                 );
                 $attachments     = get_posts( $args );
-
-
+                
+              
                 $attachments_num = count( $attachments );
                 if ( $attachments_num > 1 ) {
                     $attachment_key = rand( 0, $attachments_num - 1 );
@@ -415,20 +415,18 @@ if ( !class_exists( 'enough_recent_post_group_by_category_widget' ) ) {
                 } elseif ( $attachments_num == 1 ) {
                     $post = $attachments[0];
                 } else {
-
-                }
+                    
+                } 
 
                 if ( $attachments_num > 0 ) {
                     setup_postdata( $post );
 
                     $enough_image_size = 'midium';
 
-
-
                     $html = '<a href="%1$s" class="approach-image">%2$s</a>';
-
+                    
                     $check_alt_exists = get_post_meta($post->ID, '_wp_attachment_image_alt', true);
-
+                    
                     if ( ! empty( $check_alt_exists ) ) {
 
                         $alt_attribute = esc_attr( $check_alt_exists );
@@ -460,7 +458,7 @@ if ( !class_exists( 'enough_recent_post_group_by_category_widget' ) ) {
                     $enough_image_size = 'midium';
 
                     $alt_attribute = wp_kses( get_the_title( $instance['id'] ), array() );
-
+                    
                     $attr = array(
                         'alt' => trim( $alt_attribute ),
                     );
