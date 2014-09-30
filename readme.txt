@@ -4,7 +4,10 @@
 **Contact
     a.tenman@gmail.com
 **License
-    wp3.jpg wp3-thumbnail.jpg
+    images/wp3.jpg
+    images/wp3-thumbnail.jpg
+    screenshot.png
+    images/please-upload.jpg
 
     Above images License
 
@@ -16,6 +19,27 @@
     supply under below license.
 
     copyright   Copyright (c) 2010-2012, Tenman
+    License: GNU General Public License v2.0
+    License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+    genericons
+        genericons/font/genericons-regular-webfont.eot
+        genericons/font/genericons-regular-webfont.svg
+        genericons/font/genericons-regular-webfont.ttf
+        genericons/font/genericons-regular-webfont.woff
+        genericons/genericons.css
+            genericons.css is customized (line 206-753) by enough theme
+
+    License genericons  and customized style rules by enough theme
+
+    copyright   Copyright (c) 2010-2012, Tenman
+    License: GNU General Public License v2.0
+    License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+    License CrossSlide jQuery plugin v0.6.2
+        jquery.cross-slide.js
+        jquery.cross-slide.min.js
+
     License: GNU General Public License v2.0
     License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -167,21 +191,21 @@ last version 0.56
 *ver 0.64
 
 	Add template content-link.php
-	
+
 	This template is used when the post format link.
-	
+
 	Enough post format link has Predefined custom field keys.
-	
+
 	key names:	rel = a element attribute rel
 					ex. field value 'bookmark'
 				target = a element attribute target
 					ex. field value '_blank'
 				class = a element attribute class
 					ex. field value 'my-class'
-	
+
 	above custom fields automaticaly add to the post format link.
-				
-				
+
+
 *ver0.78
 		Add WEB Fonts
 			http://fonts.googleapis.com/css?family=Ubuntu:400,700

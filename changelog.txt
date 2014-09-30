@@ -1,4 +1,48 @@
 Changelog -----------------------------------
+version:1.01
+	Fixed License notation
+		readme.txt
+	License
+	    images/wp3.jpg
+	    images/wp3-thumbnail.jpg
+	    screenshot.png
+	    images/please-upload.jpg
+
+	    Above images License
+
+	    copyright   Copyright (c) 2010-2012, Tenman
+	    License: GNU General Public License v2.0
+	    License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+	    This themes contents is especially the thing without clear statement of a license
+	    supply under below license.
+
+	    copyright   Copyright (c) 2010-2012, Tenman
+	    License: GNU General Public License v2.0
+	    License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+	    genericons
+	        genericons/font/genericons-regular-webfont.eot
+	        genericons/font/genericons-regular-webfont.svg
+	        genericons/font/genericons-regular-webfont.ttf
+	        genericons/font/genericons-regular-webfont.woff
+	        genericons/genericons.css
+	            genericons.css is customized (line 206-753) by enough theme
+
+	    License genericons  and customized style rules by enough theme
+
+	    copyright   Copyright (c) 2010-2012, Tenman
+	    License: GNU General Public License v2.0
+	    License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+	    License CrossSlide jQuery plugin v0.6.2
+	        jquery.cross-slide.js
+	        jquery.cross-slide.min.js
+
+	    License: GNU General Public License v2.0
+	    License URI: http://www.gnu.org/licenses/gpl-2.0.html
+----------------------------------------------
+Changelog -----------------------------------
 version:1.00
 	Fixed navigation hide when using page_on_front option
 		functions.php line3618 enough_next_prev_links()
