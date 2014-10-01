@@ -382,7 +382,9 @@ time:before,
     content: '\f304'!important;
     visibility:visible;
 }
-
+.enough-icon .approach-author-content .author:before {
+    display:none;
+}
 #custom-post-format-widget-link .gallery span{
     background:#c4302b;
     color:#fff;

@@ -1,4 +1,33 @@
 Changelog -----------------------------------
+version:1.02
+	Added
+		bundle images
+			screenshot-images1.jpg
+			screenshot-images2.jpg
+			screenshot-images3.jpg
+    Modify
+     html5 shiv Change from CDN to bundle with the theme.
+
+    Remove Anothor Settings link at customizer
+        functions.php line:2763 remove $wp_customize->add_setting( 'navigation_setting'...
+        functions.php line:2774 remove $wp_customize->add_control(new Enough_Customize_Navigation_Control(...
+        functions.php line:2796 remove  class Enough_Customize_Navigation_Control extends WP_Customize_Control {...
+        functions.php line:2666 remove $wp_customize->add_section( 'enough_navigation_setting'...
+    Fixed
+        tags can only contain a call to wp_title()
+    Fixed
+        Customizer setting that did not have a sanitization
+    Fixed
+        Remove Deprecated function screen_icon()
+
+    Add License notation
+		readme.txt
+    License html5 shiv 3.7.2
+
+    License: GNU General Public License v2.0
+    License URI: http://www.gnu.org/licenses/gpl-2.0.html
+----------------------------------------------
+Changelog -----------------------------------
 version:1.01
 	Fixed License notation
 		readme.txt

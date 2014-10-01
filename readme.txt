@@ -4,21 +4,24 @@
 **Contact
     a.tenman@gmail.com
 **License
-    images/wp3.jpg
-    images/wp3-thumbnail.jpg
+	images/screenshot-images1.jpg
+	images/screenshot-images2.jpg
+	images/screenshot-images3.jpg
+    images/headers/wp3.jpg
+    images/headers/wp3-thumbnail.jpg
     screenshot.png
     images/please-upload.jpg
 
     Above images License
 
-    copyright   Copyright (c) 2010-2012, Tenman
+    copyright   Copyright (c) 2010-2014, Tenman
     License: GNU General Public License v2.0
     License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
     This themes contents is especially the thing without clear statement of a license
     supply under below license.
 
-    copyright   Copyright (c) 2010-2012, Tenman
+    copyright   Copyright (c) 2010-2014, Tenman
     License: GNU General Public License v2.0
     License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,7 +35,7 @@
 
     License genericons  and customized style rules by enough theme
 
-    copyright   Copyright (c) 2010-2012, Tenman
+    copyright   Copyright (c) 2010-2014, Tenman
     License: GNU General Public License v2.0
     License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,6 +46,10 @@
     License: GNU General Public License v2.0
     License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
+    License html5 shiv 3.7.2
+
+    License: GNU General Public License v2.0
+    License URI: http://www.gnu.org/licenses/gpl-2.0.html
 **About this theme
 ver 0.85
 	Add genericons
