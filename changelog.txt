@@ -1,5 +1,15 @@
 Changelog -----------------------------------
-version:1.03
+version:1.04
+	Add template blog.php
+		When if you needs blog page,
+		Create static page title 'blog' content blank
+		Template set 'blog' at Page Attributes Metabox
+		Save Page
+		Appearance / Customize /
+		Static Front Page
+		Set Posts page
+		Select blog
+		Save Customize
     Removed backward compatibility conditional
         functions.php line:387
             if ( $enough_wp_version >= '3.4' ) {...
