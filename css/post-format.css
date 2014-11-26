@@ -144,12 +144,12 @@ body:not(.single-post) .format-status .entry-content:focus{
 .single-post .format-link{
     text-align:left;
 }
-.home .format-link,
+.blog .term-post-format-link-item,
 .term-post-format-link .format-link{
     text-align:center;
 }
 .single-post .term-post-format-link-item,
-.home .term-post-format-link-item,
+.blog .term-post-format-link-item,
 .term-post-format-link .term-post-format-link-item{
     display:block;
     margin:auto;
@@ -179,4 +179,77 @@ div.post-format-link-content{
     margin:auto;
     display:block;
 }
+.format-video object{
+    /* Youtube Insert object at Press This */
+    display:block;
+    margin:auto;
+    text-align:center;  
+}
 /* post format video end */
+/* oembed */
+#enough-page .twitter-tweet-rendered {
+    max-width: 100%!important;
+    margin:1em auto!important;
+    display: block!important;
+}
+embed[src^="http://www.youtube.com/"],
+embed[src^="//v.wordpress.com/"],
+a[href^="https://www.flickr.com/"] img,
+iframe[src^="https://embed-ssl.ted.com/"],
+iframe[src^="https://www.slideshare.net/"],
+iframe[src^="https://w.soundcloud.com/player/"]{
+    margin:auto;
+    display:block;
+    max-width:100%;
+}
+
+
+.enough-w-svga #sidebar-1 iframe[src^="http://www.youtube.com/"],
+.enough-w-svga #sidebar-1 embed[src^="//v.wordpress.com/"],
+.enough-w-svga #sidebar-1 a[href^="https://www.flickr.com/"] img,
+.enough-w-svga #sidebar-1 iframe[src^="https://embed-ssl.ted.com/"],
+.enough-w-svga #sidebar-1 iframe[src^="https://www.slideshare.net/"],
+.enough-w-svga #sidebar-1 iframe[src^="https://w.soundcloud.com/player/"]{
+   height:180px;
+   max-height:100%;  
+}
+/*
+.enough-w-xga #sidebar-1 iframe[src^="http://www.youtube.com/"],
+.enough-w-xga #sidebar-1 embed[src^="//v.wordpress.com/"],
+.enough-w-xga #sidebar-1 a[href^="https://www.flickr.com/"] img,
+.enough-w-xga #sidebar-1 iframe[src^="https://embed-ssl.ted.com/"],
+.enough-w-xga #sidebar-1 iframe[src^="https://www.slideshare.net/"],
+.enough-w-xga #sidebar-1 iframe[src^="https://w.soundcloud.com/player/"],
+.enough-w-sxga #sidebar-1 iframe[src^="http://www.youtube.com/"],
+.enough-w-sxga #sidebar-1 embed[src^="//v.wordpress.com/"],
+.enough-w-sxga #sidebar-1 a[href^="https://www.flickr.com/"] img,
+.enough-w-sxga #sidebar-1 iframe[src^="https://embed-ssl.ted.com/"],
+.enough-w-sxga #sidebar-1 iframe[src^="https://www.slideshare.net/"],
+.enough-w-sxga #sidebar-1 iframe[src^="https://w.soundcloud.com/player/"],
+.enough-w-sxga-plus #sidebar-1 iframe[src^="http://www.youtube.com/"],
+.enough-w-sxga-plus #sidebar-1 embed[src^="//v.wordpress.com/"],
+.enough-w-sxga-plus #sidebar-1 a[href^="https://www.flickr.com/"] img,
+.enough-w-sxga-plus #sidebar-1 iframe[src^="https://embed-ssl.ted.com/"],
+.enough-w-sxga-plus #sidebar-1 iframe[src^="https://www.slideshare.net/"],
+.enough-w-sxga-plus #sidebar-1 iframe[src^="https://w.soundcloud.com/player/"],
+.enough-w-uxga #sidebar-1 iframe[src^="http://www.youtube.com/"],
+.enough-w-uxga #sidebar-1 embed[src^="//v.wordpress.com/"],
+.enough-w-uxga #sidebar-1 a[href^="https://www.flickr.com/"] img,
+.enough-w-uxga #sidebar-1 iframe[src^="https://embed-ssl.ted.com/"],
+.enough-w-uxga #sidebar-1 iframe[src^="https://www.slideshare.net/"],
+.enough-w-uxga #sidebar-1 iframe[src^="https://w.soundcloud.com/player/"]{
+    height:220px;
+    max-height:100%;
+}*/
+#sidebar-1 embed[src^="http://www.youtube.com/"],
+#sidebar-1 iframe[src^="http://www.youtube.com/"],
+#sidebar-1 embed[src^="//v.wordpress.com/"],
+#sidebar-1 a[href^="https://www.flickr.com/"] img,
+#sidebar-1 iframe[src^="https://embed-ssl.ted.com/"],
+#sidebar-1 iframe[src^="https://www.slideshare.net/"],
+#sidebar-1 iframe[src^="https://w.soundcloud.com/player/"]{
+    height:220px;
+    max-height:100%; 
+}
+/* oembed end */
+

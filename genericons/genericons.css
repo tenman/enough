@@ -341,7 +341,7 @@ time:before,
 .enough-icon .posted-in .toggle-category + li,
 .enough-icon .posted-in .tag-title + li,
 .enough-icon .posted-in .category-title + li{
-    margin-top:1em;
+    margin-top:2em;
 } 
 
 }
@@ -363,6 +363,10 @@ time:before,
 .enough-icon .post-format-name .gallery span{
     visibility:hidden;
 }
+.enough-icon .posted-in .toggle-title,
+.enough-icon .posted-in .category-title{
+    width:60px;
+}
 .enough-icon .meta-sep,
 .enough-icon .meta-prep.nav-text{
     display:none;
@@ -374,7 +378,6 @@ time:before,
 .enough-icon .entry-date:before { 
     content: '\f303'!important;
     visibility:visible;
-
 }
 
 
@@ -535,21 +538,58 @@ time:before,
     visibility:visible;
 
 }
-.enough-icon .enough-comment-link em span:before{
+.enough-icon .has-comments .enough-comment-link em span:before{
     content: '\f300'!important;
     visibility:visible;
     color:#66CCFF;
 }
 
 @media screen and (min-width : 641px){
-    .enough-icon .enough-comment-link em span:before{
-        position:relative;
-        top:-16px;
-        left:16px;
+     .enough-icon .has-comments .enough-comment-link em span:before{
+        position:absolute;
+        top:-1.7em;
+        right:-2em;
+        font-size:3em;
+        z-index:1;
+    }
+    .enough-icon .posted-on .enough-comment-link em.enough-length-2 i {
+       position: absolute;
+        top: .4em;
+        right: .4em;
+        display: block;
+        z-index: 2;
+        font-size: small;
+        color:#fff;
+        
+    }
+    .ie.enough-icon .posted-on .enough-comment-link em.enough-length-2 i {
+        background:#6cf;
+         position: absolute;
+        top: .4em;
+        left: .4em;
+        display:inline-block;
+        padding:5px;
+         border-radius: 5px; 
     }
 }
 @media screen and (max-width : 640px){
+    
+    .enough-icon .enough-comment-link em span:before{
+        position:absolute;
+        top:-1.75em;
+        right:-1.7em;
+        font-size:3em;
+        z-index:1;
 
+    }
+    .enough-icon .posted-on .enough-comment-link em.enough-length-2 i{
+        position:absolute;
+        top:0;
+        right:1em;
+        color:#000;
+        z-index:2;
+        color:#fff;
+    }
 }
 
 .enough-icon .posted-on a.enough-comment-link{

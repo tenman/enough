@@ -42,11 +42,17 @@ if ( have_posts() ) {
 }
 
 $enough_post_formats = get_theme_support( 'post-formats' );
-?>
-<div class="posts-nav-link">
-    <div class="alignleft"><?php previous_posts_link( esc_html__( '&laquo; Previous Page', 'enough' ) ); ?></div>
-    <div class="alignright"><?php next_posts_link( esc_html__( 'Next Page &raquo;', 'enough' ), '' ); ?></div>
-</div>
+
+if ( ! is_home() ) {
+	printf( '<div class="posts-nav-link">%1$s</div>', 
+		get_posts_nav_link( array( 
+									'sep' => ' ', 
+									'prelabel' => esc_html__( '&laquo;Previous Page', 'enough' ),
+									'nxtlabel' => esc_html__( 'Next Page &raquo;', 'enough' )
+							) 
+				) 
+	);
+} ?>
 <aside class="custom-format-link-list-wrapper">
     <ul id="custom-post-format-widget-link">
         <?php

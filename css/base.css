@@ -12,7 +12,8 @@
     min-width:240px;
     width:100%;
 }
-.attachment-post-thumbnail,.wp-post-image {
+.attachment-post-thumbnail,
+.wp-post-image {
     height:auto;
 }
 .clear {
@@ -105,6 +106,7 @@ nav div,nav img{
 p {
     line-height:1.5;
 }
+embed,
 table,
 object,
 iframe{

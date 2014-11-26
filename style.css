@@ -4,13 +4,13 @@ Theme URI: http://www.tenman.info/wp3/enough/
 Description: Satisfied enough necessary minimum structure Responsive Theme. HTML5 normalize.css . 11 kinds of homepage templates can be chosen for the purpose of using you.
 Author: Tenman
 Author URI: http://www.tenman.info/wp3/
-Version: 1.02
+Version: 1.03
 Tags:white,two-columns,custom-colors, custom-header, custom-background, custom-menu, editor-style, threaded-comments, sticky-post, responsive-layout, flexible-header
 License: GNU General Public License v2.0
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 html{
-    font-size:18px;
+
 }
 body{
     /* Page width setting */
@@ -43,6 +43,7 @@ body{
         /* right column width when two column view */
         width: 28%;
     }
+    .page-template-blog-php .pagenate_links,
     .posts-nav-link,
     .custom-format-link-list-wrapper,
     .enough-monthly-archive-prev-next-navigation,
@@ -347,3 +348,59 @@ input[type="search"]{
 .widget_recent-post-groupby-cat li time{
     display:none;
 }
+
+.entry-content img{
+    border:1px solid #000;
+}
+
+.approach-blank .site-title{
+    position:fixed;
+    top:30px;
+    left:0;
+}
+.approach-blank .site-description{
+    position:fixed;
+    top:100px;
+    left:-1em;
+}
+.page-template-blog-php .pagenate_links{
+    float:left;
+    margin: 0 0 5px 10px;
+    box-sizing: border-box;
+    padding-left: 0;padding: 10px;
+}
+/* oembed */
+embed[src^="http://www.youtube.com/"],
+embed[src^="http://v.wordpress.com/"],
+embed[src^="//v.wordpress.com/"],
+a[href^="https://www.flickr.com/"] img,
+iframe[src^="https://embed-ssl.ted.com/"]{
+    margin:auto;
+    display:block;
+    max-width:100%;
+    max-height:100%;
+    min-width:160px;
+}
+.oembed-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    height: 0;
+}
+.oembed-container{
+    margin:0;
+}
+.oembed-container iframe,
+.oembed-container object,
+.oembed-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    min-width:160px;
+}
+.oembed-container + *{
+    margin-top:1em;
+}
+/* oembed end */

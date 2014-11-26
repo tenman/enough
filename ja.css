@@ -1,7 +1,5 @@
 /* CSS Document */
-html{
-    font-size:16px;
-}
+
 .menu-header a,
 nav a{
     font-size:1em;
@@ -12,9 +10,7 @@ nav a{
     text-indent:1rem;
 }
 
-body.ja{
-    font-family: sans-serif;
-}
+
 .ja nav #wp-calendar caption,
 .ja .archives-title-text,
 .ja h1,
@@ -23,7 +19,7 @@ body.ja{
 .ja h1 a,
 .ja h2 a,
 .ja h3 a{
-    font-family: 'Lucida Grande','Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+    font-family: 'Open Sans', 'Lucida Grande','Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
     font-weight:normal;
 }
 

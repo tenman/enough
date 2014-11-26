@@ -44,6 +44,13 @@
 .alignright{
     margin:5px 0 5px 10px;
 }
+
+.enough-monthly-archive-prev-next-navigation .alignleft:active{
+    margin:6px 10px 5px 0;
+}
+.enough-monthly-archive-prev-next-navigation .alignright:active{
+     margin:6px 0 5px 10px;
+}
 .alignright,.nav-next{
     display:inline-block;
     float:right;
@@ -310,11 +317,11 @@ header h2,header h1{
     margin:0 35px;
 }
 header,
-footer:not('.comment-meta'){
+footer:not(.comment-meta){
     position:relative;
     min-height:100px;
 }
-footer:not('.comment-meta'){
+footer:not(.comment-meta){
     margin-top:60px;
 }
 .size-full{

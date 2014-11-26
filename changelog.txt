@@ -1,4 +1,13 @@
 Changelog -----------------------------------
+version:1.03
+    Removed backward compatibility conditional
+        functions.php line:387
+            if ( $enough_wp_version >= '3.4' ) {...
+    Removed protocol web font url for https
+        functions.php line:585
+            Change from http://fonts.googleapis.com/... to //fonts.googleapis.com/... 
+----------------------------------------------
+Changelog -----------------------------------
 version:1.02
 	Added
 		bundle images

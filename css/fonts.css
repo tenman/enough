@@ -6,6 +6,10 @@
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * @package Enough
  */
+html {
+    font-size:18px;
+    font-family:'Open Sans';
+}
 .form-allowed-tags code{
     font-family:"Courier New", Courier, mono;
 }

@@ -133,7 +133,11 @@
     }
     .posted-in ul li:nth-child(1){
         font-weight:bold;
-    }	
+    }
+    .toggle-category a,
+    .toggle-tag a{
+       
+    }
 
 
 }
@@ -392,6 +396,11 @@
         left:70%;
         display:block;
     }
+    .toggle-category,
+    .toggle-tag{
+        font-size:1.2rem;
+    }
+ 
 }
 @media screen and (min-width: 481px){
 
@@ -556,24 +565,8 @@
         left:12px;
         display:block;
     }
-    .enough-icon .posted-on .enough-comment-link em.enough-length-2 i {
-        position: absolute;
-        top: 8px;
-        left: 42px;
-        display: block;
-        z-index: 99;
-        font-size: small;
-        color: #fff;
-    }
-    .ie.enough-icon .posted-on .enough-comment-link em.enough-length-2 i {
-        background:#6cf;
-         position: absolute;
-        top: 0;
-        left: 42px;
-        display:inline-block;
-        padding:5px;
-         border-radius: 5px; 
-    }
+
+
     .enough-text .posted-on .enough-comment-link em.enough-length-2 span{
         font-size:small;
         color:#000;
