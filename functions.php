@@ -1121,7 +1121,9 @@ if ( !function_exists( 'enough_add_body_class' ) ) {
 			case( $is_IE ):
 
 				preg_match( " |(MSIE )([0-9]{1,2})(\.)|si", $_SERVER[ 'HTTP_USER_AGENT' ], $regs );
-				$classes[] = 'ie' . $regs[ 2 ];
+				if ( isset( $regs[ 2 ] ) ) {
+					$classes[] = 'ie' . $regs[ 2 ];
+				}
 				break;
 
 			case( $is_opera ):

@@ -1,4 +1,9 @@
 Changelog -----------------------------------
+version:1.05
+	Fixed Browser detection bug at IE11
+		functions.php
+----------------------------------------------
+Changelog -----------------------------------
 version:1.04
 	Add template blog.php
 		When if you needs blog page,
