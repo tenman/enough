@@ -3,9 +3,26 @@ version:1.03
     Removed backward compatibility conditional
         functions.php line:387
             if ( $enough_wp_version >= '3.4' ) {...
+		comments.php
+			if ( $enough_wp_version >= 3.6 ) {...
     Removed protocol web font url for https
         functions.php line:585
-            Change from http://fonts.googleapis.com/... to //fonts.googleapis.com/... 
+            Change from http://fonts.googleapis.com/... to //fonts.googleapis.com/...
+
+	Post nav link change
+		approach-format.php line:45-55
+		taxonomy.php line:48
+	Removed youtube screenshot image.
+		content-video.php
+	Add oembed media responsive
+		css/post-formt.css line:182-255
+		functions.php line3269-3290
+	Change Template include controll
+		home.php
+
+	Modify style rules
+		style.css, ja.css, genericons/genericons.css, css/post-format.css, css/layout-fluid.css, css/fonts.css,
+		css/box-modules.css, css/base.css
 ----------------------------------------------
 Changelog -----------------------------------
 version:1.02
