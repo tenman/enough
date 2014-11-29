@@ -46,14 +46,15 @@ if ( have_posts() ) {
     enough_not_found();
 }
 printf( '<div class="posts-nav-link">%1$s</div>', get_posts_nav_link( array( 'sep' => ' ', 'prelabel' => esc_html__( 'Previous Page', 'enough' ), 'nxtlabel' => esc_html__( 'Next Page', 'enough' ) ) ) );
-if ( !has_post_format( 'image' ) ) {
+
+
+if ( ! has_post_format( 'image' ) &&  enough_theme_option('enough_post_one_column_bottom_sidebar') !== 'yes' ) {
 
     enough_dinamic_sidebar( 'sidebar-1', !is_page() );
+} else {?>
+	<br class="clear" />
+	<?php
 }
-
-
-
-//enough_dinamic_sidebar( 'sidebar-1', $enough_onecolumn_post );
 
 enough_the_footer();
 ?>

@@ -252,4 +252,7 @@ iframe[src^="https://w.soundcloud.com/player/"]{
     max-height:100%; 
 }
 /* oembed end */
+.approach-widget img{
+    max-width:100%;
+}
 
