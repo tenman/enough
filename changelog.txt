@@ -1,8 +1,13 @@
 Changelog -----------------------------------
 version:1.06
+	Modify for WordPress 4.1
+		Add register_default_headers()
+			functions.php
 	Fixed Image overflow when using widget pinup entries
 	Fixed Unintended content is displayed at the bottom of the page　When it is set to 1 column
 	Modify CSS
+		blog.php line:50
+		style.css line:46,366,372-378
 ----------------------------------------------
 Changelog -----------------------------------
 version:1.05
