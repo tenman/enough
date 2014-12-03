@@ -47,7 +47,7 @@ $paged                      = '';
 $content                    = '';
 $html_structure             = '<li><a href="%1$s">%2$s</a></li>';
 $html_list_wrapper          = '<ul>%1$s</ul>';
-$html_pagenate_links_wrapper= '<div class="pagenate_links">%1$s</div>';
+$html_pagenate_links_wrapper= '<div class="enough-pagenate-links">%1$s</div>';
  
 $paged= get_query_var('paged');
  

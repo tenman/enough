@@ -4,7 +4,7 @@ Theme URI: http://www.tenman.info/wp3/enough/
 Description: Satisfied enough necessary minimum structure Responsive Theme. HTML5 normalize.css . 11 kinds of homepage templates can be chosen for the purpose of using you.
 Author: Tenman
 Author URI: http://www.tenman.info/wp3/
-Version: 1.05
+Version: 1.06
 Tags:white,two-columns,custom-colors, custom-header, custom-background, custom-menu, editor-style, threaded-comments, sticky-post, responsive-layout, flexible-header
 License: GNU General Public License v2.0
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -43,7 +43,7 @@ body{
         /* right column width when two column view */
         width: 28%;
     }
-    .page-template-blog-php .pagenate_links,
+    .page-template-blog-php .enough-pagenate-links,
     .posts-nav-link,
     .custom-format-link-list-wrapper,
     .enough-monthly-archive-prev-next-navigation,
@@ -363,11 +363,18 @@ input[type="search"]{
     top:100px;
     left:-1em;
 }
-.page-template-blog-php .pagenate_links{
+.page-template-blog-php .enough-pagenate-links{
     float:left;
     margin: 0 0 5px 10px;
     box-sizing: border-box;
     padding-left: 0;padding: 10px;
+}
+.page-template-blog-php .enough-pagenate-links .current,
+.page-template-blog-php .enough-pagenate-links a{
+    border:1px solid #ccc;
+    padding:.5em;
+    text-decoration:none;
+    line-height:2.5;
 }
 /* oembed */
 embed[src^="http://www.youtube.com/"],

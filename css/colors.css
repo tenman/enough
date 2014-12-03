@@ -58,6 +58,7 @@ h3 a{
 .sticky .posted-on{
     background:none;
 }
+
 .sticky{
     border-top:3px double rgba(200,200,200,0.5);
     border-bottom:3px double rgba(200,200,200,0.5);
@@ -89,6 +90,7 @@ body,
 select{
     border:1px solid #ccc;
 }
+
 .entry-content form{
     background:rgba(200,200,200, .1);
     border:1px solid rgba(200,200,200, .4);
@@ -172,6 +174,7 @@ blockquote{
        border-top:1px solid  rgba(222,222,222,.6);	
        border-bottom:1px solid rgba(222,222,222,.6);*/
 }
+.page-template-blog-php .enough-pagenate-links .current,
 #custom-post-format-widget-link li a{
     background:rgba(222,222,222,.5);
 }

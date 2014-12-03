@@ -1,4 +1,10 @@
 Changelog -----------------------------------
+version:1.06
+	Fixed Image overflow when using widget pinup entries
+	Fixed Unintended content is displayed at the bottom of the page　When it is set to 1 column
+	Modify CSS
+----------------------------------------------
+Changelog -----------------------------------
 version:1.05
 	Fixed Browser detection bug at IE11
 		functions.php

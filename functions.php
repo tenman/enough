@@ -424,7 +424,17 @@ $args_custom_header = array( 'default-text-color'	 => '333333'
 );
 
 add_theme_support( 'custom-header', $args_custom_header );
-
+	/**
+	 * Add for WordPress 4.1
+	 * 
+	 * @since 1.260
+	 */
+register_default_headers( array(
+	'willow' => array(
+		'url' => $enough_site_image,
+		'thumbnail_url' => $enough_site_thumbnail_image,
+	),
+) );
 $args_custom_background = array( 'default-color'			 => 'ffffff'
 	, 'default-image'			 => ''
 	, 'wp-head-callback'		 => 'enough_embed_meta'
