@@ -2,6 +2,15 @@ Changelog -----------------------------------
 version:1.07
 	Users can choose the post type at Customizer
 
+	Add array enough_enable_post_formats at $enough_admin_options_setting
+
+	Customizer
+		add section enough_post_formats_setting
+		new class raindrops_Customize_Control_Multiple_Select
+		new function enough_custom_post_format_links_button()
+
+	Modify approach-categories.php
+	Modify CSS Class enough-pinup-entries , CSS Class add initial-[A-z]:not(.first), and etc
 ----------------------------------------------
 Changelog -----------------------------------
 version:1.06
