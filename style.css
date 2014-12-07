@@ -1,10 +1,10 @@
 /*
 Theme Name: Enough
 Theme URI: http://www.tenman.info/wp3/enough/
-Description: Satisfied enough necessary minimum structure Responsive Theme. HTML5 normalize.css . 11 kinds of homepage templates can be chosen for the purpose of using you.
+Description: Satisfied enough necessary minimum structure Responsive Theme. HTML5 , Supports Post Format Archives , You can select your favorite Post Format
 Author: Tenman
 Author URI: http://www.tenman.info/wp3/
-Version: 1.06
+Version: 1.07
 Tags:white,two-columns,custom-colors, custom-header, custom-background, custom-menu, editor-style, threaded-comments, sticky-post, responsive-layout, flexible-header
 License: GNU General Public License v2.0
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -411,3 +411,170 @@ iframe[src^="https://embed-ssl.ted.com/"]{
     margin-top:1em;
 }
 /* oembed end */
+.approach-categories-content {
+
+}
+.initial-category.first a{
+    color:#fff;
+
+}
+.initial-category.first{
+
+color:#fff;
+background:#000;
+
+
+}
+.initial-category.first span{
+    color:red;
+}
+.initial-A:not(.first),
+.initial-a:not(.first){
+    background:AntiqueWhite;
+    color:#fff;
+}
+.initial-B:not(.first),
+.initial-b:not(.first){
+    background:Beige;
+}
+.initial-C:not(.first),
+.initial-c:not(.first){
+    background:Cornsilk;
+}
+.initial-D:not(.first) a,
+.initial-d:not(.first) a,
+.initial-D:not(.first),
+.initial-d:not(.first){
+    background:DarkKhaki;
+    color:#fff;
+}
+.initial-E:not(.first),
+.initial-e:not(.first){
+    background:Ecru;
+}
+.initial-F:not(.first) a,
+.initial-f:not(.first) a,
+.initial-F:not(.first),
+.initial-f:not(.first){
+    background:FireBrick ;
+    color:#fff;
+}
+
+.initial-G:not(.first),
+.initial-g:not(.first){
+    background:Gainsboro;
+    color:#fff;
+}
+.initial-H:not(.first),
+.initial-h:not(.first){
+    background:HoneyDew;
+}
+.initial-I:not(.first),
+.initial-i:not(.first){
+    background:Ivory;
+}
+.initial-J:not(.first),
+.initial-j:not(.first){
+    background:Jasmine;
+}
+
+.initial-K:not(.first),
+.initial-k:not(.first){
+    background:Khaki;
+}
+.initial-L:not(.first),
+.initial-l:not(.first){
+    background:Lavender;
+}
+.initial-M:not(.first),
+.initial-m:not(.first){
+    background:Moccasin;
+}
+.initial-N:not(.first) a,
+.initial-n:not(.first) a,
+.initial-N:not(.first),
+.initial-n:not(.first){
+    background:Navy;
+    color:#fff;
+}
+.initial-O:not(.first) a,
+.initial-o:not(.first) a,
+.initial-O:not(.first),
+.initial-o:not(.first){
+    background:Orange;
+    color:#fff;
+}
+.initial-P:not(.first) a,
+.initial-p:not(.first) a,
+.initial-P:not(.first),
+.initial-p:not(.first){
+    background:PeachPuff;
+
+}
+.initial-P:not(.first),
+.initial-p:not(.first){
+    border:1px solid #fff;
+}
+.initial-R:not(.first) a,
+.initial-r:not(.first) a,
+.initial-R:not(.first),
+.initial-r:not(.first){
+    background:RoyalBlue;
+    color:#fff;
+}
+.initial-S:not(.first) a,
+.initial-s:not(.first) a,
+.initial-S:not(.first),
+.initial-s:not(.first){
+    background:Steelblue;
+    color:#fff;
+}
+.initial-T:not(.first) a,
+.initial-t:not(.first) a,
+.initial-T:not(.first),
+.initial-t:not(.first){
+    background:Tan;
+    color:#fff;
+}
+.initial-U:not(.first) a,
+.initial-ut:not(.first) a,
+.initial-U:not(.first),
+.initial-u:not(.first){
+    background:Urobilin;
+}
+.initial-V:not(.first) a,
+.initial-v:not(.first) a,
+.initial-V:not(.first),
+.initial-v:not(.first){
+    background:Violet;
+    color:#fff;
+}
+.initial-W:not(.first) a,
+.initial-w:not(.first) a,
+.initial-W:not(.first),
+.initial-w:not(.first){
+    background:WhiteSmoke;
+}
+.initial-X:not(.first) a,
+.initial-x:not(.first) a,
+.initial-X:not(.first),
+.initial-x:not(.first){
+    background:Xanadu;
+}
+.initial-Y:not(.first) a,
+.initial-y:not(.first) a,
+.initial-Y:not(.first),
+.initial-y:not(.first){
+    background:Yellow;
+}
+.initial-Z:not(.first) a,
+.initial-z:not(.first) a,
+.initial-Z:not(.first),
+.initial-z:not(.first){
+    background:Zaffre;
+
+}
+.initial-category a:hover{
+    color:#000;
+    background:#fff;
+}

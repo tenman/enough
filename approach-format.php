@@ -41,8 +41,6 @@ if ( have_posts() ) {
     enough_not_found();
 }
 
-$enough_post_formats = get_theme_support( 'post-formats' );
-
 if ( ! is_home() ) {
 	printf( '<div class="posts-nav-link">%1$s</div>', 
 		get_posts_nav_link( array( 
@@ -54,20 +52,7 @@ if ( ! is_home() ) {
 	);
 } ?>
 <aside class="custom-format-link-list-wrapper">
-    <ul id="custom-post-format-widget-link">
-        <?php
-        $html                = '	<li class="%3$s"><a href="%1$s"><span>%2$s</span></a></li>';
-
-        foreach ( $enough_post_formats[0] as $format ) {
-
-            if ( $format !== $enough_home_template ) {
-
-                printf( $html, esc_url( get_post_format_link( $format ) ), esc_html( enough_get_post_format_string( $format ) ), esc_attr( $format )
-                );
-            }
-        }
-        ?>
-    </ul>
+	<?php  enough_custom_post_format_links_button( );?>
     <br class="clear" />
     <ul class="approach-widget">
         <?php

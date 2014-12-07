@@ -203,14 +203,14 @@ li .blog-avatar .author:before{
 }
 
 /*--------------------------*/
-#custom-post-format-widget-link .chat span:before,
-#custom-post-format-widget-link .video span:before,
-#custom-post-format-widget-link .quote span:before,
-#custom-post-format-widget-link .status span:before,
-#custom-post-format-widget-link .image span:before,
-#custom-post-format-widget-link .link span:before,
-#custom-post-format-widget-link .gallery span:before,
-#custom-post-format-widget-link .aside span:before,
+#custom-post-format-links-button .chat span:before,
+#custom-post-format-links-button .video span:before,
+#custom-post-format-links-button .quote span:before,
+#custom-post-format-links-button .status span:before,
+#custom-post-format-links-button .image span:before,
+#custom-post-format-links-button .link span:before,
+#custom-post-format-links-button .gallery span:before,
+#custom-post-format-links-button .aside span:before,
 ul[id$="-icon"] .icon a[href*="wordpress.com"]::before,
 a[href*="wordpress.org"]::before,
 a[href*="wordpress.com"]::before,
@@ -282,7 +282,7 @@ time:before,
 .enough-icon .posted-in .category-title .nav-text:before{
     display:inline;
 }
-
+.enough-icon .posted-format-name .meta-sep:after,
 .enough-icon .posted-on .meta-sep:after{
     position:absolute; 
     left:270px;
@@ -304,16 +304,18 @@ time:before,
 }
 */
 @media screen and (max-width : 640px){
-
+    .enough-icon .posted-format-name .author,
     .enough-icon .posted-on .author{
         position:static;
         left:0;
         display:inline-block;
     }
+    .enough-icon .posted-format-name .entry-date,
     .enough-icon .posted-on .entry-date{
         position:static;
         left:0;
     }
+    .enough-icon .posted-format-name .meta-sep:after,
     .enough-icon .posted-on .meta-sep:after{
         position:static;
         left:0;  
@@ -347,7 +349,9 @@ time:before,
 }
 /*.enough-icon .posts-nav-link .prev,
 .enough-icon .posts-nav-link .next,*/
-.enough-icon .enough-comment-link em span,
+.enough-icon .enough-comment-link em span{
+    visibility:hidden;
+}
 .enough-icon .posted-in .toggle-tag .nav-text,
 .enough-icon .posted-in .toggle-category .nav-text,
 .enough-icon .posted-in .category-title .nav-text,
@@ -362,6 +366,10 @@ time:before,
 .enough-icon .post-format-name .audio span,
 .enough-icon .post-format-name .gallery span{
     visibility:hidden;
+    display:block;
+    width:100%;
+    height:67px;
+    margin-top:-67px;
 }
 .enough-icon .posted-in .toggle-title,
 .enough-icon .posted-in .category-title{
@@ -388,11 +396,11 @@ time:before,
 .enough-icon .approach-author-content .author:before {
     display:none;
 }
-#custom-post-format-widget-link .gallery span{
+#custom-post-format-links-button .gallery span{
     background:#c4302b;
     color:#fff;
 }
-#custom-post-format-widget-link .gallery span:before{
+#custom-post-format-links-button .gallery span:before{
     content: '\f103'!important;
     visibility:visible; 
     color:#fff;
@@ -409,11 +417,11 @@ time:before,
     content: '\f100'!important;
     visibility:visible;
 }
-#custom-post-format-widget-link .aside span{
+#custom-post-format-links-button .aside span{
     background:#000;
     color:#fff;
 }
-#custom-post-format-widget-link .aside span:before{
+#custom-post-format-links-button .aside span:before{
     content: '\f101'!important;
     visibility:visible; 
     color:#33CC33;
@@ -425,11 +433,11 @@ time:before,
     color:#33CC33;
     background:#000;
 }
-#custom-post-format-widget-link .image span{
+#custom-post-format-links-button .image span{
     background:#336699;
     color:#fff;
 }
-#custom-post-format-widget-link .image span:before{
+#custom-post-format-links-button .image span:before{
     content: '\f102'!important;
     visibility:visible; 
     color:#fff;
@@ -441,11 +449,11 @@ time:before,
     background:#336699;
     color:#fff;
 }
-#custom-post-format-widget-link .video span{
+#custom-post-format-links-button .video span{
     background:#000;
     color:#fff;
 }
-#custom-post-format-widget-link .video span:before{
+#custom-post-format-links-button .video span:before{
     content: '\f104'!important;
     visibility:visible; 
     color:red;
@@ -457,11 +465,11 @@ time:before,
     background:#000;
     color:red;
 }
-#custom-post-format-widget-link .status span{
+#custom-post-format-links-button .status span{
     background:#34526f;
     color:#fff;
 }
-#custom-post-format-widget-link .status span:before{
+#custom-post-format-links-button .status span:before{
     content: '\f105'!important;
     visibility:visible; 
     color:#fff;
@@ -473,11 +481,11 @@ time:before,
     background:#34526f;
     color:#fff;
 }
-#custom-post-format-widget-link .quote span{
+#custom-post-format-links-button .quote span{
     background:#999933;
     color:#fff;
 }
-#custom-post-format-widget-link .quote span:before{
+#custom-post-format-links-button .quote span:before{
     content: '\f106'!important;
     visibility:visible; 
     color:#fff;
@@ -489,11 +497,11 @@ time:before,
     background:#999933;
     color:#fff;
 }
-#custom-post-format-widget-link .link span{
+#custom-post-format-links-button .link span{
     background:#dd4b39;
     color:#fff;
 }
-#custom-post-format-widget-link .link span:before{
+#custom-post-format-links-button .link span:before{
     content: '\f107'!important;
     visibility:visible; 
     color:#fff;
@@ -505,11 +513,11 @@ time:before,
     background:#dd4b39;
     color:#fff;
 }
-#custom-post-format-widget-link .chat span{
+#custom-post-format-links-button .chat span{
     background:#FF9900;
     color:#fff;
 }
-#custom-post-format-widget-link .chat span:before{
+#custom-post-format-links-button .chat span:before{
     content: '\f108'!important;
     visibility:visible; 
     color:#fff;
@@ -552,7 +560,8 @@ time:before,
         font-size:3em;
         z-index:1;
     }
-    .enough-icon .posted-on .enough-comment-link em.enough-length-2 i {
+    .enough-icon .post-format-name a.enough-comment-link em i,
+    .enough-icon .posted-on .enough-comment-link em i {
        position: absolute;
         top: .4em;
         right: .4em;
@@ -562,6 +571,7 @@ time:before,
         color:#fff;
         
     }
+    .ie.enough-icon .posted-format-name .enough-comment-link em.enough-length-1 i,
     .ie.enough-icon .posted-on .enough-comment-link em.enough-length-2 i {
         background:#6cf;
          position: absolute;
@@ -582,6 +592,7 @@ time:before,
         z-index:1;
 
     }
+    .enough-icon .posted-format-name .enough-comment-link em.enough-length-2 i,
     .enough-icon .posted-on .enough-comment-link em.enough-length-2 i{
         position:absolute;
         top:0;
@@ -591,7 +602,7 @@ time:before,
         color:#fff;
     }
 }
-
+.enough-icon .posted-format-name a.enough-comment-link,
 .enough-icon .posted-on a.enough-comment-link{
     border:none;
 }

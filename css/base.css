@@ -166,3 +166,6 @@ nav li{
 .more-link{
     text-decoration:none;
 }
+.posted-in ul{
+    margin:0;
+}

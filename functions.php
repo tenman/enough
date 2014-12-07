@@ -1,4 +1,5 @@
 <?php
+
 /* Functions and class for WordPress theme Enough
  *
  *
@@ -132,8 +133,32 @@ $enough_admin_options_setting	 = array(
 			'Post Format Video'		 => 'video',
 		)
 	),
+		array( 'option_id'		 => 10,
+		'blog_id'		 => 0,
+		'option_name'	 => "enough_enable_post_formats",
+		'option_value'	 => 'default',
+		'autoload'		 => 'yes',
+		'title'			 => __( 'Enabled Post Formats', 'enough' ),
+		'excerpt'		 => __( 'Please select whether to enable any Post Format', 'enough' ),
+		'validate'		 => 'enough_enable_post_formats_validate',
+		'list'			 => 1,
+		'type'			 => 'checkbox',
+		'select_values'	 => array(
+			'Default'                => 'default',
+			'Post Format chat'		 => 'chat',
+			'Post Format Gallery'	 => 'gallery',
+			'Post Format Image'		 => 'image',
+			'Post Format Link'		 => 'link',
+			'Post Format Quote'		 => 'quote',
+			'Post Format Status'	 => 'status',
+			'Post Format Video'		 => 'video',
+		)
+	),
 );
 
+function enough_enable_post_formats_validate( $input ){
+	return $input;
+}
 /**
  * return enough settings
  *
@@ -247,7 +272,6 @@ $enough_author				 = $enough_theme_data->get( 'Author' );
 $enough_template			 = $enough_theme_data->get( 'Template' );
 $enough_tags				 = implode( ',', $enough_theme_data->get( 'Tags' ) );
 
-
 load_textdomain( 'enough', get_template_directory() . '/languages/' . get_locale() . '.mo' );
 /**
  * Content Width
@@ -276,7 +300,19 @@ if ( !isset( $enough_post_format_functionality ) ) {
 
 	$enough_post_format_functionality = false;
 }
-add_theme_support( 'post-formats', array( 'aside', 'gallery', 'chat', 'link', 'image', 'status', 'quote', 'video' ) );
+$enough_enable_post_formats	 = enough_theme_option( 'enough_enable_post_formats' );
+
+if(  is_array( $enough_enable_post_formats ) && ($key = array_search('default', $enough_enable_post_formats)) !== false) {
+	
+	if( isset( $enough_enable_post_formats[$key] ) ) {
+		
+		unset($enough_enable_post_formats[$key]);
+	}
+}
+if( is_array( $enough_enable_post_formats ) &&  ! empty($enough_enable_post_formats) ){
+
+	add_theme_support( 'post-formats', $enough_enable_post_formats );
+}
 
 /**
  *
@@ -424,15 +460,15 @@ $args_custom_header = array( 'default-text-color'	 => '333333'
 );
 
 add_theme_support( 'custom-header', $args_custom_header );
-	/**
-	 * Add for WordPress 4.1
-	 * 
-	 * @since 1.260
-	 */
+/**
+ * Add for WordPress 4.1
+ * 
+ * @since 1.260
+ */
 register_default_headers( array(
 	'willow' => array(
-		'url' => $enough_site_image,
-		'thumbnail_url' => $enough_site_thumbnail_image,
+		'url'			 => $enough_site_image,
+		'thumbnail_url'	 => $enough_site_thumbnail_image,
 	),
 ) );
 $args_custom_background = array( 'default-color'			 => 'ffffff'
@@ -665,19 +701,22 @@ if ( !function_exists( 'enough_attachment_navigation' ) ) {
 if ( !function_exists( 'enough_post_format_posted_on' ) ) {
 
 	function enough_post_format_posted_on() {
-
+		
+		$enough_comment_number_class = '';
 		if ( comments_open() ) {
 
 			$enough_comment_html = '<a href="%1$s" class="enough-comment-link"><span class="enough-comment-string point"></span><em>%2$s %3$s</em></a>';
-
+			$enough_comment_html = '<a href="%1$s" class="enough-comment-link"><em %4$s title="%2$s"><i class="count">%2$s</i> <span>%3$s</span></em></a>';
 			if ( get_comments_number() > 0 ) {
 
 				$enough_comment_string	 = _n( 'Comment', 'Comments', get_comments_number(), 'enough' );
 				$enough_comment_number	 = get_comments_number();
+				$enough_comment_number_class = 'class="enough-length-' . strlen( $enough_comment_number ) . '"';
 			} else {
 
 				$enough_comment_string	 = 'Comment';
 				$enough_comment_number	 = '';
+				
 			}
 		} else {
 
@@ -688,7 +727,8 @@ if ( !function_exists( 'enough_post_format_posted_on' ) ) {
 
 		if ( !is_single() ) {
 
-			$comments = sprintf( $enough_comment_html, get_comments_link(), $enough_comment_number, $enough_comment_string );
+			//$comments = sprintf( $enough_comment_html, get_comments_link(), $enough_comment_number, $enough_comment_string );
+			$comments = sprintf( $enough_comment_html, get_comments_link(), $enough_comment_number, $enough_comment_string, $enough_comment_number_class );
 		} else {
 			$comments = '';
 		}
@@ -699,6 +739,7 @@ if ( !function_exists( 'enough_post_format_posted_on' ) ) {
 		?>
 		<div class="post-format-name"><?php echo $format; ?>&nbsp;<?php echo $comments; ?></div>
 		<?php
+
 		return;
 	}
 
@@ -1062,10 +1103,10 @@ if ( !function_exists( 'enough_add_body_class' ) ) {
 	function enough_add_body_class( $class ) {
 
 		global $post, $is_lynx, $is_gecko, $is_IE, $is_opera, $is_NS4, $is_safari, $is_chrome, $is_iphone, $enough_navigation_type;
-		$regs			 = array();
-		$lang			 = get_locale();
+		$regs	 = array();
+		$lang	 = get_locale();
 
-		$enough_options	 = enough_theme_option( 'defaults' );
+		$enough_options = enough_theme_option( 'defaults' );
 
 		if ( isset( $enough_options[ "enough_style_type" ] ) and ! empty( $enough_options[ "enough_style_type" ] ) ) {
 
@@ -1194,13 +1235,13 @@ if ( !function_exists( 'enough_small_device_helper' ) ) {
 		?>
 		<script type="text/javascript">
 
-		    ( function () {
-		        jQuery( function () {
-		            var width = jQuery( window ).width();
+			( function () {
+				jQuery( function () {
+					var width = jQuery( window ).width();
 		<?php
 		if ( $enough_options[ 'enough_use_slider' ] !== 'no' and is_front_page() ) {
 			?>
-			            jQuery( 'header' ).before( '<h1 class="site-title" style="width:80%;"><a href="<?php echo home_url(); ?>" style="color:#<?php echo get_theme_mod( "header_textcolor" ); ?>"><?php bloginfo( 'site-title' ); ?><\/a><\/h1>' );
+						jQuery( 'header' ).before( '<h1 class="site-title" style="width:80%;"><a href="<?php echo home_url(); ?>" style="color:#<?php echo get_theme_mod( "header_textcolor" ); ?>"><?php bloginfo( 'site-title' ); ?><\/a><\/h1>' );
 
 
 
@@ -1211,23 +1252,23 @@ if ( !function_exists( 'enough_small_device_helper' ) ) {
 		 *
 		 */
 		?>
-		            jQuery( '.enough-status-bar' ).hide();
+					jQuery( '.enough-status-bar' ).hide();
 		<?php
 		if ( !is_page() ) {
 			?>
-			            jQuery( window ).mousemove( function ( e ) {
+						jQuery( window ).mousemove( function ( e ) {
 
-			                var window_height = jQuery( window ).innerHeight();
-			                if ( window_height - 100 < e.pageY - jQuery( this ).scrollTop() ) {
-			                    jQuery( 'address' ).css( 'margin-bottom', '75px' );
-			                    jQuery( '.enough-status-bar' ).show();
+							var window_height = jQuery( window ).innerHeight();
+							if ( window_height - 100 < e.pageY - jQuery( this ).scrollTop() ) {
+								jQuery( 'address' ).css( 'margin-bottom', '75px' );
+								jQuery( '.enough-status-bar' ).show();
 
 
-			                } else {
-			                    jQuery( 'address' ).css( 'margin-bottom', '0' );
-			                    jQuery( '.enough-status-bar' ).hide();
-			                }
-			            } );
+							} else {
+								jQuery( 'address' ).css( 'margin-bottom', '0' );
+								jQuery( '.enough-status-bar' ).hide();
+							}
+						} );
 			<?php
 		}
 		/**
@@ -1235,150 +1276,150 @@ if ( !function_exists( 'enough_small_device_helper' ) ) {
 		 *
 		 */
 		?>
-		            jQuery( '.enough-toggle-title' ).remove();
-		            jQuery( ".menu-header" ).unwrap();
+					jQuery( '.enough-toggle-title' ).remove();
+					jQuery( ".menu-header" ).unwrap();
 
-		            if ( width < 481 ) {
-		                if ( jQuery( 'ul' ).is( ".menu-header" ) ) {
-		                    jQuery( 'ul.menu-header' ).removeClass();
-		                }
-		                jQuery( ".menu-header" ).wrap( '<ul class="toggle-navigation"><li class="enough-toggle"><\/li><\/ul>' );
-		                jQuery( ".enough-toggle" ).before( '<li class="enough-toggle enough-toggle-title"><span>Menu<\/span><\/li>' );
-		                flag = true;
-		            }
+					if ( width < 481 ) {
+						if ( jQuery( 'ul' ).is( ".menu-header" ) ) {
+							jQuery( 'ul.menu-header' ).removeClass();
+						}
+						jQuery( ".menu-header" ).wrap( '<ul class="toggle-navigation"><li class="enough-toggle"><\/li><\/ul>' );
+						jQuery( ".enough-toggle" ).before( '<li class="enough-toggle enough-toggle-title"><span>Menu<\/span><\/li>' );
+						flag = true;
+					}
 		<?php
 		/**
 		 * Toggle for .menu-header
 		 *
 		 */
 		?>
-		            jQuery( '.enough-toggle' ).hide();
-		            jQuery( '.enough-toggle.enough-toggle-title' ).show().css( { "list-style": "none", "font-weight": "bold", "margin-top": "20px" } );
+					jQuery( '.enough-toggle' ).hide();
+					jQuery( '.enough-toggle.enough-toggle-title' ).show().css( { "list-style": "none", "font-weight": "bold", "margin-top": "20px" } );
 
-		            jQuery( '.enough-toggle.enough-toggle-title' ).css( "cursor", "pointer" ).toggle(
-		                function () {
-		                    jQuery( this ).siblings().show();
-		                    var v = jQuery( this ).html().substring( 0, 30 );
-		                    jQuery( this ).html( v );
-		                },
-		                function () {
-		                    jQuery( this ).siblings().hide();
-		                    var v = jQuery( this ).html().substring( 0, 30 );
-		                    jQuery( this ).html( v );
-		                } );
+					jQuery( '.enough-toggle.enough-toggle-title' ).css( "cursor", "pointer" ).toggle(
+						function () {
+							jQuery( this ).siblings().show();
+							var v = jQuery( this ).html().substring( 0, 30 );
+							jQuery( this ).html( v );
+						},
+						function () {
+							jQuery( this ).siblings().hide();
+							var v = jQuery( this ).html().substring( 0, 30 );
+							jQuery( this ).html( v );
+						} );
 		<?php
 		/**
 		 * Toggle for category and tag
 		 *
 		 */
 		?>
-		            if ( width < 481 ) {
-		                jQuery( '.toggle-category,.toggle-tag' ).hide();
-		                jQuery( '.toggle-category.toggle-title,.toggle-tag.toggle-title' ).show().css( { "list-style": "none", } );
-		                jQuery( '.toggle-category.toggle-title,.toggle-tag.toggle-title' ).css( "cursor", "pointer" ).toggle(
-		                    function () {
+					if ( width < 481 ) {
+						jQuery( '.toggle-category,.toggle-tag' ).hide();
+						jQuery( '.toggle-category.toggle-title,.toggle-tag.toggle-title' ).show().css( { "list-style": "none", } );
+						jQuery( '.toggle-category.toggle-title,.toggle-tag.toggle-title' ).css( "cursor", "pointer" ).toggle(
+							function () {
 
-		                        jQuery( this ).siblings().show();
-		                        var v = jQuery( this ).html().substring( 0, 30 );
-		                        jQuery( this ).html( v );
-		                    },
-		                    function () {
+								jQuery( this ).siblings().show();
+								var v = jQuery( this ).html().substring( 0, 30 );
+								jQuery( this ).html( v );
+							},
+							function () {
 
-		                        jQuery( this ).siblings().hide();
-		                        var v = jQuery( this ).html().substring( 0, 30 );
-		                        jQuery( this ).html( v );
-		                    } );
-		            }
+								jQuery( this ).siblings().hide();
+								var v = jQuery( this ).html().substring( 0, 30 );
+								jQuery( this ).html( v );
+							} );
+					}
 		<?php
 		/**
 		 * Toggle widget
 		 *
 		 */
 		?>
-		            if ( width < 481 ) {
-		                jQuery( '.menu-header-container,.menu-wplook-main-menu-container' ).wrap( '<ul class="widget-container-wrapper"><li><\/li><\/ul>' );
-		                jQuery( 'div.tagcloud' ).removeAttr( 'style' ).wrap( '<ul class="tagcloud-wrapper"><li><\/li><\/ul>' );
-		                jQuery( '.widget ul, .widget form, .widget select, .widget .textwidget' ).hide();
-		                jQuery( '.menu-header-container > ul,menu-wplook-main-menu-container > ul,.widget .menu-all-pages-container ul' ).show();
-		                if ( jQuery( '.widgettitle' ).text() !== '' ) {
-		                    jQuery( '.widgettitle' ).show().css( { "list-style": "none", "font-weight": "bold", 'max-width': '100%' } );
-		                }
-		                jQuery( '.widgettitle' ).css( "cursor", "pointer" ).toggle(
-		                    function () {
-		                        jQuery( this ).siblings().show();
-		                        var v = jQuery( this ).html();
-		                        jQuery( this ).html( v );
-		                    },
-		                    function () {
-		                        jQuery( this ).siblings().hide();
-		                        var v = jQuery( this ).html();
+					if ( width < 481 ) {
+						jQuery( '.menu-header-container,.menu-wplook-main-menu-container' ).wrap( '<ul class="widget-container-wrapper"><li><\/li><\/ul>' );
+						jQuery( 'div.tagcloud' ).removeAttr( 'style' ).wrap( '<ul class="tagcloud-wrapper"><li><\/li><\/ul>' );
+						jQuery( '.widget ul, .widget form, .widget select, .widget .textwidget' ).hide();
+						jQuery( '.menu-header-container > ul,menu-wplook-main-menu-container > ul,.widget .menu-all-pages-container ul' ).show();
+						if ( jQuery( '.widgettitle' ).text() !== '' ) {
+							jQuery( '.widgettitle' ).show().css( { "list-style": "none", "font-weight": "bold", 'max-width': '100%' } );
+						}
+						jQuery( '.widgettitle' ).css( "cursor", "pointer" ).toggle(
+							function () {
+								jQuery( this ).siblings().show();
+								var v = jQuery( this ).html();
+								jQuery( this ).html( v );
+							},
+							function () {
+								jQuery( this ).siblings().hide();
+								var v = jQuery( this ).html();
 
-		                        jQuery( this ).html( v );
-		                    } );
-		            }
+								jQuery( this ).html( v );
+							} );
+					}
 		<?php
 		/**
 		 * Site title , description font size resize and header height ajust
 		 *
 		 */
 		?>
-		            function fontResize() {
+					function fontResize() {
 		<?php global $enough_site_image; ?>
-		                var image_exists = '<?php echo $enough_header_image_uri; ?>';
-		                var width = jQuery( window ).width( );
+						var image_exists = '<?php echo $enough_header_image_uri; ?>';
+						var width = jQuery( window ).width( );
 		<?php
 		$upload_image = get_uploaded_header_images();
 		if ( empty( $upload_image ) ) {
 			?>var
-			                upload_image = false;<?php
+				upload_image = false;<?php
 		} else {
 			?>var
-			                upload_image = true;<?php
+				upload_image = true;<?php
 		}
 
 		if ( $enough_options[ 'enough_use_slider' ] == 'yes' ) {
 			?>var
-			                use_slider = true;<?php
+				use_slider = true;<?php
 		} else {
 			?>var
-			                use_slider = false;<?php
+				use_slider = false;<?php
 		}
 		$ratio = 0.11;
 
 		if ( $enough_title_length !== 0 ) {
 			?>
-			                var px = width /<?php echo $enough_title_length; ?>;
-			                if ( px < 10 ) {
-			                    var tpx = 13;
-			                }
-			                if ( px > 30 ) {
-			                    var tpx = 36;
-			                }
-			                if ( width < 480 ) {
-			                    var tpx = 20;
-			                }
-			                jQuery( '.site-title' ).css( 'font-size', tpx + 'px' );
+								var px = width /<?php echo $enough_title_length; ?>;
+								if ( px < 10 ) {
+									var tpx = 13;
+								}
+								if ( px > 30 ) {
+									var tpx = 36;
+								}
+								if ( width < 480 ) {
+									var tpx = 20;
+								}
+								jQuery( '.site-title' ).css( 'font-size', tpx + 'px' );
 			<?php
 		}
 
 		if ( $enough_description_length !== 0 ) {
 			?>
-			                var px = width /<?php echo $enough_description_length; ?>;
-			                if ( px < 10 ) {
-			                    var dpx = 13;
-			                }
-			                if ( px > 26 ) {
-			                    var dpx = 20;
-			                }
-			                if ( width < 480 ) {
-			                    var dpx = 14;
-			                }
+								var px = width /<?php echo $enough_description_length; ?>;
+								if ( px < 10 ) {
+									var dpx = 13;
+								}
+								if ( px > 26 ) {
+									var dpx = 20;
+								}
+								if ( width < 480 ) {
+									var dpx = 14;
+								}
 
-			                jQuery( '.site-description' ).css( 'font-size', dpx + 'px' );
+								jQuery( '.site-description' ).css( 'font-size', dpx + 'px' );
 			<?php
 		}
 		?>
-		                if ( upload_image && use_slider ) {
+							if ( upload_image && use_slider ) {
 		<?php
 		$url = get_theme_mod( 'header_image' );
 
@@ -1401,26 +1442,26 @@ if ( !function_exists( 'enough_small_device_helper' ) ) {
 			$ratio						 = $enough_header_image_height / $enough_header_image_width;
 		}
 		?>
-		                    var header_width = jQuery( 'header' ).width();
-		                    var ratio = <?php echo $ratio; ?>;
-		                    var height = ( header_width * ratio ).toFixed( 0 );
-		                    jQuery( 'header' ).removeAttr( 'style' ).css( { 'height': height + 'px', } );
+								var header_width = jQuery( 'header' ).width();
+								var ratio = <?php echo $ratio; ?>;
+								var height = ( header_width * ratio ).toFixed( 0 );
+								jQuery( 'header' ).removeAttr( 'style' ).css( { 'height': height + 'px', } );
 		<?php
 		if ( get_header_textcolor() == 'blank' ) {
 			?>
-			                    jQuery( 'header' ).css( 'cursor', 'pointer' ).click( function () {
+									jQuery( 'header' ).css( 'cursor', 'pointer' ).click( function () {
 
-			                        location.href = "<?php echo home_url(); ?>";
+										location.href = "<?php echo home_url(); ?>";
 
-			                    } );
+									} );
 			<?php
 		}
 		?>
-		                } else {
+							} else {
 
-		                    var header_width = jQuery( 'header' ).width();
-		                    var ratio = <?php echo $ratio; ?>;
-		                    var height = ( header_width * ratio ).toFixed( 0 );
+								var header_width = jQuery( 'header' ).width();
+								var ratio = <?php echo $ratio; ?>;
+								var height = ( header_width * ratio ).toFixed( 0 );
 		<?php
 		$url = get_header_image();
 
@@ -1428,7 +1469,7 @@ if ( !function_exists( 'enough_small_device_helper' ) ) {
 			$url = get_random_header_image();
 		}
 		?>
-		                    image_exists = '<?php echo $url; ?>';
+								image_exists = '<?php echo $url; ?>';
 		<?php
 		$uploads	 = wp_upload_dir();
 		$file_name	 = basename( $url );
@@ -1443,68 +1484,68 @@ if ( !function_exists( 'enough_small_device_helper' ) ) {
 
 		$path = $uploads[ 'path' ] . $child_path;
 		?>
-		                    if ( image_exists ) {
-		                        // jQuery('header').removeAttr('style').css({'background-image':'url('+ image_exists + ')', 'min-height': height + 'px','background-repeat':'no-repeat','background-size':'cover'});
-		                        jQuery( 'header' ).removeAttr( 'style' ).css( { 'min-height': height + 'px', 'background-repeat': 'no-repeat', 'background-size': 'cover' } );
-		                    }
+								if ( image_exists ) {
+									// jQuery('header').removeAttr('style').css({'background-image':'url('+ image_exists + ')', 'min-height': height + 'px','background-repeat':'no-repeat','background-size':'cover'});
+									jQuery( 'header' ).removeAttr( 'style' ).css( { 'min-height': height + 'px', 'background-repeat': 'no-repeat', 'background-size': 'cover' } );
+								}
 
 		<?php
 		if ( get_header_textcolor() == 'blank' ) {
 			?>
-			                    jQuery( 'header' ).css( 'cursor', 'pointer' ).click( function () {
+									jQuery( 'header' ).css( 'cursor', 'pointer' ).click( function () {
 
-			                        location.href = "<?php echo home_url(); ?>";
+										location.href = "<?php echo home_url(); ?>";
 
-			                    } );
+									} );
 			<?php
 		}
 		?>
-		                }
-		                if ( width < 1920 ) {
-		                    body_class = 'enough-w-wuxga';
-		                }
-		                if ( width < 1600 ) {
-		                    body_class = 'enough-w-uxga';
-		                }
-		                if ( width < 1401 ) {
-		                    body_class = 'enough-w-sxga-plus';
-		                }
-		                if ( width < 1281 ) {
-		                    body_class = 'enough-w-sxga';
-		                }
-		                if ( width < 1025 ) {
-		                    body_class = 'enough-w-xga';
-		                }
-		                if ( width < 801 ) {
-		                    body_class = 'enough-w-svga';
-		                }
-		                if ( width < 641 ) {
-		                    body_class = 'enough-w-vga';
-		                }
-		                if ( width < 481 ) {
-		                    body_class = 'enough-w-iphone';
-		                }
-		                if ( width < 321 ) {
-		                    body_class = 'enough-w-qvga';
-		                }
-		                if ( width < 241 ) {
-		                    body_class = 'enough-w-keitai';
-		                }
-		                /* remove old width[0-9]+ class*/
-		                var element = jQuery( "body" );
-		                var classes = element.attr( 'class' ).split( /\s+/ );
+							}
+							if ( width < 1920 ) {
+								body_class = 'enough-w-wuxga';
+							}
+							if ( width < 1600 ) {
+								body_class = 'enough-w-uxga';
+							}
+							if ( width < 1401 ) {
+								body_class = 'enough-w-sxga-plus';
+							}
+							if ( width < 1281 ) {
+								body_class = 'enough-w-sxga';
+							}
+							if ( width < 1025 ) {
+								body_class = 'enough-w-xga';
+							}
+							if ( width < 801 ) {
+								body_class = 'enough-w-svga';
+							}
+							if ( width < 641 ) {
+								body_class = 'enough-w-vga';
+							}
+							if ( width < 481 ) {
+								body_class = 'enough-w-iphone';
+							}
+							if ( width < 321 ) {
+								body_class = 'enough-w-qvga';
+							}
+							if ( width < 241 ) {
+								body_class = 'enough-w-keitai';
+							}
+							/* remove old width[0-9]+ class*/
+							var element = jQuery( "body" );
+							var classes = element.attr( 'class' ).split( /\s+/ );
 
-		                var pattern = /^enough-w/;
+							var pattern = /^enough-w/;
 
-		                for ( var i = 0; i < classes.length; i++ ) {
-		                    var className = classes[i];
+							for ( var i = 0; i < classes.length; i++ ) {
+								var className = classes[i];
 
-		                    if ( className.match( pattern ) ) {
-		                        element.removeClass( className );
-		                    }
-		                }
+								if ( className.match( pattern ) ) {
+									element.removeClass( className );
+								}
+							}
 
-		                jQuery( 'body' ).addClass( body_class );
+							jQuery( 'body' ).addClass( body_class );
 		<?php
 		/**
 		 * Toggle for .menu-header
@@ -1512,39 +1553,39 @@ if ( !function_exists( 'enough_small_device_helper' ) ) {
 		 */
 		?>
 
-		                if ( width > 480 ) {
-		                    jQuery( '.enough-toggle' ).show();
-		                    jQuery( '.enough-toggle.enough-toggle-title' ).hide();
-		                    if ( jQuery( 'ul' ).is( '.toggle-navigation' ) ) {
-		                        jQuery( ".menu-header" ).unwrap();
-		                        jQuery( "enough-toggle enough-toggle-title" ).remove();
-		                    }
-		                    jQuery( '.widgettitle .marker' ).remove();
-		                    jQuery( '.toggle-title .marker' ).remove();
-		                    jQuery( '.widget ul' ).show();
-		                    jQuery( '.toggle-category,.toggle-tag' ).show();
-		                    if ( jQuery( 'ul' ).is( '.widget-container-wrapper' ) ) {
-		                        jQuery( '.menu-header-container,.menu-wplook-main-menu-container' ).unwrap();
-		                    }
-		                    if ( jQuery( 'ul' ).is( '.tagcloud-wrapper' ) ) {
-		                        jQuery( 'div.tagcloud' ).unwrap();
-		                    }
+							if ( width > 480 ) {
+								jQuery( '.enough-toggle' ).show();
+								jQuery( '.enough-toggle.enough-toggle-title' ).hide();
+								if ( jQuery( 'ul' ).is( '.toggle-navigation' ) ) {
+									jQuery( ".menu-header" ).unwrap();
+									jQuery( "enough-toggle enough-toggle-title" ).remove();
+								}
+								jQuery( '.widgettitle .marker' ).remove();
+								jQuery( '.toggle-title .marker' ).remove();
+								jQuery( '.widget ul' ).show();
+								jQuery( '.toggle-category,.toggle-tag' ).show();
+								if ( jQuery( 'ul' ).is( '.widget-container-wrapper' ) ) {
+									jQuery( '.menu-header-container,.menu-wplook-main-menu-container' ).unwrap();
+								}
+								if ( jQuery( 'ul' ).is( '.tagcloud-wrapper' ) ) {
+									jQuery( 'div.tagcloud' ).unwrap();
+								}
 
-		                } else {
+							} else {
 		<?php
 		if ( basename( wp_get_referer() ) !== 'customize.php' and WP_DEBUG == true ) {
 			?>
-			                    if ( !jQuery( 'ul' ).is( '.toggle-navigation' ) ) {
-			                        location.reload();
-			                    }
+									if ( !jQuery( 'ul' ).is( '.toggle-navigation' ) ) {
+										location.reload();
+									}
 			<?php
 		}
 		?>
-		                }
+							}
 		<?php
 		if ( $enough_options[ 'enough_use_slider' ] !== 'yes' ) {
 			?>
-			                jQuery( 'script #enough-slider-js, style #enough-slider-css' ).remove();
+								jQuery( 'script #enough-slider-js, style #enough-slider-css' ).remove();
 			<?php
 		}
 
@@ -1553,21 +1594,21 @@ if ( !function_exists( 'enough_small_device_helper' ) ) {
 		 * Controll childlen menu show right or left side.
 		 */
 		?>
-		                jQuery( ".menu-header" ).mousemove( function ( e ) {
-		                    var menu_item_position = e.pageX;
+							jQuery( ".menu-header" ).mousemove( function ( e ) {
+								var menu_item_position = e.pageX;
 		<?php /* Position check
 		  jQuery(".result:first").text(menu_item_position);
 		  jQuery(".result-w").text(header_width); */
 		?>
-		                    if ( header_width - 100 < menu_item_position ) {
-		                        jQuery( '.menu-header .children .children' ).addClass( 'left' );
-		                        jQuery( '.menu-header .sub-menu .sub-menu' ).addClass( 'left' );
-		                    } else if ( width / 10 > menu_item_position ) {
-		                        jQuery( '.menu-header .children .children' ).removeClass( 'left' );
-		                        jQuery( '.menu-header .sub-menu .sub-menu' ).removeClass( 'left' );
-		                    }
-		                } );
-		            }
+								if ( header_width - 100 < menu_item_position ) {
+									jQuery( '.menu-header .children .children' ).addClass( 'left' );
+									jQuery( '.menu-header .sub-menu .sub-menu' ).addClass( 'left' );
+								} else if ( width / 10 > menu_item_position ) {
+									jQuery( '.menu-header .children .children' ).removeClass( 'left' );
+									jQuery( '.menu-header .sub-menu .sub-menu' ).removeClass( 'left' );
+								}
+							} );
+						}
 		<?php
 		if ( $is_IE ) {
 			/**
@@ -1575,17 +1616,17 @@ if ( !function_exists( 'enough_small_device_helper' ) ) {
 			 *
 			 */
 			?>
-			            jQuery( 'article img' ).removeAttr( "height" ).removeAttr( "width" );
+							jQuery( 'article img' ).removeAttr( "height" ).removeAttr( "width" );
 			<?php
 		}
 		?>
-		            fontResize();
-		            jQuery( window ).resize( function () {
-		                fontResize();
-		            } );
+						fontResize();
+						jQuery( window ).resize( function () {
+							fontResize();
+						} );
 
-		        } );
-		    } )( jQuery );
+					} );
+				} )( jQuery );
 		</script>
 		<?php
 	}
@@ -2595,12 +2636,12 @@ if ( !function_exists( "enough_slider" ) ) {
 		if ( $enough_options[ 'enough_use_slider' ] == 'yes' and ! empty( $upload_image ) ) {
 			?>
 			<script type="text/javascript" id="enough-slider-js">
-			    jQuery( function () {
+				jQuery( function () {
 			<?php $last = end( $upload_image ); ?>
-			        jQuery( 'header' ).crossSlide( {
-			        sleep: <?php echo $sleep; ?>,
-			            fade: <?php echo $fade; ?>
-			        }, [<?php
+					jQuery( 'header' ).crossSlide( {
+					sleep: <?php echo $sleep; ?>,
+						fade: <?php echo $fade; ?>
+					}, [<?php
 			foreach ( $upload_image as $value ) {
 				if ( $value == $last ) {
 					$separator = '';
@@ -2608,9 +2649,9 @@ if ( !function_exists( "enough_slider" ) ) {
 					$separator = ',';
 				}
 				?>
-				        {src: '<?php echo $value[ 'url' ]; ?>' }<?php echo $separator; ?><?php } ?>
-			        ] )
-			    } );
+						{src: '<?php echo $value[ 'url' ]; ?>' }<?php echo $separator; ?><?php } ?>
+					] )
+				} );
 			</script>
 			<?php
 		}
@@ -2618,12 +2659,12 @@ if ( !function_exists( "enough_slider" ) ) {
 		if ( $enough_options[ 'enough_use_slider' ] == 'yes' and empty( $upload_image ) ) {
 			?>
 			<script type="text/javascript" id="enough-slider-js">
-			    jQuery( function () {
-			        jQuery( 'header' ).crossSlide( {
-			            sleep: <?php echo $sleep; ?>,
-			            fade: <?php echo $fade; ?>
-			        }, [ { src: '<?php echo get_template_directory_uri(); ?>/images/please-upload.jpg' }, { src: '<?php echo get_template_directory_uri(); ?>/images/headers/wp3.jpg' } ] )
-			    } );
+				jQuery( function () {
+					jQuery( 'header' ).crossSlide( {
+						sleep: <?php echo $sleep; ?>,
+						fade: <?php echo $fade; ?>
+					}, [ { src: '<?php echo get_template_directory_uri(); ?>/images/please-upload.jpg' }, { src: '<?php echo get_template_directory_uri(); ?>/images/headers/wp3.jpg' } ] )
+				} );
 			</script>
 			<?php
 		}
@@ -2634,7 +2675,34 @@ if ( !function_exists( "enough_slider" ) ) {
  *
  *
  */
-if ( !function_exists( 'enough_customize_register' ) and $enough_wp_version >= '3.4' ) {
+if( class_exists('WP_Customize_Control') && ! class_exists('raindrops_Customize_Control_Multiple_Select') ) {
+	
+	class raindrops_Customize_Control_Multiple_Select extends WP_Customize_Control {
+
+		public $type = 'multiple-select';
+
+		public function render_content() {
+
+			if ( empty( $this->choices ) ) {
+				return;
+			}
+			?>
+				<label>
+					<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+					<select <?php $this->link(); ?> multiple="multiple" style="height: 11em;width:100%">
+						<?php
+							foreach ( $this->choices as $value => $label ) {
+								$selected = ( in_array( $value, $this->value() ) ) ? selected( 1, 1, false ) : '';
+								echo '<option value="' . esc_attr( $value ) . '"' . $selected . '>' . $label . '</option>';
+							}
+						?>
+					</select>
+				</label>
+			<?php
+		}
+	}
+}
+if ( !function_exists( 'enough_customize_register' ) ) {
 
 	function enough_customize_register( $wp_customize ) {
 
@@ -2643,6 +2711,19 @@ if ( !function_exists( 'enough_customize_register' ) and $enough_wp_version >= '
 			, 'priority'	 => 33,
 		)
 		);
+		
+		$wp_customize->add_section( 'enough_post_formats_setting'
+		, array( 'title'		 => __( 'Enable Post Formats', 'enough' )
+			, 'priority'	 => 32,
+		)
+		);
+		$wp_customize->add_setting( 'enough_theme_settings[enough_enable_post_formats]', array(
+			'default'			 => 'default',
+			'type'				 => 'option',
+			'capability'		 => 'edit_theme_options',
+			'sanitize_callback'	 => 'enough_enable_post_formats_validate'
+		) );
+		
 		$wp_customize->add_setting( 'enough_theme_settings[enough_use_slider]', array(
 			'default'			 => 'no',
 			'type'				 => 'option',
@@ -2673,24 +2754,47 @@ if ( !function_exists( 'enough_customize_register' ) and $enough_wp_version >= '
 			'capability'		 => 'edit_theme_options',
 			'sanitize_callback'	 => 'enough_approach_type_validate'
 		) );
+		
+		$wp_customize->add_control(
+			new raindrops_Customize_Control_Multiple_Select(
+			$wp_customize,		
+			'enough_enable_post_formats', array(
+			'label'		 => __( 'Please choose your favorite Post Formats( Multiple selection possible )', 'enough' ),
+			'section'	 => 'enough_post_formats_setting',
+			'settings'	 => 'enough_theme_settings[enough_enable_post_formats]',
+			'type'		 => 'select',
+			'choices'	 => array( 
+							'default'   => 'No need Post Format',
+							'chat'		 => 'Post Format chat',
+							'gallery'	 => 'Post Format Gallery',
+							'image'		 => 'Post Format Image',
+							'link'		 => 'Post Format Link',
+							'quote'		 => 'Post Format Quote',
+							'status'	 => 'Post Format Status',
+							'video'		 => 'Post Format Video',
+							),
+											)
+			)
+		);
+		$enough_choices_array = array(
+				'default'	 => 'Default',
+				'author'	 => 'Author',
+				'blank'		 => 'Blank',
+				'categories' => 'Categories',
+				);
+		$enough_post_formats  = get_theme_support( 'post-formats' );
+		
+		foreach( $enough_post_formats[0] as $key => $val ) {
+
+			$enough_choices_array[ $val ] = enough_get_post_format_string($val) ;
+		}
+
 		$wp_customize->add_control( 'enough_approach_type', array(
 			'label'		 => __( 'Home Page Type', 'enough' ),
 			'section'	 => 'enough_theme_setting',
 			'settings'	 => 'enough_theme_settings[enough_approach_type]',
 			'type'		 => 'radio',
-			'choices'	 => array(
-				'default'	 => 'Default',
-				'author'	 => 'Author',
-				'blank'		 => 'Blank',
-				'categories' => 'Categories',
-				'chat'		 => 'Post Format Chat',
-				'gallery'	 => 'Post Format Gallery',
-				'image'		 => 'Post Format Image',
-				'link'		 => 'Post Format Link',
-				'quote'		 => 'Post Format Quote',
-				'status'	 => 'Post Format Status',
-				'video'		 => 'Post Format Video',
-			)
+			'choices'	 => $enough_choices_array,
 		)
 		);
 		$wp_customize->add_control( 'enough_post_one_column_bottom_sidebar', array(
@@ -2733,6 +2837,8 @@ if ( !function_exists( 'enough_customize_register' ) and $enough_wp_version >= '
 	}
 
 }
+
+
 /**
  *
  *
@@ -3296,5 +3402,35 @@ if ( !function_exists( 'enough_get_header' ) ) {
 						return $html;
 					}
 
+				}
+
+				function enough_custom_post_format_links_button( $echo = true ) {
+
+					$enough_post_formats	= get_theme_support( 'post-formats' );
+					$enough_home_template	= enough_theme_option( 'enough_approach_type' );
+
+					if( ! $enough_post_formats ) {
+						
+						return;
+					}
+					$html_wrapper = '<ul id="custom-post-format-links-button">%1$s</ul>';
+					$html	 = '	<li class="%3$s"><a href="%1$s"><span>%2$s</span></a></li>';
+					$result	 = '';
+
+					foreach ( $enough_post_formats[ 0 ] as $format ) {
+						
+						if ( $enough_home_template !== $format ) {
+							$result .= sprintf( $html, 
+											esc_url( get_post_format_link( $format ) ), 
+											esc_html( enough_get_post_format_string( $format ) ), 
+											esc_attr( $format ) );
+						}
+					}
+					
+					if ( $echo !== true ) {
+						return sprintf( $html_wrapper, $result );
+					} else {
+						printf( $html_wrapper, $result );
+					}	
 				}
 				?>

@@ -51,13 +51,9 @@ printf( '<div class="posts-nav-link">%1$s</div>', get_posts_nav_link( array( 'se
 if ( ! has_post_format( 'image' ) &&  enough_theme_option('enough_post_one_column_bottom_sidebar') !== 'yes' ) {
 
     enough_dinamic_sidebar( 'sidebar-1', !is_page() );
-} else {?>
-	<br class="clear" />
-	<?php
-}
-
-enough_the_footer();
-?>
+}?>
+<br class="clear" />
+<?php enough_the_footer(); ?>
 </div>
 </div>
 <?php wp_footer(); ?>

@@ -24,30 +24,35 @@ get_header();
 
     $categories = get_categories( $args );
 
-    $html = '<div style=""><a style="" href="%1$s" title="%2$s" >%3$s</a></div>';
-
+    $html = '<div class="%4$s"><a href="%1$s" title="%2$s" >%3$s</a></div>';
+	$initial_compare = '';
+	$dummy_div_count = 0;
+	$i = 1;
     foreach ( $categories as $category ) {
+		
 
-        printf( $html, get_category_link( $category->term_id ), sprintf( __( "View all posts in %s", 'enough' ), $category->name ), $category->name
-        );
+		$initial = mb_substr( $category->name  ,0 ,1 );
+			
+		if( mb_strtolower( $initial_compare ) == mb_strtolower( $initial ) ) {
+			$initial_class = 'initial-category initial-'. $initial;
+		}else{
+			$initial_class = 'initial-category first initial-'. $initial;
+			
+		}
+		
+		$category_name = '<span>'.$initial.'</span>';	
+		$category_name .= mb_substr( $category->name,1 );
+		
+		
+        printf( $html, get_category_link( $category->term_id ), sprintf( __( "View all posts in %s", 'enough' ), $category->name ),  $category_name 
+        , 'category-'.$category->term_id. ' '. $initial_class );
+		$initial_compare = $initial;
+		$i++;
     }
     ?>
 </article>
-<?php
-$enough_post_formats = get_theme_support( 'post-formats' );
-?>
 <aside class="custom-format-link-list-wrapper">
-    <ul id="custom-post-format-widget-link">
-        <?php
-        $html = '	<li class="%3$s"><a href="%1$s"><span>%2$s</span></a></li>';
-
-        foreach ( $enough_post_formats[ 0 ] as $format ) {
-
-            printf( $html, esc_url( get_post_format_link( $format ) ), esc_html( enough_get_post_format_string( $format ) ), esc_attr( $format )
-            );
-        }
-        ?>
-    </ul>
+	<?php  enough_custom_post_format_links_button( ); ?>
     <br class="clear" />
     <ul class="approach-widget">
         <?php

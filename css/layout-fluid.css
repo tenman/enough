@@ -592,6 +592,7 @@
         display:block;
         position:relative;
         top:-2px;
+        width:110px;
     }
     .post-format-name a.enough-comment-link span.enough-comment-string{
         position:absolute;
@@ -645,6 +646,9 @@
     .widget_archive .widgettitle,
     .widget_meta .widgettitle{
         max-width:100%;
+    }
+    .approach-categories-content .initial-category{
+        width:100%;
     }
 }
 /* from example */

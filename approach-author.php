@@ -48,21 +48,9 @@ get_header();
         }
         ?>
 </article>
-    <?php
-    $enough_post_formats = get_theme_support( 'post-formats' );
-    ?>
+
 <aside class="custom-format-link-list-wrapper">
-    <ul id="custom-post-format-widget-link">
-<?php
-$html = '	<li class="%3$s"><a href="%1$s"><span>%2$s</span></a></li>';
-
-foreach ( $enough_post_formats[ 0 ] as $format ) {
-
-    printf( $html, esc_url( get_post_format_link( $format ) ), esc_html( enough_get_post_format_string( $format ) ), esc_attr( $format )
-    );
-}
-?>
-    </ul>
+    <?php  enough_custom_post_format_links_button( );?>
     <br class="clear" />
     <ul class="approach-widget">
         <?php

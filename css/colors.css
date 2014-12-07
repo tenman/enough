@@ -6,6 +6,7 @@
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * @package Enough
  */
+
 nav #wp-calendar caption,
 .archives-title-text,
 h1,
@@ -175,10 +176,10 @@ blockquote{
        border-bottom:1px solid rgba(222,222,222,.6);*/
 }
 .page-template-blog-php .enough-pagenate-links .current,
-#custom-post-format-widget-link li a{
+#custom-post-format-links-button li a{
     background:rgba(222,222,222,.5);
 }
-#custom-post-format-widget-link li a span{
+#custom-post-format-links-button li a span{
     color: #777;
 }
 
@@ -225,28 +226,28 @@ blockquote{
         background:rgba(222,222,222,.1);
         border-bottom:1px solid rgba(100,100,100,.2);
         border-top:1px solid rgba(100,100,100,.2);
-    }	
+    }
+    .enough-icon .posted-format-name a.enough-comment-link,
     .posted-on a.enough-comment-link{
         background:rgba(222,222,222,.1);
         border:1px solid rgba(100,100,100,.3);
     }
+    .enough-icon .posted-format-name a.enough-comment-link,
     .enough-icon .posted-on a.enough-comment-link{
         background:none;
         border:none;
     }
-    .posted-on a.enough-comment-link:hover{
-        background:rgba(222,222,222,.3);
-        border:1px solid rgba(100,100,100,.3);
-    }
+    .enough-icon .posted-format-name a.enough-comment-link:hover,
     .enough-icon .posted-on a.enough-comment-link:hover{
         background:none;
         border:none;
     }
+    .enough-icon .posted-format-name a,
     .posted-on a{
         background:none;
         color:#000;
     }
-
+    .enough-icon .posted-format-name a.enough-comment-link,
     .posted-on a.enough-comment-link{
         -moz-border-radius: 5px;
         border-radius: 5px;

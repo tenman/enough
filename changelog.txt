@@ -1,4 +1,9 @@
 Changelog -----------------------------------
+version:1.07
+	Users can choose the post type at Customizer
+
+----------------------------------------------
+Changelog -----------------------------------
 version:1.06
 	Modify for WordPress 4.1
 		Add register_default_headers()
