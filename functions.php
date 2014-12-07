@@ -1856,7 +1856,7 @@ if ( !function_exists( 'enough_approach_type_validate' ) ) {
 
 		$formats = get_theme_support( 'post-formats' );
 
-		if ( array_search( $input, $formats[ 0 ] ) !== false ) {
+		if ( isset(  $formats[0] ) && is_array( $formats[0] ) && array_search( $input, $formats[ 0 ] ) !== false ) {
 
 			return $input;
 		}
@@ -2784,9 +2784,12 @@ if ( !function_exists( 'enough_customize_register' ) ) {
 				);
 		$enough_post_formats  = get_theme_support( 'post-formats' );
 		
-		foreach( $enough_post_formats[0] as $key => $val ) {
+		if ( isset(  $enough_post_formats[0] ) && is_array( $enough_post_formats[0] ) ) {
+			
+			foreach( $enough_post_formats[0] as $key => $val ) {
 
-			$enough_choices_array[ $val ] = enough_get_post_format_string($val) ;
+				$enough_choices_array[ $val ] = enough_get_post_format_string($val) ;
+			}
 		}
 
 		$wp_customize->add_control( 'enough_approach_type', array(

@@ -1,4 +1,8 @@
 Changelog -----------------------------------
+version:1.08
+	Fixed Bug
+----------------------------------------------
+Changelog -----------------------------------
 version:1.07
 	Users can choose the post type at Customizer
 
