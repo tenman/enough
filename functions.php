@@ -2828,7 +2828,7 @@ if ( class_exists( 'WP_Customize_Control' ) && !class_exists( 'raindrops_Customi
 
 		public function render_content() {
 
-			if ( empty( $this->choices ) ) {
+			if ( empty( $this->choices ) || ! is_array( $this->choices ) ) {
 				return;
 			}
 			?>
