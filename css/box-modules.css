@@ -762,7 +762,8 @@ footer address{
 .enough-pinup-entries{
     position:relative;
 }
-.enough-pinup-entries h2{
+.enough-pinup-entries .pinup-attachment h2,
+.enough-pinup-entries .pinup-featured h2{
     position:absolute;
     top:0;
     left:0;
@@ -773,7 +774,8 @@ footer address{
    
     background:#000;
 }
-.en_US .enough-pinup-entries h2{
+.en_US .enough-pinup-entries .pinup-attachment h2,
+.en_US .enough-pinup-entries .pinup-featured h2{
     text-transform: uppercase;
 }
 .enough-pinup-entries img{

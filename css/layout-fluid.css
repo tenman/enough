@@ -400,6 +400,9 @@
     .toggle-tag{
         font-size:1.2rem;
     }
+    article .post-format-name{
+        top:-2em;
+    }
  
 }
 @media screen and (min-width: 481px){

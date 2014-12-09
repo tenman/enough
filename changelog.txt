@@ -1,4 +1,8 @@
 Changelog -----------------------------------
+version:1.09
+
+----------------------------------------------
+Changelog -----------------------------------
 version:1.08
 	Fixed Bug
 		Add returning value check , get_theme_support( 'post-formats' )

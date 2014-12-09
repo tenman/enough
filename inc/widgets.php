@@ -340,19 +340,22 @@ if ( !class_exists( 'enough_recent_post_group_by_category_widget' ) ) {
                 $num            = rand( 0, $count - 1 );
                 $instance['id'] = $instance['id'][$num];
             }
-            if ( isset( $instance['inline_style'] ) ) {
+            if ( isset( $instance['inline_style'] ) && ! empty( $instance['inline_style'] ) ) {
 
                 $style = str_replace( PHP_EOL, '', $instance['inline_style'] );
-                echo '<div style="' . $style . '">';
+                echo '<div style="' . $style . '" class=" type-'. esc_attr( $instance['content'] ). '>';
+				?><div id="post-<?php the_ID(); ?>" <?php post_class('pinup-'. esc_attr( $instance['content'] ) ); ?> style="<?php echo $style; ?>"><?php
             } else {
 
-                echo '<div>';
+               // echo '<div class="type-'. esc_attr( $instance['content'] ). '>';
+				?><div id="post-<?php the_ID(); ?>" <?php post_class('pinup-'. esc_attr( $instance['content'] ) ); ?>><?php
+				
             }
             if ( ( $instance['content'] == 'content' || $instance['content'] == 'excerpt' ) && !is_single( $instance['id'] ) ) {
 
                 $posts = get_posts( array( 'include' => absint( $instance['id'] ), 'post_type' => sanitize_key( $instance['type'] ) ) );
 
-                $html_title = '<h2 class="title" id="approach-%1$s"><a href="%2$s">%3$s</a></h2>';
+                $html_title = '<h2 class="entry-title type-'. esc_attr( $instance['content'] ). '" id="approach-%1$s"><a href="%2$s">%3$s</a></h2>';
 
                 foreach ( $posts as $post ) {
                     setup_postdata( $post );
