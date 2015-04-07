@@ -52,14 +52,14 @@ if ( have_posts() ) {
             get_template_part( 'content', $enough_post_format );
         }
     }//endwhile
+
 } else {
 
     enough_not_found();
 }
-/**
- * list of posts Navigation
- */
-enough_next_prev_links( 'nav-below' );
+
+?><div class="posts_pagination_wrapper"><?php 	 the_posts_pagination();?></div>
+<?php
 /**
  * Sidebar
  */

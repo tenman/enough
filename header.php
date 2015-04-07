@@ -2,9 +2,7 @@
 <html <?php language_attributes(); ?>>
     <head>
         <meta charset="<?php bloginfo( 'charset' ); ?>" />
-        <title><?php wp_title( '|' ); ?></title>
-	
-		<?php wp_head(); ?>
+      	<?php wp_head(); ?>
     </head>
 
     <body <?php body_class(); ?>>
@@ -37,15 +35,21 @@
 				 * Horizontal menu bar
 				 */
 				if ( !has_nav_menu( 'primary' ) ) {
-					$args = array( 'menu_class'		 => 'menu-header'
-						, 'theme_location'	 => 'primary'
-						, 'container_class'	 => 'menu-header'
-						, 'echo'				 => true );
-					wp_nav_menu( $args );
+					
+					$args = array(
+							'depth'       => 0,
+							'sort_column' => 'menu_order, post_title',
+							'menu_class'  => 'menu-header',
+							'exclude'     => '',
+							'echo'        => true,
+							'show_home'   => false );
+					
+					wp_page_menu( $args );				
 				} else {
-					$args = array( 'theme_location'	 => 'primary'
-						, 'container_class'	 => 'menu-header'
-						, 'echo'				 => true );
+					$args = array( 
+							'theme_location'	 => 'primary', 
+							'container_class'	 => 'menu-header',
+							'echo'				 => true );
 					wp_nav_menu( $args );
 				}
 				enough_nav_menu_after();

@@ -7,7 +7,7 @@
         </div>
         <div class="enough-next-prev-links">
             <?php
-            enough_next_prev_links( 'nav-below' );
+            enough_next_prev_links( 'nav-status' );
             ?>    </div>
         <div class="enough_prev_next_post">
             <?php enough_prev_next_post( 'nav-below' ); ?>

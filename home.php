@@ -56,4 +56,5 @@ if ( isset( $enough_options[ 'enough_post_one_column_bottom_sidebar' ] ) && $eno
 		get_template_part( 'approach', $enough_home_template );
 	}
 
+
 ?>

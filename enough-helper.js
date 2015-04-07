@@ -15,7 +15,7 @@
 
                             var window_height = jQuery( window ).innerHeight();
                             if ( window_height - 100 < e.pageY - jQuery( this ).scrollTop() ) {
-                                    jQuery( 'address' ).css( 'margin-bottom', '75px' );
+                                    jQuery( 'body:not(.approach-blank) address' ).css( 'margin-bottom', '75px' );
                                     jQuery( '.enough-status-bar' ).show();
 
 

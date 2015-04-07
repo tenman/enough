@@ -126,7 +126,7 @@ if ( is_tax() or is_front_page() ) {
         ?>
         <br class="clear"  />
         <?php
-        enough_prev_next_post( 'nav-below' );
+        enough_prev_next_post( 'nav-status' );
 
         if ( is_singular() ) {
 

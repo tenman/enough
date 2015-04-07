@@ -378,6 +378,7 @@
     .gecko.enough-w-iphone .site-description{
 
     }
+   
     .enough-w-iphone .toggle-navigation{
         margin:50px 0 0;
         padding:0;
@@ -389,6 +390,10 @@
     .enough-w-iphone .enough-toggle-title span{
         border:1px solid #ccc;
         padding:10px;
+    }
+    .approach-blank .toggle-navigation{
+        margin:140px 0 0;
+        padding:0; 
     }
     .post-format-name a.enough-comment-link em{
         position:relative;

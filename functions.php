@@ -16,7 +16,15 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 include_once( get_template_directory() . '/inc/widgets.php');
+/**
+ * enough Gallery Presentation
+ * value false shows WordPress Standard Gallery Style.
+ * 
+ */
+if( ! isset( $enough_extend_galleries ) ) {
 
+	$enough_extend_galleries = true;
+}
 /**
  * USE genericons or not
  * SET enough-icon or enouth-text
@@ -362,8 +370,6 @@ if ( !function_exists( 'enough_theme_setup' ) ) {
 			'after_title'	 => '</h2>'
 		) );
 
-		add_filter( 'wp_title', 'enough_site_title' );
-
 		add_theme_support( 'automatic-feed-links' );
 
 		add_theme_support( 'post-thumbnails' );
@@ -432,6 +438,20 @@ if ( !function_exists( 'enough_theme_setup' ) ) {
 
 		add_filter( 'embed_oembed_html', 'enough_oembed_filter', 99, 4 );
 		add_action( 'wp_enqueue_scripts', 'enough_load_small_device_helper' );
+		
+		add_theme_support( 'title-tag' );
+		
+		if ( ! function_exists( '_wp_render_title_tag' ) ) {
+		/**
+		 * WordPress4.1 Backwards compatibility
+		 * @since 1.265
+		 */
+			function enough_render_title() {
+				?><title><?php wp_title( '|', true, 'right' ); ?></title><?php
+			}
+			add_action( 'wp_head', 'enough_render_title' );
+		}
+		add_theme_support( 'html5', array( 'gallery', 'caption' ) );
 		do_action( 'enough_setup_after' );
 	}
 
@@ -613,6 +633,8 @@ if ( !function_exists( "enough_enqueue_scripts_styles" ) ) {
 		}
 
 		wp_enqueue_style( 'styles', get_stylesheet_uri(), array( 'enough_approach' ), $enough_version );
+		$gallery_style = enough_gallerys_css();
+		wp_add_inline_style( 'styles', $gallery_style );
 
 		wp_enqueue_style( 'enough-web-font', apply_filters( 'enough_web_font', '//fonts.googleapis.com/css?family=Ubuntu:400,700' ) );
 
@@ -1336,7 +1358,7 @@ if ( !function_exists( 'enough_load_small_device_helper' ) ) {
 			'enough_title_length'			 => round( strlen( get_bloginfo( 'name' ) ) ),
 			'enough_description_length'		 => round( strlen( get_bloginfo( 'description' ) ), 0 ),
 			'enough_header_image_uri'		 => get_header_image(),
-			'enough_image_exists'			 => get_header_image(), /* 重複 */
+			'enough_image_exists'			 => get_header_image(), 
 			'enough_options'				 => enough_theme_option( 'defaults' ),
 			'uploads'						 => wp_upload_dir(),
 
@@ -2820,9 +2842,9 @@ if ( !function_exists( 'enough_admin_header_style' ) ) {
  *
  *
  */
-if ( class_exists( 'WP_Customize_Control' ) && !class_exists( 'raindrops_Customize_Control_Multiple_Select' ) ) {
+if ( class_exists( 'WP_Customize_Control' ) && !class_exists( 'enough_Customize_Control_Multiple_Select' ) ) {
 
-	class raindrops_Customize_Control_Multiple_Select extends WP_Customize_Control {
+	class enough_Customize_Control_Multiple_Select extends WP_Customize_Control {
 
 		public $type = 'multiple-select';
 
@@ -2903,7 +2925,7 @@ if ( class_exists( 'WP_Customize_Control' ) && !class_exists( 'raindrops_Customi
 				) );
 
 				$wp_customize->add_control(
-				new raindrops_Customize_Control_Multiple_Select(
+				new enough_Customize_Control_Multiple_Select(
 				$wp_customize, 'enough_enable_post_formats', array(
 					'label'		 => __( 'Please choose your favorite Post Formats( Multiple selection possible )', 'enough' ),
 					'section'	 => 'enough_post_formats_setting',
@@ -3099,7 +3121,6 @@ if ( !function_exists( 'enough_get_header' ) ) {
 			<html <?php language_attributes(); ?>>
 				<head>
 					<meta charset="<?php bloginfo( 'charset' ); ?>" />
-					<title><?php wp_title( '|' ); ?></title>
 			<?php wp_head(); ?>
 				</head>
 				<body <?php body_class(); ?>>
@@ -3121,18 +3142,25 @@ if ( !function_exists( 'enough_get_header' ) ) {
 			/**
 			 * Horizontal menu bar
 			 */
-			if ( !has_nav_menu( 'primary' ) ) {
-				$args = array( 'menu_class'		 => 'menu-header'
-					, 'theme_location'	 => 'primary'
-					, 'container_class'	 => 'menu-header'
-					, 'echo'				 => true );
-				wp_nav_menu( $args );
-			} else {
-				$args = array( 'theme_location'	 => 'primary'
-					, 'container_class'	 => 'menu-header'
-					, 'echo'				 => true );
-				wp_nav_menu( $args );
-			}
+				if ( !has_nav_menu( 'primary' ) ) {
+					
+					$args = array(
+							'depth'       => 0,
+							'sort_column' => 'menu_order, post_title',
+							'menu_class'  => 'menu-header',
+							'exclude'     => '',
+							'echo'        => true,
+							'show_home'   => false );
+					
+					wp_page_menu( $args );				
+				} else {
+					$args = array( 
+							'theme_location'	 => 'primary', 
+							'container_class'	 => 'menu-header',
+							'echo'				 => true );
+					wp_nav_menu( $args );
+				}
+				enough_nav_menu_after();
 		}//End locate_template( array( 'header.php' )
 	}
 
@@ -3496,15 +3524,6 @@ if ( !function_exists( 'enough_insert_position_guid' ) ) {
  *
  *
  */
-function enough_site_title( $title ) {
-
-	return bloginfo() . $title;
-}
-
-/**
- *
- *
- */
 if ( !function_exists( 'enough_next_prev_links' ) ) {
 
 	function enough_next_prev_links( $position = 'nav-above' ) {
@@ -3579,4 +3598,131 @@ function enough_custom_post_format_links_button( $echo = true ) {
 		printf( $html_wrapper, $result );
 	}
 }
+
+if( ! function_exists( 'enough_gallery_atts' ) ) {
+/**
+ *
+ * @global type $enough_extend_galleries
+ * @param type $out
+ * @param type $pairs
+ * @param type $atts
+ * @return gallery default attribute value
+ * @since 1.269
+ */
+	function enough_gallery_atts( $out, $pairs, $atts ) {
+		global $enough_extend_galleries;
+
+		if ( $enough_extend_galleries !== true ){
+			return  $out;
+		}
+
+		if (  empty( $atts["columns"] ) || $atts["columns"] < 4 ) {
+
+			$atts = shortcode_atts( array(
+			'size' => 'medium',
+			), $atts );
+
+			$out['size'] = $atts['size'];
+		}
+		return $out;
+	}
+}
+
+function enough_gallerys_css() {
+	
+	global $enough_extend_galleries;
+	
+		$clear_float = ".gallery,
+			.gallery-columns-1 .gallery-item:nth-child(2),\n
+			.gallery-columns-2 .gallery-item:nth-child(3),\n
+			.gallery-columns-3 .gallery-item:nth-child(4),\n
+			.gallery-columns-4 .gallery-item:nth-child(5),\n
+			.gallery-columns-5 .gallery-item:nth-child(6),\n
+			.gallery-columns-6 .gallery-item:nth-child(7),\n
+			.gallery-columns-7 .gallery-item:nth-child(8),\n
+			.gallery-columns-8 .gallery-item:nth-child(9),\n
+			.gallery-columns-9 .gallery-item:nth-child(10),\n
+			.gallery-columns-10 .gallery-item:nth-child(11){clear:both;}";
+	
+		if ( $enough_extend_galleries !== true ){
+			
+			return apply_filters( "enough_gallerys_css", $clear_float, $enough_extend_galleries );
+		}
+	
+	$doc_type = 'html5';	
+	
+	
+
+	if( $doc_type == 'xhtml' ){
+		$display_property = 'float:left;';
+	} else {
+		$display_property = 'display:inline-block;';
+	}
+
+    $enough_gallerys = ".gallery { margin: auto; width: 100%; }\n
+            .gallery .gallery-item { margin: 0px; }\n
+            .gallery .gallery-item {". $display_property. " margin-top: 10px; text-align: center; }\n
+            .gallery img { max-width:100%; }\n
+            .gallery .gallery-caption { margin-left: 0; }\n
+            .gallery br { clear: both }\n
+            .gallery-columns-1 .gallery-item{ width: 100% }\n
+            .gallery-columns-2 .gallery-item{ width: 50% }\n
+            .gallery-columns-3 .gallery-item{ width: 33.3% }\n
+            .gallery-columns-4 .gallery-item{ width: 25% }\n
+            .gallery-columns-5 .gallery-item{ width: 20% }\n
+            .gallery-columns-6 .gallery-item{ width: 16.6% }\n
+            .gallery-columns-7 .gallery-item{ width: 14.28% }\n
+            .gallery-columns-8 .gallery-item{ width: 12.5% }\n
+            .gallery-columns-9 .gallery-item{ width: 11.1% }\n
+            .gallery-columns-10 .gallery-item{ width: 9.9% }\n";
+	
+	$enough_gallerys .= $clear_float;
+	
+	/* caption text presentation */
+    $enough_gallerys .= ".gallery:after{content:'';clear:both;display:block;}.gallery-item{position:relative;}
+			.gallery figcaption{
+            box-sizing:border-box;
+            position:absolute;
+            top:-10%;
+            left:30%;
+            width:160px;
+			height:auto;
+            bottom:30%;
+            padding:1em;
+            text-align:left;
+            margin:auto;
+            background:#000;
+            color:#fff;
+			opacity:0;
+			transition:opacity .7s;
+			border-radius: 10% 0 10% 0; 
+            -moz-border-radius:10% 0 10% 0; 
+            -webkit-border-radius: 10% 0 10% 0; 
+            border: 1px solid #fff;
+            visibility:hidden;
+            transition:visibility .7s, opacity .7s;
+			-webkit-transition:visibility .7s,opacity .7s;
+            z-index:99999;
+        }
+		.gallery figure:focus figcaption{
+			visibility:visible;
+            opacity:.7;
+			transition:visibility 1s, opacity 1s;
+			-webkit-transition:visibility .7s,opacity .7s;
+            overflow:hidden;
+            margin:4px;
+			outline:0;
+		}
+        .gallery .gallery-item:hover figcaption{
+            visibility:visible;
+            opacity:.7;
+			transition:visibility 1s, opacity 1s;
+			-webkit-transition:visibility .7s,opacity .7s;
+            overflow:hidden;
+            margin:4px;
+            
+        }";
+    return apply_filters( "enough_gallerys_css", $enough_gallerys );
+}
+add_filter( 'shortcode_atts_gallery', 'enough_gallery_atts', 10, 3 );
 ?>

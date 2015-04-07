@@ -606,6 +606,8 @@ time:before,
 .enough-icon .posted-on a.enough-comment-link{
     border:none;
 }
+.enough-icon #nav-status .meta-nav,
+.enough-icon #nav-above .meta-nav,
 .enough-icon #nav-below .meta-nav{
     display:none;
 }

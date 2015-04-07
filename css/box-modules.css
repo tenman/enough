@@ -196,6 +196,10 @@
     height:auto;
     max-width:100%;
 }
+.attachment article img{
+    display:block;
+    margin:auto;
+}
 .enough-w-svga .wp-caption,
 article img{
     height:auto;
@@ -754,7 +758,7 @@ nav a:active,
 
 footer address{
     margin:100px 0 0;
-    padding:2em 0;
+    padding:1em 0;
 }
 .enough-monthly-archive-prev-next-navigation a{
     text-decoration:none; 
