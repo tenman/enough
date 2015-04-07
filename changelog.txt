@@ -1,4 +1,16 @@
 Changelog -----------------------------------
+version:1.11
+	Modify
+		add_theme_support( 'title-tag' );
+		add_theme_support( 'html5', array( 'gallery', 'caption' ) );
+		wp_add_inline_style( 'styles', $gallery_style );
+		modify wp_nav_menu()
+		add function enough_gallery_atts()
+		add function enough_gallerys_css()
+		remove wp_title( '|' );
+		Image Size Change screenshot.png from 880x660 to 1200x900
+----------------------------------------------
+Changelog -----------------------------------
 version:1.10
 	Modify
 		javascript codes change from embed header to external file
