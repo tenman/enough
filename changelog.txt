@@ -1,4 +1,13 @@
 Changelog -----------------------------------
+version:1.12
+	Fixed for Security issue.
+
+		https://make.wordpress.org/plugins/2015/04/20/fixing-add_query_arg-and-remove_query_arg-usage/
+
+		microformat changes
+			Change from url fn n to url fn nickname
+----------------------------------------------
+Changelog -----------------------------------
 version:1.11
 	Modify
 		add_theme_support( 'title-tag' );
