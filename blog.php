@@ -139,7 +139,7 @@ if ( $paging_contents ) {
 $total_content= get_posts('numberposts=-1');
 $page_total = ceil( count( $total_content ) / $posts_per_page );
 $pagination = array(
-                        'base'=> @add_query_arg( 'paged', '%#%' ),
+                        'base'=> esc_url( add_query_arg( 'paged', '%#%' ) ),
                         'format'=> '',
                         'total'=> $page_total,
                         'current'=> $paged,
@@ -148,7 +148,7 @@ $pagination = array(
                     );
  
 if( $wp_rewrite->using_permalinks( ) ){
-        $pagination['base']= user_trailingslashit( trailingslashit( remove_query_arg( 's', get_pagenum_link( 1 ) ) ) . 'page/%#%/', 'paged' );
+        $pagination['base'] = user_trailingslashit( trailingslashit( esc_url( remove_query_arg( 's', get_pagenum_link( 1 ) ) ) ). 'page/%#%/', 'paged' );
 }
  
 if( $page_total - $paged >= 0 ){

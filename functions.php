@@ -813,7 +813,7 @@ if ( !function_exists( 'enough_posted_on' ) ) {
 			}
 			$result = sprintf( __( '<span class="%1$s">Posted on</span> %2$s <span class="meta-sep">by</span> %3$s %4$s'
 			, 'enough' ), 'meta-prep meta-prep-author nav-text', sprintf( '<a href="%1$s" title="%2$s"><span class="entry-date updated nav-text">%3$s</span></a>', get_permalink(), esc_attr( get_the_time( $enough_date_format ) ), get_the_date( $enough_date_format )
-			), sprintf( '<span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" ><span class="nav-text">%3$s</span></a></span>', get_author_posts_url( get_the_author_meta( 'ID' ) ), sprintf( esc_attr__( 'View all posts by %s', 'enough' ), $author ), $author
+			), sprintf( '<span class="author vcard"><a class="url fn nickname" href="%1$s" title="%2$s" ><span class="nav-text">%3$s</span></a></span>', get_author_posts_url( get_the_author_meta( 'ID' ) ), sprintf( esc_attr__( 'View all posts by %s', 'enough' ), $author ), $author
 			), $enough_comment
 			);
 
@@ -835,7 +835,7 @@ if ( !function_exists( 'enough_posted_on' ) ) {
 
 			$author = get_the_author();
 
-			$author = sprintf( '<span class="meta-sep">by</span><span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" >%3$s</a></span>', get_author_posts_url( get_the_author_meta( 'ID' ) ), sprintf( esc_attr__( 'View all posts by %s', 'enough' ), $author ), $author
+			$author = sprintf( '<span class="meta-sep">by</span><span class="author vcard"><a class="url fn nickname" href="%1$s" title="%2$s" >%3$s</a></span>', get_author_posts_url( get_the_author_meta( 'ID' ) ), sprintf( esc_attr__( 'View all posts by %s', 'enough' ), $author ), $author
 			);
 
 			$permalink = get_permalink();
