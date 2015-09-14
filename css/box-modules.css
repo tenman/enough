@@ -785,3 +785,11 @@ footer address{
 .enough-pinup-entries img{
     border:1px solid #000;
 }
+
+.posts_pagination_wrapper .current,
+.posts_pagination_wrapper a{
+    font-size:1.5em;
+    text-decoration:none;
+    border:1px solid #ccc;
+    padding:.2em .3em;
+}

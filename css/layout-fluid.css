@@ -136,7 +136,10 @@
     }
     .toggle-category a,
     .toggle-tag a{
-       
+       display:inline-block;
+       padding:.2em .35em;
+       margin:.2em;
+       box-sizing:border-box;
     }
 
 
@@ -181,6 +184,7 @@
     .enough-monthly-archive-prev-next-navigation .alignright{
         float:right;
     }
+ 
 }
 
 @media screen and (max-width : 480px){

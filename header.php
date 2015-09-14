@@ -34,23 +34,13 @@
 				/**
 				 * Horizontal menu bar
 				 */
-				if ( !has_nav_menu( 'primary' ) ) {
-					
-					$args = array(
-							'depth'       => 0,
-							'sort_column' => 'menu_order, post_title',
-							'menu_class'  => 'menu-header',
-							'exclude'     => '',
-							'echo'        => true,
-							'show_home'   => false );
-					
-					wp_page_menu( $args );				
-				} else {
+		
 					$args = array( 
 							'theme_location'	 => 'primary', 
 							'container_class'	 => 'menu-header',
+						'fallback_cb'     => '',
 							'echo'				 => true );
 					wp_nav_menu( $args );
-				}
+
 				enough_nav_menu_after();
 				?>

@@ -322,7 +322,7 @@ if ( !class_exists( 'enough_recent_post_group_by_category_widget' ) ) {
                 'classname'   => 'enough-pinup-entries',
                 'description' => esc_html__( 'Display Pinup entries', 'enough' )
             );
-            parent::WP_Widget( false, esc_html__( 'Pinup entries [enough]', 'enough' ), $widget_ops );
+           parent::__construct( false, esc_html__( 'Pinup entries [enough]', 'enough' ), $widget_ops );
             wp_reset_query();
         }
 

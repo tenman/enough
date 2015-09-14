@@ -1,11 +1,12 @@
 ( function () {
     jQuery( function () {
          var width = jQuery( window ).width();
-
+/*
                 if ( enough_script_vars.enough_is_front == 1 && enough_script_vars.enough_use_slider == 1 ) {
 
                     jQuery( 'header' ).before( '<h1 class="site-title" style="width:80%;"><a href="' + enough_home_url +'" style="color:#' + enough_header_textcolor +'">' + enough_site_title + '<\/a><\/h1>' );
 		}
+*/
 		
 		jQuery( '.enough-status-bar' ).hide();
 
@@ -114,12 +115,12 @@
                                 var upload_image = true;
                             }
 
-                            if ( enough_script_vars.enough_use_slider == 1 ) {
+                      /*      if ( enough_script_vars.enough_use_slider == 1 ) {
                                 var use_slider = true;
                             } else {
-                                var use_slider = false;
-                            }
-                            
+                               
+                            }*/
+                             var use_slider = false;
                        //     $ratio = 0.11;
 
                             if ( enough_script_vars.enough_title_length !== 0 ) {
@@ -161,7 +162,7 @@
 		//$enough_header_image = get_custom_header();
 		//$uri				 = $enough_header_image->url;
 
-		if ( empty( enough_script_vars.enough_theme_mod_header_img ) ) { //When child theme $url empty
+		if ( ! enough_script_vars.enough_theme_mod_header_img  ) { //When child theme $url empty
 			$url = enough_header_image_uri;
 		}
 
@@ -289,7 +290,7 @@
                             if ( enough_script_vars.enough_referer_customizer == 0 && enough_script_vars.enough_debug == 1 ) {
 
                                 if ( !jQuery( 'ul' ).is( '.toggle-navigation' ) ) {
-                                        location.reload();
+                                        /*location.reload();*/
                                 }
                             }
 
@@ -338,4 +339,3 @@
 
     } );
 } )( jQuery );
-

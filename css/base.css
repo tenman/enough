@@ -169,3 +169,6 @@ nav li{
 .posted-in ul{
     margin:0;
 }
+.entry-content div{
+    margin-bottom:1em;
+}

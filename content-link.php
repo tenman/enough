@@ -4,7 +4,7 @@ global $enough_wp_version, $enough_post_format_functionality;
 $link_url         = '';
 $permalink        = get_permalink();
 $content          = get_the_content();
-$uri_detect_regex = "/(https?:\/\/)([-_.!˜*()a-zA-Z0-9;\/?:@&=+$,%#]+)/siu";
+$uri_detect_regex = "/(https?:\/\/)([-_.!*()a-zA-Z0-9;\/?:@&=+$,%#]+)/siu";
 
 $strip_tags_content  = strip_tags( $content );
 $url_removed_content = preg_replace( $uri_detect_regex, '', $strip_tags_content );

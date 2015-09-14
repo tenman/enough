@@ -6,7 +6,7 @@ if ( is_tax() ) {
     $image              = '';
     $link               = get_permalink();
     $content            = get_the_content();
-    $uri_detect_regex   = "/(<img[^\"]+\")(https?:\/\/)([-_.!˜*()a-zA-Z0-9;\/?:@&=+$,%#]+)($allow_img_filetype)/siu";
+    $uri_detect_regex   = "/(<img[^\"]+\")(https?:\/\/)([-_.!*()a-zA-Z0-9;\/?:@&=+$,%#]+)($allow_img_filetype)/siu";
 
 
     if ( empty( $image ) ) {
