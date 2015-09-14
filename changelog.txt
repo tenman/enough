@@ -3,6 +3,8 @@ version:1.13
 	Modified
 		Remove Header Image slider
 		Change link design category , tag
+		Cahnge widget constructor
+		Remove ~ from regex
 ----------------------------------------------
 Changelog -----------------------------------
 version:1.12
