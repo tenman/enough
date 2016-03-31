@@ -12,6 +12,16 @@
     min-width:240px;
     width:100%;
 }
+article > table,
+article > ol,
+article > ul,
+article .entry-title{
+    min-width:240px;
+}
+#enough-page .entry-content table[style]{
+    /* inline style limit must apply */
+    width:100%!important;
+}
 .attachment-post-thumbnail,
 .wp-post-image {
     height:auto;
@@ -63,6 +73,7 @@ address {
 blockquote {
     padding:1rem .5rem 1rem 2rem;
 }
+
 
 h1 a span {
 }
@@ -117,6 +128,7 @@ table {
     box-sizing:border-box;
     table-layout:auto;
     width:100%;
+    margin:auto;
 }
 table.auto {
     table-layout:auto;
@@ -171,4 +183,20 @@ nav li{
 }
 .entry-content div{
     margin-bottom:1em;
+}
+
+.link-to-sidebar-settings {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border:1px dotted #ccc;
+  height:480px;
+  flex-direction:column;
+}
+.link-to-sidebar-settings > div {
+  max-width: 80%;
+  text-align:center;
+}
+.rd-type-boots .raindrops-monthly-archive-prev-next-avigation .year{
+   padding-top:2em;
 }

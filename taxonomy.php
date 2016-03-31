@@ -9,7 +9,7 @@
  */
 global $enough_onecolumn_post;
 
-enough_get_header();
+get_header();
 
 print '<br class="clear" />';
 
@@ -49,11 +49,14 @@ printf( '<div class="posts-nav-link">%1$s</div>', get_posts_nav_link( array( 'se
 
 
 if ( ! has_post_format( 'image' ) &&  enough_theme_option('enough_post_one_column_bottom_sidebar') !== 'yes' ) {
-
-    enough_dinamic_sidebar( 'sidebar-1', !is_page() );
+	if( ! is_page() ){
+		get_sidebar('1');
+	}
 }?>
 <br class="clear" />
-<?php enough_the_footer(); ?>
+<?php
+get_footer();
+?>
 </div>
 </div>
 <?php wp_footer(); ?>

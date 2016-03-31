@@ -8,6 +8,7 @@
  * @package Enough
  */
 $enough_options = enough_theme_option( 'defaults' );
+
 if ( isset( $enough_options['enough_post_one_column_bottom_sidebar'] ) and
         $enough_options['enough_post_one_column_bottom_sidebar'] == 'yes' ) {
 
@@ -15,27 +16,18 @@ if ( isset( $enough_options['enough_post_one_column_bottom_sidebar'] ) and
 
     add_filter( 'post_class', 'enough_onecolumn_post' );
     add_filter( 'body_class', 'enough_onecolumn_post' );
+	
 } else {
 
     $enough_onecolumn_post = 'no';
 }
 
 get_header();
-?>
-<br class="clear" />
-<?php
-/**
- * index , archive and another list of contents page title.
- */
+
 enough_loop_title();
-/**
- * Monthly archive prev next links
- */
+
 enough_monthly_archive_prev_next_navigation();
 
-/**
- * post and page content start
- */
 if ( have_posts() ) {
 
     while ( have_posts() ) {
@@ -51,19 +43,20 @@ if ( have_posts() ) {
 
             get_template_part( 'content', $enough_post_format );
         }
-    }//endwhile
+    }
 
 } else {
-
     enough_not_found();
 }
 
-?><div class="posts_pagination_wrapper"><?php 	 the_posts_pagination();?></div>
+?><div class="posts_pagination_wrapper"><?php the_posts_pagination();?></div>
 <?php
 /**
  * Sidebar
  */
-enough_dinamic_sidebar( 'sidebar-1', !is_page() );
+if( 'no' == enough_theme_option( 'enough_post_one_column_bottom_sidebar' ) ) {
+	get_sidebar('1');
+}
 ?>
 <br class="clear vspacer-3" />
 <?php

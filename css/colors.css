@@ -200,7 +200,6 @@ blockquote{
     }
     #commentform,
     html,
-    .posted-on,
     .posted-on a.enough-comment-link:active,
     .widget_search .widgettitle,
     .widget_calendar .widgettitle,
@@ -220,13 +219,24 @@ blockquote{
         border-bottom:1px solid #ddd;
         border-top:1px solid rgba(222,222,222,.6);
     }
-    .posted-in{
-        color:#191919;
-        color:#191919;
-        background:rgba(222,222,222,.1);
-        border-bottom:1px solid rgba(100,100,100,.2);
-        border-top:1px solid rgba(100,100,100,.2);
+    .posted-on{
+         border-top:1px solid rgba(222,222,222,.6);
     }
+    .posted-in{
+       color:#191919;
+        /* color:#191919;
+        background:rgba(222,222,222,.1);*/
+        border-bottom:1px solid rgba(100,100,100,.2);
+        /*border-top:1px solid rgba(100,100,100,.2);*/
+    }
+    .posted-in a{
+        border:1px solid rgba(100,100,100,.2);
+        padding:.3em .5em;      
+    }
+    .posted-in a:hover{
+        background:rgba(222,222,222,.4);
+    }
+    
     .enough-icon .posted-format-name a.enough-comment-link,
     .posted-on a.enough-comment-link{
         background:rgba(222,222,222,.1);
@@ -271,7 +281,7 @@ address a{
 .toggle-category div{
     display:inline-block;
     border-radius: 0 2px 2px 0;
-    border:1px solid #000;
+    baclground:#fff;
    
     text-transform: uppercase;
     position:relative
@@ -282,6 +292,7 @@ address a{
 .toggle-category div{ 
     margin:.2em; 
 }
+/*
 .toggle-tag a:before{
 	content:"";
 	float:left;
@@ -313,8 +324,9 @@ address a{
 .ja .toggle-tag div,
 .ja .toggle-category div{
      text-transform: none;
-}
+}*/
 @media screen and (max-width: 640px){
+/*
 .toggle-tag a:before{
 	content:"";
 	float:left;
@@ -342,5 +354,5 @@ address a{
 	-moz-box-shadow:-1px -1px 2px #004977;
 	-webkit-box-shadow:-1px -1px 2px #004977;
 	box-shadow:-1px -1px 2px #004977;
-	}
+	}*/
 }

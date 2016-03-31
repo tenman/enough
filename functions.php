@@ -34,6 +34,13 @@ $enough_navigation_type			 = 'enough-icon';
  * @since 0.80
  */
 $enough_show_insert_point		 = false;
+
+if ( function_exists( 'the_custom_logo' ) ) {
+/* for WordPress 4.5 */	
+	add_image_size( 'raindrops-logo', 1200, 120 );
+	add_theme_support( 'custom-logo', array( 'size' => 'raindrops-logo' ) );
+}
+
 /**
  *
  *
@@ -127,10 +134,37 @@ $enough_admin_options_setting	 = array(
 			'Post Format Video'		 => 'video',
 		)
 	),
+	array( 'option_id'		 => 11,
+		'blog_id'		 => 0,
+		'option_name'	 => "enough_post_content_width",
+		'option_value'	 => 100,
+		'autoload'		 => 'yes',
+		'title'			 => __( 'Content Width of One Column Post', 'enough' ),
+		'excerpt'		 => __( 'Set your content width for One Column post', 'enough' ),
+		'validate'		 => 'enough_post_content_width_validate',
+		'list'			 => 1,
+		'type'			 => 'text',
+		'select_values'	 => '',
+	),
 );
+function enough_post_content_width_validate( $input ) {
+	
+	if( is_numeric( $input ) && $input > 49 && $input < 101 ) {
+		return $input;
+	}
+	return 100;
+}
 
 function enough_enable_post_formats_validate( $input ) {
-	return $input;
+
+	$formats = array( 'aside','chat','gallery','link','image','quote','status','video','audio');
+	foreach( $formats as $format ){
+		
+		if( in_array( $format , $input ) ) {
+			return $input;
+		}
+	}
+	return array('default');
 }
 
 /**
@@ -521,7 +555,7 @@ if ( !function_exists( 'enough_embed_meta' ) ) {
 		}
 
 		$header_style = '%1$s
-			.site-title a,
+			.site-title span:not(.custom-logo-wrap) a,
 			.site-title a span,
 			.site-description{
 				%2$s
@@ -557,8 +591,14 @@ if ( !function_exists( 'enough_embed_meta' ) ) {
 			body:not(.blog) header{
 			background-size:cover;
 			}
-			$header_style
-			</style>\n";
+			$header_style \n";
+			
+			$enough_content_width = enough_theme_option( 'enough_post_content_width' );
+			
+			if( isset( $enough_content_width ) ) {
+				$style .= "\n".'.enough-1col-post article{width:'. $enough_content_width. '%;margin:auto;float:none;}'."\n";			
+			}
+			$style .= '</style>';
 
 		if ( 'blank' == get_theme_mod( 'header_textcolor' ) ) {
 
@@ -933,42 +973,8 @@ if ( !function_exists( 'enough_posted_on' ) ) {
 
 	}
 
-	/**
-	 *
-	 *
-	 */
-	if ( !function_exists( 'enough_dinamic_sidebar' ) ) {
-
-		function enough_dinamic_sidebar( $id, $display = true ) {
-			if ( locate_template( array( 'sidebar-1.php', 'sidebar.php' ), true, true ) == '' ) { //template existance check
-				global $enough_onecolumn_post;
 
 
-				if ( $enough_onecolumn_post == 'yes' and $display == true ) {
-					return;
-				}
-
-				do_action( 'get_sidebar' );
-
-				if ( $display == true ) {
-					?>
-				<nav>
-					<ul id="<?php echo wp_kses( $id, array() ); ?>">
-				<?php
-				if ( !dynamic_sidebar( $id ) ) {
-
-					the_widget( 'WP_Widget_Archives', '', array( 'before_widget' => '<li class="widget widget_archive">', 'after_widget' => '</li>' ) );
-					the_widget( 'WP_Widget_Recent_Posts', '', array( 'before_widget' => '<li class="widget widget_recent_entries">', 'after_widget' => '</li>' ) );
-				}
-				?>
-					</ul>
-				</nav>
-				<?php
-			}
-		}
-	}
-
-}
 /**
  *
  *
@@ -1026,7 +1032,7 @@ if ( !function_exists( 'enough_the_content' ) ) {
 			);
 
 			the_content( $more );
-		} elseif ( is_search() and $diaplay == true ) {
+		} elseif ( ! is_singular() and $diaplay == true && 1 == 2) {
 
 			the_excerpt();
 		} elseif ( $diaplay == true ) {
@@ -1101,42 +1107,6 @@ if ( !function_exists( 'enough_chat_author_id' ) ) {
 		$enough_chat_author_id			 = array_unique( $enough_chat_author_id );
 
 		return array_search( $author, $enough_chat_author_id );
-	}
-
-}
-/**
- *
- *
- */
-if ( !function_exists( 'enough_the_footer' ) ) {
-
-	function enough_the_footer() {
-		if ( locate_template( array( 'footer.php' ), true, true ) == '' ) { //template existance check
-			global $enough_current_theme_name;
-			?>
-			<footer role="contentinfo">
-				<address>
-			<?php
-			printf(
-			'<small>&copy;%s %s <a href="%s" class="entry-rss">%s</a> and <a href="%s" class="comments-rss">%s</a></small>&nbsp;', date( "Y" ), get_bloginfo( 'name' ), get_bloginfo( 'rss2_url' ), __( "Entries <span>(RSS)</span>", "enough" ), get_bloginfo( 'comments_rss2_url' ), __( 'Comments <span>(RSS)</span>', "enough" )
-			);
-			if ( is_child_theme() ) {
-
-				$enough_theme_name = 'Child theme ' . ucwords( $enough_current_theme_name ) . ' of ' . __( "enough Theme", "enough" );
-			} else {
-
-				$enough_theme_name = __( "enough Theme", "enough" );
-			}
-
-			printf( '&nbsp;<small><a href="%s">%s</a></small>&nbsp;&nbsp;', 'http://www.tenman.info/wp3/enough', $enough_theme_name
-			);
-			?>
-				</address>
-			</footer>
-			<?php
-			do_action( 'wp_print_footer_scripts' );
-			do_action( 'wp_footer' );
-		}
 	}
 
 }
@@ -1298,13 +1268,8 @@ if ( !function_exists( 'enough_load_small_device_helper' ) ) {
 		} else {
 			$enough_upload_image = 1;
 		}
-/*
-		if ( $enough_options[ 'enough_use_slider' ] == 'yes' ) {
-			$enough_use_slider = 1;
-		} else {
-			$enough_use_slider = 0;
-		}*/
-$enough_use_slider = 0;
+
+		$enough_use_slider = 0;
 
 		$url				 = get_theme_mod( 'header_image' );
 		$enough_header_image = get_custom_header();
@@ -1875,47 +1840,33 @@ if ( !function_exists( 'enough_detect_header_image_size' ) ) {
 if ( !function_exists( 'enough_not_found' ) ) {
 
 	function enough_not_found() {
-		if ( locate_template( array( '404.php' ), true, true ) == '' ) { //template existance check
-			/**
-			 * Not found
-			 *
-			 */
-			?>
-			<article <?php post_class(); ?> role="main">
-			<?php
+		
+		if ( locate_template( array( '404.php' ), true, true ) == '' ) {
+			
+			?><article <?php post_class(); ?> role="main"><?php
+			
 			if ( is_search() ) {
-				?>
-					<div class="fail-search message-box">
-						<h2 class="center h2">
-					<?php
-					_e( "Nothing was found though it was regrettable. Please change the key word if it is good, and retrieve it.", "enough" );
-					?>
-						</h2>
-							<?php
-							get_search_form();
-							?>
-					</div>
-						<?php
-					} elseif ( is_404() ) {
-						?>
-					<div class="not-found message-box">
-						<h2 class="center h2">
-					<?php
-					_e( "File Not found", "enough" );
-					?>
-						</h2>
-							<?php
-							get_search_form();
-							?>
-					</div>
-						<?php
-					}
-					?>
-			</article>
-				<?php
-			}//locate_template
+				
+				$fail_search_html = '<div class="fail-search message-box"><h2 class="center h2">%1$s</h2>%2$s</div>';
+				
+				$fail_search_html = sprintf( $fail_search_html , 
+										__( "Nothing was found though it was regrettable. Please change the key word if it is good, and retrieve it.", "enough" ),
+										get_search_form(false)
+									);
+				echo apply_filters( 'enough_fail_search_html', $fail_search_html, $fail_search_html);
+				
+			} elseif ( is_404() ) {
+				
+				$html_404 = '<div class="not-found message-box"><h2 class="center h2">%1$s</h2>%2$s</div>';
+				$fail_search_html = sprintf( $html_404 , 
+										__( "Nothing was found though it was regrettable. Please change the key word if it is good, and retrieve it.", "enough" ),
+										get_search_form(false)
+									);
+				echo apply_filters( 'enough_fail_search_html', $fail_search_html, $html_404 );				
+			}
+			?></article><?php
+			}
 		}
-
 	}
 	/**
 	 * index ,archive,loops page title
@@ -2862,7 +2813,7 @@ if ( class_exists( 'WP_Customize_Control' ) && !class_exists( 'enough_Customize_
 			function enough_customize_register( $wp_customize ) {
 
 				$wp_customize->add_section( 'enough_theme_setting'
-				, array( 'title'		 => __( 'Layout and Slider', 'enough' )
+				, array( 'title'		 => __( 'Layout and Style of Home Page', 'enough' )
 					, 'priority'	 => 33,
 				)
 				);
@@ -2872,12 +2823,15 @@ if ( class_exists( 'WP_Customize_Control' ) && !class_exists( 'enough_Customize_
 					, 'priority'	 => 32,
 				)
 				);
+/*
 				$wp_customize->add_setting( 'enough_theme_settings[enough_enable_post_formats]', array(
 					'default'			 => 'default',
 					'type'				 => 'option',
 					'capability'		 => 'edit_theme_options',
 					'sanitize_callback'	 => 'enough_enable_post_formats_validate'
 				) );
+ 
+ */
 
 				$wp_customize->add_setting( 'enough_theme_settings[enough_post_one_column_bottom_sidebar]', array(
 					'default'			 => 'no',
@@ -2891,7 +2845,15 @@ if ( class_exists( 'WP_Customize_Control' ) && !class_exists( 'enough_Customize_
 					'capability'		 => 'edit_theme_options',
 					'sanitize_callback'	 => 'enough_approach_type_validate'
 				) );
-
+				///////////////
+				$wp_customize->add_setting( 'enough_theme_settings[enough_post_content_width]', array(
+					'default'			 => 100,
+					'type'				 => 'option',
+					'capability'		 => 'edit_theme_options',
+					'sanitize_callback'	 => 'enough_post_content_width_validate'
+				) );
+				
+/* 
 				$wp_customize->add_control(
 				new enough_Customize_Control_Multiple_Select(
 				$wp_customize, 'enough_enable_post_formats', array(
@@ -2912,6 +2874,8 @@ if ( class_exists( 'WP_Customize_Control' ) && !class_exists( 'enough_Customize_
 				)
 				)
 				);
+ * /
+ */
 				$enough_choices_array	 = array(
 					'default'	 => 'Default',
 					'author'	 => 'Author',
@@ -2944,6 +2908,19 @@ if ( class_exists( 'WP_Customize_Control' ) && !class_exists( 'enough_Customize_
 					'choices'	 => array( 'yes'	 => __( 'yes', 'enough' )
 						, 'no'	 => __( 'no', 'enough' )
 					)
+				)
+				);
+
+				$wp_customize->add_control( 'enough_post_content_width', array(
+					'label'		 => __( 'Content Width of One Column Post', 'enough' ),
+					'section'	 => 'enough_theme_setting',
+					'settings'	 => 'enough_theme_settings[enough_post_content_width]',
+					'type'			 => 'range',
+					'input_attrs'	 => array(
+						'min'	 => 50,
+						'max'	 => 100,
+						'step'	 => 1,
+					),
 				)
 				);
 
@@ -3040,62 +3017,7 @@ if ( !function_exists( 'enough_display_count' ) ) {
 	}
 
 }
-/**
- *
- *
- */
-if ( !function_exists( 'enough_get_header' ) ) {
 
-	function enough_get_header( $name = null ) {
-
-		do_action( 'get_header', $name );
-
-		$templates = array();
-		if ( isset( $name ) ) {
-			$templates[] = "header-{$name}.php";
-		}
-
-		$templates[] = 'header.php';
-
-		if ( '' == locate_template( $templates, true ) ) {
-			?>
-			<!DOCTYPE html>
-			<html <?php language_attributes(); ?>>
-				<head>
-					<meta charset="<?php bloginfo( 'charset' ); ?>" />
-			<?php wp_head(); ?>
-				</head>
-				<body <?php body_class(); ?>>
-					<div id="enough-page">
-						<div>
-							<header role="banner">
-								<h1 class="site-title">
-									<a href="<?php echo home_url(); ?>">
-										<span><?php bloginfo(); ?></span>
-									</a>
-								</h1>
-								<h2 class="site-description"><span><?php bloginfo( 'description' ); ?></span></h2>
-								<noscript>
-								<p class="no-script-and-small-view"><?php _e( 'This content shows Simple View', 'enough' ); ?></p>
-								</noscript>
-								<p class="unknown-ua"><?php _e( 'This content shows Simple View', 'enough' ); ?></p>
-							</header>
-			<?php
-			/**
-			 * Horizontal menu bar
-			 */
-
-			$args = array( 
-					'theme_location'	 => 'primary', 
-					'container_class'	 => 'menu-header',
-					'echo'				 => true, 
-				'fallback_cb'     => '',);
-			wp_nav_menu( $args );
-
-				enough_nav_menu_after();
-		}//End locate_template( array( 'header.php' )
-	}
-}
 /**
  *
  *

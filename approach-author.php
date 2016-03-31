@@ -62,7 +62,9 @@ get_header();
         /**
          * Sidebar
          */
-        enough_dinamic_sidebar( 'sidebar-1', !is_page() );
+	if( ! is_page() ){
+		get_sidebar('1');
+	}
         ?>
 <br class="clear vspacer-3" />
 <?php

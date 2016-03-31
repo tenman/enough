@@ -1,4 +1,9 @@
 Changelog -----------------------------------
+version:1.14
+	Modified
+
+----------------------------------------------
+Changelog -----------------------------------
 version:1.13
 	Modified
 		Remove Header Image slider

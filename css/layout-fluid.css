@@ -124,7 +124,7 @@
     }
 
     /*from example*/
-
+/*
     .posted-in li{
         display:inline-block;
         padding:3px;
@@ -133,13 +133,14 @@
     }
     .posted-in ul li:nth-child(1){
         font-weight:bold;
-    }
+    }*/
     .toggle-category a,
     .toggle-tag a{
        display:inline-block;
        padding:.2em .35em;
        margin:.2em;
        box-sizing:border-box;
+       font-size:.8em;
     }
 
 
@@ -183,6 +184,16 @@
     }	
     .enough-monthly-archive-prev-next-navigation .alignright{
         float:right;
+    }
+    article .entry-title{
+        margin-left:0;
+    }
+    .entry-content{
+        margin-left:0;
+        height:100%;
+    }
+    .enough-1col-post #enough-page article{
+        width:90vw;
     }
  
 }
