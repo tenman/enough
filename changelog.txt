@@ -1,7 +1,13 @@
 Changelog -----------------------------------
 version:1.14
-	Modified
-
+	Changes For WordPress4.5
+		Support Custom Logo
+	Added
+		Template sidebar-1.php
+	Remove
+		enough_dinamic_sidebar()
+		enough_the_footer()
+		enough_get_header()
 ----------------------------------------------
 Changelog -----------------------------------
 version:1.13

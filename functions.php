@@ -18,7 +18,7 @@ include_once( get_template_directory() . '/inc/widgets.php');
 /**
  * enough Gallery Presentation
  * value false shows WordPress Standard Gallery Style.
- * 
+ *
  */
 if( ! isset( $enough_extend_galleries ) ) {
 
@@ -36,7 +36,7 @@ $enough_navigation_type			 = 'enough-icon';
 $enough_show_insert_point		 = false;
 
 if ( function_exists( 'the_custom_logo' ) ) {
-/* for WordPress 4.5 */	
+/* for WordPress 4.5 */
 	add_image_size( 'raindrops-logo', 1200, 120 );
 	add_theme_support( 'custom-logo', array( 'size' => 'raindrops-logo' ) );
 }
@@ -148,7 +148,7 @@ $enough_admin_options_setting	 = array(
 	),
 );
 function enough_post_content_width_validate( $input ) {
-	
+
 	if( is_numeric( $input ) && $input > 49 && $input < 101 ) {
 		return $input;
 	}
@@ -159,7 +159,7 @@ function enough_enable_post_formats_validate( $input ) {
 
 	$formats = array( 'aside','chat','gallery','link','image','quote','status','video','audio');
 	foreach( $formats as $format ){
-		
+
 		if( in_array( $format , $input ) ) {
 			return $input;
 		}
@@ -438,9 +438,9 @@ if ( !function_exists( 'enough_theme_setup' ) ) {
 
 		add_filter( 'embed_oembed_html', 'enough_oembed_filter', 99, 4 );
 		add_action( 'wp_enqueue_scripts', 'enough_load_small_device_helper' );
-		
+
 		add_theme_support( 'title-tag' );
-		
+
 		if ( ! function_exists( '_wp_render_title_tag' ) ) {
 		/**
 		 * WordPress4.1 Backwards compatibility
@@ -484,7 +484,7 @@ $args_custom_header = array( 'default-text-color'	 => '333333'
 add_theme_support( 'custom-header', $args_custom_header );
 /**
  * Add for WordPress 4.1
- * 
+ *
  * @since 1.260
  */
 register_default_headers( array(
@@ -592,11 +592,11 @@ if ( !function_exists( 'enough_embed_meta' ) ) {
 			background-size:cover;
 			}
 			$header_style \n";
-			
+
 			$enough_content_width = enough_theme_option( 'enough_post_content_width' );
-			
+
 			if( isset( $enough_content_width ) ) {
-				$style .= "\n".'.enough-1col-post article{width:'. $enough_content_width. '%;margin:auto;float:none;}'."\n";			
+				$style .= "\n".'.enough-1col-post article{width:'. $enough_content_width. '%;margin:auto;float:none;}'."\n";
 			}
 			$style .= '</style>';
 
@@ -885,7 +885,7 @@ if ( !function_exists( 'enough_posted_on' ) ) {
 				?>
 						<li class="toggle-category toggle-title"><span class="nav-text"><?php _e( 'Categories:', 'enough' ); ?></span></li>
 						<li class="toggle-category"> <?php
-   
+
 
     $categories = get_the_category( $post->ID );
 
@@ -894,22 +894,22 @@ if ( !function_exists( 'enough_posted_on' ) ) {
 	$dummy_div_count = 0;
 	$i = 1;
     foreach ( $categories as $category ) {
-		
+
 
 		$initial = mb_substr( $category->name  ,0 ,1 );
-			
+
 		if( mb_strtolower( $initial_compare ) == mb_strtolower( $initial ) ) {
 			$initial_class = 'initial-category initial-'. $initial;
 		}else{
 			$initial_class = 'initial-category first initial-'. $initial;
-			
+
 		}
-		
-		$category_name = '<span>'.$initial.'</span>';	
+
+		$category_name = '<span>'.$initial.'</span>';
 		$category_name .= mb_substr( $category->name,1 );
-		
-		
-        printf( $html, get_category_link( $category->term_id ), sprintf( __( "View all posts in %s", 'enough' ), $category->name ),  $category_name 
+
+
+        printf( $html, get_category_link( $category->term_id ), sprintf( __( "View all posts in %s", 'enough' ), $category->name ),  $category_name
         , 'category-'.$category->term_id. ' '. $initial_class );
 		$initial_compare = $initial;
 		$i++;
@@ -931,8 +931,8 @@ if ( !function_exists( 'enough_posted_on' ) ) {
 						?>
 					<ul>
 						<li class="toggle-tag toggle-title"><span class="nav-text"><?php _e( 'Tags:', 'enough' ); ?></span></li>
-						<li class="toggle-tag"><?php 
-   
+						<li class="toggle-tag"><?php
+
 
     $categories = get_the_terms( $post->ID, 'post_tag' ); ;
 
@@ -941,22 +941,22 @@ if ( !function_exists( 'enough_posted_on' ) ) {
 	$dummy_div_count = 0;
 	$i = 1;
     foreach ( $categories as $category ) {
-		
+
 
 		$initial = mb_substr( $category->name  ,0 ,1 );
-			
+
 		if( mb_strtolower( $initial_compare ) == mb_strtolower( $initial ) ) {
 			$initial_class = 'initial-category initial-'. $initial;
 		}else{
 			$initial_class = 'initial-category first initial-'. $initial;
-			
+
 		}
-		
-		$category_name = '<span>'.$initial.'</span>';	
+
+		$category_name = '<span>'.$initial.'</span>';
 		$category_name .= mb_substr( $category->name,1 );
-		
-		
-        printf( $html, get_category_link( $category->term_id ), sprintf( __( "View all posts in %s", 'enough' ), $category->name ),  $category_name 
+
+
+        printf( $html, get_category_link( $category->term_id ), sprintf( __( "View all posts in %s", 'enough' ), $category->name ),  $category_name
         , 'category-'.$category->term_id. ' '. $initial_class );
 		$initial_compare = $initial;
 		$i++;
@@ -1032,7 +1032,7 @@ if ( !function_exists( 'enough_the_content' ) ) {
 			);
 
 			the_content( $more );
-		} elseif ( ! is_singular() and $diaplay == true && 1 == 2) {
+		} elseif ( is_search() && $diaplay == true ) {
 
 			the_excerpt();
 		} elseif ( $diaplay == true ) {
@@ -1071,7 +1071,7 @@ if ( !function_exists( 'enough_chat_filter' ) ) {
 					<div class="enough-chat-text enough-chat-author-text-%1$s"><p>%3$s</div>';
 		$regs	 = array();
 		foreach ( $new_contents as $new ) {
-			
+
 			$new = str_replace( '</p>', '', $new );
 
 			preg_match( '|([^\:]+)(\:)(.+)|si', $new, $regs );
@@ -1336,7 +1336,7 @@ if ( !function_exists( 'enough_load_small_device_helper' ) ) {
 			$enough_debug = 0;
 		}
 		wp_enqueue_script( 'enough_helper_script', get_template_directory_uri() . '/enough-helper.js', array( 'jquery' ) ,$enough_version, true);
-		
+
 		wp_localize_script( 'enough_helper_script', 'enough_script_vars', array(
 			'enough_is_front'		 => $enough_is_front,
 			'is_ie'							 => $is_IE,
@@ -1347,7 +1347,7 @@ if ( !function_exists( 'enough_load_small_device_helper' ) ) {
 			'enough_title_length'			 => round( strlen( get_bloginfo( 'name' ) ) ),
 			'enough_description_length'		 => round( strlen( get_bloginfo( 'description' ) ), 0 ),
 			'enough_header_image_uri'		 => get_header_image(),
-			'enough_image_exists'			 => get_header_image(), 
+			'enough_image_exists'			 => get_header_image(),
 			'enough_options'				 => enough_theme_option( 'defaults' ),
 			'uploads'						 => wp_upload_dir(),
 
@@ -1840,29 +1840,29 @@ if ( !function_exists( 'enough_detect_header_image_size' ) ) {
 if ( !function_exists( 'enough_not_found' ) ) {
 
 	function enough_not_found() {
-		
+
 		if ( locate_template( array( '404.php' ), true, true ) == '' ) {
-			
+
 			?><article <?php post_class(); ?> role="main"><?php
-			
+
 			if ( is_search() ) {
-				
+
 				$fail_search_html = '<div class="fail-search message-box"><h2 class="center h2">%1$s</h2>%2$s</div>';
-				
-				$fail_search_html = sprintf( $fail_search_html , 
+
+				$fail_search_html = sprintf( $fail_search_html ,
 										__( "Nothing was found though it was regrettable. Please change the key word if it is good, and retrieve it.", "enough" ),
 										get_search_form(false)
 									);
 				echo apply_filters( 'enough_fail_search_html', $fail_search_html, $fail_search_html);
-				
+
 			} elseif ( is_404() ) {
-				
+
 				$html_404 = '<div class="not-found message-box"><h2 class="center h2">%1$s</h2>%2$s</div>';
-				$fail_search_html = sprintf( $html_404 , 
+				$fail_search_html = sprintf( $html_404 ,
 										__( "Nothing was found though it was regrettable. Please change the key word if it is good, and retrieve it.", "enough" ),
 										get_search_form(false)
 									);
-				echo apply_filters( 'enough_fail_search_html', $fail_search_html, $html_404 );				
+				echo apply_filters( 'enough_fail_search_html', $fail_search_html, $html_404 );
 			}
 			?></article><?php
 			}
@@ -1954,11 +1954,11 @@ if ( !function_exists( 'enough_not_found' ) ) {
 
 				rewind_posts();
 			}
-			
-			
+
+
 
 			if ( !empty( $page_title ) ) {
-				
+
 				$page_title = apply_filters( 'enough_archive_name' ,'', $page_title );
 
 				printf( '<h2 class="archives-title-text">%s <span>%s</span></h2>', $page_title, $page_title_c
@@ -2830,7 +2830,7 @@ if ( class_exists( 'WP_Customize_Control' ) && !class_exists( 'enough_Customize_
 					'capability'		 => 'edit_theme_options',
 					'sanitize_callback'	 => 'enough_enable_post_formats_validate'
 				) );
- 
+
  */
 
 				$wp_customize->add_setting( 'enough_theme_settings[enough_post_one_column_bottom_sidebar]', array(
@@ -2852,8 +2852,8 @@ if ( class_exists( 'WP_Customize_Control' ) && !class_exists( 'enough_Customize_
 					'capability'		 => 'edit_theme_options',
 					'sanitize_callback'	 => 'enough_post_content_width_validate'
 				) );
-				
-/* 
+
+/*
 				$wp_customize->add_control(
 				new enough_Customize_Control_Multiple_Select(
 				$wp_customize, 'enough_enable_post_formats', array(
@@ -3482,9 +3482,9 @@ if( ! function_exists( 'enough_gallery_atts' ) ) {
 }
 
 function enough_gallerys_css() {
-	
+
 	global $enough_extend_galleries;
-	
+
 		$clear_float = ".gallery,
 			.gallery-columns-1 .gallery-item:nth-child(2),\n
 			.gallery-columns-2 .gallery-item:nth-child(3),\n
@@ -3496,15 +3496,15 @@ function enough_gallerys_css() {
 			.gallery-columns-8 .gallery-item:nth-child(9),\n
 			.gallery-columns-9 .gallery-item:nth-child(10),\n
 			.gallery-columns-10 .gallery-item:nth-child(11){clear:both;}";
-	
+
 		if ( $enough_extend_galleries !== true ){
-			
+
 			return apply_filters( "enough_gallerys_css", $clear_float, $enough_extend_galleries );
 		}
-	
-	$doc_type = 'html5';	
-	
-	
+
+	$doc_type = 'html5';
+
+
 
 	if( $doc_type == 'xhtml' ){
 		$display_property = 'float:left;';
@@ -3528,9 +3528,9 @@ function enough_gallerys_css() {
             .gallery-columns-8 .gallery-item{ width: 12.5% }\n
             .gallery-columns-9 .gallery-item{ width: 11.1% }\n
             .gallery-columns-10 .gallery-item{ width: 9.9% }\n";
-	
+
 	$enough_gallerys .= $clear_float;
-	
+
 	/* caption text presentation */
     $enough_gallerys .= ".gallery:after{content:'';clear:both;display:block;}.gallery-item{position:relative;}
 			.gallery figcaption{
@@ -3548,9 +3548,9 @@ function enough_gallerys_css() {
             color:#fff;
 			opacity:0;
 			transition:opacity .7s;
-			border-radius: 10% 0 10% 0; 
-            -moz-border-radius:10% 0 10% 0; 
-            -webkit-border-radius: 10% 0 10% 0; 
+			border-radius: 10% 0 10% 0;
+            -moz-border-radius:10% 0 10% 0;
+            -webkit-border-radius: 10% 0 10% 0;
             border: 1px solid #fff;
             visibility:hidden;
             transition:visibility .7s, opacity .7s;
@@ -3573,7 +3573,7 @@ function enough_gallerys_css() {
 			-webkit-transition:visibility .7s,opacity .7s;
             overflow:hidden;
             margin:4px;
-            
+
         }";
     return apply_filters( "enough_gallerys_css", $enough_gallerys );
 }
