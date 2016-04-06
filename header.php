@@ -18,8 +18,6 @@
 
                 <header role="banner">
 					<?php enough_prepend_header(); ?>
-							
-
                     <h1 class="site-title">
 						<?php
 						if ( function_exists( 'the_custom_logo' ) ) {

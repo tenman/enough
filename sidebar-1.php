@@ -7,7 +7,7 @@
 <?php
 } else {
 
-	if ( is_user_logged_in() ) {
+	if ( is_user_logged_in() && ! is_page() ) {
 		echo '<nav class="enough-sidebar"><ul>';
 		echo '<li><div class="link-to-sidebar-settings">';
 		echo '<div>
@@ -19,4 +19,3 @@
 		echo '</div></li></ul></nav>';
 	}
 }
-

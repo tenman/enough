@@ -21,6 +21,9 @@
     display:block;
     text-align:right;
 }
+.approach-categories-content{
+    overflow:hidden;
+}
 .approach-categories-content div{
     width:32.5%;
     height:120px;

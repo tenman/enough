@@ -259,10 +259,7 @@ article.page{
     max-width: 90%;
     box-sizing: border-box;
 }
-.page.enough-1col-post{
-    max-width: 94%;
-    margin:3%;
-}
+
 .page-template-default article.type-page {
     display:block;
     float:none;
@@ -555,9 +552,7 @@ ul,menu,dir{
     margin:0 .5em 0 1.5em;
     height:100%;
 }
-.enough-1col-post .entry-content{
-    margin:32px 0;
-}
+
 .enough-1col-post .entry-content h2,
 .enough-1col-post .entry-content h3,
 .enough-1col-post .entry-content h4{
