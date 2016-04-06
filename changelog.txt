@@ -1,4 +1,8 @@
 Changelog -----------------------------------
+version:1.15
+	Fixed sidebar bug.
+----------------------------------------------
+Changelog -----------------------------------
 version:1.14
 	Changes For WordPress4.5
 		Support Custom Logo
