@@ -34,11 +34,13 @@ add_filter( 'wp_head', 'enough_approach_blank_style' );
 				$args = array( 'menu_class'		 => 'menu-header'
 					, 'theme_location'	 => 'primary'
 					, 'container_class'	 => 'menu-header'
+					, 'fallback_cb'     => 'enough_approach_blank_fallback_cb'
 					, 'echo'				 => true );
 				wp_nav_menu( $args );
 			} else {
 				$args = array( 'theme_location'	 => 'primary'
 					, 'container_class'	 => 'menu-header'
+					,'fallback_cb'     => ''
 					, 'echo'				 => true );
 				wp_nav_menu( $args );
 			}

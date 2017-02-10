@@ -807,3 +807,13 @@ footer address{
     border:1px solid #ccc;
     padding:.2em .3em;
 }
+.fallback-navigation{
+    text-align:center;
+    font-weight:bold;
+}
+.fallback-navigation .alert{
+    display:inline-block;
+    padding-left:1em;
+    padding-right:1em;
+}
+

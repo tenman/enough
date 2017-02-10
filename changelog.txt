@@ -1,4 +1,9 @@
 Changelog -----------------------------------
+version:1.20
+	Added Customizer navigation message
+        Modified Update Translation ja 
+----------------------------------------------
+Changelog -----------------------------------
 version:1.15
 	Fixed sidebar bug.
 ----------------------------------------------

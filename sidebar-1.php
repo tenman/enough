@@ -7,15 +7,25 @@
 <?php
 } else {
 
-	if ( is_user_logged_in() && ! is_page() ) {
-		echo '<nav class="enough-sidebar"><ul>';
-		echo '<li><div class="link-to-sidebar-settings">';
-		echo '<div>
-					<h3>Sidebar</h3>
-					<a href="' . admin_url( 'widgets.php' ) . '">' . __( 'Set Widgets', 'enough' ) . '</a><br />or</br />
-					<a href="' . admin_url( 'customize.php?autofocus[control]=enough_post_one_column_bottom_sidebar' ) . '">' . __( 'Change 1 Columns', 'enough' ) . '</a>	
-				</div>';
+	if ( is_user_logged_in() && ! is_page() && ! is_customize_preview() ) {
 
-		echo '</div></li></ul></nav>';
+			echo '<nav class="enough-sidebar"><ul>';
+			echo '<li><div class="link-to-sidebar-settings">';
+			echo '<div>
+						<h3>Sidebar</h3>
+						<a href="' . admin_url( 'widgets.php' ) . '">' . __( 'Set Widgets', 'enough' ) . '</a><br />or</br />
+						<a href="' . admin_url( 'customize.php?autofocus[control]=enough_post_one_column_bottom_sidebar' ) . '">' . __( 'Change 1 Columns', 'enough' ) . '</a>	
+					</div>';
+
+			echo '</div></li></ul></nav>';
+
+	} 
+	if ( is_user_logged_in() && ! is_page() && is_customize_preview() ) {
+		echo '<nav class="enough-sidebar"><ul>';
+			echo '<li><div class="link-to-sidebar-settings">';
+			echo '<div class="fallback-navigation"><p class="alert">'.__('Sidebar Widget is not set. Please set the sidebar widget first in Dashboard / Appearance / Widgets', 'enough' ). '</p></div>';
+			echo '<div class="fallback-navigation"><p class="alert">'.__('If you prefer 1 column layout, please set 1 column in \'Layout and Style of home page\'', 'enough' ). '</p></div>';
+
+			echo '</div></li></ul></nav>';		
 	}
 }

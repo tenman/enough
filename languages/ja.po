@@ -2,465 +2,679 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enough v0.42\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-22 15:15+0900\n"
-"PO-Revision-Date: 2013-07-22 15:16+0900\n"
-"Last-Translator: Akio Tenman <akio@tenman.info>\n"
+"POT-Creation-Date: 2017-02-10 16:44+0900\n"
+"PO-Revision-Date: 2017-02-10 16:47+0900\n"
+"Last-Translator: Akio Tenman <a.tenman@gmail.com>\n"
 "Language-Team: enough <a.tenman@gmail.com>\n"
+"Language: ja_JP\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Poedit-Language: Japanese\n"
-"X-Poedit-Country: JAPAN\n"
-"X-Poedit-SourceCharset: utf-8\n"
-"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
-"X-Poedit-Basepath: c:/apache/htdocs\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
+"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;"
+"esc_html__;esc_html_e\n"
+"X-Poedit-Basepath: ..\n"
 "X-Textdomain-Support: yes\n"
-"X-Poedit-SearchPath-0: enough\n"
+"X-Generator: Poedit 1.8.4\n"
+"X-Poedit-SearchPath-0: languages\n"
+"X-Poedit-SearchPath-1: .\n"
 
-#: enough/approach-author.php:19
+#: approach-author.php:19
 msgid "Archives Status"
 msgstr "Archives Status"
 
-#: enough/approach-categories.php:31
+#: approach-author.php:47
+msgid "No users found."
+msgstr "ユーザーが見つかりません"
+
+#: approach-categories.php:47 functions.php:912 functions.php:959
 #, php-format
 msgid "View all posts in %s"
 msgstr "View all posts in %s"
 
+#: approach-format.php:48
+msgid "&laquo;Previous Page"
+msgstr "&laquo; 前ページへ"
+
+#: approach-format.php:49
+msgid "Next Page &raquo;"
+msgstr "次ページへ &raquo;"
+
 # @ enough
-#: enough/content-image.php:53
-#: enough/content-link.php:71
-#: enough/content-link.php:131
-#: enough/content-link.php:154
-#: enough/content-status.php:120
-#: enough/content-video.php:52
-#: enough/content-video.php:87
-#: enough/content.php:24
-#: enough/image.php:49
+#: blog.php:99 content-image.php:53 content-link.php:69 content-link.php:129
+#: content-link.php:151 content-status.php:106 content-video.php:20
+#: content.php:26 image.php:49
 msgid "Continue&nbsp;reading&nbsp;<span class=\"meta-nav\">&rarr;</span>"
 msgstr "続きを読む&nbsp;<span class=\"meta-nav\">&rarr;</span>"
 
 # @ enough
-#: enough/footer.php:12
-#: enough/functions.php:1076
+#: footer.php:9
 msgid "Entries <span>(RSS)</span>"
 msgstr "投稿　<span>(RSS)</span>"
 
 # @ enough
-#: enough/footer.php:14
-#: enough/functions.php:1078
+#: footer.php:9
 msgid "Comments <span>(RSS)</span>"
 msgstr "コメント <span>(RSS)</span>"
 
 # @ enough
-#: enough/footer.php:18
-#: enough/footer.php:21
-#: enough/functions.php:1082
-#: enough/functions.php:1085
+#: footer.php:13 footer.php:16
 msgid "enough Theme"
 msgstr "enough Theme"
 
 # @ enough
-#: enough/functions.php:115
-msgid "Main navigation"
-msgstr "メインナビゲーション"
-
-# @ enough
-#: enough/functions.php:132
+#: functions.php:54
 msgid "iphone format telephone"
 msgstr "iphoneで　電話番号の自動変換"
 
 # @ enough
-#: enough/functions.php:133
+#: functions.php:55
 msgid "Iphone format detection telephone"
 msgstr "電話番号フォーマットの自動検知"
 
 # @ enough
-#: enough/functions.php:143
+#: functions.php:65
 msgid "iphone device width settings"
 msgstr "iphone デバイス幅の設定"
 
 # @ enough
-#: enough/functions.php:144
+#: functions.php:66
 msgid "iphone meta name \"viewport\" content value"
 msgstr "viewport の　contentの値を設定します"
 
 # @ enough
-#: enough/functions.php:154
+#: functions.php:76
 msgid "iphone_status_bar_style"
 msgstr "iphone ステータスバーのスタイル"
 
 # @ enough
-#: enough/functions.php:155
+#: functions.php:77
 msgid "iphone the status bar style"
 msgstr "iphoneのステータスバーのスタイルを選択します"
 
-# @ enough
-#: enough/functions.php:165
-msgid "Use Slider for Header Images"
-msgstr "ヘッダー画像で、スライダー表示する"
-
-# @ enough
-#: enough/functions.php:166
-msgid "Dinamic Slide header"
-msgstr "ダイナミックスライドヘッダー"
-
-# @ enough
-#: enough/functions.php:177
-msgid "Slider sleep time"
-msgstr "スライダー画像切り替え待機時間"
-
-# @ enough
-#: enough/functions.php:178
-msgid "Show image duration"
-msgstr "スライダー画像表示時間"
-
-# @ enough
-#: enough/functions.php:188
-msgid "Slider fade time"
-msgstr "スライダーフェード時間"
-
-# @ enough
-#: enough/functions.php:189
-msgid "Image change duration"
-msgstr "画像変更待機時間"
-
-#: enough/functions.php:199
+#: functions.php:87
 msgid "Post One Column Bottom Sidebar"
 msgstr "1カラム　ボトムサイドバー"
 
-#: enough/functions.php:200
+#: functions.php:88
 msgid "Post Full Width One Column"
 msgstr "１カラム　サイドバーなし"
 
-#: enough/functions.php:211
-msgid "Enough Approach Type"
-msgstr "Enough Approach Type"
+#: functions.php:99 functions.php:2896
+msgid "Home Page Type"
+msgstr "トップページのタイプ"
 
-#: enough/functions.php:212
-msgid "Blog Home Type"
-msgstr "Blog Home Type"
+#: functions.php:100
+msgid "Please select the layout of the homepage"
+msgstr "トップページのレイアウトを選択してください"
+
+# @ enough
+#: functions.php:105 functions.php:2263 functions.php:2881
+msgid "Author"
+msgstr "著者"
+
+#: functions.php:106 functions.php:2882
+msgid "Blank"
+msgstr "空白"
+
+# @ enough
+#: functions.php:107 functions.php:2883
+msgid "Categories"
+msgstr "カテゴリー"
+
+#: functions.php:108 functions.php:129
+msgid "Post Format Chat"
+msgstr "投稿フォーマット「チャット」"
+
+#: functions.php:109 functions.php:130
+msgid "Post Format Gallery"
+msgstr "投稿フォーマット「ギャラリー」"
+
+#: functions.php:110 functions.php:131
+msgid "Post Format Image"
+msgstr "投稿フォーマット「画像」"
+
+#: functions.php:111 functions.php:132
+msgid "Post Format Link"
+msgstr "投稿フォーマット「リンク」"
+
+#: functions.php:112 functions.php:133
+msgid "Post Format Quote"
+msgstr "投稿フォーマット「引用」"
+
+#: functions.php:113 functions.php:134
+msgid "Post Format Status"
+msgstr "投稿フォーマット「ステータス」"
+
+#: functions.php:114 functions.php:135
+msgid "Post Format Video"
+msgstr "投稿フォーマット「動画」"
+
+#: functions.php:122
+msgid "Enabled Post Formats"
+msgstr "投稿フォーマット有効"
+
+#: functions.php:123
+msgid "Please select whether to enable any Post Format"
+msgstr "有効にする投稿フォーマットを選択してください"
+
+#: functions.php:143 functions.php:2915
+msgid "Content Width of One Column Post"
+msgstr "１カラムでのコンテンツ幅"
+
+#: functions.php:144
+msgid "Set your content width for One Column post"
+msgstr "1カラムの場合のページ幅設定"
+
+# @ enough
+#: functions.php:299
+msgid "Main navigation"
+msgstr "メインナビゲーション"
 
 #  enough
-#: enough/functions.php:288
+#: functions.php:354
 #, php-format
 msgid "Sidebar %d"
 msgstr "サイドバー %d"
 
-#: enough/functions.php:298
+#: functions.php:364
 msgid "Approach Page Post Format After"
 msgstr "Approach Page Post Format After"
 
-#: enough/functions.php:300
+#: functions.php:366
 msgid "Blog Home Widget After Content"
 msgstr "Blog Home Widget After Content"
 
 # @ enough
-#: enough/functions.php:390
-#, php-format
-msgid "If you add  %s when you must create function %s for data validation"
-msgstr "  %s 関数を追加した場合はデータバリデーション用の関数 %sも追加しなければなりません"
-
-# @ enough
-#: enough/functions.php:671
-#: enough/functions.php:728
+#: functions.php:739 functions.php:793
 msgid "Comment"
 msgid_plural "Comments"
 msgstr[0] "コメント"
 msgstr[1] "コメント"
 
 # @ enough
-#: enough/functions.php:752
+#: functions.php:816
 #, php-format
-msgid "<span class=\"%1$s\">Posted on</span> %2$s <span class=\"meta-sep\">by</span> %3$s %4$s"
-msgstr "<span class=\"%1$s\">投稿日</span> %2$s <span class=\"meta-sep\">by</span> %3$s %4$s"
+msgid ""
+"<span class=\"%1$s\">Posted on</span> %2$s <span class=\"meta-sep\">by</"
+"span> %3$s %4$s"
+msgstr ""
+"<span class=\"%1$s\">投稿日</span> %2$s <span class=\"meta-sep\">by</span> "
+"%3$s %4$s"
 
-#: enough/functions.php:812
+#: functions.php:856
 msgid "link to"
 msgstr "link to"
 
 # @ enough
-#: enough/functions.php:846
-#: enough/functions.php:851
+#: functions.php:886 functions.php:921
 msgid "Categories:"
 msgstr "Categories:"
 
 # @ enough
-#: enough/functions.php:863
+#: functions.php:933
 msgid "Tags:"
 msgstr "Tags:"
 
 # @ enough
-#: enough/functions.php:963
+#: functions.php:1029
 msgid "Entry : "
 msgstr "Entry : "
 
 # @ enough
-#: enough/functions.php:1630
-msgid "Nothing was found though it was regrettable. Please change the key word if it is good, and retrieve it."
-msgstr "何も見つかりませんでした　よろしければキーワードを変更の上再検索してみてください"
+#: functions.php:1853 functions.php:1862
+msgid ""
+"Nothing was found though it was regrettable. Please change the key word if "
+"it is good, and retrieve it."
+msgstr ""
+"何も見つかりませんでした　よろしければキーワードを変更の上再検索してみてくだ"
+"さい"
 
 # @ enough
-#: enough/functions.php:1643
-msgid "File Not found"
-msgstr "ファイルが見つかりません"
-
-# @ enough
-#: enough/functions.php:1676
+#: functions.php:1886
 msgid "Search Results"
 msgstr "検索結果"
 
 # @ enough
-#: enough/functions.php:1682
+#: functions.php:1891
 msgid "Tag Archives"
 msgstr "Tag Archives"
 
 # @ enough
-#: enough/functions.php:1688
+#: functions.php:1896
 msgid "Category Archives"
 msgstr "Category Archives"
 
 # @ enough
-#: enough/functions.php:1698
+#: functions.php:1905
 msgid "Daily Archives"
 msgstr "Daily Archives"
 
 # @ enough
-#: enough/functions.php:1704
+#: functions.php:1910
 msgid "Monthly Archives"
 msgstr "Monthly Archives"
 
 # @ enough
-#: enough/functions.php:1717
+#: functions.php:1922
 msgid "Yearly Archives"
 msgstr "Yearly Archives"
 
 # @ enough
-#: enough/functions.php:1723
+#: functions.php:1927
 msgid "Author Archives"
 msgstr "Author Archives"
 
-#: enough/functions.php:1745
+#: functions.php:1948
 msgid "Post Format"
 msgstr "Post Format"
 
 # @ enough
-#: enough/functions.php:1750
+#: functions.php:1952
 msgid "Blog Archives"
 msgstr "Blog Archives"
 
 # @ enough
-#: enough/functions.php:1995
+#: functions.php:2141
 msgid "WordPress settings links for human user interface"
 msgstr "ワードプレスのカスタマイズ表示設定へのリンク"
 
 # @ enough
-#: enough/functions.php:1999
+#: functions.php:2145
 msgid "Customizer"
 msgstr "カスタマイザー"
 
 # @ enough
-#: enough/functions.php:1999
+#: functions.php:2145
 msgid "Preview with settings"
 msgstr "プレビューしながら設定"
 
 # @ enough
-#: enough/functions.php:1999
+#: functions.php:2145
 msgid "The enough Setting change of a theme can also be performed. "
 msgstr "テーマの設定を変更する事ができます"
 
 # @ enough
-#: enough/functions.php:2003
-#: enough/functions.php:2818
+#: functions.php:2148
 msgid "Widget"
 msgstr "ウィジェット"
 
 # @ enough
-#: enough/functions.php:2003
+#: functions.php:2148
 msgid "Add Widgets Sidebar and Footer"
 msgstr "サイドバーとフッターへウィジェットの追加"
 
 # @ enough
-#: enough/functions.php:2003
+#: functions.php:2148
 msgid "The enough theme supports 6 positions of widgets area"
 msgstr "enough テーマは、6ヶ所のウィジェットエリアをサポートします"
 
 # @ enough
-#: enough/functions.php:2005
+#: functions.php:2150
 msgid "Theme Editor"
 msgstr "テーマエディター"
 
 # @ enough
-#: enough/functions.php:2005
+#: functions.php:2150
 msgid "Edit All Theme Files Manualy"
 msgstr "テーマファイルの直接編集"
 
 # @ enough
-#: enough/functions.php:2032
+#: functions.php:2177
 msgid " Theme Settings"
 msgstr "テーマ設定"
 
 # @ enough
-#: enough/functions.php:2054
+#: functions.php:2196
 msgid "Reset Theme options and Theme Customizer options"
 msgstr "カスタマイザーとテーマオプションのリセット"
 
 # @ enough
-#: enough/functions.php:2067
+#: functions.php:2206
 #, php-format
 msgid "updated %1$s  successfully."
 msgstr " %1$s の更新に成功しました"
 
 # @ enough
-#: enough/functions.php:2123
-msgid "Description"
-msgstr "概要"
-
-# @ enough
-#: enough/functions.php:2130
+#: functions.php:2256
 msgid "Theme URI"
 msgstr "テーマ　URI"
 
 # @ enough
-#: enough/functions.php:2137
-msgid "Author"
-msgstr "著者"
-
-# @ enough
-#: enough/functions.php:2144
+#: functions.php:2270
 msgid "Version"
 msgstr "バージョン"
 
 # @ enough
-#: enough/functions.php:2151
+#: functions.php:2277
 msgid "Change log text"
 msgstr "変更履歴"
 
 # @ enough
-#: enough/functions.php:2152
+#: functions.php:2278
 msgid "Changelog , display new window"
 msgstr "変更履歴（新しい画面で表示）"
 
 # @ enough
-#: enough/functions.php:2159
+#: functions.php:2285
 msgid "Readme text"
 msgstr "テーマの説明"
 
 # @ enough
-#: enough/functions.php:2160
+#: functions.php:2286
 msgid "Readme , display new window"
 msgstr "テーマの説明（新しいウィンドウで表示）"
 
 # @ enough
-#: enough/functions.php:2168
+#: functions.php:2294
 msgid "Enough infomation"
 msgstr "Enough　テーマ情報"
 
 # @ enough
-#: enough/functions.php:2384
-#, fuzzy, php-format
+#: functions.php:2496
+#, php-format
 msgid "Sorry Your PHP version is %1$s Please use PHP version 5 or later."
 msgstr "あなたのPHPのバージョンは %s ですPHP５以降をお使いください"
 
-# @ enough
-#: enough/functions.php:2713
-msgid "enough theme setting"
-msgstr "Enough テーマ設定"
+#: functions.php:2816
+msgid "Layout and Style of Home Page"
+msgstr "トップページのレイアウトと外観"
 
-# @ enough
-#: enough/functions.php:2718
-msgid "Another Settings link"
-msgstr "他の設定へのリンク"
+#: functions.php:2822
+msgid "Enable Post Formats"
+msgstr "投稿フォーマット有効化"
 
-#: enough/functions.php:2758
-msgid "Enough Approach Type "
-msgstr "Enough Approach Type "
+#: functions.php:2880
+msgid "Default"
+msgstr "デフォルト"
 
-#: enough/functions.php:2779
-#, fuzzy
+#: functions.php:2904
 msgid "Post Full Width One Column "
 msgstr "１カラム　サイドバーなし"
 
 # @ enough
-#: enough/functions.php:2783
-#, fuzzy
+#: functions.php:2908
 msgid "yes"
 msgstr "はい"
 
-#: enough/functions.php:2784
+#: functions.php:2909
 msgid "no"
 msgstr "いいえ"
 
-# @ enough
-#: enough/functions.php:2790
-msgid "Slider Header Image"
-msgstr "スライダーヘッダー画像"
-
-# @ enough
-#: enough/functions.php:2794
-msgid "Yes"
-msgstr "はい"
-
-# @ enough
-#: enough/functions.php:2795
-msgid "No"
-msgstr "いいえ"
-
-# @ enough
-#: enough/functions.php:2801
-msgid "Sleep (sec)"
-msgstr "スリープ（秒）"
-
-# @ enough
-#: enough/functions.php:2809
-msgid "Fade (sec)"
-msgstr "フェード(秒）"
-
-# @ enough
-#: enough/functions.php:2817
-msgid "Custom Header"
-msgstr "カスタムヘッダー"
-
-# @ enough
-#: enough/functions.php:2819
-msgid "Nav Menus"
-msgstr "ナビメニュー"
-
-# @ enough
-#: enough/functions.php:2820
-msgid "Enough Settings"
-msgstr "Enough設定"
-
-# @ enough
-#: enough/functions.php:2821
-msgid "Theme"
-msgstr "テーマ"
-
-# @ enough
-#: enough/functions.php:2822
-msgid "Dashbord"
-msgstr "ダッシュボード"
-
-# @ enough
-#: enough/functions.php:2859
-msgid "New window"
-msgstr "新しいウィンドー"
-
-#: enough/functions.php:2919
+#: functions.php:2967
 #, php-format
 msgid "Prev Month( %sth )"
 msgstr "Prev( %s月 )"
 
-#: enough/functions.php:2929
+#: functions.php:2972
 #, php-format
 msgid "Next Month( %sth )"
 msgstr "Next( %s月 )"
 
+#: functions.php:3219
+msgid "Standard"
+msgstr "標準"
+
+#: functions.php:3220
+msgid "Aside"
+msgstr "余談"
+
+#: functions.php:3221
+msgid "Chat"
+msgstr "チャット"
+
+#: functions.php:3222
+msgid "Gallery"
+msgstr "ギャラリー"
+
+#: functions.php:3223
+msgid "Link"
+msgstr "リンク"
+
+#: functions.php:3224
+msgid "Image"
+msgstr "画像"
+
+#: functions.php:3225
+msgid "Quote"
+msgstr "引用"
+
+#: functions.php:3226
+msgid "Status"
+msgstr "ステータス"
+
+#: functions.php:3227
+msgid "Video"
+msgstr "動画"
+
+#: functions.php:3228
+msgid "Audio"
+msgstr "オーディオ"
+
+#: functions.php:3364
+#, php-format
+msgid "Insert this position with Action hook %1$s  or  Template %2$s"
+msgstr ""
+" %1$s フックまたは、  テンプレートファイル %2$s　を使うとこの場所にコンテン"
+"ツが挿入できます"
+
+#: functions.php:3398
+msgid " Older posts"
+msgstr "過去の投稿"
+
+#: functions.php:3398
+msgid "Newer posts"
+msgstr "新しい投稿"
+
+#: functions.php:3587
+msgid "Menu is not set yet. Please create a menu and set the main navigation"
+msgstr ""
+"まだメニューが設定されていません。メニューを作成して、メインナビゲーションに"
+"設定してください"
+
 # @ enough
-#: enough/functions.php:3037
-#: enough/functions.php:3039
-#: enough/header.php:35
-#: enough/header.php:37
+#: header.php:38 header.php:40
 msgid "This content shows Simple View"
 msgstr "この画面は、簡易表示です"
 
+#: image.php:93 taxonomy.php:48
+msgid "Previous Page"
+msgstr "前のページ"
+
+#: image.php:93 taxonomy.php:48
+msgid "Next Page"
+msgstr "次ページ"
+
+#: inc/widgets.php:14
+msgid "Category New Post [enough]"
+msgstr "カテゴリーごとの最近の投稿[enough]"
+
+#: inc/widgets.php:14
+msgid "Show latest posts that were grouped for each category"
+msgstr "最近の投稿を、カテゴリ毎にグループ化して表示します"
+
+# @ enough
+#: inc/widgets.php:52
+msgid "Category What's New"
+msgstr "カテゴリー別　最近の投稿"
+
+#: inc/widgets.php:72
+msgid "Title:"
+msgstr "タイトル "
+
+#: inc/widgets.php:76
+msgid "Show Items Counts"
+msgstr "表示する投稿数を指定"
+
+# @ enough
+#: inc/widgets.php:79
+msgid "Select Categories"
+msgstr "カテゴリーを選択してください"
+
+#: inc/widgets.php:323
+msgid "Display Pinup entries"
+msgstr "ピンナップ投稿の表示"
+
+#: inc/widgets.php:325
+msgid "Pinup entries [enough]"
+msgstr "ピンナップ投稿[enough]"
+
+#: inc/widgets.php:534
+msgid "Post ID"
+msgstr " 投稿ID"
+
+#: inc/widgets.php:534
+msgid "Comma separated IDs[Randum Displayed]"
+msgstr ""
+"1つの投稿ID　または、カンマ区切りで投稿IDを記述してください[ランダム表示]"
+
+#: inc/widgets.php:539
+msgid "Post Type"
+msgstr "投稿タイプ"
+
+#: inc/widgets.php:539
+msgid "Post:"
+msgstr "投稿　"
+
+#: inc/widgets.php:544
+msgid "Page"
+msgstr "ページ"
+
+#: inc/widgets.php:549
+msgid "Content:"
+msgstr "本文　"
+
+#: inc/widgets.php:553
+msgid "Excerpt:"
+msgstr "概要文"
+
+#: inc/widgets.php:558
+msgid "Attachment IMG:"
+msgstr "添付ファイル"
+
+#: inc/widgets.php:563
+msgid "Featured IMG"
+msgstr "アイキャッチ 画像"
+
+# @ enough
+#: sidebar-1.php:16
+msgid "Set Widgets"
+msgstr "ウィジェットを設定"
+
+#: sidebar-1.php:17
+msgid "Change 1 Columns"
+msgstr "1カラムに変更"
+
+#: sidebar-1.php:26
+msgid ""
+"Sidebar Widget is not set. Please set the sidebar widget first in "
+"Dashboard / Appearance / Widgets"
+msgstr ""
+"まだサイドバーウィジェットが設定されていません。2カラムで使用する場合は、管"
+"理画面 ／外観／ウィジェットで設定を行ってください。"
+
+#: sidebar-1.php:27
+msgid ""
+"If you prefer 1 column layout, please set 1 column in 'Layout and Style of "
+"home page'"
+msgstr ""
+"1カラムのレイアウトを使用する場合は、トップページのレイアウトで、1カラムサイ"
+"ドバーなしを設定してください。"
+
+# @ enough
+#~ msgid "Use Slider for Header Images"
+#~ msgstr "ヘッダー画像で、スライダー表示する"
+
+# @ enough
+#~ msgid "Dinamic Slide header"
+#~ msgstr "ダイナミックスライドヘッダー"
+
+# @ enough
+#~ msgid "Slider sleep time"
+#~ msgstr "スライダー画像切り替え待機時間"
+
+# @ enough
+#~ msgid "Show image duration"
+#~ msgstr "スライダー画像表示時間"
+
+# @ enough
+#~ msgid "Slider fade time"
+#~ msgstr "スライダーフェード時間"
+
+# @ enough
+#~ msgid "Image change duration"
+#~ msgstr "画像変更待機時間"
+
+#~ msgid "Enough Approach Type"
+#~ msgstr "Enough Approach Type"
+
+# @ enough
+#~ msgid "If you add  %s when you must create function %s for data validation"
+#~ msgstr ""
+#~ "  %s 関数を追加した場合はデータバリデーション用の関数 %sも追加しなければ"
+#~ "なりません"
+
+# @ enough
+#~ msgid "File Not found"
+#~ msgstr "ファイルが見つかりません"
+
+# @ enough
+#~ msgid "Description"
+#~ msgstr "概要"
+
+# @ enough
+#~ msgid "enough theme setting"
+#~ msgstr "Enough テーマ設定"
+
+# @ enough
+#~ msgid "Another Settings link"
+#~ msgstr "他の設定へのリンク"
+
+#~ msgid "Enough Approach Type "
+#~ msgstr "Enough Approach Type "
+
+# @ enough
+#~ msgid "Slider Header Image"
+#~ msgstr "スライダーヘッダー画像"
+
+# @ enough
+#~ msgid "Yes"
+#~ msgstr "はい"
+
+# @ enough
+#~ msgid "No"
+#~ msgstr "いいえ"
+
+# @ enough
+#~ msgid "Sleep (sec)"
+#~ msgstr "スリープ（秒）"
+
+# @ enough
+#~ msgid "Fade (sec)"
+#~ msgstr "フェード(秒）"
+
+# @ enough
+#~ msgid "Custom Header"
+#~ msgstr "カスタムヘッダー"
+
+# @ enough
+#~ msgid "Nav Menus"
+#~ msgstr "ナビメニュー"
+
+# @ enough
+#~ msgid "Enough Settings"
+#~ msgstr "Enough設定"
+
+# @ enough
+#~ msgid "Theme"
+#~ msgstr "テーマ"
+
+# @ enough
+#~ msgid "Dashbord"
+#~ msgstr "ダッシュボード"
+
+# @ enough
+#~ msgid "New window"
+#~ msgstr "新しいウィンドー"

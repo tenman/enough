@@ -97,20 +97,21 @@ $enough_admin_options_setting	 = array(
 		'option_value'	 => 'default',
 		'autoload'		 => 'yes',
 		'title'			 => __( 'Home Page Type', 'enough' ),
-		'excerpt'		 => __( 'Please select a home page of the perfect use of your blog', 'enough' ),
+		'excerpt'		 => __( 'Please select the layout of the homepage', 'enough' ),
 		'validate'		 => 'enough_approach_type_validate',
 		'list'			 => 1,
 		'type'			 => 'radio',
-		'select_values'	 => array( 'Author'				 => 'author',
-			'Blank'					 => 'blank',
-			'Categories'			 => 'categories',
-			'Post Format chat'		 => 'chat',
-			'Post Format Gallery'	 => 'gallery',
-			'Post Format Image'		 => 'image',
-			'Post Format Link'		 => 'link',
-			'Post Format Quote'		 => 'quote',
-			'Post Format Status'	 => 'status',
-			'Post Format Video'		 => 'video',
+		'select_values'	 => array( 
+			__( 'Author', 'enough' )				 => 'author',
+			__( 'Blank', 'enough' )					 => 'blank',
+			__( 'Categories','enough' )				 => 'categories',
+			__( 'Post Format Chat', 'enough' )		 => 'chat',
+			__( 'Post Format Gallery', 'enough' )	 => 'gallery',
+			__( 'Post Format Image', 'enough' )		 => 'image',
+			__( 'Post Format Link', 'enough' )		 => 'link',
+			__( 'Post Format Quote', 'enough' )		 => 'quote',
+			__( 'Post Format Status', 'enough' )	 => 'status',
+			__( 'Post Format Video', 'enough' )		 => 'video',
 		)
 	),
 	array( 'option_id'		 => 10,
@@ -125,13 +126,13 @@ $enough_admin_options_setting	 = array(
 		'type'			 => 'checkbox',
 		'select_values'	 => array(
 			'Default'				 => 'default',
-			'Post Format chat'		 => 'chat',
-			'Post Format Gallery'	 => 'gallery',
-			'Post Format Image'		 => 'image',
-			'Post Format Link'		 => 'link',
-			'Post Format Quote'		 => 'quote',
-			'Post Format Status'	 => 'status',
-			'Post Format Video'		 => 'video',
+			__( 'Post Format Chat', 'enough' )		 => 'chat',
+			__( 'Post Format Gallery', 'enough' )	 => 'gallery',
+			__( 'Post Format Image', 'enough' )		 => 'image',
+			__( 'Post Format Link', 'enough' )		 => 'link',
+			__( 'Post Format Quote', 'enough' )		 => 'quote',
+			__( 'Post Format Status', 'enough' )	 => 'status',
+			__( 'Post Format Video', 'enough' )		 => 'video',
 		)
 	),
 	array( 'option_id'		 => 11,
@@ -233,7 +234,6 @@ if ( !function_exists( 'enough_theme_option' ) ) {
 			}
 		}
 	}
-
 }
 /**
  *
@@ -383,12 +383,6 @@ if ( !function_exists( 'enough_theme_setup' ) ) {
 		add_filter( 'body_class', 'enough_add_body_class' );
 
 		add_action( 'wp_enqueue_scripts', 'enough_enqueue_comment_reply' );
-
-		$enough_is_submenu = new enough_menu_create;
-
-		add_action( 'admin_menu', array( $enough_is_submenu, 'enough_add_menus' ) );
-
-		//add_action('load-themes.php', 'enough_install_navigation');
 
 		$enough_embed_format_detection_telephone = enough_theme_option( "enough_format_detection_telephone" );
 
@@ -972,9 +966,6 @@ if ( !function_exists( 'enough_posted_on' ) ) {
 		}
 
 	}
-
-
-
 /**
  *
  *
@@ -1234,9 +1225,6 @@ if ( !function_exists( 'enough_add_body_class' ) ) {
 
 }
 
-
-
-///////////////////////////////////
 if ( !function_exists( 'enough_load_small_device_helper' ) ) {
 
 	function enough_load_small_device_helper() {
@@ -1294,10 +1282,6 @@ if ( !function_exists( 'enough_load_small_device_helper' ) ) {
 			$enough_header_image_height	 = 0;
 			$ratio						 = 0;
 		}
-
-		//$enough_home_url = home_url();
-		//$url = get_header_image();
-		//$enough_random_header_image = get_random_header_image();
 
 		if ( $url == 'random-uploaded-image' ) {
 			$enough_is_random_header_image = 1;
@@ -1371,7 +1355,6 @@ if ( !function_exists( 'enough_load_small_device_helper' ) ) {
 	}
 
 }
-//////////////////////////////////////////////////////////
 /**
  *
  *
@@ -2116,423 +2099,6 @@ if ( !function_exists( 'enough_not_found' ) ) {
 	}
 
 	/**
-	 * enough option panel
-	 * @package WordPress
-	 * @subpackage enough
-	 */
-	if ( !class_exists( 'enough_menu_create' ) ) {
-
-		class enough_menu_create {
-
-			var $accesskey = array( "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" );
-
-			/**
-			 *
-			 *
-			 */
-			function enough_theme_option_panel() {
-
-				global $wpdb, $count, $enough_admin_options_setting, $enough_wp_version, $enough_current_theme_name;
-
-				$ok		 = false;
-				$result	 = "";
-				$count	 = '';
-
-				$enough_navigation_list = '<ul class="enough-wp-native-style"><li><h3>' . __( 'WordPress settings links for human user interface', 'enough' ) . '</h3></li>';
-
-				if ( $enough_wp_version >= '3.4' ) {
-
-					$enough_navigation_list .= '<li class="enough-customizer enough-wp-native-style-settings-link"><a href="' . admin_url( 'customize.php' ) . '">' . __( 'Customizer', 'enough' ) . '</a><div class="enough_customizer_description">' . __( 'Preview with settings', 'enough' ) . '<br />' . __( 'The enough Setting change of a theme can also be performed. ', 'enough' ) . '</div></li>';
-				}
-
-				$enough_navigation_list .= '<li class="enough-wp-native-style-settings-link"><a href="' . admin_url( 'widgets.php' ) . '">' . __( 'Widget', 'enough' ) . '</a><div class="enough_customizer_description">' . __( 'Add Widgets Sidebar and Footer', 'enough' ) . '<br />' . __( 'The enough theme supports 6 positions of widgets area', 'enough' ) . '</div></li>';
-
-				$enough_navigation_list .= '<li class="enough-wp-native-style-settings-link"><a href="' . admin_url( 'theme-editor.php' ) . '">' . __( 'Theme Editor', 'enough' ) . '</a><div class="enough_customizer_description">' . __( 'Edit All Theme Files Manualy', 'enough' ) . '</div></li></ul>';
-
-				/**
-				 * POSTGET
-				 *
-				 *
-				 */
-				if ( isset( $_POST[ 'enough_option_values' ] ) and ! empty( $_POST[ 'enough_option_values' ] ) ) {
-
-					$enough_updates = "";
-
-					foreach ( $_POST[ "enough_option_values" ] as $key => $val ) {
-
-						$valid_function			 = $key . '_validate';
-						//$new_settings           = get_option('enough_theme_settings');
-						$new_settings			 = enough_theme_option( 'defaults' );
-						$new_settings[ $key ]	 = $valid_function( $val );
-
-						if ( update_option( 'enough_theme_settings', $new_settings ) ) {
-
-							$ok = true;
-							$enough_updates .= ',' . $key;
-						}
-					}
-				}
-
-				$result .= '<div class="wrap"><div id="title-enough-header" >';
-				$result .= "<h2>" . ucfirst( $enough_current_theme_name ) . __( ' Theme Settings', 'enough' ) . "</h2>";
-				$result .= $enough_navigation_list;
-				$result .= '<br style="clear:both;" />';
-				/**
-				 * Reset
-				 *
-				 */
-				if ( isset( $_POST[ 'reset' ] ) ) {
-
-					foreach ( $enough_admin_options_setting as $add ) {
-
-						$option_name							 = $add[ 'option_name' ];
-						$enough_theme_settings[ $option_name ]	 = $add[ 'option_value' ];
-					}
-
-					update_option( 'enough_theme_settings', $enough_theme_settings, "", $add[ 'autoload' ] );
-
-					remove_theme_mods();
-
-					$enough_updates = __( 'Reset Theme options and Theme Customizer options', 'enough' );
-				}
-				/**
-				 *
-				 *
-				 */
-				if ( isset( $_POST[ 'enough_option_values' ] ) and ! empty( $_POST[ 'enough_option_values' ] ) ) {
-
-					if ( $ok == true ) {
-
-						$result .= '<div id="message" class="updated fade" title="' . esc_attr( $enough_updates ) . '"><p>' . sprintf( __( 'updated %1$s  successfully.', 'enough' ), $enough_updates );
-						$result .= '</p></div>';
-					}
-				}
-
-				$result .= $this->enough_create_form();
-				$result .= '</div>';
-
-				echo $result;
-			}
-
-			/**
-			 *
-			 *
-			 */
-			function enough_add_menus() {
-
-				global $enough_current_theme_name;
-
-				$option_name = ucwords( $enough_current_theme_name ) . ' Options';
-				$hook_suffix = add_theme_page(
-				ENOUGH_TABLE_TITLE, $option_name, 'edit_theme_options', 'enough_settings', array( $this, 'enough_theme_option_panel' )
-				);
-
-
-				if ( $hook_suffix ) {
-
-					add_action( 'admin_print_styles-' . $hook_suffix, array( $this, 'enough_admin_print_styles' ) );
-					add_action( 'load-themes.php', array( $this, 'enough_settings_page_contextual_help' ), 20 );
-					add_action( 'load-' . $hook_suffix, array( $this, 'enough_settings_page_contextual_help' ), 20 );
-				}
-			}
-
-			/**
-			 *
-			 *
-			 */
-			function enough_settings_page_contextual_help() {
-
-				global $enough_theme_uri, $enough_author_uri, $enough_version;
-
-				$screen = get_current_screen();
-
-				$html	 = '<dt>%1$s</dt><dd>%2$s</dd>';
-				$link	 = '<a href="%1$s" %3$s>%2$s</a>';
-				$content = '';
-
-				/* theme URI */
-
-				$content .= sprintf( $html
-				, __( 'Theme URI', 'enough' )
-				, sprintf( $link, $enough_theme_uri, $enough_theme_uri, 'target="_self"' )
-				);
-
-				/* AuthorURI */
-
-				$content .= sprintf( $html
-				, __( 'Author', 'enough' )
-				, sprintf( $link, $enough_author_uri, $enough_author_uri, 'target="_self"' )
-				);
-
-				/* Version */
-
-				$content .= sprintf( $html
-				, __( 'Version', 'enough' )
-				, $enough_version
-				);
-
-				/* Changelog.txt */
-
-				$content .= sprintf( $html
-				, __( 'Change log text', 'enough' )
-				, sprintf( $link, get_template_directory_uri() . '/changelog.txt', __( 'Changelog , display new window', 'enough' ), 'target="_blank"' )
-				, 'target="_blank"'
-				);
-
-				/* readme.txt */
-
-				$content .= sprintf( $html
-				, __( 'Readme text', 'enough' )
-				, sprintf( $link, get_template_directory_uri() . '/readme.txt', __( 'Readme , display new window', 'enough' ), 'target="_blank"' )
-				);
-
-
-				$content = '<dl id="enough-help">' . $content . '</dl>';
-
-				$screen->add_help_tab( array(
-					'id'		 => 'enough-settings-help',
-					'title'		 => __( 'Enough infomation', 'enough' ),
-					'content'	 => $content
-				) );
-			}
-
-			/**
-			 *
-			 *
-			 */
-			function enough_admin_print_styles() {
-
-				if ( file_exists( get_stylesheet_directory() . '/admin-options.css' ) ) {
-
-					echo '<style type="text/css">@import url("' . get_stylesheet_directory_uri() . '/css/admin-options.css");</style>';
-				} else {
-					echo '<style type="text/css">@import url("' . get_template_directory_uri() . '/css/admin-options.css");</style>';
-				}
-			}
-
-			/**
-			 *
-			 *
-			 */
-			function enough_create_form() {
-
-				global $enough_admin_options_setting;
-				global $wpdb;
-
-				$option_value	 = "-";
-				$lines			 = "";
-				$i				 = 0;
-				$deliv			 = htmlspecialchars( $_SERVER[ 'REQUEST_URI' ] );
-				//$results        = get_option('enough_theme_settings');
-				$results		 = enough_theme_option( 'defaults' );
-				$lines .= '<div class="enough-options-panel">';
-				$lines .= $this->navigation_list( $enough_admin_options_setting );
-
-				foreach ( $enough_admin_options_setting as $key => $row ) {
-
-					$enough_option_name					 = $enough_admin_options_setting[ $key ][ 'option_name' ];
-					$enough_sort[ $enough_option_name ]	 = $results[ $enough_option_name ];
-				}
-
-				$results = $enough_sort;
-				$lines .= "<form action=\"$deliv\" method=\"post\">" . wp_nonce_field( 'update-options' );
-				$i		 = 0;
-
-				foreach ( $results as $key => $val ) {
-
-					if ( enough_theme_option( $key, 'type' ) == 'text' ) {
-
-						$lines .= '<div id="' . $key . '" class="form-section ' . enough_theme_option( $key, 'type' ) . '">';
-						$lines .= '<a href="#wpwrap">Top</a>';
-						$lines .= '<h3 class="setting-title">' . enough_theme_option( $key, 'title' ) . '</h3>';
-						$lines .= '<strong class="setting-excerpt">' . enough_theme_option( $key, 'excerpt' ) . '</strong>';
-						$lines .= '<p><input  accesskey="' . esc_attr( $this->accesskey[ $i ] ) . '" type="text" name="enough_option_values[' . $key . ']" value="' . esc_attr( $val ) . '"';
-						$lines .= ' /></p>';
-						$lines .= '</div>';
-					} elseif ( enough_theme_option( $key, 'type' ) == 'textarea' ) {
-
-						$lines .= '<div id="' . $key . '" class="form-section ' . enough_theme_option( $key, 'type' ) . '">';
-						$lines .= '<a href="#wpwrap">Top</a>';
-						$lines .= '<h3 class="setting-title">' . enough_theme_option( $key, 'title' ) . '</h3>';
-						$lines .= '<strong class="setting-excerpt">' . enough_theme_option( $key, 'excerpt' ) . '</strong>';
-						$lines .= '<p><textarea accesskey="' . esc_attr( $this->accesskey[ $i ] ) . '" name="enough_option_values[' . $key . ']" >' . esc_attr( $val ) . '</textarea></p>';
-						$lines .= '</div>';
-
-						$i++;
-					} elseif ( enough_theme_option( $key, 'type' ) == 'checkbox' ) {
-
-						$lines .= '<div id="' . $key . '" class="form-section ' . enough_theme_option( $key, 'type' ) . '">';
-						$lines .= '<a href="#wpwrap">Top</a>';
-						$lines .= '<h3 class="setting-title">' . enough_theme_option( $key, 'title' ) . '</h3>';
-						$lines .= '<strong class="setting-excerpt">' . enough_theme_option( $key, 'excerpt' ) . '</strong>';
-						$lines .= '<p><input  accesskey="' . esc_attr( $this->accesskey[ $i ] ) . '" type="checkbox" name="enough_option_values[' . $key . '][]" value="' . esc_attr( enough_theme_option( $key, 'option_value' ) ) . '"';
-
-						$i++;
-
-						$check = (array) enough_theme_option( $key );
-
-
-						if ( is_array( $check ) and ( enough_theme_option( $key, 'option_value' ) == $val or array_search( enough_theme_option( $key, 'option_value' ), $check ) !== false ) ) {
-
-							$lines .= 'checked = "checked" />' . enough_theme_option( $key, 'option_value' );
-						} elseif ( array_search( enough_theme_option( $key, 'option_value' ), $check ) == false ) {
-
-							$lines .= ' />' . enough_theme_option( $key, 'option_value' );
-						}
-
-						$select_values = enough_theme_option( $key, 'select_values' );
-
-						foreach ( $select_values as $label => $val_check_box ) {
-
-							$lines .= '<input  accesskey="' . esc_attr( $this->accesskey[ $i ] ) .
-							'" type="checkbox" name="enough_option_values[' . $key . '][]" value="' .
-							esc_attr( $val_check_box ) . '"';
-
-							$i++;
-
-							if ( is_array( $check ) and ( enough_theme_option( $key ) == $val_check_box or array_search( $val_check_box, $check ) !== false ) ) {
-
-								$lines .= 'checked = "checked" />' . $val_check_box;
-							} elseif ( array_search( $val_check_box, $check ) == false ) {
-
-								$lines .= ' />' . $val_check_box;
-							}
-						}
-
-						$lines .= '</p>';
-						$lines .= '</div>';
-					} elseif ( enough_theme_option( $key, 'type' ) == 'radio' ) {
-
-						$lines .= '<div id="' . $key . '" class="form-section ' . enough_theme_option( $key, 'type' ) . '">';
-						$lines .= '<a href="#wpwrap">Top</a>';
-						$lines .= '<h3 class="setting-title">' . enough_theme_option( $key, 'title' ) . '</h3>';
-						$lines .= '<strong class="setting-excerpt">' . enough_theme_option( $key, 'excerpt' ) . '</strong>';
-						$lines .= '<p><label><input  accesskey="' . esc_attr( $this->accesskey[ $i ] ) . '" type="radio" name="enough_option_values[' . $key . ']" value="' . esc_attr( enough_theme_option( $key, 'option_value' ) ) . '"';
-
-						$i++;
-
-						$check = enough_theme_option( $key );
-
-						if ( enough_theme_option( $key, 'option_value' ) == $val or ( is_array( enough_theme_option( $key, 'option_value' ) ) and
-						array_search( enough_theme_option( $key, 'option_value' ), $check ) !== false ) ) {
-
-							$lines .= 'checked = "checked" />' . enough_theme_option( $key, 'option_value' ) . '</label>';
-						} elseif ( !is_array( $check ) or
-						array_search( enough_theme_option( $key, 'option_value' ), $check ) == false ) {
-
-							$lines .= ' />' . enough_theme_option( $key, 'option_value' ) . '</label>';
-						}
-
-						$select_values = enough_theme_option( $key, 'select_values' );
-
-						if ( is_array( $select_values ) and ! empty( $select_values ) ) {
-
-							foreach ( $select_values as $label => $val_check_box ) {
-
-								$lines .= '<label><input  accesskey="' . esc_attr( $this->accesskey[ $i ] ) .
-								'" type="radio" name="enough_option_values[' . $key . ']" value="' .
-								esc_attr( $val_check_box ) . '"';
-								$i++;
-
-								if ( enough_theme_option( $key ) == $val_check_box or ( is_array( $check ) and array_search( $val_check_box, $check ) !== false ) ) {
-
-									$lines .= 'checked = "checked" />' . $val_check_box . '</label>';
-								} elseif ( !is_array( $check ) or array_search( $val_check_box, $check ) == false ) {
-
-									$lines .= ' />' . $val_check_box . '</label>';
-								}
-							}
-						}
-
-						$lines .= '</p>';
-						$lines .= '</div>';
-					}
-				}
-
-				$lines .= "<div class=\"submit-box\"><input type=\"submit\" class=\"button-primary\" value=\"" . esc_attr( 'Save Changes' ) . '" />&nbsp;&nbsp;&nbsp;';
-
-				$lines .= "<input type=\"submit\" name=\"reset\" class=\"button-primary\" value=\"" . esc_attr( 'Reset All Settings' ) . '" /></form><br style="clear:both;</div>"';
-
-				$lines .= "lines";
-
-				$add_infomation = '';
-
-				return $add_infomation . '</div></div>' . $lines;
-			}
-
-			function navigation_list( $enough_admin_options_setting ) {
-
-				$lines = '<h3>Menu</h3><ul class="theme-option-menu">';
-
-				foreach ( $enough_admin_options_setting as $val ) {
-					$lines .='<li><a href="#' . $val[ 'option_name' ] . '">' . $val[ 'option_name' ] . '</a></li>';
-				}
-
-				$lines .= '</ul>';
-
-				return $lines;
-			}
-
-		}
-
-	}
-	/**
-	 * enough once message when install.
-	 *
-	 */
-	if ( !function_exists( "enough_first_only_msg" ) ) {
-
-		function enough_first_only_msg( $type = 0 ) {
-
-			global $enough_current_theme_name;
-
-			if ( $type == 1 ) {
-
-				$query	 = 'enough_settings';
-				$link	 = get_site_url( null, 'wp-admin/themes.php?page=' . $query, 'admin' );
-
-				if ( version_compare( PHP_VERSION, '5.0.0', '<' ) ) {
-
-					$msg = sprintf( __( 'Sorry Your PHP version is %1$s Please use PHP version 5 or later.', 'enough' ), PHP_VERSION );
-				} else {
-					/* $msg    = sprintf(__('Thank you for adopting the %1$s theme. It is necessary to set it to this theme. Please move to a set screen clicking this <a href="%2$s">settings page</a>.','enough'), $enough_current_theme_name ,$link); */
-				}
-			}
-
-			if ( !empty( $msg ) ) {
-
-				return '<div id="testmsg" class="error"><p>' . $msg . '</p></div>' . "\n";
-			} else {
-
-				return;
-			}
-		}
-
-	}
-	/**
-	 * Management of uninstall and install.
-	 *
-	 */
-	add_action( 'switch_theme', 'enough_uninstall' );
-
-	if ( !function_exists( "enough_first_message" ) ) {
-
-		function enough_first_message() {
-
-			echo enough_first_only_msg( 1 );
-		}
-
-	}
-
-	if ( !function_exists( "enough_uninstall" ) ) {
-
-		function enough_uninstall() {
-
-			delete_option( "enough_theme_settings" );
-		}
-
-	}
-	/**
 	 *
 	 *
 	 */
@@ -2874,13 +2440,13 @@ if ( class_exists( 'WP_Customize_Control' ) && !class_exists( 'enough_Customize_
 				)
 				)
 				);
- * /
+
  */
 				$enough_choices_array	 = array(
-					'default'	 => 'Default',
-					'author'	 => 'Author',
-					'blank'		 => 'Blank',
-					'categories' => 'Categories',
+					'default'	 => __( 'Default', 'enough' ),
+					'author'	 => __( 'Author', 'enough' ),
+					'blank'		 => __( 'Blank', 'enough' ),
+					'categories' => __( 'Categories', 'enough' ),
 				);
 				$enough_post_formats	 = get_theme_support( 'post-formats' );
 
@@ -3176,37 +2742,7 @@ if ( !function_exists( 'enough_remove_rel_category' ) ) {
 }
 add_filter( 'the_category', 'enough_remove_rel_category', 99 );
 
-/**
- * Test
- * @since 0.74
- */
-//add_filter( 'the_content', 'enough_force_valid' );
-if ( !function_exists( 'enough_force_valid' ) ) {
 
-	function enough_force_valid( $content ) {
-
-		if ( class_exists( 'tidy' ) ) {
-			$config = array(
-				'indent'		 => true,
-				'output-xhtml'	 => true,
-				'wrap-php'		 => true,
-				'wrap'			 => 144 );
-
-			// Tidy
-
-			$tidy = new tidy;
-			$tidy->parseString( $content, $config, 'utf8' );
-			$tidy->cleanRepair();
-
-			$content = tidy_get_output( $tidy );
-		} else {
-			$content = str_replace( '<td>', "<td><p>", $content );
-		}
-
-		return $content;
-	}
-
-}
 /**
  *
  *
@@ -3578,4 +3114,15 @@ function enough_gallerys_css() {
     return apply_filters( "enough_gallerys_css", $enough_gallerys );
 }
 add_filter( 'shortcode_atts_gallery', 'enough_gallery_atts', 10, 3 );
+
+if ( !function_exists( 'enough_approach_blank_fallback_cb' ) ) {
+
+	function enough_approach_blank_fallback_cb() {
+
+		if ( is_customize_preview() ) {
+			$message = __( 'Menu is not set yet. Please create a menu and set the main navigation', 'enough' );
+			echo '<div class="menu-header fallback-navigation"><p class="alert">' . $message . '</p></div>';
+		}
+	}
+}
 ?>
