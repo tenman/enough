@@ -31,7 +31,6 @@ if ( isset( $enough_options[ 'enough_post_one_column_bottom_sidebar' ] ) && $eno
 	add_filter( 'post_class', 'enough_onecolumn_post' );
 	add_filter( 'body_class', 'enough_onecolumn_post' );
 } else {
-
 	add_filter( 'post_class', 'enough_twocolumn_post' );
 	add_filter( 'body_class', 'enough_twocolumn_post' );
 	$enough_onecolumn_post = 'no';

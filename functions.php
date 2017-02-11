@@ -590,7 +590,7 @@ if ( !function_exists( 'enough_embed_meta' ) ) {
 			$enough_content_width = enough_theme_option( 'enough_post_content_width' );
 
 			if( isset( $enough_content_width ) ) {
-				$style .= "\n".'.enough-1col-post article, .enough-1col-post .posts-nav-link, .posts_pagination_wrapper{width:'. $enough_content_width. '%;margin:auto;float:none;}'."\n";
+				$style .= "\n".'.enough-1col-post article, .enough-1col-post .posts-nav-link, .enough-1col-post .posts_pagination_wrapper{width:'. $enough_content_width. '%;margin:auto;float:none;}'."\n";
 			}
 			$style .= '</style>';
 
@@ -3100,9 +3100,9 @@ function enough_gallerys_css() {
 			.gallery figcaption{
             box-sizing:border-box;
             position:absolute;
-            top:-10%;
-            left:30%;
-            width:160px;
+            top:0;
+            left:0;
+            width:100%;
 			height:auto;
             bottom:30%;
             padding:1em;
@@ -3112,14 +3112,12 @@ function enough_gallerys_css() {
             color:#fff;
 			opacity:0;
 			transition:opacity .7s;
-			border-radius: 10% 0 10% 0;
-            -moz-border-radius:10% 0 10% 0;
-            -webkit-border-radius: 10% 0 10% 0;
             border: 1px solid #fff;
             visibility:hidden;
             transition:visibility .7s, opacity .7s;
 			-webkit-transition:visibility .7s,opacity .7s;
             z-index:99999;
+			font-size:100%;
         }
 		.gallery figure:focus figcaption{
 			visibility:visible;

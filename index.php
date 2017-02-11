@@ -55,6 +55,7 @@ if ( have_posts() ) {
  * Sidebar
  */
 if( 'no' == enough_theme_option( 'enough_post_one_column_bottom_sidebar' ) ) {
+
 	get_sidebar('1');
 }
 ?>

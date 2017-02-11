@@ -231,6 +231,8 @@ article img{
     border:1px solid #999;
     padding:.5rem;
 }
+.archive .posts_pagination_wrapper,
+.enough-2col-post .posts_pagination_wrapper,
 .enough-monthly-archive-prev-next-navigation,
 article{
     -moz-box-sizing:border-box;
@@ -954,4 +956,7 @@ article.enough-1col-post  {
     box-sizing:border-box;
     width:49%;
     text-align:center;
+}
+.enough-2col-post .posts_pagination_wrapper{
+    
 }

@@ -1,5 +1,5 @@
 Changelog -----------------------------------
-version:1.21
+version:1.22
 	Modified Customizer Post Format selecter
         Fixed The creation link of the widget is shown to unauthorized users
         Modified Post Format Chat style
