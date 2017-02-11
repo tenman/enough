@@ -590,7 +590,7 @@ if ( !function_exists( 'enough_embed_meta' ) ) {
 			$enough_content_width = enough_theme_option( 'enough_post_content_width' );
 
 			if( isset( $enough_content_width ) ) {
-				$style .= "\n".'.enough-1col-post article{width:'. $enough_content_width. '%;margin:auto;float:none;}'."\n";
+				$style .= "\n".'.enough-1col-post article, .enough-1col-post .posts-nav-link, .posts_pagination_wrapper{width:'. $enough_content_width. '%;margin:auto;float:none;}'."\n";
 			}
 			$style .= '</style>';
 
@@ -1048,40 +1048,69 @@ if ( !function_exists( 'enough_chat_filter' ) ) {
 			return $contents;
 		} else {
 
+			/* chat notation use : remove protocol from url */
 			$contents = str_replace( array( 'http:', 'https:' ), '', $contents );
 		}
 
 		$new_contents = explode( '<p>', $contents );
 
-		if ( count( $new_contents ) == 2 ) {
+		if ( 2 == count( $new_contents ) ) {
+
 			return $contents;
 		}
+		$result			 = '';
+		$prev_author_id	 = '';
+		$html			 = '<dt class="enough-chat enough-chat-author-%1$s">%2$s</dt><dd class="enough-chat-text enough-chat-author-text-%1$s">%3$s</dd>';
+		$before			 = '';
+		$after			 = '';
+		$flag			 = false;
+		$last			 = count( $new_contents ) - 1;
+		foreach ( $new_contents as $key => $new ) {
 
-		$result	 = '';
-		$html	 = '<h4 class="enough-chat enough-chat-author-%1$s">%2$s</h4>
-					<div class="enough-chat-text enough-chat-author-text-%1$s"><p>%3$s</div>';
-		$regs	 = array();
-		foreach ( $new_contents as $new ) {
+			if ( !preg_match( '|([^\:]+)(\:)(.+)|si', $new, $regs ) && $flag == false ) {
+				$before .= '<p>' . $new;
+				continue;
+			}
 
-			$new = str_replace( '</p>', '', $new );
+			if ( intval($key) == intval($last) ) {
 
-			preg_match( '|([^\:]+)(\:)(.+)|si', $new, $regs );
+				if( false !==  $after_result = strstr( $new, '<' ) ) {
+					
+					$after .= $after_result;
+				}
+				if( false !==  $after_result = strstr( $new, "<", true ) ) {
 
-			if ( isset( $regs[ 1 ] ) and ! empty( $regs[ 1 ] ) ) {
+					$reg[3] = $after_result;
+				}
+				if( false !==  $after_result = strstr( $reg[3], ":" ) ) {
+					
+					$regs[3] = str_replace( ':', '', $after_result );
+				}
+			}
+			$flag	 = true;
+			$new	 = str_replace( '</p>', '', $new );
+			if ( isset( $regs[ 3 ] ) && !empty( $regs[ 3 ] ) ) {
+				
+				$regs[3] = str_replace( '</p>', '', $regs[3] );
+			}
+			if ( isset( $regs[ 1 ] ) && !empty( $regs[ 1 ] ) ) {
 
 				$regs[ 1 ] = strip_tags( $regs[ 1 ] );
 			}
 
-			if ( isset( $regs[ 1 ] ) and ! preg_match( '!(http|https|ftp)!', $regs[ 1 ] ) and ! empty( $regs[ 1 ] ) ) {
+			if ( isset( $regs[ 1 ] ) && !preg_match( '!(http|https|ftp)!', $regs[ 1 ] ) && !empty( $regs[ 1 ] ) ) {
 
-				$result .= sprintf( $html, esc_attr( enough_chat_author_id( $regs[ 1 ] ) ), esc_html( $regs[ 1 ] ), $regs[ 3 ]
-				);
+				$result .= sprintf( $html, esc_attr( enough_chat_author_id( $regs[ 1 ] ) ), esc_html( $regs[ 1 ] ), $regs[ 3 ] );
 			} else {
-				$result .= '<p>' . $new;
+
+				if ( !empty( $new ) ) {
+					$result .= '<dd class="additional-block">' . $new . '</dd>';
+				}
 			}
+
 		}
 
-		return $result;
+		return apply_filters( 'enough_chat_filter', sprintf( '%2$s<dl class="enough-post-format-chat">%1$s</dl>%3$s', $result, $before, $after ) );
 	}
 
 }
@@ -2389,7 +2418,7 @@ if ( class_exists( 'WP_Customize_Control' ) && !class_exists( 'enough_Customize_
 					, 'priority'	 => 32,
 				)
 				);
-/*
+
 				$wp_customize->add_setting( 'enough_theme_settings[enough_enable_post_formats]', array(
 					'default'			 => 'default',
 					'type'				 => 'option',
@@ -2397,7 +2426,7 @@ if ( class_exists( 'WP_Customize_Control' ) && !class_exists( 'enough_Customize_
 					'sanitize_callback'	 => 'enough_enable_post_formats_validate'
 				) );
 
- */
+ 
 
 				$wp_customize->add_setting( 'enough_theme_settings[enough_post_one_column_bottom_sidebar]', array(
 					'default'			 => 'no',
@@ -2419,7 +2448,7 @@ if ( class_exists( 'WP_Customize_Control' ) && !class_exists( 'enough_Customize_
 					'sanitize_callback'	 => 'enough_post_content_width_validate'
 				) );
 
-/*
+
 				$wp_customize->add_control(
 				new enough_Customize_Control_Multiple_Select(
 				$wp_customize, 'enough_enable_post_formats', array(
@@ -2441,7 +2470,6 @@ if ( class_exists( 'WP_Customize_Control' ) && !class_exists( 'enough_Customize_
 				)
 				);
 
- */
 				$enough_choices_array	 = array(
 					'default'	 => __( 'Default', 'enough' ),
 					'author'	 => __( 'Author', 'enough' ),

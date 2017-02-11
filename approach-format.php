@@ -41,16 +41,18 @@ if ( have_posts() ) {
     enough_not_found();
 }
 
-if ( ! is_home() ) {
-	printf( '<div class="posts-nav-link">%1$s</div>', 
-		get_posts_nav_link( array( 
-									'sep' => ' ', 
-									'prelabel' => esc_html__( '&laquo;Previous Page', 'enough' ),
-									'nxtlabel' => esc_html__( 'Next Page &raquo;', 'enough' )
-							) 
-				) 
+if ( !is_home() ) {
+	echo 'test';
+	printf( '<div class="posts-nav-link">%1$s</div>', get_posts_nav_link( 
+			array(
+				'sep'		 => ' ',
+				'prelabel'	 => esc_html__( '&laquo;Previous Page', 'enough' ),
+				'nxtlabel'	 => esc_html__( 'Next Page &raquo;', 'enough' )
+			)
+		)
 	);
-} ?>
+}
+?>
 <aside class="custom-format-link-list-wrapper">
 	<?php  enough_custom_post_format_links_button( );?>
     <br class="clear" />

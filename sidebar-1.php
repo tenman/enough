@@ -1,4 +1,7 @@
-<?php if ( is_dynamic_sidebar() ) { ?>
+<?php
+$enough_sidebar = enough_theme_option( 'enough_post_one_column_bottom_sidebar' );
+
+if ( is_dynamic_sidebar() && 'yes' !== $enough_sidebar ) { ?>
 	<nav class="enough-sidebar">
 		<ul>
 			<?php dynamic_sidebar( 'sidebar-1' ); ?>
@@ -7,7 +10,7 @@
 <?php
 } else {
 
-	if ( is_user_logged_in() && ! is_page() && ! is_customize_preview() ) {
+	if ( is_super_admin() && ! is_page() && ! is_customize_preview() ) {
 
 			echo '<nav class="enough-sidebar"><ul>';
 			echo '<li><div class="link-to-sidebar-settings">';
@@ -20,7 +23,7 @@
 			echo '</div></li></ul></nav>';
 
 	} 
-	if ( is_user_logged_in() && ! is_page() && is_customize_preview() ) {
+	if ( is_super_admin() && ! is_page() && is_customize_preview() ) {
 		echo '<nav class="enough-sidebar"><ul>';
 			echo '<li><div class="link-to-sidebar-settings">';
 			echo '<div class="fallback-navigation"><p class="alert">'.__('Sidebar Widget is not set. Please set the sidebar widget first in Dashboard / Appearance / Widgets', 'enough' ). '</p></div>';

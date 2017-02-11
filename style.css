@@ -4,7 +4,7 @@ Theme URI: http://www.tenman.info/wp3/enough/
 Description: Satisfied enough necessary minimum structure Responsive Theme. HTML5 , Supports Post Format Archives , You can select your favorite Post Format
 Author: Tenman
 Author URI: http://www.tenman.info/wp3/
-Version: 1.20
+Version: 1.21
 Tags: two-columns,custom-colors, custom-header, custom-background, custom-menu, editor-style, threaded-comments, sticky-post, flexible-header
 Text Domain: enough
 License: GNU General Public License v2.0
@@ -56,12 +56,7 @@ body{
     }
 
     /* for Post Full Width One Column */
-    .enough-1col-post .posts-nav-link,
-    article.enough-1col-post  {
-        display:block;
-        margin:1%;
-        width:98%;
-    }
+
     article.enough-1col-post + .custom-format-link-list-wrapper + nav,
     article.enough-1col-post + .custom-format-link-list-wrapper,
     article.enough-1col-post + 	nav{
@@ -437,12 +432,6 @@ iframe[src^="https://embed-ssl.ted.com/"]{
 }
 /* oembed end */
 
-.posts_pagination_wrapper > nav.pagination{
-    float:left;
-    margin-left:0!important;
-    text-align:center;
-    border:1px solid #fff;
-}
 .screen-reader-text{
     display:none;
 }

@@ -296,3 +296,31 @@ address a{
 .fallback-navigation .alert{
     background:rgba(231, 76, 60,.2);
 }
+.enough-post-format-chat > dd{
+    border:1px solid #aaa;
+    background-color: #F2F2F2;
+}
+.enough-post-format-chat > dd:after{
+    background-color: #F2F2F2;
+    border-left:1px solid #aaa;
+    border-bottom:1px solid #aaa;
+}
+
+.rsidebar .enough-post-format-chat > dd:after,
+.lsidebar .enough-post-format-chat > dd:after{
+	background-color: #F2F2F2;
+	border-left:1px solid #aaa;
+	border-top:1px solid #aaa;
+	border-bottom:none;
+}
+@media screen and (max-width : 640px){
+	.enough-post-format-chat > dd:after{
+		background-color: #F2F2F2;
+		border-left:1px solid #aaa;
+		border-top:1px solid #aaa;
+		border-bottom:none;
+	}	
+}
+.enough-1col-post .posts-nav-link a{
+    border:1px solid #aaa;
+}

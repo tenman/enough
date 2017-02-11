@@ -1,4 +1,10 @@
 Changelog -----------------------------------
+version:1.21
+	Modified Customizer Post Format selecter
+        Fixed The creation link of the widget is shown to unauthorized users
+        Modified Post Format Chat style
+----------------------------------------------
+Changelog -----------------------------------
 version:1.20
 	Added Customizer navigation message
         Modified Update Translation ja 
