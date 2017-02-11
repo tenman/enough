@@ -42,8 +42,8 @@ if ( have_posts() ) {
 }
 
 if ( !is_home() ) {
-	echo 'test';
-	printf( '<div class="posts-nav-link">%1$s</div>', get_posts_nav_link( 
+
+	printf( '<div class="posts-nav-link">%1$s</div>', get_posts_nav_link(
 			array(
 				'sep'		 => ' ',
 				'prelabel'	 => esc_html__( '&laquo;Previous Page', 'enough' ),
