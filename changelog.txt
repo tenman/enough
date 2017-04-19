@@ -1,4 +1,9 @@
 Changelog -----------------------------------
+version:1.23
+	Modified Translation update
+			ja.po,ja.mo
+----------------------------------------------
+Changelog -----------------------------------
 version:1.22
 	Modified Customizer Post Format selecter
         Fixed The creation link of the widget is shown to unauthorized users
@@ -7,7 +12,7 @@ version:1.22
 Changelog -----------------------------------
 version:1.20
 	Added Customizer navigation message
-        Modified Update Translation ja 
+        Modified Update Translation ja
 ----------------------------------------------
 Changelog -----------------------------------
 version:1.15
