@@ -939,7 +939,7 @@ footer address{
     padding-left:1em;
     padding-right:1em;
 }
-.enough-1col-post .posts-nav-link,
+.posts-nav-link,
 article.enough-1col-post  {
     display:block;
     margin:1%;
@@ -948,15 +948,9 @@ article.enough-1col-post  {
 .enough-1col-post .posts-nav-link{
     overflow:hidden;
 }
-.enough-1col-post .posts-nav-link a:first-child{
-   
-}
-.enough-1col-post .posts-nav-link a{
+.posts-nav-link a{
     padding:1em;
     box-sizing:border-box;
     width:49%;
     text-align:center;
-}
-.enough-2col-post .posts_pagination_wrapper{
-    
 }

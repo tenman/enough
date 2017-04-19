@@ -321,6 +321,7 @@ address a{
 		border-bottom:none;
 	}	
 }
-.enough-1col-post .posts-nav-link a{
+/*.enough-1col-post */
+.posts-nav-link a{
     border:1px solid #aaa;
 }
