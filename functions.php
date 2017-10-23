@@ -19,7 +19,7 @@ include_once( get_template_directory() . '/inc/widgets.php');
  * When WEBSITE Change from http: to https
  * Old post content filtered to https://your domain/...
  */
-if( ! isset( $raindrops_ssl_link_helper ) ) {
+if( ! isset( $enough_ssl_link_helper ) ) {
 
 	$enough_ssl_link_helper = true;
 }
@@ -109,7 +109,7 @@ $enough_admin_options_setting	 = array(
 		'validate'		 => 'enough_approach_type_validate',
 		'list'			 => 1,
 		'type'			 => 'radio',
-		'select_values'	 => array( 
+		'select_values'	 => array(
 			__( 'Author', 'enough' )				 => 'author',
 			__( 'Blank', 'enough' )					 => 'blank',
 			__( 'Categories','enough' )				 => 'categories',
@@ -623,7 +623,7 @@ if ( !function_exists( "enough_enqueue_scripts_styles" ) ) {
 	function enough_enqueue_scripts_styles() {
 
 		global $is_IE, $enough_version;
-		
+
 		if( ! is_user_logged_in() ) {
 			/* @since 1.24 */
 			$enough_version = null;
@@ -1088,7 +1088,7 @@ if ( !function_exists( 'enough_chat_filter' ) ) {
 			if ( intval($key) == intval($last) ) {
 
 				if( false !==  $after_result = strstr( $new, '<' ) ) {
-					
+
 					$after .= $after_result;
 				}
 				if( false !==  $after_result = strstr( $new, "<", true ) ) {
@@ -1096,14 +1096,14 @@ if ( !function_exists( 'enough_chat_filter' ) ) {
 					$reg[3] = $after_result;
 				}
 				if( false !==  $after_result = strstr( $reg[3], ":" ) ) {
-					
+
 					$regs[3] = str_replace( ':', '', $after_result );
 				}
 			}
 			$flag	 = true;
 			$new	 = str_replace( '</p>', '', $new );
 			if ( isset( $regs[ 3 ] ) && !empty( $regs[ 3 ] ) ) {
-				
+
 				$regs[3] = str_replace( '</p>', '', $regs[3] );
 			}
 			if ( isset( $regs[ 1 ] ) && !empty( $regs[ 1 ] ) ) {
@@ -2439,7 +2439,7 @@ if ( class_exists( 'WP_Customize_Control' ) && !class_exists( 'enough_Customize_
 					'sanitize_callback'	 => 'enough_enable_post_formats_validate'
 				) );
 
- 
+
 
 				$wp_customize->add_setting( 'enough_theme_settings[enough_post_one_column_bottom_sidebar]', array(
 					'default'			 => 'no',
@@ -3179,7 +3179,7 @@ add_filter( 'tag_link','enough_ssl_link_helper' );
 add_filter( 'category_link','enough_ssl_link_helper' );
 add_filter( 'the_content','enough_ssl_link_helper' );
 add_filter('the_content_rss','enough_ssl_link_helper' );
-		
+
 if( ! function_exists( 'enough_ssl_link_helper' ) ) {
 	/**
 	 * @since 1.488

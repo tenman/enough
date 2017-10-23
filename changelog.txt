@@ -2,6 +2,11 @@ Changelog -----------------------------------
 version:1.24
 	Change protocol Change Author URI and Theme URI
 	Search form CSS
+	Fixed video element Display with a width larger than the entry contenty
+	Modified .enough-status-bar CSS
+	Added enough SSL link helper
+		Rewrite the internal link as a filter from http to https
+	Modified Theme strysheet,js remove version query string when not user logged in
 ----------------------------------------------
 Changelog -----------------------------------
 version:1.23
