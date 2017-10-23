@@ -1,4 +1,9 @@
 Changelog -----------------------------------
+version:1.24
+	Change protocol Change Author URI and Theme URI
+	Search form CSS
+----------------------------------------------
+Changelog -----------------------------------
 version:1.23
 	Modified Translation update
 			ja.po,ja.mo

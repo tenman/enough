@@ -16,6 +16,14 @@ if ( !defined( 'ABSPATH' ) ) {
 
 include_once( get_template_directory() . '/inc/widgets.php');
 /**
+ * When WEBSITE Change from http: to https
+ * Old post content filtered to https://your domain/...
+ */
+if( ! isset( $raindrops_ssl_link_helper ) ) {
+
+	$enough_ssl_link_helper = true;
+}
+/**
  * enough Gallery Presentation
  * value false shows WordPress Standard Gallery Style.
  *
@@ -615,6 +623,11 @@ if ( !function_exists( "enough_enqueue_scripts_styles" ) ) {
 	function enough_enqueue_scripts_styles() {
 
 		global $is_IE, $enough_version;
+		
+		if( ! is_user_logged_in() ) {
+			/* @since 1.24 */
+			$enough_version = null;
+		}
 
 		$enough_csses = array( "css/normalize.css", "genericons/genericons.css", "css/fonts.css", "css/box-modules.css", "css/comment.css", "css/ua.css", "css/colors.css", "css/base.css", "css/layout-fluid.css", "css/post-format.css", "css/approach.css" );
 
@@ -3149,6 +3162,42 @@ if ( !function_exists( 'enough_approach_blank_fallback_cb' ) ) {
 			$message = __( 'Menu is not set yet. Please create a menu and set the main navigation', 'enough' );
 			echo '<div class="menu-header fallback-navigation"><p class="alert">' . $message . '</p></div>';
 		}
+	}
+}
+
+add_filter( 'enough_embed_meta_echo', 'enough_ssl_link_helper' );
+add_filter( 'enough_custom_fields_style_for_loop', 'enough_ssl_link_helper',99 );//not work
+add_filter( 'enough_embed_meta_css', 'enough_ssl_link_helper' );
+add_filter( 'enough_footer_text', 'enough_ssl_link_helper' );
+add_filter( 'post_link', 'enough_ssl_link_helper' );
+add_filter( 'wp_nav_menu', 'enough_ssl_link_helper' );
+add_filter( 'wp_get_custom_css', 'enough_ssl_link_helper' );
+add_filter('widget_text_content', 'enough_ssl_link_helper' );
+add_filter( 'widget_custom_html_content','enough_ssl_link_helper' );
+add_filter( 'post_type_archive_link','enough_ssl_link_helper' );
+add_filter( 'tag_link','enough_ssl_link_helper' );
+add_filter( 'category_link','enough_ssl_link_helper' );
+add_filter( 'the_content','enough_ssl_link_helper' );
+add_filter('the_content_rss','enough_ssl_link_helper' );
+		
+if( ! function_exists( 'enough_ssl_link_helper' ) ) {
+	/**
+	 * @since 1.488
+	 */
+	function enough_ssl_link_helper( $content ) {
+
+		global $enough_ssl_link_helper;
+
+		if( is_ssl( ) && true == $enough_ssl_link_helper ) {
+
+			$parsed_url = parse_url (  home_url() );
+			$host = $parsed_url['host'];
+
+			$replace_pairs = apply_filters( 'enough_ssl_link_helper_hosts', array( 'http://'.$host =>'https://'.$host ) );
+
+			return strtr( $content, $replace_pairs );
+		}
+		return $content;
 	}
 }
 ?>

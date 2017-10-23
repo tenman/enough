@@ -436,7 +436,7 @@ nav #searchform .screen-reader-text,
 }
 nav #searchform input[type="text"]{
     width:60%;
-    max-width:120px;
+
 }
 nav #searchform input[type="submit"]{
     width:35%;

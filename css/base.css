@@ -29,14 +29,6 @@ article .entry-title{
 .clear {
     clear:both;
 }
-
-.posts-nav-link a:first-child {
-    float:left;
-}
-.posts-nav-link a:last-child {
-    float:right;
-}
-
 .unknown .unknown-ua {
     display:block;
     text-align:center;

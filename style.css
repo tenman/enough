@@ -1,10 +1,10 @@
 /*
 Theme Name: Enough
-Theme URI: http://www.tenman.info/wp3/enough/
+Theme URI: https://www.tenman.info/wp3/enough/
 Description: Satisfied enough necessary minimum structure Responsive Theme. HTML5 , Supports Post Format Archives , You can select your favorite Post Format
 Author: Tenman
-Author URI: http://www.tenman.info/wp3/
-Version: 1.23
+Author URI: https://www.tenman.info/wp3/
+Version: 1.24
 Tags: two-columns,custom-colors, custom-header, custom-background, custom-menu, editor-style, threaded-comments, sticky-post, flexible-header
 Text Domain: enough
 License: GNU General Public License v2.0
@@ -321,6 +321,25 @@ input[type="search"]{
 .category .enough-status-bar .enough-next-prev-link a{
 
 }
+.tag .enough-status-bar .nav-previous,
+.tag .enough-status-bar .nav-next,
+.category .enough-status-bar .nav-previous,
+.category .enough-status-bar .nav-next{
+    width:40%;
+    display:inline-block;
+    text-align:center;
+}
+.tag .enough-status-bar .nav-previous:empty,
+.tag .enough-status-bar .nav-next:empty,
+.category .enough-status-bar .nav-previous:empty,
+.category .enough-status-bar .nav-next:empty{
+    display:none;
+}
+.tag .posts-nav-link a,
+.category .posts-nav-link a{
+    border:none;
+
+}
 .archive.date　.enough-status-bar #nav-below{
     position:relative;
 }
@@ -392,6 +411,9 @@ color:#fff;
     line-height:2.5;
 }
 /* oembed */
+video{
+    max-width:100%;
+}
 embed[src^="http://www.youtube.com/"],
 embed[src^="http://v.wordpress.com/"],
 embed[src^="//v.wordpress.com/"],
