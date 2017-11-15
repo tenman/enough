@@ -161,6 +161,7 @@
 .textwidget{
     overflow:hidden;
 }
+.widget_media_gallery .widgettitle,
 .widget_search .widgettitle,
 .widget_calendar .widgettitle,
 .widget_text .widgettitle,
@@ -637,6 +638,9 @@ article embed{
     display:block;
     width:100%;
     float:none;
+}
+.enough-sidebar > ul > li{
+    overflow:hidden;
 }
 
 .enough-post-format-chat > .enough-chat-author-0{

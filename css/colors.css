@@ -201,6 +201,7 @@ blockquote{
     #commentform,
     html,
     .posted-on a.enough-comment-link:active,
+    .widget_media_gallery .widgettitle,
     .widget_search .widgettitle,
     .widget_calendar .widgettitle,
     .widget_text .widgettitle,

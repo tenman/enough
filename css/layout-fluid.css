@@ -122,18 +122,6 @@
     .widget{
         margin-right:10px!important;
     }
-
-    /*from example*/
-/*
-    .posted-in li{
-        display:inline-block;
-        padding:3px;
-        margin:3px;
-        font-size:110%;
-    }
-    .posted-in ul li:nth-child(1){
-        font-weight:bold;
-    }*/
     .toggle-category a,
     .toggle-tag a{
        display:inline-block;

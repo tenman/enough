@@ -1,4 +1,8 @@
 Changelog -----------------------------------
+version:1.25
+	Modified Gallery Widget Style
+----------------------------------------------
+Changelog -----------------------------------
 version:1.24
 	Change protocol Change Author URI and Theme URI
 	Search form CSS
