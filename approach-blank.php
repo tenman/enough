@@ -15,7 +15,6 @@ add_filter( 'wp_head', 'enough_approach_blank_style' );
 <html <?php language_attributes(); ?>>
     <head>
         <meta charset="<?php bloginfo( 'charset' ); ?>" />
-        <title>	<?php wp_title( '|' ); ?></title>
 		<?php wp_head(); ?>
     </head>
     <body <?php body_class( 'approach-blank' ); ?>>

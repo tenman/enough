@@ -1,4 +1,8 @@
 Changelog -----------------------------------
+version:1.26
+	Modified CSS. Minimal support for gutenberg plugin
+----------------------------------------------
+Changelog -----------------------------------
 version:1.25
 	Modified Gallery Widget Style
 ----------------------------------------------

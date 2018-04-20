@@ -65,7 +65,9 @@ address {
 blockquote {
     padding:1rem .5rem 1rem 2rem;
 }
-
+figure{
+    overflow:hidden;
+}
 
 h1 a span {
 }

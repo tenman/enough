@@ -105,9 +105,8 @@ cite.fn{
     margin-top:1em;
     margin-top:1rem;
 }
-.wp-link-pages a,
-.comment-edit-link,
-.pagenate-comment-links a{
+
+.comment-edit-link{
     border:1px solid #adc5cf;
     background: #e4f1f9; /* Old browsers */
     background: -moz-linear-gradient(top, #efefef 0%, #dfdfdf 100%); /* FF3.6+ */
@@ -123,6 +122,9 @@ cite.fn{
 }
 .pagenate-comment-links{
     text-align:center;
+}
+.pagenate-comment-links a{
+   text-decoration:none;
 }
 .pagenate-comment-links .page-numbers{
     border:1px solid #ccc;

@@ -84,6 +84,9 @@ a,
 .widget > li{
     color:#666;
 }
+.widget li a{
+    text-decoration:none;
+}
 body,
 .fail-search{
     background:rgba(200,200,200,0.3);
@@ -132,7 +135,6 @@ blockquote{
 .format-quote blockquote,
 .entry-content blockquote{
     border:none;
-    border-left:1px solid #ccc;
 }
 .format-quote blockquote:before,
 .entry-content blockquote:before{
@@ -141,6 +143,7 @@ blockquote{
     font-weight:bold;
     font-size:30px;
     display:block;
+    text-align:left;
 }
 .format-quote blockquote:after,
 .entry-content blockquote:after{
@@ -325,4 +328,9 @@ address a{
 /*.enough-1col-post */
 .posts-nav-link a{
     border:1px solid #aaa;
+}
+.wp-block-code{
+    background-color: #F2F2F2;
+    border-left:1px solid #aaa;
+    border:none;
 }

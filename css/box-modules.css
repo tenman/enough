@@ -57,6 +57,10 @@
     display:inline-block;
     float:right;
 }
+#nav-below{
+    margin-bottom:1em;
+    overflow:hidden;
+}
 #nav-below .nav-previous a, #nav-below .nav-next a{
     text-decoration:none;
 }
@@ -231,6 +235,7 @@ article img{
 .wp-link-pages a{
     border:1px solid #999;
     padding:.5rem;
+    text-decoration:none;
 }
 .archive .posts_pagination_wrapper,
 .enough-2col-post .posts_pagination_wrapper,
@@ -957,4 +962,28 @@ article.enough-1col-post  {
     box-sizing:border-box;
     width:49%;
     text-align:center;
+}
+figcaption{
+    box-sizing:border-box;
+}
+.wp-block-verse,
+.wp-block-code,
+.wp-block-preformatted{
+    white-space: pre-wrap; 
+    white-space: -moz-pre-wrap; 
+    white-space: -pre-wrap; 
+    white-space: -o-pre-wrap; 
+    word-wrap: break-word;
+    clear:both;
+    padding:1em;
+    box-sizing:border-box;
+    line-height:2;
+}
+.ja p.has-drop-cap:first-letter{
+	float: left;
+    font-size: 3em;
+    line-height: 1;
+    margin: .2em .2em 0 0;
+    font-style: normal;
+    float:left;
 }
